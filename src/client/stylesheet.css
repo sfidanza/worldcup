@@ -1,0 +1,500 @@
+/***[Page Structure]********/
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #333333;
+	font-size: 10px;
+	padding: 0px;
+	margin: 0px;
+}
+td, th {
+	font-size: 10px;
+}
+#global-container {
+	width: 640px;
+	margin: 1em auto;
+}
+#header {
+	height: 102px;
+	margin: 1em auto;
+	padding: 1em;
+	background: #FFFFFF url("img/euro2012_logo.png") top right no-repeat;
+	border-radius: 1em;
+	-moz-border-radius: 1em;
+}
+#contents {
+	margin: 1em auto;
+	padding: 1em;
+	background-color: #FFFFFF;
+	border-radius: 1em;
+	-moz-border-radius: 1em;
+}
+#footer {
+	margin-top: -0.8em;
+	padding: 0em 1em;
+}
+
+/***[Header]****************/
+#header h1 {
+	margin-top: 0px;
+	margin-right: 120px;
+	margin-bottom: 0.5em;
+	padding: 0.2em 0.3em;
+	background-color: #9C0000;
+	color: #FFFFFF;
+	font-size: 20px;
+}
+dl#menu {
+	margin: 0px;
+	margin-right: 120px;
+	padding: 0px;
+}
+dl#menu dt {
+	font-size: 140%;
+	font-weight: bold;
+	clear: left;
+	float: left;
+	width: 100px;
+	margin-bottom: 0.3em;
+}
+dl#menu dd {
+	font-size: 110%;
+	margin: 0px;
+	float: left;
+}
+dl#menu dd a {
+	display: block;
+	padding: 0.2em 1.25em;
+	text-decoration: none;
+	color: black;
+}
+dl#menu dd a.selected {
+	background: url("img/arrow_right.png") 2px 50% no-repeat;
+}
+dl#menu dd a:hover {
+	background: #333333 url("img/l0.png") top left repeat-x;
+	color: #FFFFFF;
+}
+dl#menu li ul li {
+	display: inline;
+}
+dl#menu li ul li a {
+	display: inline;
+	padding: 0.2em 1em;
+}
+
+/***[Team Flags]************/
+.flag {
+	background-image: url("img/flags-sprite.png");
+	background-position: left 50%;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+.left .flag, .flag.left {
+	background-position: right 50%;
+	padding-left: 0px;
+	padding-right: 20px;
+}
+
+.flag.CZE { background-position: 0 2px; }
+.flag.GER { background-position: 0 -29px; }
+.flag.DEN { background-position: 0 -60px; }
+.flag.ENG { background-position: 0 -91px; }
+.flag.ESP { background-position: 0 -122px; }
+.flag.FRA { background-position: 0 -153px; }
+.flag.GRE { background-position: 0 -184px; }
+.flag.CRO { background-position: 0 -215px; }
+.flag.IRL { background-position: 0 -246px; }
+.flag.ITA { background-position: 0 -277px; }
+.flag.NED { background-position: 0 -308px; }
+.flag.POL { background-position: 0 -339px; }
+.flag.POR { background-position: 0 -370px; }
+.flag.RUS { background-position: 0 -401px; }
+.flag.SWE { background-position: 0 -432px; }
+.flag.UKR { background-position: 0 -463px; }
+
+.left .flag.CZE, .flag.CZE.left { background-position: right 2px; }
+.left .flag.GER, .flag.GER.left { background-position: right -29px; }
+.left .flag.DEN, .flag.DEN.left { background-position: right -60px; }
+.left .flag.ENG, .flag.ENG.left { background-position: right -91px; }
+.left .flag.ESP, .flag.ESP.left { background-position: right -122px; }
+.left .flag.FRA, .flag.FRA.left { background-position: right -153px; }
+.left .flag.GRE, .flag.GRE.left { background-position: right -184px; }
+.left .flag.CRO, .flag.CRO.left { background-position: right -215px; }
+.left .flag.IRL, .flag.IRL.left { background-position: right -246px; }
+.left .flag.ITA, .flag.ITA.left { background-position: right -277px; }
+.left .flag.NED, .flag.NED.left { background-position: right -308px; }
+.left .flag.POL, .flag.POL.left { background-position: right -339px; }
+.left .flag.POR, .flag.POR.left { background-position: right -370px; }
+.left .flag.RUS, .flag.RUS.left { background-position: right -401px; }
+.left .flag.SWE, .flag.SWE.left { background-position: right -432px; }
+.left .flag.UKR, .flag.UKR.left { background-position: right -463px; }
+
+/*
+.flag.POL { background-image: url("img/flags/pl.gif"); }
+.flag.GRE { background-image: url("img/flags/gr.gif"); }
+.flag.RUS { background-image: url("img/flags/ru.gif"); }
+.flag.CZE { background-image: url("img/flags/cz.gif"); }
+.flag.NED { background-image: url("img/flags/nl.gif"); }
+.flag.DEN { background-image: url("img/flags/dk.gif"); }
+.flag.GER { background-image: url("img/flags/de.gif"); }
+.flag.POR { background-image: url("img/flags/pt.gif"); }
+.flag.ESP { background-image: url("img/flags/es.gif"); }
+.flag.ITA { background-image: url("img/flags/it.gif"); }
+.flag.IRL { background-image: url("img/flags/ie.gif"); }
+.flag.CRO { background-image: url("img/flags/hr.gif"); }
+.flag.UKR { background-image: url("img/flags/ua.gif"); }
+.flag.SWE { background-image: url("img/flags/se.gif"); }
+.flag.FRA { background-image: url("img/flags/fr.gif"); }
+.flag.ENG { background-image: url("img/flags/england.gif"); }
+*/
+/***[Schedule]**************/
+.schedule {
+	width: 100%;
+	margin: auto;
+	padding: 0px;
+	border: 0px;
+	border-collapse: collapse;
+}
+.schedule thead th {
+	padding: 0.5em 0;
+	background-color: #9C0000;
+	color: #FFFFFF;
+}
+.schedule tbody th {
+	padding: 3px;
+	background: #333333 url("img/l0.png") top left repeat-x;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+}
+.schedule td {
+	padding: 0.3em 0.2em;
+	border-bottom: 1px solid #ccc;
+}
+.schedule td a {
+	color: #000000;
+	text-decoration: none;
+}
+.schedule td a:hover {
+	text-decoration: underline;
+}
+.schedule td img {
+	vertical-align: bottom;
+}
+.schedule tr.subtitle {
+	background-color: #F4F4F4;
+	color: #9C0000;
+}
+
+.schedule td.time {
+	width: 10%;
+}
+.schedule td.group {
+	width: 15%;
+	text-align: center;
+}
+.schedule td.score {
+	width: 10%;
+	text-align: center;
+}
+.schedule td.team {
+	width: 23%;
+}
+.schedule td.left {
+	text-align: right;
+}
+.schedule td.channel {
+	text-align: center;
+	width: 45px;
+}
+
+/***[Ranking]***************/
+table.ranking {
+	width: 100%;
+	margin: 0em auto 2em;
+	padding: 0px;
+	border: 0px;
+	border-collapse: collapse;
+}
+table.ranking tbody tr:nth-child(3) {
+	border-bottom: 2px solid #119911;
+}
+table.ranking thead th {
+	padding: 0.5em 0;
+	background-color: #9C0000;
+	color: #FFFFFF;
+}
+table.ranking tbody th {
+	padding: 3px;
+	background: #333333 url("img/l0.png") top left repeat-x;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+}
+table.ranking td {
+	padding: 0.3em 0.2em;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+.l0 { background-color: #EEEEEE; }
+.l1 { background-color: #FFFFFF; }
+.l0:hover, .l1:hover { background-color: #EEEEAA; }
+.highlighted { background-color: #EEEEAA; }
+
+table.ranking td.team {
+	text-align: left;
+	width: 40%;
+}
+
+table.quickRanking {
+	float: left;
+	width: 200px;
+	margin: 0.3em;
+}
+table.quickRanking td.team {
+	width: auto;
+}
+
+/***[Finals Board]**********/
+#contents.page-board {
+	zoom: 1; /* IE7 fix */
+}
+.page-board .board {
+	position: relative;
+	height: 480px;
+}
+.page-board .match {
+	position: absolute;
+	width: 290px;
+	border: 1px solid #CCCCCC;
+	background-color: #F4F4F4;
+	border-radius: 0px 0px 0.6em 0.6em;
+	-moz-border-radius: 0px 0px 0.6em 0.6em;
+}
+.page-board .match h3 {
+	margin: 0px;
+	padding: 1px 0px;
+	border-bottom: 1px solid #CCCCCC;
+	background-repeat: repeat-x;
+	text-align: center;
+	font-size: 100%;
+	color: #444444;
+}
+.page-board .match.round16 h3 { background: url('img/final-lime.png'); }
+.page-board .match.quarter h3 { background: url('img/final-bronze.png'); }
+.page-board .match.semi    h3 { background: url('img/final-silver.png'); }
+.page-board .match.final   h3 { background: url('img/final-gold.png'); }
+.page-board .match.third   h3 { background: url('img/final-gold.png'); }
+.page-board .match span.date {
+	font-size: 85%;
+}
+.page-board .match .content {
+	padding: 0.3em 0.6em 0.6em;
+	text-align: center;
+}
+.page-board .match div.teams {
+	margin-top: 0.4em;
+	text-align: center;
+	font-weight: bold;
+}
+.page-board .match div.teams .score {
+	display: inline-block;
+	width: 45px;
+}
+.page-board .match span.flag {
+	display: inline-block;
+	width: 90px;
+	text-align: left;
+}
+.page-board .match span.flag.left {
+	text-align: right;
+}
+.page-board .match div.teams .pso {
+	font-size: 85%;
+}
+#link-Q1, #link-Q2, #link-Q3, #link-Q4,
+#link-S1, #link-S2, #link-T1, #link-F1 {
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	border-left: none;
+}
+#match-Q1A {  }
+#match-Q1B { top: 280px; }
+#match-Q1C { top: 140px; }
+#match-Q1D { top: 413px; }
+#match-S29 { top:  70px; left: 170px; }
+#match-S30 { top: 350px; left: 170px; }
+#match-F31 { top: 210px; left: 330px; }
+#link-S1 { top:  30px; left: 292px; width: 20px; height: 140px; }
+#link-S2 { top: 310px; left: 292px; width: 20px; height: 140px; }
+#link-F1 { top: 100px; left: 462px; width: 20px; height: 280px; }
+
+/***[Footer]****************/
+#footer {
+	color: #888888;
+}
+#footer p {
+	margin: 0px;
+}
+#footer a {
+	color: #888888;
+	text-decoration: none;
+}
+#footer a.discrete {
+	color: #333333;
+}
+#footer a:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+/***[PWL]*******************/
+#app-pwl {
+	position: absolute;
+	visibility: hidden;
+	top: 0px;
+	left: 0px;
+	background: #FFFFFF url('img/loader.gif') 1.5em 50% no-repeat;
+	border: 1px outset #333333;
+	border-radius: 3em;
+	-moz-border-radius: 3em;
+	padding: 2em 4em;
+	width: 15em;
+	text-align: center;
+}
+
+/***[Tooltip]***************/
+.uic-tooltip-container {
+	position: absolute;
+	top: 0;
+	border: 1px solid #333333;
+	background: #FFFFFF;
+	padding: 0.5em;
+}
+
+/***[Dialog]****************/
+.uic-dlg {
+	position: absolute;
+	visibility: hidden;
+	top: 0px;
+	left: 0px;
+	background-color: #FFFFFF;
+	border: 1px outset #333333;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+.uic-dlg h5 {
+	background-image: url("img/dialog-title.png");
+	margin: 0px;
+	padding: 0.3em 0.6em 0.4em;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 120%;
+	border-radius: 7px 7px 0px 0px;
+	-moz-border-radius: 7px 7px 0px 0px;
+}
+.uic-dlg a.uic-dlg-close {
+	margin-right: 7px;
+	float: right;
+	width: 41px;
+	height: 15px;
+	background: url("img/close.png") 0 0 no-repeat;
+}
+.uic-dlg a.uic-dlg-close:hover {
+	background-image: url("img/close-hover.png");
+}
+.uic-dlg a.uic-dlg-close:active {
+	background-image: url("img/close-active.png");
+}
+.uic-dlg-body {
+	position: absolute;
+	visibility: hidden;
+	top: 0px;
+	left: 0px;
+	background-color: #FFFFFF;
+	border: 1px outset #333333;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+.uic-overlay {
+	position: absolute;
+	background-color: #000000;
+	opacity: 0.6;
+/*	filter: alpha(opacity=50); /* IE quickfix. Uses a lot of memory. */
+}
+
+/***[Generic Dialog]********/
+#generic-dlg-body {
+	padding: 1em;
+	width: 400px;
+}
+#generic-dlg-body p {
+	margin-top: 0;
+}
+#generic-dlg-body p+ul {
+	margin-top: -0.7em;
+}
+
+/***[Login]*****************/
+#user-area {
+	text-align: right;
+}
+#login-form fieldset {
+	border: none;
+	padding: 2px;
+	margin: 0px;
+}
+#login-form div {
+	margin: 8px;
+}
+#login-form div.submit {
+	text-align: right;
+}
+#login-form div.submit input {
+	background-color: #EEEEEE;
+	border: 1px outset #CCCCCC;
+	color: #222222;
+	padding: 1px 5px;
+}
+
+/***[Score Editor]**********/
+#score-editor {
+	position: absolute;
+	visibility: hidden;
+	top: 0px;
+	left: 0px;
+	background-image: url("img/backEdit.png");
+	border: 1px solid #999900;
+	padding: 2px 7px;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+#score-editor .inputs {
+	width: 40px;
+	margin: 2px 0px;
+	border: 1px solid #999900;
+	background: #FFFFFF;
+	text-align: center;
+}
+#score-editor .inputs input {
+	width: 1em;
+	font-size: 10px;
+	padding: 0px;
+	border: none;
+	background: #FFFFFF;
+}
+#score-editor-ok {
+	display: block;
+	float: right;
+	width: 16px;
+	height: 9px;
+	background: url("img/small-accept.png") 0 0 no-repeat;
+}
+#score-editor-cancel {
+	display: block;
+	width: 16px;
+	height: 9px;
+	background: url("img/small-cross.png") 0 0 no-repeat;
+}

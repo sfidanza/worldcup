@@ -1,0 +1,69 @@
+<p>Your can place your bet on different events:</p>
+
+<h2>Euro 2012 champion: who will win the championship?</h2>
+<p>
+	Your bet:
+	<!-- BEGIN: noCBetYet -->you did not bet yet<!-- END: noCBetYet -->
+	<!-- BEGIN: yourCBet --><span class="flag {team.id}">{team.name}</span><!-- END: yourCBet -->
+	<span class="bet-tagline">Bet on the final winner!</span>
+</p>
+<table class="winnerCandidates {selectableClass}">
+	<thead>
+		<tr>
+			<!-- BEGIN: group -->
+			<th>Group {group}</th>
+			<!-- END: group -->
+		</tr>
+	</thead>
+	<tbody>
+		<!-- BEGIN: teamLine -->
+		<tr>
+			<!-- BEGIN: team -->
+			<td title="Bet on {team.name} for the Euro 2012 champion!" class="{betClass}"
+			    onclick="page.bet.betOnChampion('{team.id}', {betAllowed})"
+			    ><span class="flag {team.id}">{team.name}</span></td>
+			<!-- END: team -->
+		</tr>
+		<!-- END: teamLine -->
+	</tbody>
+</table>
+
+<h2>Semi finals results</h2>
+<p>
+	Your bet: -- Challenge is not opened yet --
+	<span class="bet-tagline">Bet on the semi finals!</span>
+</p>
+
+<h2>Quarter finals results</h2>
+<p>
+	Your bet:
+	<span class="bet-tagline">Bet on the quarter finals!</span>
+</p>
+<table class="winnerCandidates {selectableClass}">
+	<thead>
+		<tr>
+			<!-- BEGIN: quarterFinal -->
+			<th>Quarter Final {qfNum}</th>
+			<!-- END: quarterFinal -->
+		</tr>
+	</thead>
+	<tbody>
+		<!-- BEGIN: teamLineQ -->
+		<tr>
+			<!-- BEGIN: teamQ -->
+			<td class="{betClass}"
+			    onclick="page.bet.betOnMatchWinner('{mid}', '{team.id}', {betAllowed})"
+			    ><span class="flag {team.id}">{team.name}</span></td>
+			<!-- END: teamQ -->
+		</tr>
+		<!-- END: teamLineQ -->
+	</tbody>
+</table>
+
+
+<!--h2>Group standings</h2>
+<p>Could you find out the group rankings? Who will qualify for the quarter finals, and who will get home early?</p>
+<p>
+	Your bet: you did not bet yet
+	<span class="bet-tagline">Bet on the group standings!</span>
+</p-->

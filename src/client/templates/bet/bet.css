@@ -1,0 +1,39 @@
+/***[Bet]*******************/
+.page-bet h2 {
+	padding: 0.2em;
+	background-color: #9C0000;
+	color: #FFFFFF;
+}
+
+.page-bet .bet-tagline {
+	float: right;
+	font-style: italic;
+}
+
+.page-bet table.winnerCandidates {
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+.page-bet table.winnerCandidates thead th {
+	padding: 3px;
+	background: #333333 url("interface/img/l0.png") top left repeat-x;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: middle;
+}
+.page-bet table.winnerCandidates tbody td {
+	padding: 0.2em 0.5em;
+	width: 19%;
+	border: 1px solid silver;
+}
+.page-bet table.winnerCandidates.selectable tbody td {
+	cursor: pointer;
+}
+.page-bet table.winnerCandidates.selectable td:hover {
+	border-color: green;
+	background-color: #33FF33;
+}
+.page-bet table.winnerCandidates td.selected {
+	border-color: green;
+	background-color: #339933;
+}
