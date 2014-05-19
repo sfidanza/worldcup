@@ -9,7 +9,7 @@ frw.data = {};
  */
 frw.data.filter = function(list, property, value) {
 	var filteredList = [];
-	for (var i=0; i<list.length; i++) {
+	for (var i = 0; i < list.length; i++) {
 		var item = list[i];
 		if (item[property] == value) {
 			filteredList.push(item);
@@ -24,7 +24,7 @@ frw.data.filter = function(list, property, value) {
 frw.data.groupBy = function(list, property, sorted) {
 	var groupedList = {};
 	var values = [];
-	for (var i=0; i<list.length; i++) {
+	for (var i = 0; i < list.length; i++) {
 		var item = list[i];
 		var value = (typeof property == "function") ? property(item) : item[property];
 		if (value == null) continue;
@@ -38,7 +38,7 @@ frw.data.groupBy = function(list, property, sorted) {
 	if (sorted) {
 		var sortedGroupedList = {};
 		values.sort();
-		for (var i=0; i<values.length; i++) {
+		for (var i = 0; i < values.length; i++) {
 			var value = values[i];
 			sortedGroupedList[value] = groupedList[value];
 		}
@@ -54,7 +54,7 @@ frw.data.groupBy = function(list, property, sorted) {
 frw.data.reIndex = function(list, key) {
 	if (!list) return null;
 	var indexedList = {};
-	for (var i=0; i<list.length; i++) {
+	for (var i = 0; i < list.length; i++) {
 		var item = list[i];
 		var newKey = (typeof key == "function") ? key(item) : item[key];
 		indexedList[newKey] = item;
@@ -94,7 +94,7 @@ frw.data.sort = function(list, sorters) {
 
 frw.data._setToString = function(list, key) {
 	var toString = function() { return this._sortValue; };
-	for (var i=0; i<list.length; i++) {
+	for (var i = 0; i < list.length; i++) {
 		list[i].toString = toString;
 		list[i]._sortValue = list[i][key];
 	}
@@ -170,7 +170,7 @@ frw.data.update = function(table, updates, key) {
 	if (!table || !updates) return;
 	key = key || "id";
 	var kTable = frw.data.reIndex(table, key);
-	for (var i=0, len=updates.length; i<len; i++) {
+	for (var i = 0, len = updates.length; i < len; i++) {
 		var item = kTable[updates[i][key]];
 		if (item) {
 			frw.updateObject(item, updates[i]);

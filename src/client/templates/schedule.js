@@ -11,7 +11,7 @@ page.templates.schedule.onParse = function(data) {
 		for (var day in phaseList) {
 			var matches = phaseList[day];
 			this.set('day', day.capitalize());
-			for (var i=0; i<matches.length; i++) {
+			for (var i = 0; i < matches.length; i++) {
 				var match = matches[i];
 				this.set('row_class', 'l'+(i % 2));
 				this.set('match', match);
@@ -49,7 +49,7 @@ page.templates.schedule.highlight = function(team) {
 	if (team) {
 		var matches = frw.data.query(page.data.matches,
 			"$['team1.id'] == '"+team+"' || $['team2.id'] == '"+team+"'");
-		for (var i=0; i<matches.length; i++) {
+		for (var i = 0; i < matches.length; i++) {
 			var mid = matches[i].id;
 			var row = document.getElementById('m-'+mid);
 			if (row) {
@@ -58,7 +58,7 @@ page.templates.schedule.highlight = function(team) {
 		}
 	} else {
 		var rows = table.querySelectorAll('tr.highlighted');
-		for (var i=0; i<rows.length; i++) {
+		for (var i = 0; i < rows.length; i++) {
 			frw.dom.removeClass(rows[i], "highlighted");
 		}
 	}

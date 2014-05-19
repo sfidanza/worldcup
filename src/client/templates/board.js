@@ -12,7 +12,7 @@ page.templates.board.phaseClasses = {
 page.templates.board.onParse = function(data) {
 	var teams = frw.data.reIndex(data.teams, 'id');
 	
-	for (var i=0, len=data.matches.length; i<len; i++) {
+	for (var i = 0, len = data.matches.length; i < len; i++) {
 		var match = data.matches[i];
 		this.set('match', match);
 		this.set('class', this.phaseClasses[match.phase]);
@@ -25,7 +25,7 @@ page.templates.board.onParse = function(data) {
 		if (match['team1.scorePSO'] != null) {
 			this.parseBlock('PSO');
 		}
-		if (match.phase == "Q") {
+		if (match.phase === "H") {
 			this.parseBlock('tooltip');
 			this.set('num', match['team1.source']);
 		} else {

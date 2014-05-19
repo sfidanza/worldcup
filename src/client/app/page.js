@@ -8,11 +8,13 @@ page.data = {};
 
 page.config = {
 	url: {
+		templates: "static/app.tpl",
 		login: "api/user/login?",
-		logout: "api/user/logout?"
+		logout: "api/user/logout?",
+		data: "api/data"
 	},
 	i18n: {
-		pageTitle: "Euro 2012 - {stateTitle}",
+		pageTitle: "2014 Worldcup - {stateTitle}",
 		group: "Group {group}",
 		phaseG: "Group Matches",
 		phaseH: "Round of 16",
@@ -36,7 +38,7 @@ page.config = {
 page.initialize = function() {
 	// retrieve templates
 	page.notify("Loading templates...", true);
-	frw.ssa.loadTemplates('static/app.tpl', page.templates);
+	frw.ssa.loadTemplates(page.config.url.templates, page.templates);
 	
 	// retrieve data
 	page.notify("Loading data...");
@@ -52,7 +54,6 @@ page.initialize = function() {
 	
 	page.templates.user.parse(page.data);
 	page.templates.user.load(page.config.area.user);
-//	page.refreshUser(page.data);
 	page.scoreEditor.initialize();
 	
 	this.loginDlg = new uic.Dialog({
@@ -94,7 +95,7 @@ page.notify = function(message, init) {
 page.getData = function() {
 	frw.ssa.sendRequest({
 		async: true,
-		url: 'api/data',
+		url: page.config.url.data,
 		type: 'json',
 		callback: page.setData,
 		override: page

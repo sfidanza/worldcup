@@ -1,42 +1,64 @@
 {
 		"1": {
 			"id": "1",
-			"name": "National Stadium",
-			"city": "Warsaw"
+			"name": "Arena de Sao Paulo",
+			"city": "Sao Paulo"
 		},
 		"2": {
 			"id": "2",
-			"name": "Municipal Stadium",
-			"city": "Wroclaw"
+			"name": "Estadio das Dunas",
+			"city": "Natal"
 		},
 		"3": {
 			"id": "3",
-			"name": "Metalist Stadium",
-			"city": "Kharkiv"
+			"name": "Arena Fonte Nova",
+			"city": "Salvador"
 		},
 		"4": {
 			"id": "4",
-			"name": "Arena Lviv",
-			"city": "Lviv"
+			"name": "Arena Pantanal",
+			"city": "Cuiaba",
+			"UTC": -4
 		},
 		"5": {
 			"id": "5",
-			"name": "Arena Gdansk",
-			"city": "Gdansk"
+			"name": "Estadio Mineirao",
+			"city": "Belo Horizonte"
 		},
 		"6": {
 			"id": "6",
-			"name": "Municipal Stadium",
-			"city": "Poznan"
+			"name": "Estadio Castelao",
+			"city": "Fortaleza"
 		},
 		"7": {
 			"id": "7",
-			"name": "Olympic Stadium",
-			"city": "Kyiv"
+			"name": "Arena Amazonia",
+			"city": "Manaus",
+			"UTC": -4
 		},
 		"8": {
 			"id": "8",
-			"name": "Donbass Arena",
-			"city": "Donetsk"
+			"name": "Arena Pernambuco",
+			"city": "Recife"
+		},
+		"9": {
+			"id": "9",
+			"name": "Estadio Nacional",
+			"city": "Brasilia"
+		},
+		"10": {
+			"id": "10",
+			"name": "Estadio Beira-Rio",
+			"city": "Porto Alegre"
+		},
+		"11": {
+			"id": "11",
+			"name": "Maracanã - Estádio Jornalista Mário Filho",
+			"city": "Rio De Janeiro"
+		},
+		"12": {
+			"id": "12",
+			"name": "Arena da Baixada",
+			"city": "Curitiba"
 		}
 	}

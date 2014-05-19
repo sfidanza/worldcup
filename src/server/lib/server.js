@@ -21,7 +21,7 @@ function getParsedRequest(request) {
 	parsed.headers = request.headers;
 };
 
-exports.start = function() {
+exports.start = function(port) {
 	function onRequest(request, response) {
 		var parsed = url.parse(request.url, true);
 		var route = splitPath(parsed.pathname);
@@ -35,5 +35,5 @@ exports.start = function() {
 		}
 	}
 	
-	http.createServer(onRequest).listen(8888);
+	http.createServer(onRequest).listen(port);
 };
