@@ -39,7 +39,7 @@
 			"goalaverage": 0,
 			"rank": 1
 		}, {
-			"id": "CAM",
+			"id": "CMR",
 			"name": "Cameroon",
 			"group": "A",
 			"played": 0,
@@ -143,7 +143,7 @@
 			"goalaverage": 0,
 			"rank": 1
 		}, {
-			"id": "JAP",
+			"id": "JPN",
 			"name": "Japan",
 			"group": "C",
 			"played": 0,
@@ -299,7 +299,7 @@
 			"goalaverage": 0,
 			"rank": 1
 		}, {
-			"id": "NIG",
+			"id": "NGA",
 			"name": "Nigeria",
 			"group": "F",
 			"played": 0,

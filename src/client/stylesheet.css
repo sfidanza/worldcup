@@ -17,7 +17,7 @@ td, th {
 	height: 102px;
 	margin: 1em auto;
 	padding: 1em;
-	background: #FFFFFF url("img/euro2012_logo.png") top right no-repeat;
+	background: #FFFFFF url("img/logo_wc2014.png") right 8px no-repeat;
 	border-radius: 1em;
 	-moz-border-radius: 1em;
 }
@@ -94,7 +94,7 @@ dl#menu li ul li a {
 	padding-left: 0px;
 	padding-right: 20px;
 }
-
+/*
 .flag.CZE { background-position: 0 2px; }
 .flag.GER { background-position: 0 -29px; }
 .flag.DEN { background-position: 0 -60px; }
@@ -128,25 +128,40 @@ dl#menu li ul li a {
 .left .flag.RUS, .flag.RUS.left { background-position: right -401px; }
 .left .flag.SWE, .flag.SWE.left { background-position: right -432px; }
 .left .flag.UKR, .flag.UKR.left { background-position: right -463px; }
-
-/*
-.flag.POL { background-image: url("img/flags/pl.gif"); }
-.flag.GRE { background-image: url("img/flags/gr.gif"); }
-.flag.RUS { background-image: url("img/flags/ru.gif"); }
-.flag.CZE { background-image: url("img/flags/cz.gif"); }
-.flag.NED { background-image: url("img/flags/nl.gif"); }
-.flag.DEN { background-image: url("img/flags/dk.gif"); }
-.flag.GER { background-image: url("img/flags/de.gif"); }
-.flag.POR { background-image: url("img/flags/pt.gif"); }
-.flag.ESP { background-image: url("img/flags/es.gif"); }
-.flag.ITA { background-image: url("img/flags/it.gif"); }
-.flag.IRL { background-image: url("img/flags/ie.gif"); }
-.flag.CRO { background-image: url("img/flags/hr.gif"); }
-.flag.UKR { background-image: url("img/flags/ua.gif"); }
-.flag.SWE { background-image: url("img/flags/se.gif"); }
-.flag.FRA { background-image: url("img/flags/fr.gif"); }
-.flag.ENG { background-image: url("img/flags/england.gif"); }
 */
+.flag.ALG { background-image: url("img/flags/dz.gif"); }
+.flag.ARG { background-image: url("img/flags/ar.gif"); }
+.flag.AUS { background-image: url("img/flags/au.gif"); }
+.flag.BEL { background-image: url("img/flags/be.gif"); }
+.flag.BRA { background-image: url("img/flags/br.gif"); }
+.flag.BOS { background-image: url("img/flags/ba.gif"); }
+.flag.CHI { background-image: url("img/flags/cl.gif"); }
+.flag.CIV { background-image: url("img/flags/ci.gif"); }
+.flag.CMR { background-image: url("img/flags/cm.gif"); }
+.flag.COL { background-image: url("img/flags/co.gif"); }
+.flag.COS { background-image: url("img/flags/cr.gif"); }
+.flag.CRO { background-image: url("img/flags/hr.gif"); }
+.flag.ECU { background-image: url("img/flags/ec.gif"); }
+.flag.ENG { background-image: url("img/flags/england.gif"); }
+.flag.ESP { background-image: url("img/flags/es.gif"); }
+.flag.FRA { background-image: url("img/flags/fr.gif"); }
+.flag.GER { background-image: url("img/flags/de.gif"); }
+.flag.GHA { background-image: url("img/flags/gh.gif"); }
+.flag.GRE { background-image: url("img/flags/gr.gif"); }
+.flag.HON { background-image: url("img/flags/hn.gif"); }
+.flag.IRA { background-image: url("img/flags/ir.gif"); }
+.flag.ITA { background-image: url("img/flags/it.gif"); }
+.flag.JPN { background-image: url("img/flags/jp.gif"); }
+.flag.KOR { background-image: url("img/flags/kr.gif"); }
+.flag.MEX { background-image: url("img/flags/mx.gif"); }
+.flag.NED { background-image: url("img/flags/nl.gif"); }
+.flag.NGA { background-image: url("img/flags/ng.gif"); }
+.flag.POR { background-image: url("img/flags/pt.gif"); }
+.flag.RUS { background-image: url("img/flags/ru.gif"); }
+.flag.SWI { background-image: url("img/flags/ch.gif"); }
+.flag.URU { background-image: url("img/flags/uy.gif"); }
+.flag.USA { background-image: url("img/flags/us.gif"); }
+
 /***[Schedule]**************/
 .schedule {
 	width: 100%;
