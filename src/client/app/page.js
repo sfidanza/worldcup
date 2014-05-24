@@ -8,7 +8,7 @@ page.data = {};
 
 page.config = {
 	url: {
-		templates: "static/app.tpl",
+		templates: "static/app.xml",
 		login: "api/user/login?",
 		logout: "api/user/logout?",
 		data: "api/data"
@@ -217,8 +217,7 @@ page.showSchedule = function(phase) {
 
 page.showRanking = function(group) {
 	if (!group) {
-		var data = page.data;
-		var teamsByGroup = frw.data.groupBy(data.teams, 'group', true);
+		var teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
 		for (var g in teamsByGroup) {
 			page.templates.ranking.parse(teamsByGroup[g], g);
 		}
@@ -268,15 +267,15 @@ page.showNotes = function() {
 	page.genericDlg.show();
 };
 
+page.parseGroupRanking = function(group) {
+	var g = group.charAt(1);
+	var teams = frw.data.filter(page.data.teams, "group", g);
+	page.templates.quickRanking.parse(teams, g, group.charAt(0));
+};
+
 page.getRankingPopup = function(group1, group2) {
-	var group = group1.charAt(1);
-	var teams = frw.data.filter(page.data.teams, "group", group);
-	page.templates.quickRanking.parse(teams, group, group1.charAt(0));
-	
-	var group = group2.charAt(1);
-	var teams = frw.data.filter(page.data.teams, "group", group);
-	page.templates.quickRanking.parse(teams, group, group2.charAt(0));
-	
+	this.parseGroupRanking(group1);
+	this.parseGroupRanking(group2);
 	return page.templates.quickRanking.retrieve();
 };
 

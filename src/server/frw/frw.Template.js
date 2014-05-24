@@ -28,12 +28,13 @@ Template.prototype.create = function(tplText) {
 };
 
 Template.prototype.store = function(s, child) {
+	var current;
 	if (this.stack.length > 0) {
-		var current = this.stack[this.stack.length-1];
+		current = this.stack[this.stack.length-1];
 		this.blocks[current] += s;
 		s = "";
 	} else {
-		var current = this.MAIN;
+		current = this.MAIN;
 	}
 	if (child) {
 		this.subBlocks[current].push(child);

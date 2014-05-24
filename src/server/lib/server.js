@@ -13,13 +13,13 @@ function splitPath(path) {
 	route.path = path.slice(0, pos + 1);
 	route.view = path.slice(pos + 1);
 	return route;
-};
+}
 
 function getParsedRequest(request) {
 	var parsed = url.parse(request.url, true);
 	parsed.method = request.method;
 	parsed.headers = request.headers;
-};
+}
 
 exports.start = function(port) {
 	function onRequest(request, response) {

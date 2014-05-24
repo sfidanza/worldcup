@@ -11,24 +11,10 @@ server {
 	access_log /var/log/nginx/worldcup2014.access.log;
 	error_log  /var/log/nginx/worldcup2014.error.log;
 	
-	# Let's put all static files like images, js and css in sub-folder: public
-#	root /var/www/worldcup2014/public;
-	
-	#  static content
-#	location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico)$ {
-#		# access_log        off;
-#		expires           15d;
-#	}
-	
-	# try as static content first
-#	location / {
-#		alias /var/www/worldcup2014/src/;
-#		try_files $uri @worldcup2014;
-#	}
-
-	location /static/img/flags/ {
+	# static content
+	location /static/ {
 		root /var/www/worldcup2014/src/client;
-		rewrite ^/static/img/flags/(.*) /img/flags/$1 break;
+		rewrite ^/static/(.*) /$1 break;
 	}
 	
 	# pass the request to the node.js server with the correct headers and much more can be added, see nginx config options

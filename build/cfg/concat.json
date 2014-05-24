@@ -1,0 +1,33 @@
+{
+	"files": {
+		"src/client/frw.js": [
+			"src/client/frw/base.js",
+			"src/client/frw/frw.js",
+			"src/client/frw/frw.dom.js",
+			"src/client/frw/frw.ssa.js",
+			"src/client/frw/frw.data.js",
+			"src/client/frw/frw.history.js",
+			"src/client/frw/frw.Template.js",
+			"src/client/frw/uic.Dialog.js",
+			"src/client/frw/uic.Tooltip.js"
+		],
+		"src/client/app.js": [
+			"src/client/app/page.js",
+			"src/client/app/page.scoreEditor.js",
+			"src/client/app/page.bet.js",
+			"src/client/templates/main.js",
+			"src/client/templates/user.js",
+			"src/client/templates/schedule.js",
+			"src/client/templates/ranking.js",
+			"src/client/templates/board.js",
+			"src/client/templates/quickRanking.js",
+			"src/client/templates/notes.js",
+			"src/client/templates/bet/bet.js",
+			"src/client/templates/bet/allBets.js"
+		],
+		"src/client/app.css": [
+			"src/client/stylesheet.css",
+			"src/client/templates/bet/bet.css"
+		]
+	}
+}

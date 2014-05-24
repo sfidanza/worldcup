@@ -1,0 +1,29 @@
+{
+	"name": "worldcup2014",
+	"version": "0.1.0",
+	"author": "Stéphane Fidanza <stephane.fidanza@gmail.com>",
+	"description": "A technical exploration site to follow the calendar and results of the 2014 worldcup",
+	"homepage": "https://github.com/sfidanza/worldcup2014",
+	"bugs": {
+		"url": "https://github.com/sfidanza/worldcup2014/issues"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-contrib-concat": "^0.4.0",
+		"grunt-contrib-jshint": "^0.10.0"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"main": "src/index.js",
+	"directories": {
+		"doc": "docs"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sfidanza/worldcup2014.git"
+	},
+	"license": "MIT"
+}

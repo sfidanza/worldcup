@@ -110,6 +110,7 @@ String.prototype.supplant = function (o) {
  * Basic JSON support for IE
  */
 if (typeof JSON === "undefined") {
+	/* jshint -W020 */
 	JSON = {};
 	JSON.parse = function(jsonstring) {
 		try {
@@ -119,6 +120,7 @@ if (typeof JSON === "undefined") {
 			return null;
 		}
 	};
+	/* jshint +W020 */
 }
 
 /**

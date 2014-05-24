@@ -7,7 +7,7 @@ frw.dom = {};
 /*********************************************************/
 
 frw.dom.updateContainer = function(content, region) {
-	if (region.innerHTML != "") {
+	if (region.innerHTML !== "") {
 		frw.dom.cleanContainer(region);
 	}
 	region = frw.dom.addContent(content, region);
@@ -23,7 +23,7 @@ frw.dom.cleanContainer = function(container) {
 frw.dom.executeScript = function(region) {
 	var d = region.getElementsByTagName("script");
 	for (var i=0, len=d.length; i<len; i++) {
-		if (d[i].src == "") {
+		if (d[i].src === "") {
 			if (window.execScript) {
 				window.execScript(d[i].text); // eval in global scope for IE
 			} else {
@@ -144,7 +144,7 @@ frw.dom.removeOverlay = function() {
 /*********************************************************/
 
 frw.dom.getPos = function(obj) {
-	var objTop = objLeft = 0;
+	var objTop = 0, objLeft = 0;
 	while (obj) {
 		objTop += obj.offsetTop;
 		objLeft += obj.offsetLeft;

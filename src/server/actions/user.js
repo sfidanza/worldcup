@@ -24,6 +24,6 @@ function getUser() {
 	return user.loggedIn ?
 		{ "user": user.loggedIn.login } :
 		{};
-};
+}
 
 //$db->close();

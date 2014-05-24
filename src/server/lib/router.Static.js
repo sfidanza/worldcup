@@ -73,7 +73,7 @@ function mergeStatics(files) {
 		full.push(fs.readFileSync("./client/" + files[i], { encoding: "utf8" }));
 	}
 	return full.join("\n");
-};
+}
 
 function mergeTemplates(files) {
 	var tpl = new frw.Template();
@@ -86,6 +86,6 @@ function mergeTemplates(files) {
 	}
 	tpl.parse();
 	return tpl.retrieve();
-};
+}
 
 module.exports = Router;
