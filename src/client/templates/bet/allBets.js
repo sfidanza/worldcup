@@ -67,6 +67,10 @@ page.templates.allBets.parseChampion = function(bets) {
 	}
 };
 
+page.templates.allBets.getUser = function(item) {
+	return item.user;
+};
+
 page.templates.allBets.parseQF = function(bets) {
 	var matches = frw.data.filter(page.data.matches, 'phase', 'Q');
 	var teamLines = [[], []];
@@ -85,16 +89,15 @@ page.templates.allBets.parseQF = function(bets) {
 		for (var i = 0; i < teamLine.length; i++) {
 			var team = teams[teamLine[i]];
 			var match = matches[i]; // ahh!!!
+			var betsOnTeam = 0;
+			var betRatio = 0;
+			var listUsers = "";
 			this.set('team', team || { id: '', name: '' });
 			if (team && bets && bets[match.id]) {
 				var betsByTeam = frw.data.groupBy(bets[match.id], 'value');
 				var betsOnTeam = betsByTeam[team.id] && betsByTeam[team.id].length;
 				var betRatio = betsOnTeam / bets[match.id].length;
-				var listUsers = betsByTeam[team.id] && betsByTeam[team.id].map(function(item) { return item.user; }).join(", ");
-			} else {
-				var betsOnTeam = 0;
-				var betRatio = 0;
-				var listUsers = "";
+				var listUsers = betsByTeam[team.id] && betsByTeam[team.id].map(this.getUser).join(", ");
 			}
 			this.set('betsOnTeam', betsOnTeam);
 			this.set('betStyle', betsOnTeam ? 'background-color: rgba(0, 255, 0, ' + betRatio + ');' : '');
