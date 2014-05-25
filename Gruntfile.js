@@ -28,8 +28,14 @@ module.exports = function(grunt) {
 			options: {
 				jshintrc: true
 			},
-			client: ['src/client/*/*.js'],
+			client: ['src/client/**/*.js'],
 			server: ['src/server/**/*.js']
+		},
+		csslint: {
+			options: {
+				csslintrc: 'src/client/.csslintrc'
+			},
+			src: 'src/client/**/*.css'
 		},
 		watch: {
 			jscss: {
@@ -55,6 +61,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadTasks('build/tasks');
 	
 	// Default tasks

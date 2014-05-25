@@ -3,8 +3,8 @@ body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	background-color: #333333;
 	font-size: 10px;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 }
 td, th {
 	font-size: 10px;
@@ -19,23 +19,21 @@ td, th {
 	padding: 1em;
 	background: #FFFFFF url("img/logo_wc2014.png") right 8px no-repeat;
 	border-radius: 1em;
-	-moz-border-radius: 1em;
 }
 #contents {
 	margin: 1em auto;
 	padding: 1em;
 	background-color: #FFFFFF;
 	border-radius: 1em;
-	-moz-border-radius: 1em;
 }
 #footer {
 	margin-top: -0.8em;
-	padding: 0em 1em;
+	padding: 0 1em;
 }
 
 /***[Header]****************/
 #header h1 {
-	margin-top: 0px;
+	margin-top: 0;
 	margin-right: 120px;
 	margin-bottom: 0.5em;
 	padding: 0.2em 0.3em;
@@ -44,9 +42,9 @@ td, th {
 	font-size: 20px;
 }
 dl#menu {
-	margin: 0px;
+	margin: 0;
 	margin-right: 120px;
-	padding: 0px;
+	padding: 0;
 }
 dl#menu dt {
 	font-size: 140%;
@@ -58,7 +56,7 @@ dl#menu dt {
 }
 dl#menu dd {
 	font-size: 110%;
-	margin: 0px;
+	margin: 0;
 	float: left;
 }
 dl#menu dd a {
@@ -91,7 +89,7 @@ dl#menu li ul li a {
 }
 .left .flag, .flag.left {
 	background-position: right 50%;
-	padding-left: 0px;
+	padding-left: 0;
 	padding-right: 20px;
 }
 /*
@@ -166,8 +164,8 @@ dl#menu li ul li a {
 .schedule {
 	width: 100%;
 	margin: auto;
-	padding: 0px;
-	border: 0px;
+	padding: 0;
+	border: 0;
 	border-collapse: collapse;
 }
 .schedule thead th {
@@ -226,9 +224,9 @@ dl#menu li ul li a {
 /***[Ranking]***************/
 table.ranking {
 	width: 100%;
-	margin: 0em auto 2em;
-	padding: 0px;
-	border: 0px;
+	margin:  0 auto 2em;
+	padding: 0;
+	border: 0;
 	border-collapse: collapse;
 }
 table.ranking tbody tr:nth-child(3) {
@@ -286,12 +284,11 @@ table.quickRanking td.team {
 	width: 290px;
 	border: 1px solid #CCCCCC;
 	background-color: #F4F4F4;
-	border-radius: 0px 0px 0.6em 0.6em;
-	-moz-border-radius: 0px 0px 0.6em 0.6em;
+	border-radius: 0 0 0.6em 0.6em;
 }
 .page-board .match h3 {
-	margin: 0px;
-	padding: 1px 0px;
+	margin: 0;
+	padding: 1px 0;
 	border-bottom: 1px solid #CCCCCC;
 	background-repeat: repeat-x;
 	text-align: center;
@@ -367,7 +364,7 @@ table.quickRanking td.team {
 	color: #888888;
 }
 #footer p {
-	margin: 0px;
+	margin: 0;
 }
 #footer a {
 	color: #888888;
@@ -385,12 +382,11 @@ table.quickRanking td.team {
 #app-pwl {
 	position: absolute;
 	visibility: hidden;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background: #FFFFFF url('img/loader.gif') 1.5em 50% no-repeat;
 	border: 1px outset #333333;
 	border-radius: 3em;
-	-moz-border-radius: 3em;
 	padding: 2em 4em;
 	width: 15em;
 	text-align: center;
@@ -409,22 +405,20 @@ table.quickRanking td.team {
 .uic-dlg {
 	position: absolute;
 	visibility: hidden;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: #FFFFFF;
 	border: 1px outset #333333;
 	border-radius: 10px;
-	-moz-border-radius: 10px;
 }
 .uic-dlg h5 {
 	background-image: url("img/dialog-title.png");
-	margin: 0px;
+	margin: 0;
 	padding: 0.3em 0.6em 0.4em;
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: 120%;
-	border-radius: 7px 7px 0px 0px;
-	-moz-border-radius: 7px 7px 0px 0px;
+	border-radius: 7px 7px 0 0;
 }
 .uic-dlg a.uic-dlg-close {
 	margin-right: 7px;
@@ -442,12 +436,11 @@ table.quickRanking td.team {
 .uic-dlg-body {
 	position: absolute;
 	visibility: hidden;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: #FFFFFF;
 	border: 1px outset #333333;
 	border-radius: 10px;
-	-moz-border-radius: 10px;
 }
 
 .uic-overlay {
@@ -476,7 +469,7 @@ table.quickRanking td.team {
 #login-form fieldset {
 	border: none;
 	padding: 2px;
-	margin: 0px;
+	margin: 0;
 }
 #login-form div {
 	margin: 8px;
@@ -495,17 +488,16 @@ table.quickRanking td.team {
 #score-editor {
 	position: absolute;
 	visibility: hidden;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-image: url("img/backEdit.png");
 	border: 1px solid #999900;
 	padding: 2px 7px;
 	border-radius: 6px;
-	-moz-border-radius: 6px;
 }
 #score-editor .inputs {
 	width: 40px;
-	margin: 2px 0px;
+	margin: 2px 0;
 	border: 1px solid #999900;
 	background: #FFFFFF;
 	text-align: center;
@@ -513,7 +505,7 @@ table.quickRanking td.team {
 #score-editor .inputs input {
 	width: 1em;
 	font-size: 10px;
-	padding: 0px;
+	padding: 0;
 	border: none;
 	background: #FFFFFF;
 }
