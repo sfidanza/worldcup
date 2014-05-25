@@ -1,6 +1,6 @@
 {
 	"files": {
-		"src/client/frw.js": [
+		"target/static/frw.js": [
 			"src/client/frw/base.js",
 			"src/client/frw/frw.js",
 			"src/client/frw/frw.dom.js",
@@ -11,7 +11,7 @@
 			"src/client/frw/uic.Dialog.js",
 			"src/client/frw/uic.Tooltip.js"
 		],
-		"src/client/app.js": [
+		"target/static/app.js": [
 			"src/client/app/page.js",
 			"src/client/app/page.scoreEditor.js",
 			"src/client/app/page.bet.js",
@@ -25,7 +25,7 @@
 			"src/client/templates/bet/bet.js",
 			"src/client/templates/bet/allBets.js"
 		],
-		"src/client/app.css": [
+		"target/static/app.css": [
 			"src/client/stylesheet.css",
 			"src/client/templates/bet/bet.css"
 		]

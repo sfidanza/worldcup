@@ -1,6 +1,6 @@
 {
 	"files": {
-		"src/client/app.xml": [
+		"target/static/app.xml": [
 			"main.html",
 			"user.html",
 			"schedule.html",
