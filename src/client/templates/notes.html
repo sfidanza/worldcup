@@ -6,7 +6,9 @@
 	<li>Supported browsers: FF, Chrome, IE8+, IE7 (with minor glitches - but who cares?) - (Opera, Safari not tested)</li>
 	<li>Back/Forward is supported (in FF, Chrome, IE8+)</li>
 	<li>Reload restores the current state</li>
-	<li>Backend using nginx and node.js</li>
+	<li>Backend using nginx for statics, proxying to node.js for api calls</li>
+	<li>Using git for server deployment, with a post-receive hook</li>
+	<li>Grunt as build system, forever to run node.js backend</li>
 </ul>
 
 <p>Functional features:</p>
