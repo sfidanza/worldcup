@@ -16,6 +16,7 @@ Technically:
 - page navigation and history is handled by the js frw layer
 - data is retrieved in ajax targeting the backend api
 - the server is handled by nginx, serving the statics and proxying the api calls to node.js
+- Grunt is used for the build system
 - for now, data is stored in json files (todo: use mongodb for storage, for easy online edition)
 
 Development:
