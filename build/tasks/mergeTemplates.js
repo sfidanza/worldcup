@@ -2,6 +2,7 @@ var path = require("path");
 var frw = require("../../src/server/frw/frw");
 
 module.exports = function(grunt) {
+	var chalk = require('chalk');
 	
 	grunt.registerMultiTask('mergeTemplates', 'Merge templates.', function() {
 		// Merge task-specific and/or target-specific options with these defaults.
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
 			grunt.file.write(f.dest, tpl.retrieve());
 			
 			// Print a success message.
-			grunt.log.writeln('File ' + f.dest + ' created.');
+			grunt.log.writeln('File ' + chalk.cyan(f.dest) + ' created.');
 	    });
 	});
 };
