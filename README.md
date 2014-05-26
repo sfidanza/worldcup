@@ -1,7 +1,8 @@
 worldcup2014
 ============
 
-A site to follow the calendar and results of the 2014 worldcup
+A site to follow the calendar and results of the 2014 worldcup. It is deployed live at:
+- http://worldcup2014.dagobah-online.com
 
 The site is using a node.js backend to retrieve data, and a javascript frontend to display them. It is as much
 a functional interest, to follow the worldcup, as a technical one, to play with technologies.
@@ -23,3 +24,5 @@ Development:
 - 'grunt' runs jshint, then cleans and rebuild the target static folder (js/css are not minified)
 - 'grunt minify' creates the minifed js/css files (not used for now, just to test)
 - 'grunt watch' watches for any change on client files (img, js, css, html) to update the target folder on the fly
+
+There will be more descriptions of the toolchain and technical choices in the wiki pages.

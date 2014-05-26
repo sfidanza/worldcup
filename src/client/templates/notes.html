@@ -1,14 +1,19 @@
-<p>Besides giving information on the competition (which you can find easily anywhere on the web), this site is mainly a technological prototype. It demonstrates what can be done using client-side templates, with JSON client-server communication.</p>
-<p>Technical features:</p>
+<p>Besides giving information on the competition (which you can find easily anywhere on the web),
+this site is mainly a technological prototype. It demonstrates what can be done using client-side templates,
+with JSON client-server communication.</p>
+<p>The project is hosted on github, and you will find details about the technical features there,
+as well as analysis and pointers on the toolchain and development setup (see README and wiki entries):</p>
+<ul>
+	<li><a href="https://github.com/sfidanza/worldcup2014">https://github.com/sfidanza/worldcup2014</a></li>
+</ul>
+
+<p>Summary of client-side technical features:</p>
 <ul>
 	<li>All displays are client-side templates</li>
 	<li>Data is retrieved on load from the server</li>
 	<li>Supported browsers: FF, Chrome, IE8+, IE7 (with minor glitches - but who cares?) - (Opera, Safari not tested)</li>
 	<li>Back/Forward is supported (in FF, Chrome, IE8+)</li>
 	<li>Reload restores the current state</li>
-	<li>Backend using nginx for statics, proxying to node.js for api calls</li>
-	<li>Using git for server deployment, with a post-receive hook</li>
-	<li>Grunt as build system, forever to run node.js backend</li>
 </ul>
 
 <p>Functional features:</p>
@@ -17,10 +22,9 @@
 	<li>Highlight team matches in schedule on mouseover in team rankings (not in IE7)</li>
 </ul>
 
-<p>Not supported yet:</p>
+<p>Ideas for improvement:</p>
 <ul>
-	<li>Store data in mongodb (currently static json files)</li>
 	<li>Mobile-specific display</li>
-	<li>Localization is not supported</li>
-	<li>Add betting engine (quarter finals, semi-finals, final winner)</li>
+	<li>Support localization</li>
+	<li>Betting engine (group leads, winners in finals board, final winner)</li>
 </ul>
