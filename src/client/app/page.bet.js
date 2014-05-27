@@ -22,7 +22,7 @@ page.bet.unplug = function() {
 
 page.bet.betOnChampion = function(teamId, betAllowed) {
 	if (betAllowed) { // avoid sending call. Enforcing it will be done on server anyway.
-		var url = "do.bet.php?challenge=champion&champion=" + teamId;
+		var url = "api/bet/champion?champion=" + teamId;
 		frw.ssa.sendRequest({
 			url: url,
 			type: 'json',
@@ -34,7 +34,7 @@ page.bet.betOnChampion = function(teamId, betAllowed) {
 
 page.bet.betOnMatchWinner = function(mid, teamId, betAllowed) {
 	if (betAllowed) { // avoid sending call. Enforcing it will be done on server anyway.
-		var url = "do.bet.php?challenge=quarter&mid=" + mid + "&winner=" + teamId;
+		var url = "api/bet/match?mid=" + mid + "&winner=" + teamId;
 		frw.ssa.sendRequest({
 			url: url,
 			type: 'json',

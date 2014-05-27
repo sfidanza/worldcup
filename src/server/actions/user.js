@@ -1,7 +1,7 @@
 /******************************************************************************
  * User Management
  ******************************************************************************/
-//var user = require("./business/user");
+//var user = require("../business/user");
 //$ctx = context::get();
 //$db = $ctx->db;
 //$user = $ctx->user;
@@ -9,18 +9,18 @@
 var actions = {};
 module.exports = actions;
 
-actions.login = function(parsedRequest) {
+actions.login = function(parsedRequest, user) {
 	var query = parsedRequest.query;
 	user.login(query['user_name'], query['user_pwd']);
-	return getUser();
+	return getPublicUser(user);
 };
 
-actions.logout = function() {
+actions.logout = function(parsedRequest, user) {
 	user.logout();
-	return getUser();
+	return getPublicUser(user);
 };
 
-function getUser() {
+function getPublicUser(user) {
 	return user.loggedIn ?
 		{ "user": user.loggedIn.login } :
 		{};

@@ -27,7 +27,7 @@ page.scoreEditor.plug = function() {
 	var calendar = document.getElementById("schedule-foot");
 	if (calendar) {
 		var scores = getElementsByClassName(calendar, "score");
-		for (var i=0; i < scores.length; i++) {
+		for (var i = 0; i < scores.length; i++) {
 			scores[i].onclick = this.editScore.bind(this, scores[i]);
 		}
 	}
@@ -39,7 +39,7 @@ page.scoreEditor.unplug = function() {
 		var calendar = document.getElementById("schedule-foot");
 		if (calendar) {
 			var scores = getElementsByClassName(calendar, "score");
-			for (var i=0; i < scores.length; i++) {
+			for (var i = 0; i < scores.length; i++) {
 				scores[i].onclick = null;
 			}
 		}
@@ -80,7 +80,7 @@ page.scoreEditor.submitScoreEdit = function() {
 	var score2 = this.getScore("score2");
 	if ((score1 != null) && (score2 != null)) {
 		var mid = this.editedScore.parentNode.id.slice(2); // match id
-		var url = "do.edit.php?type=editMatch&match[id]="+mid+"&match[score1]="+score1+"&match[score2]="+score2;
+		var url = "api/edit/editMatch?match[id]="+mid+"&match[score1]="+score1+"&match[score2]="+score2;
 		frw.ssa.sendRequest({
 			url: url,
 			type: 'json',
@@ -122,7 +122,7 @@ page.scoreEditor.getScore = function(inputId) {
 page.scoreEditor.setRanks = function(group, ranks) {
 	var sRank = ranks.join('-');
 	if (group && sRank) {
-		var url = "do.edit.php?type=setRanks&group[id]="+group+"&group[ranks]="+sRank;
+		var url = "api/edit/setRanks?group[id]="+group+"&group[ranks]="+sRank;
 		frw.ssa.sendRequest({
 			url: url,
 			type: 'json',
