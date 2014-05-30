@@ -22,5 +22,5 @@ foot.getData = function() {
 		"teams": foot.getTeams(),
 		"matches": foot.getMatches(),
 		"stadiums": foot.getStadiums()
-	}
+	};
 };

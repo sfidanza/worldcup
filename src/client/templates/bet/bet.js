@@ -64,8 +64,8 @@ page.templates.bet.parseQF = function(bets) {
 		this.set('qfNum', i + 1);
 		this.parseBlock('quarterFinal');
 		
-		teamLines[0].push(match['team1_id']);
-		teamLines[1].push(match['team2_id']);
+		teamLines[0].push(match.team1_id);
+		teamLines[1].push(match.team2_id);
 	}
 	
 	var teams = frw.data.reIndex(page.data.teams, 'id');
