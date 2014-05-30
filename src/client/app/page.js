@@ -9,8 +9,8 @@ page.data = {};
 page.config = {
 	url: {
 		templates: "static/app.xml",
-		login: "api/user/login?",
-		logout: "api/user/logout?",
+		login: "api/user/login",
+		logout: "api/user/logout",
 		data: "api/data"
 	},
 	i18n: {
@@ -103,6 +103,7 @@ page.getData = function() {
 };
 
 page.setData = function(data) {
+	data.stadiums = frw.data.reIndex(data.stadiums, 'id');
 	page.data = data;
 };
 
@@ -115,7 +116,7 @@ page.login = function(data) {
 	});
 };
 
-page.logout = function(data) {
+page.logout = function() {
 	frw.ssa.sendRequest({
 		url: page.config.url.logout,
 		type: 'json',

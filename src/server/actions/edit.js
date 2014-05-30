@@ -2,17 +2,14 @@
  * Competition data management
  ******************************************************************************/
 var Foot = require("../business/Foot");
-//$ctx = context::get();
-//$db = $ctx->db;
-//$user = $ctx->user;
 	
 var actions = {};
 module.exports = actions;
 
-actions.editMatch = function(parsedRequest, user, db) {
-	if (user.loggedIn.type === UT_ADMIN) {
-		var myFoot = new Foot(db);
-		var match = parsedRequest.query.match;
+actions.editMatch = function(ctx, response) {
+	if (ctx.user.loggedIn.type === UT_ADMIN) {
+		var myFoot = new Foot(ctx.db);
+		var match = ctx.request.query.match;
 		return myFoot.setMatchScore(
 			match.id,
 			checkedScore(match.score1),
@@ -21,10 +18,10 @@ actions.editMatch = function(parsedRequest, user, db) {
 	}
 };
 
-actions.setRanks = function(parsedRequest, user, db) {
-	if (user.loggedIn.type === UT_ADMIN) {
-		var myFoot = new Foot(db);
-		var group = parsedRequest.query.group;
+actions.setRanks = function(ctx, response) {
+	if (ctx.user.loggedIn.type === UT_ADMIN) {
+		var myFoot = new Foot(ctx.db);
+		var group = ctx.request.query.group;
 		return myFoot.setRanks(
 			group.id,
 			group.ranks.split('-')
@@ -40,5 +37,3 @@ function checkedScore(s) {
 	s = +s;
 	return (isFinite(s) && s >= 0) ? s : null;
 }
-
-//$db->close();

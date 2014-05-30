@@ -2,9 +2,6 @@
  * Bet management
  ******************************************************************************/
 var Bets = require("../business/Bets");
-//$ctx = context::get();
-//$db = $ctx->db;
-//$user = $ctx->user;
 	
 var actions = {};
 module.exports = actions;
@@ -12,19 +9,21 @@ module.exports = actions;
 /**
  * Update Bet
  */
-actions.champion = function(parsedRequest, user, db) {
+actions.champion = function(ctx, response) {
+	var user = ctx.user;
 	if (user.loggedIn) {
-		var myBets = new Bets(db);
-		var query = parsedRequest.query;
+		var myBets = new Bets(ctx.db);
+		var query = ctx.request.query;
 		myBets.enterChampionBet(user.loggedIn.login, query.champion);
 		return getUserBets(user);
 	}
 };
 
-actions.match = function(parsedRequest, user, db) {
+actions.match = function(ctx, response) {
+	var user = ctx.user;
 	if (user.loggedIn) {
-		var myBets = new Bets(db);
-		var query = parsedRequest.query;
+		var myBets = new Bets(ctx.db);
+		var query = ctx.request.query;
 		myBets.enterMatchWinnerBet(user.loggedIn.login, query.mid, query.winner);
 		return getUserBets(user);
 	}
@@ -36,5 +35,3 @@ function getUserBets(user) {
 		updated: true
 	};
 }
-
-//$db->close();

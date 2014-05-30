@@ -4,7 +4,8 @@ var frw = require("../frw/frw");
 var Router = function() {
 };
 
-Router.prototype.serve = function(view, response) {
+Router.prototype.serve = function(ctx, response) {
+	var view = ctx.view;
 	if (view === "" || view ==="index") {
 		// return starting page
 		response.writeHead(200, { "Content-Type": "text/html" });

@@ -14,7 +14,8 @@ var mimeTypes = {
 var Router = function() {
 };
 
-Router.prototype.serve = function(view, response) {
+Router.prototype.serve = function(ctx, response) {
+	var view = ctx.view;
 	var filename = "./client/img/" + view;
 	
 	var fileStream = fs.createReadStream(filename);

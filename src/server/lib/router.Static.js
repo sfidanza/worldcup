@@ -47,7 +47,8 @@ var statics = {
 var Router = function() {
 };
 
-Router.prototype.serve = function(view, response) {
+Router.prototype.serve = function(ctx, response) {
+	var view = ctx.view;
 	var files = statics[view];
 	if (files) {
 		var type = view.split(".")[1];

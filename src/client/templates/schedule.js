@@ -19,14 +19,14 @@ page.templates.schedule.onParse = function(data) {
 					page.config.i18n.group.supplant(match) :
 					match.id;
 				this.set('category', category);
-				var team1 = teams[match['team1.id']];
-				var team2 = teams[match['team2.id']];
-				this.set('team1.name', team1 ? team1.name : match['team1.source']);
-				this.set('team2.name', team2 ? team2.name : match['team2.source']);
+				var team1 = teams[match['team1_id']];
+				var team2 = teams[match['team2_id']];
+				this.set('team1.name', team1 ? team1.name : match['team1_source']);
+				this.set('team2.name', team2 ? team2.name : match['team2_source']);
 				this.set('stadium', data.stadiums[match.stadium]);
 				var pso = ''; // Penalty Shoot Out
-				if (match['team1.scorePSO'] != null) {
-					pso = "<br/>(" + match['team1.scorePSO'] + " - " + match['team2.scorePSO'] + ")";
+				if (match['team1_scorePSO'] != null) {
+					pso = "<br/>(" + match['team1_scorePSO'] + " - " + match['team2_scorePSO'] + ")";
 				}
 				this.set('PSO', pso);
 				if (match.channel) {
@@ -48,7 +48,7 @@ page.templates.schedule.highlight = function(team) {
 	
 	if (team) {
 		var matches = frw.data.query(page.data.matches,
-			"$['team1.id'] == '"+team+"' || $['team2.id'] == '"+team+"'");
+			"$['team1_id'] == '"+team+"' || $['team2_id'] == '"+team+"'");
 		for (var i = 0; i < matches.length; i++) {
 			var mid = matches[i].id;
 			var row = document.getElementById('m-'+mid);

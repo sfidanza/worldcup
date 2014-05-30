@@ -5,7 +5,7 @@
 <!-- BEGIN: match -->
 <div class="match {class}" id="match-{match.phase}{num}"
      <!-- BEGIN: tooltip -->
-     onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1.source}', '{match.team2.source}'));"
+     onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}'));"
      onmousemove="page.tooltip.positionTooltip(event);"
      onmouseout="page.tooltip.hideTooltip();"
      <!-- END: tooltip -->
@@ -14,11 +14,11 @@
 	<div class="content">
 		<span class="date">{match.day} - {match.hour} - {stadium.city}</span>
 		<div class="teams">
-			<span class="flag {match.team1.id} left">{team1.name}</span>
-			<span class="score">{match.team1.score} - {match.team2.score}</span>
-			<span class="flag {match.team2.id}">{team2.name}</span>
+			<span class="flag {match.team1_id} left">{team1.name}</span>
+			<span class="score">{match.team1_score} - {match.team2_score}</span>
+			<span class="flag {match.team2_id}">{team2.name}</span>
 			<!-- BEGIN: PSO -->
-			<span class="score pso">({match.team1.scorePSO} - {match.team2.scorePSO})</span>
+			<span class="score pso">({match.team1_scorePSO} - {match.team2_scorePSO})</span>
 			<!-- END: PSO -->
 		</div>
 	</div>

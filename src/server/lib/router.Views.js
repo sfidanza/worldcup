@@ -2,13 +2,10 @@ var Router = function(controller) {
 	this.views = controller;
 };
 
-Router.prototype.serve = function(view, response, parsedRequest) {
-	var method = this.views && this.views[view];
+Router.prototype.serve = function(ctx, response) {
+	var method = this.views && this.views[ctx.view];
 	if (typeof method === 'function') {
-		var data = method(parsedRequest);
-		response.writeHead(200, { "Content-Type": "application/json" });
-		response.write(JSON.stringify(data));
-		response.end();
+		method(ctx, response);
 		return 200;
 	}
 };

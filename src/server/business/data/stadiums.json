@@ -1,64 +1,53 @@
-{
-		"1": {
-			"id": "1",
-			"name": "Arena de Sao Paulo",
-			"city": "Sao Paulo"
-		},
-		"2": {
-			"id": "2",
-			"name": "Estadio das Dunas",
-			"city": "Natal"
-		},
-		"3": {
-			"id": "3",
-			"name": "Arena Fonte Nova",
-			"city": "Salvador"
-		},
-		"4": {
-			"id": "4",
-			"name": "Arena Pantanal",
-			"city": "Cuiaba",
-			"UTC": -4
-		},
-		"5": {
-			"id": "5",
-			"name": "Estadio Mineirao",
-			"city": "Belo Horizonte"
-		},
-		"6": {
-			"id": "6",
-			"name": "Estadio Castelao",
-			"city": "Fortaleza"
-		},
-		"7": {
-			"id": "7",
-			"name": "Arena Amazonia",
-			"city": "Manaus",
-			"UTC": -4
-		},
-		"8": {
-			"id": "8",
-			"name": "Arena Pernambuco",
-			"city": "Recife"
-		},
-		"9": {
-			"id": "9",
-			"name": "Estadio Nacional",
-			"city": "Brasilia"
-		},
-		"10": {
-			"id": "10",
-			"name": "Estadio Beira-Rio",
-			"city": "Porto Alegre"
-		},
-		"11": {
-			"id": "11",
-			"name": "Maracanã - Estádio Jornalista Mário Filho",
-			"city": "Rio De Janeiro"
-		},
-		"12": {
-			"id": "12",
-			"name": "Arena da Baixada",
-			"city": "Curitiba"
-		}
+[
+	{
+		"id": "1",
+		"name": "Arena de Sao Paulo",
+		"city": "Sao Paulo"
+	}, {
+		"id": "2",
+		"name": "Estadio das Dunas",
+		"city": "Natal"
+	}, {
+		"id": "3",
+		"name": "Arena Fonte Nova",
+		"city": "Salvador"
+	}, {
+		"id": "4",
+		"name": "Arena Pantanal",
+		"city": "Cuiaba",
+		"UTC": -4
+	}, {
+		"id": "5",
+		"name": "Estadio Mineirao",
+		"city": "Belo Horizonte"
+	}, {
+		"id": "6",
+		"name": "Estadio Castelao",
+		"city": "Fortaleza"
+	}, {
+		"id": "7",
+		"name": "Arena Amazonia",
+		"city": "Manaus",
+		"UTC": -4
+	}, {
+		"id": "8",
+		"name": "Arena Pernambuco",
+		"city": "Recife"
+	}, {
+		"id": "9",
+		"name": "Estadio Nacional",
+		"city": "Brasilia"
+	}, {
+		"id": "10",
+		"name": "Estadio Beira-Rio",
+		"city": "Porto Alegre"
+	}, {
+		"id": "11",
+		"name": "Maracanã - Estádio Jornalista Mário Filho",
+		"city": "Rio De Janeiro"
+	}, {
+		"id": "12",
+		"name": "Arena da Baixada",
+		"city": "Curitiba"
 	}
+]
