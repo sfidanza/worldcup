@@ -1,5 +1,7 @@
 var http = require("http");
 var url = require("url");
+var cookie = require("cookie");
+var sign = require("cookie-signature").sign;
 
 var routers = {};
 
@@ -7,26 +9,26 @@ exports.addRouting = function(routePath, router) {
 	routers[routePath] = router;
 };
 
-exports.start = function(port, db) {
-	function onRequest(request, response) {
+exports.start = function(db) {
+	return function onRequest(request, response, next) {
 		var parsed = url.parse(request.url, true);
 		var route = splitPath(parsed.pathname);
 		var router = routers[route.path] || routers["*"];
 		response.json = respondJson;
 		response.error = respondError;
+		response.cookie = setCookie; // compatibility with express for sessions
+		response.req = request; // compatibility with express for sessions
 		
 		var status = router && router.serve({
 			view: route.view,
 			request: parsed,
 			db: db
 		}, response);
-		if (!status) {
-			// send 404
+		if (!status) { // no matching route or view
 			response.error(404);
 		}
-	}
-	
-	http.createServer(onRequest).listen(port);
+		next();
+	};
 };
 
 function splitPath(path) {
@@ -50,19 +52,36 @@ function respondJson(data) {
 }
 
 function respondError(errorCode) {
-	if (!ERRORS[errorCode]) errorCode = 500;
+	if (!http.STATUS_CODES[errorCode]) errorCode = 500;
 	this.writeHead(errorCode, { "Content-Type": "text/plain"});
-	this.end(ERRORS[errorCode]);
+	this.end(http.STATUS_CODES[errorCode]);
 }
 
-var ERRORS = {
-	400: "Bad request", // The request had bad syntax or was inherently impossible to be satisfied.
-	401: "Unauthorized", // The parameter to this message gives a specification of authorization schemes which are acceptable. The client should retry the request with a suitable Authorization header.
-	402: "PaymentRequired", // The parameter to this message gives a specification of charging schemes acceptable. The client may retry the request with a suitable ChargeTo header.
-	403: "Forbidden", // The request is for something forbidden. Authorization will not help.
-	404: "Not found", // The server has not found anything matching the URI given
-	500: "Internal Error", // The server encountered an unexpected condition which prevented it from fulfilling the request.
-	501: "Not implemented", // The server does not support the facility required.
-	502: "Service temporarily overloaded", // The server cannot process the request due to a high load (whether HTTP servicing or other requests). The implication is that this is a temporary condition which maybe alleviated at other times.
-	503: "Gateway timeout", // 	This is equivalent to Internal Error 500, but in the case of a server which is in turn accessing some other service, this indicates that the response from the other service did not return within a time that the gateway was prepared to wait. As from the point of view of the client and the HTTP transaction the other service is hidden within the server, this maybe treated identically to Internal error 500, but has more diagnostic value.
-};
+
+function setCookie(name, val, options) {
+	options = options || {};
+	var secret = this.req.secret;
+	var signed = options.signed;
+	if (signed && !secret) throw new Error('cookieParser("secret") required for signed cookies');
+	if ('number' == typeof val) val = val.toString();
+	if ('object' == typeof val) val = 'j:' + JSON.stringify(val);
+	if (signed) val = 's:' + sign(val, secret);
+	if ('maxAge' in options) {
+		options.expires = new Date(Date.now() + options.maxAge);
+		options.maxAge /= 1000;
+	}
+	if (null == options.path) options.path = '/';
+	var headerVal = cookie.serialize(name, String(val), options);
+	
+	// supports multiple 'res.cookie' calls by getting previous value
+	var prev = this.getHeader('Set-Cookie');
+	if (prev) {
+		if (Array.isArray(prev)) {
+			headerVal = prev.concat(headerVal);
+		} else {
+			headerVal = [ prev, headerVal ];
+		}
+	}
+	this.setHeader('Set-Cookie', headerVal);
+	return this;
+}
