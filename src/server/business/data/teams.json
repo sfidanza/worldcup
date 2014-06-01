@@ -10,7 +10,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "CRO",
@@ -23,8 +23,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
 			"id": "MEX",
 			"name": "Mexico",
@@ -36,8 +36,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
 			"id": "CMR",
 			"name": "Cameroon",
@@ -49,8 +49,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 4
 		}, {
 			"id": "ESP",
 			"name": "Spain",
@@ -62,7 +62,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "NED",
@@ -75,8 +75,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
 			"id": "CHI",
 			"name": "Chile",
@@ -88,8 +88,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
 			"id": "AUS",
 			"name": "Australia",
@@ -101,8 +101,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 4
 		}, {
 			"id": "COL",
 			"name": "Colombia",
@@ -114,7 +114,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "GRE",
@@ -127,8 +127,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
 			"id": "CIV",
 			"name": "Côte d'Ivoire",
@@ -140,8 +140,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
 			"id": "JPN",
 			"name": "Japan",
@@ -153,11 +153,11 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 4
 		}, {
-			"id": "URU",
-			"name": "Uruguay",
+			"id": "ITA",
+			"name": "Italy",
 			"group": "D",
 			"played": 0,
 			"victories": 0,
@@ -166,20 +166,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
-		}, {
-			"id": "COS",
-			"name": "Costa Rica",
-			"group": "D",
-			"played": 0,
-			"victories": 0,
-			"draws": 0,
-			"defeats": 0,
-			"points": 0,
-			"goals_scored": 0,
-			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "ENG",
@@ -192,11 +179,11 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
-			"id": "ITA",
-			"name": "Italy",
+			"id": "URU",
+			"name": "Uruguay",
 			"group": "D",
 			"played": 0,
 			"victories": 0,
@@ -205,11 +192,24 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
-			"id": "SWI",
-			"name": "Switzerland",
+			"id": "COS",
+			"name": "Costa Rica",
+			"group": "D",
+			"played": 0,
+			"victories": 0,
+			"draws": 0,
+			"defeats": 0,
+			"points": 0,
+			"goals_scored": 0,
+			"goals_against": 0,
+			"goal_difference": 0,
+			"rank": 4
+		}, {
+			"id": "FRA",
+			"name": "France",
 			"group": "E",
 			"played": 0,
 			"victories": 0,
@@ -218,7 +218,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "ECU",
@@ -231,11 +231,11 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
-			"id": "FRA",
-			"name": "France",
+			"id": "SWI",
+			"name": "Switzerland",
 			"group": "E",
 			"played": 0,
 			"victories": 0,
@@ -244,8 +244,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
 			"id": "HON",
 			"name": "Honduras",
@@ -257,8 +257,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 4
 		}, {
 			"id": "ARG",
 			"name": "Argentina",
@@ -270,33 +270,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
-		}, {
-			"id": "BOS",
-			"name": "Bosnia",
-			"group": "F",
-			"played": 0,
-			"victories": 0,
-			"draws": 0,
-			"defeats": 0,
-			"points": 0,
-			"goals_scored": 0,
-			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
-		}, {
-			"id": "IRA",
-			"name": "Iran",
-			"group": "F",
-			"played": 0,
-			"victories": 0,
-			"draws": 0,
-			"defeats": 0,
-			"points": 0,
-			"goals_scored": 0,
-			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "NGA",
@@ -309,8 +283,34 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
+		}, {
+			"id": "BOS",
+			"name": "Bosnia",
+			"group": "F",
+			"played": 0,
+			"victories": 0,
+			"draws": 0,
+			"defeats": 0,
+			"points": 0,
+			"goals_scored": 0,
+			"goals_against": 0,
+			"goal_difference": 0,
+			"rank": 3
+		}, {
+			"id": "IRA",
+			"name": "Iran",
+			"group": "F",
+			"played": 0,
+			"victories": 0,
+			"draws": 0,
+			"defeats": 0,
+			"points": 0,
+			"goals_scored": 0,
+			"goals_against": 0,
+			"goal_difference": 0,
+			"rank": 4
 		}, {
 			"id": "GER",
 			"name": "Germany",
@@ -322,7 +322,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "POR",
@@ -335,8 +335,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
 			"id": "GHA",
 			"name": "Ghana",
@@ -348,8 +348,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
 			"id": "USA",
 			"name": "USA",
@@ -361,8 +361,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 4
 		}, {
 			"id": "BEL",
 			"name": "Belgium",
@@ -374,7 +374,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
+			"goal_difference": 0,
 			"rank": 1
 		}, {
 			"id": "ALG",
@@ -387,8 +387,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 2
 		}, {
 			"id": "RUS",
 			"name": "Russia",
@@ -400,8 +400,8 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 3
 		}, {
 			"id": "KOR",
 			"name": "Korea Republic",
@@ -413,7 +413,7 @@
 			"points": 0,
 			"goals_scored": 0,
 			"goals_against": 0,
-			"goalaverage": 0,
-			"rank": 1
+			"goal_difference": 0,
+			"rank": 4
 		}
 ]

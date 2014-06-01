@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 				files: 'src/client/img/**',
 				tasks: [ 'copy' ]
 			}
-		},
+		}
 	});
 	
 	// Load plugins

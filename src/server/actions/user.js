@@ -1,24 +1,24 @@
 /******************************************************************************
  * User Management
  ******************************************************************************/
-//var user = require("../business/user");
+var authenticate = require("../business/authenticate");
 
 var actions = {};
 module.exports = actions;
 
-actions.login = function(ctx, response) {
-	var query = ctx.request.query;
-	ctx.user.login(query['user_name'], query['user_pwd']);
-	return getPublicUser(ctx.user);
+actions.login = function(request, response, ctx) {
+	var query = request.query;
+	authenticate(ctx.db, query['id'], query['pwd'], function(err, user) {
+		if (err) {
+			response.error(500);
+		} else {
+			request.session.user = user;
+			response.json((user && user.login) ? { "user": user.login } : null);
+		}
+	});
 };
 
-actions.logout = function(ctx, response) {
-	ctx.user.logout();
-	return getPublicUser(ctx.user);
+actions.logout = function(request, response, ctx) {
+	delete request.session.user;
+	response.json();
 };
-
-function getPublicUser(user) {
-	return user.loggedIn ?
-		{ "user": user.loggedIn.login } :
-		{};
-}

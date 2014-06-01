@@ -8,11 +8,13 @@ The site is using a node.js backend to retrieve data, and a javascript frontend 
 a functional interest, to follow the worldcup, as a technical one, to play with technologies.
 
 Functionally, the site has:
+
 - the list of matches, locations, date/hours (France time)
 - the groups schedule and results
 - a final board to follow the round of 16 to the final
 
 Technically:
+
 - the js frontend uses a client-side template engine to display the views
 - page navigation and history is handled by the js frw layer
 - data is retrieved in ajax targeting the backend api
@@ -21,6 +23,7 @@ Technically:
 - data is stored in mongodb
 
 Development:
+
 - 'grunt' runs jshint, then cleans and rebuild the target static folder (js/css are not minified)
 - 'grunt minify' creates the minifed js/css files (not used for now, just to test)
 - 'grunt watch' watches for any change on client files (img, js, css, html) to update the target folder on the fly
@@ -30,6 +33,7 @@ nginx, node.js, MongoDB, if you need to install them, or if you are interested b
 development environment, have a look a the wiki pages. 
 
 If you want to test it yourself, deploying the sites locally, here is what you will have to do:
+
 - copy nginx-sites-available/worldcup2014 into your nginx config (check the wiki if you need more details)
 - feed the data into your MongoDB database('worldcup2014') --- you can use the (commented out) routing
 	to import the static json files into MongoDB:

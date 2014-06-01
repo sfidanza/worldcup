@@ -1,5 +1,7 @@
 {
   "eqnull": true,
-  "sub": true,
-  "proto": true
+  "evil": true,
+  "proto": true,
+  "shadow": true,
+  "sub": true
 }

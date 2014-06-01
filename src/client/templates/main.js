@@ -8,14 +8,10 @@ page.templates.main.onParse = function() {
 	}
 };
 
-page.templates.main.onLoad = function() {
-	var form = document.getElementById("login-form");
-	frw.addListener(form, "submit", function(e) {
-		frw.stopEvent(e);
-		page.login({
-			user_name: form.user_name.value,
-			user_pwd: form.user_pwd.value
-		});
-		page.loginDlg.hide();
+page.templates.main.submitLogin = function(id, pwd) {
+	page.login({
+		id: form.user_name.value,
+		pwd: form.user_pwd.value
 	});
+	page.loginDlg.hide();
 };

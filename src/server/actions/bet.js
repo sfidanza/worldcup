@@ -1,7 +1,7 @@
 /******************************************************************************
  * Bet management
  ******************************************************************************/
-var Bets = require("../business/Bets");
+var bets = require("../business/bets");
 	
 var actions = {};
 module.exports = actions;
@@ -9,29 +9,31 @@ module.exports = actions;
 /**
  * Update Bet
  */
-actions.champion = function(ctx, response) {
-	var user = ctx.user;
-	if (user.loggedIn) {
-		var myBets = new Bets(ctx.db);
-		var query = ctx.request.query;
-		myBets.enterChampionBet(user.loggedIn.login, query.champion);
-		return getUserBets(user);
+actions.champion = function(request, response, ctx) {
+	var user = request.session.user;
+	if (user.login) {
+		var query = request.query;
+		bets.enterChampionBet(ctx.db, user.login, query.champion);
+		response.json(getUserBets(user));
+	} else {
+		response.error(401);
 	}
 };
 
-actions.match = function(ctx, response) {
-	var user = ctx.user;
-	if (user.loggedIn) {
-		var myBets = new Bets(ctx.db);
-		var query = ctx.request.query;
-		myBets.enterMatchWinnerBet(user.loggedIn.login, query.mid, query.winner);
-		return getUserBets(user);
+actions.match = function(request, response, ctx) {
+	var user = request.session.user;
+	if (user.login) {
+		var query = request.query;
+		bets.enterMatchWinnerBet(ctx.db, user.login, query.mid, query.winner);
+		response.json(getUserBets(user));
+	} else {
+		response.error(401);
 	}
 };
 
 function getUserBets(user) {
 	return {
-		bets: myBets.getBets(user.loggedIn.login),
+		bets: bets.getBets(user.login),
 		updated: true
 	};
 }

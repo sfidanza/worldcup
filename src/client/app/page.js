@@ -126,15 +126,15 @@ page.logout = function() {
 };
 
 page.refreshUser = function(data) {
-	page.data.user = data.user;
+	page.data.user = data && data.user;
 	
-	page.templates.main.parse();
-	page.templates.main.load(page.config.area.main);
+//	page.templates.main.parse(); // BREAKS!! Only bets depend on user - review solution!
+//	page.templates.main.load(page.config.area.main);
 	
-	page.templates.user.parse(data);
+	page.templates.user.parse(data || {});
 	page.templates.user.load(page.config.area.user);
 	
-	page.redrawView();
+//	page.redrawView(); // why???
 };
 
 page.getPageTitle = function(stateTitle) {

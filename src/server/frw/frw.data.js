@@ -2,12 +2,13 @@
  * Data Management layer
  **********************************************************/
 
-frw.data = {};
+var data = {};
+module.exports = data;
 
 /**
  * Filter the list by a given property
  */
-frw.data.filter = function(list, property, value) {
+data.filter = function(list, property, value) {
 	var filteredList = [];
 	for (var i = 0; i < list.length; i++) {
 		var item = list[i];
@@ -21,7 +22,7 @@ frw.data.filter = function(list, property, value) {
 /**
  * Group the list by a given property
  */
-frw.data.groupBy = function(list, property, sorted) {
+data.groupBy = function(list, property, sorted) {
 	var groupedList = {};
 	var values = [];
 	for (var i = 0; i < list.length; i++) {
@@ -51,7 +52,7 @@ frw.data.groupBy = function(list, property, sorted) {
 /**
  * Change a list to an object, indexed by a given property
  */
-frw.data.reIndex = function(list, key) {
+data.reIndex = function(list, key) {
 	if (!list) return null;
 	var indexedList = {};
 	for (var i = 0; i < list.length; i++) {
@@ -64,50 +65,22 @@ frw.data.reIndex = function(list, key) {
 
 /**
  * Sort an array of objects on the specified properties
- * @param {Object[]} list  the list of object to sort
+ * @param {object[]} list  the list of object to sort
  * @param {array} sorters  the sorting criterias as an array of object:
  *           {string} key  the property to sort on
  *           {number} dir  the sort direction: ascending (1, default) or descending (-1)
  */
-frw.data.sort = function(list, sorters) {
+data.sort = function(list, sorters) {
 	if (!list.length) return list;
 	
-	if (frw.browser.isIE && sorters.length == 1) {
-		//single key: use the "toString" method for faster sorting
-		var sorter = sorters[0];
-		this._setToString(list, sorter.key);
-		list.sort();
-		this._delToString(list);
-		
-		if (sorter.dir == "DESC" || sorter.dir == -1) {
-			list.reverse();
-		}
-	} else {
-		// no bind as bind is killing performance (3x more)
-		// list.sort(this._sortMultipleKeys.bind(this, sorters));
-		list.sort(function(a, b) {
-			return frw.data._sortMultipleKeys(sorters, a, b);
-		});
-	}
+	// no bind as bind is killing performance
+	list.sort(function(a, b) {
+		return _sortMultipleKeys(sorters, a, b);
+	});
 	return list;
 };
 
-frw.data._setToString = function(list, key) {
-	var toString = function() { return this._sortValue; };
-	for (var i = 0; i < list.length; i++) {
-		list[i].toString = toString;
-		list[i]._sortValue = list[i][key];
-	}
-};
-
-frw.data._delToString = function(list) {
-	for (var i=0; i<list.length; i++) {
-		delete list[i].toString;
-		delete list[i]._sortValue;
-	}
-};
-
-frw.data._sortMultipleKeys = function(sorters, a, b) {
+var _sortMultipleKeys = function(sorters, a, b) {
 	if (!sorters || !sorters.length) return 0;
 	
 	for (var i = 0, len = sorters.length; i < len; i++) {
@@ -125,14 +98,14 @@ frw.data._sortMultipleKeys = function(sorters, a, b) {
  * Create a filtering function from a string expression
  * @param {string} expr
  */
-frw.data.getFilter = function(expr) {
+data.getFilter = function(expr) {
 	expr = expr.replace(/\$/g, "element");
 	var f = null;
 	try {
 		f = new Function("element", "return " + expr);
 	} catch(ex_eval) {
 		f = function(element) { return true; };
-		if (frw.debug) console.error('[getFilter] could not execute expression: "' + expr + '"\nException: ' + ex_eval);
+		console.error('[getFilter] could not execute expression: "' + expr + '"\nException: ' + ex_eval);
 	}
 	return f;
 };
@@ -144,7 +117,7 @@ frw.data.getFilter = function(expr) {
  * @param {string}    expr  javascript expression, eg. '$.price<=200 && $.distance<10' (optional)
  * @return object[]
  */
-frw.data.query = function(list, expr) {
+data.query = function(list, expr) {
 	var results, filter;
 	if ((typeof expr === 'string') && (expr !== '')) { // Generic expression evaluation filter
 		filter = this.getFilter(expr);
@@ -161,21 +134,4 @@ frw.data.query = function(list, expr) {
 		results = list.slice(0); // make sure we return a copy
 	}
 	return results;
-};
-
-/**
- * Update data
- */
-frw.data.update = function(table, updates, key) {
-	if (!table || !updates) return;
-	key = key || "id";
-	var kTable = frw.data.reIndex(table, key);
-	for (var i = 0, len = updates.length; i < len; i++) {
-		var item = kTable[updates[i][key]];
-		if (item) {
-			frw.updateObject(item, updates[i]);
-		} else {
-			table.push(updates[i]);
-		}
-	}
 };

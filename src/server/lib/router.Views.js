@@ -2,10 +2,10 @@ var Router = function(controller) {
 	this.views = controller;
 };
 
-Router.prototype.serve = function(ctx, response) {
+Router.prototype.serve = function(request, response, ctx) {
 	var method = this.views && this.views[ctx.view];
 	if (typeof method === 'function') {
-		method(ctx, response);
+		method(request, response, ctx);
 		return 200;
 	}
 };
