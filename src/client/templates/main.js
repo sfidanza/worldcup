@@ -10,8 +10,8 @@ page.templates.main.onParse = function() {
 
 page.templates.main.submitLogin = function(id, pwd) {
 	page.login({
-		id: form.user_name.value,
-		pwd: form.user_pwd.value
+		id: id,
+		pwd: pwd
 	});
 	page.loginDlg.hide();
 };
