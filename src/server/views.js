@@ -4,49 +4,37 @@ var views = {};
 module.exports = views;
 
 views.data = function(request, response, ctx) {
-	foot.getData(ctx.db, function(err, data) {
-		if (err) {
-			response.error(500);
-		} else {
+	foot.getData(ctx.db)
+		.then(function(data) {
 			var user = request.session.user;
 			data.user = user && user.login;
 			response.json(data);
-		}
-	});
+		}).catch(response.error.bind(response, 500)).done();
 };
 
 views.teams = function(request, response, ctx) {
-	foot.getTeams(ctx.db, function(err, docs) {
-		if (err) {
-			response.error(500);
-		} else {
+	foot.getTeams(ctx.db)
+		.then(function(docs) {
 			response.json({
 				"teams": docs
 			});
-		}
-	});
+		}).catch(response.error.bind(response, 500)).done();
 };
 
 views.matches = function(request, response, ctx) {
-	foot.getMatches(ctx.db, function(err, docs) {
-		if (err) {
-			response.error(500);
-		} else {
+	foot.getMatches(ctx.db)
+		.then(function(docs) {
 			response.json({
 				"matches": docs
 			});
-		}
-	});
+		}).catch(response.error.bind(response, 500)).done();
 };
 
 views.stadiums = function(request, response, ctx) {
-	foot.getStadiums(ctx.db, function(err, docs) {
-		if (err) {
-			response.error(500);
-		} else {
+	foot.getStadiums(ctx.db)
+		.then(function(docs) {
 			response.json({
 				"stadiums": docs
 			});
-		}
-	});
+		}).catch(response.error.bind(response, 500)).done();
 };

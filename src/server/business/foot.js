@@ -13,64 +13,36 @@ module.exports = foot;
  * Retrieve data
  */
 	
-foot.getTeams = function(db, callback) {
-	db.collection('teams').find({}, { _id: 0 })
+foot.getTeams = function(db) {
+	return db.collection('teams').find({}, { _id: 0 })
 		.sort([['rank', 'asc'], ['name', 'asc']])
-		.toArray(callback);
+		.toArray();
 };
 
-foot.getMatches = function(db, callback) {
-	db.collection('matches').find({}, { _id: 0 })
+foot.getMatches = function(db) {
+	return db.collection('matches').find({}, { _id: 0 })
 		.sort([['id', 'asc']]) // [[['date', 'asc'], ['id', 'asc']] but needs date objects instead of strings
-		.toArray(callback);
+		.toArray();
 };
 
-foot.getStadiums = function(db, callback) {
-	db.collection('stadiums').find({}, { _id: 0 }).toArray(callback);
+foot.getStadiums = function(db) {
+	return db.collection('stadiums').find({}, { _id: 0 }).toArray();
 };
 
-foot.getData = function(db, callback) {
-	foot.getTeams(db, function(err, teams) {
-		if (err) {
-			callback(err);
-		} else {
-			foot.getMatches(db, function(err, matches) {
-				if (err) {
-					callback(err);
-				} else {
-					foot.getStadiums(db, function(err, stadiums) {
-						if (err) {
-							callback(err);
-						} else {
-							var data = {
-								"teams": teams,
-								"matches": matches,
-								"stadiums": stadiums
-							};
-							callback(null, data);
-						}
-					});
-				}
-			});
-		}
-	});
+foot.getData = function(db) {
+	var data = {};
+	return foot.getTeams(db)
+		.then(function(teams) {
+			data.teams = teams;
+			return foot.getMatches(db);
+		}).then(function(matches) {
+			data.matches = matches;
+			return foot.getStadiums(db);
+		}).then(function(stadiums) {
+			data.stadiums = stadiums;
+			return data;
+		});
 };
-
-// Using Promise...
-//foot.getData = function(db, callback) {
-//	var data = {};
-//	foot.getTeams(db)
-//		.then(function(teams) {
-//			data.teams = teams;
-//			return foot.getMatches(db);
-//		}).then(function(matches) {
-//			data.matches = matches;
-//			return foot.getStadiums(db);
-//		}).then(function(stadiums) {
-//			data.stadiums = stadiums;
-//			callback(null, data);
-//		}).catch(callback).done();
-//};
 
 /******************************************************************************
  * Edit data
@@ -82,35 +54,32 @@ foot.getData = function(db, callback) {
  * @param {integer} mid - the id of the match to be updated
  * @param {integer} score1 - the score of team 1
  * @param {integer} score2 - the score of team 2
- * @param {function} callback
  * @api public
  */
-foot.setMatchScore = function(db, mid, score1, score2, callback) {
+foot.setMatchScore = function(db, mid, score1, score2) {
 	var edit = {
 		'team1_score': score1,
 		'team2_score': score2
 	};
-	db.collection('matches').findAndModify({ id: mid }, 'id', { $set: edit }, { 'new': true }, function(err, match) {
-		if (err || !match) {
-			callback(err);
-		} else {
+	return db.collection('matches').findAndModify({ query: { id: mid }, update: { $set: edit }, new: true })
+		.then(function(result) {
+			var match = result[0]; // findAndModify returns [ doc, { whatever } ]
+			if (!match) throw new Error('Match not found: ' + mid);
 			delete match._id;
 			var data = { matches: [ match ] };
 			if (match.group) {
 				// update group results
-				updateGroupStats(db, match.group, function(err, teams) {
-					data.teams = teams;
-					callback(err, data);
-				});
+				return updateGroupStats(db, match.group)
+					.then(function(teams) {
+						data.teams = teams;
+						return data;
+					});
 			} else if (match.phase !== 'F' && match.phase !== 'T') {
 				// update score from final rounds: winner moves forward
 				advanceToNextRound(db, match);
-				callback(null, data);
-			} else {
-				callback(null, data);
 			}
-		}
-	});
+			return data;
+		});
 };
 
 /**
@@ -118,56 +87,53 @@ foot.setMatchScore = function(db, mid, score1, score2, callback) {
  * @param {object} db
  * @param {string} group - the group id ('A', ...)
  * @param {string[]} ranks - array of teams id in order (['CZE', 'GRE', 'RUS', 'POL'])
- * @param {function} callback
  * @api public
  */
-foot.setRanks = function(db, group, ranks, callback) {
+foot.setRanks = function(db, group, ranks) {
 	var data = { teams: [] };
 	
-	// TODO: no security -- should check all teams passed are in specified group
+	// security: the query checks that each team passed is in specified group
 	var teams = db.collection('teams');
 	for (var i = 0; i < ranks.length; i++) {
-		teams.update({ id: ranks[i] }, { $set: { rank: i } }, { w : 0 });
+		teams.update({ id: ranks[i], group: group }, { $set: { rank: i } }, { w : 0 });
 		data.teams.push({ id: ranks[i], rank: i });
 	}
 	
 	// If all group matches have been played, update first final round
-	var matches = db.collection('matches');
-	matches.count({ group: group, team1_score: { $ne: null } }, function(err, count) {
-		if (count === 6) {
-			advanceToFirstRound(db, group, ranks[0], ranks[1]);
-		}
-		callback(null, data);
-	});
+	return db.collection('matches').count({ group: group, team1_score: { $ne: null } })
+		.then(function(count) {
+			if (count === 6) {
+				advanceToFirstRound(db, group, ranks[0], ranks[1]);
+			}
+			return data;
+		});
 };
 
 /**
  * Update the stats of all teams in a group, to take into account new match results
  * @param {object} db
  * @param {string} group - the group to be updated ('A', 'B', ...)
- * @param {function} callback
  */
-function updateGroupStats(db, group, callback) {
-	db.collection('teams').find({ group: group }, { id: 1 }).toArray(function(err1, teams) {
-		db.collection('matches')
-			.find({ group: group, team1_score: { $ne: null } })
-			.toArray(function(err2, matches) {
-				if (err1 || err2) {
-					callback(err1 || err2);
-				} else {
-					var newStats = computeGroupStandings(teams, matches);
-					var teamsCol = db.collection('teams');
-					for (var i = 0; i < newStats.length; i++) {
-						var t = newStats[i];
-						teamsCol.update({ _id: t._id }, { $set: t }, { w : 0 });
-					}
-					if (matches.length === 6) { // 6 matches per group
-						advanceToFirstRound(db, group, newStats[0].id, newStats[1].id);
-					}
-					callback(null, newStats);
-				}
+function updateGroupStats(db, group) {
+	var teams;
+	return db.collection('teams').find({ group: group }, { id: 1 }).toArray()
+		.then(function(t) {
+			teams = t;
+			return db.collection('matches')
+				.find({ group: group, team1_score: { $ne: null } })
+				.toArray();
+		}).then(function(matches) {
+			var newStats = computeGroupStandings(teams, matches);
+			var teamsCol = db.collection('teams');
+			for (var i = 0; i < newStats.length; i++) {
+				var t = newStats[i];
+				teamsCol.update({ _id: t._id }, { $set: t }, { w : 0 });
+			}
+			if (matches.length === 6) { // 6 matches per group
+				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id);
+			}
+			return newStats;
 		});
-	});
 }
 
 /**

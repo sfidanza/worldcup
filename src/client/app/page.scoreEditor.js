@@ -91,7 +91,7 @@ page.scoreEditor.submitScoreEdit = function() {
 };
 
 page.scoreEditor.afterScoreEdit = function(data) {
-	if (data.updated) {
+	if (data) {
 		frw.data.update(page.data.matches, data.matches, "id");
 		frw.data.update(page.data.teams, data.teams, "id");
 		page.redrawView();
@@ -133,7 +133,9 @@ page.scoreEditor.setRanks = function(group, ranks) {
 };
 
 page.scoreEditor.afterSetRanks = function(data) {
-	frw.data.update(page.data.matches, data.matches, "id");
-	frw.data.update(page.data.teams, data.teams, "id");
-	page.redrawView();
+	if (data) {
+		frw.data.update(page.data.matches, data.matches, "id");
+		frw.data.update(page.data.teams, data.teams, "id");
+		page.redrawView();
+	}
 };

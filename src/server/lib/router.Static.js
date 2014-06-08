@@ -3,7 +3,7 @@ var frw = require("../frw/frw");
 
 var statics = {
 	"frw.js": [
-   		"frw/base.js",
+		"frw/base.js",
 		"frw/frw.js",
 		"frw/frw.dom.js",
 		"frw/frw.ssa.js",
@@ -14,7 +14,7 @@ var statics = {
 		"frw/uic.Tooltip.js"
 	],
 	"app.js": [
-   		"app/page.js",
+		"app/page.js",
 		"app/page.scoreEditor.js",
 		"app/page.bet.js",
 		"templates/main.js",

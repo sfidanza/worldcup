@@ -48,7 +48,8 @@ function respondJson(data) {
 	this.end();
 }
 
-function respondError(errorCode) {
+function respondError(errorCode, err) {
+	if (err) console.log(err);
 	if (!http.STATUS_CODES[errorCode]) errorCode = 500;
 	if (errorCode === 401) {
 		this.setHeader("WWW-Authenticate", "FormBased");
