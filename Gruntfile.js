@@ -38,9 +38,13 @@ module.exports = function(grunt) {
 			src: 'src/client/**/*.css'
 		},
 		watch: {
-			jscss: {
-				files: [ 'src/client/**/*.js', 'src/client/**/*.css' ],
-				tasks: [ 'concat' ]
+			js: {
+				files: 'src/client/**/*.js',
+				tasks: [ 'concat', 'uglify' ]
+			},
+			css: {
+				files: 'src/client/**/*.css',
+				tasks: [ 'concat', 'cssmin' ]
 			},
 			tpl: {
 				files: 'src/client/**/*.html',
@@ -65,6 +69,6 @@ module.exports = function(grunt) {
 	grunt.loadTasks('build/tasks');
 	
 	// Default tasks
-	grunt.registerTask('default', [ 'jshint', 'clean', 'copy', 'concat', 'mergeTemplates' ]);
+	grunt.registerTask('default', [ 'jshint', 'clean', 'copy', 'concat', 'mergeTemplates', 'cssmin', 'uglify' ]);
 	grunt.registerTask('minify', [ 'cssmin', 'uglify' ]);
 };
