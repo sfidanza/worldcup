@@ -1,0 +1,27 @@
+<table class="ranking">
+<thead>
+	<tr>
+		<th>Team</th>
+		<th title="Points">Points</th>
+		<th title="Goal Difference">Diff.</th>
+		<th title="Goals Scored">Goals</th>
+		<th title="Matches played">Played</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<th colspan="10">Group {group}</th>
+	</tr>
+	<!-- BEGIN: team -->
+	<tr class="{row_class}"
+	    onmouseover="page.templates.schedule.highlight('{team.id}')"
+	    onmouseout="page.templates.schedule.highlight()">
+		<td class="team"><span class="flag {team.id}">{team.name}</span></td>
+		<td>{team.points}</td>
+		<td>{team.goal_difference}</td>
+		<td>{team.goals_scored}</td>
+		<td>{team.played}</td>
+	</tr>
+	<!-- END: team -->
+</tbody>
+</table>

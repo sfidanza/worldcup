@@ -1,0 +1,25 @@
+{
+	"files": {
+		"target/static/app.mobile.js": [
+			"src/client/app/page.js",
+			"src/client/app/page.scoreEditor.js",
+			"src/mobile/app/page.mobile.js",
+			"src/mobile/templates/main.js",
+			"src/mobile/templates/user.js",
+			"src/mobile/templates/schedule.js",
+			"src/mobile/templates/ranking.js",
+			"src/mobile/templates/board.js",
+			"src/mobile/templates/quickRanking.js",
+			"src/mobile/templates/notes.js"
+		],
+		"target/static/app.mobile.css": [
+			"src/mobile/stylesheet.css",
+			"src/client/css/flags.css",
+			"src/client/css/schedule.css",
+			"src/client/css/ranking.css",
+			"src/mobile/templates/board.css",
+			"src/client/css/uic.css",
+			"src/client/css/scoreEditor.css"
+		]
+	}
+}

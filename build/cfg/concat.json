@@ -27,6 +27,12 @@
 		],
 		"target/static/app.css": [
 			"src/client/stylesheet.css",
+			"src/client/css/flags.css",
+			"src/client/css/schedule.css",
+			"src/client/css/ranking.css",
+			"src/client/css/board.css",
+			"src/client/css/uic.css",
+			"src/client/css/scoreEditor.css",
 			"src/client/templates/bet/bet.css"
 		]
 	}

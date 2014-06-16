@@ -74,6 +74,10 @@ page.destroy = function() {
 	this.loginDlg.destroy();
 	this.tooltip.destroy();
 	this.pwl = null;
+	for (var id in page.templates) {
+		var tpl = page.templates[id];
+		if (tpl.destroy) tpl.destroy();
+	}
 	
 	page.scoreEditor.destroy();
 };

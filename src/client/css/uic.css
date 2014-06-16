@@ -1,0 +1,57 @@
+/***[Tooltip]***************/
+.uic-tooltip-container {
+	position: absolute;
+	top: 0;
+	border: 1px solid #333333;
+	background: #FFFFFF;
+	padding: 0.5em;
+}
+
+/***[Dialog]****************/
+.uic-dlg {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	background-color: #FFFFFF;
+	border: 1px outset #333333;
+	border-radius: 10px;
+}
+.uic-dlg h5 {
+	background-image: url("img/dialog-title.png");
+	margin: 0;
+	padding: 0.3em 0.6em 0.4em;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 120%;
+	border-radius: 7px 7px 0 0;
+}
+.uic-dlg a.uic-dlg-close {
+	margin-right: 7px;
+	float: right;
+	width: 41px;
+	height: 15px;
+	background: url("img/close.png") 0 0 no-repeat;
+}
+.uic-dlg a.uic-dlg-close:hover {
+	background-image: url("img/close-hover.png");
+}
+.uic-dlg a.uic-dlg-close:active {
+	background-image: url("img/close-active.png");
+}
+.uic-dlg-body {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	background-color: #FFFFFF;
+	border: 1px outset #333333;
+	border-radius: 10px;
+}
+
+.uic-overlay {
+	position: absolute;
+	background-color: #000000;
+	opacity: 0.6;
+/*	filter: alpha(opacity=50); /* IE quickfix. Uses a lot of memory. */
+}

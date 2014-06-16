@@ -1,0 +1,60 @@
+/***[Schedule]**************/
+.schedule {
+	width: 100%;
+	margin: auto;
+	padding: 0;
+	border: 0;
+	border-collapse: collapse;
+}
+.schedule thead th {
+	padding: 0.5em 0;
+	background-color: #9C0000;
+	color: #FFFFFF;
+}
+.schedule tbody th {
+	padding: 3px;
+	background: #333333 url("img/l0.png") top left repeat-x;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+}
+.schedule td {
+	padding: 0.3em 0.2em;
+	border-bottom: 1px solid #ccc;
+}
+.schedule td a {
+	color: #000000;
+	text-decoration: none;
+}
+.schedule td a:hover {
+	text-decoration: underline;
+}
+.schedule td img {
+	vertical-align: bottom;
+}
+.schedule tr.subtitle {
+	background-color: #F4F4F4;
+	color: #9C0000;
+}
+
+.schedule td.time {
+	width: 10%;
+}
+.schedule td.group {
+	width: 15%;
+	text-align: center;
+}
+.schedule td.score {
+	width: 10%;
+	text-align: center;
+}
+.schedule td.team {
+	width: 23%;
+}
+.schedule td.left {
+	text-align: right;
+}
+.schedule td.channel {
+	text-align: center;
+	width: 45px;
+}

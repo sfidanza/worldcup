@@ -1,0 +1,61 @@
+<div id="header">
+	<h1>2014 Worldcup</h1>
+	<dl id="menu">
+		<dd><a onclick="page.select(this, event);" href="#schedule">Schedule</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#board">Finals Board</a></dd>
+		<dt style="float: none; height: 0;"></dt>
+		<dd><a onclick="page.select(this, event);" href="#group,A" title="Group A">A</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,B" title="Group B">B</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,C" title="Group C">C</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,D" title="Group D">D</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,E" title="Group E">E</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,F" title="Group F">F</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,G" title="Group G">G</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#group,H" title="Group H">H</a></dd>
+		<dd style="float: none; height: 0;"></dd>
+	</dl>
+</div>	
+
+<div id="contents"></div>
+
+<div id="footer">
+	<p style="float: left;">
+		Credits: <a href="http://www.fifa.com/worldcup/index.html">FIFA</a>, <a href="http://www.famfamfam.com/" title="licensed under Creative Commons Attribution 2.5">famfamfam icons</a>
+		- <a href="" onclick="page.showNotes(); return false;">Notes</a>
+	</p>
+	<div id="user-area"></div>
+</div>
+
+<div id="login-dlg" class="uic-dlg">
+	<a id="login-dlg-close" class="uic-dlg-close"></a>
+	<h5>Login</h5>
+	<div id="login-dlg-body">
+		<form id="login-form" action="do.login.php" method="post"
+		      onsubmit="frw.stopEvent(event); page.templates.main.submitLogin(this.user_name.value, this.user_pwd.value);">
+			<fieldset>
+				<div>
+					<input type="text" name="user_name" size="12" value=""/>
+					<input type="password" name="user_pwd" size="12" value=""/>
+				</div>
+				<div class="submit">
+					<input type="submit" name="do_login" value="Login"/>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+<div id="score-editor">
+	<div class="inputs">
+		<input type="text" id="score1" maxlength="1" value=""/> -
+		<input type="text" id="score2" maxlength="1" value=""/>
+	</div>
+	<a id="score-editor-ok" href="" title="OK"></a>
+	<a id="score-editor-cancel" href="" title="Cancel"></a>
+</div>
+
+<div id="generic-dlg" class="uic-dlg">
+	<a id="generic-dlg-close" class="uic-dlg-close"></a>
+	<h5> </h5>
+	<div id="generic-dlg-body"></div>
+</div>

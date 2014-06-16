@@ -26,11 +26,30 @@ page.templates.board.onParse = function(data) {
 			this.parseBlock('PSO');
 		}
 		if (match.phase === "H") {
-			this.parseBlock('tooltip');
 			this.set('num', match.team1_source);
+			this.parseBlock('tooltip');
 		} else {
 			this.set('num', match.id);
+			if (match.phase === "Q" || match.phase === "S") {
+				this.parseBlock('highlight');
+			}
 		}
 		this.parseBlock('match');
+	}
+};
+page.templates.board.highlight = function(match) {
+	if (!document.querySelectorAll) return; // no old browser support
+	var root = document.getElementById('contents');
+	
+	if (match) {
+		var items = root.querySelectorAll('.for-'+match);
+		for (var i = 0; i < items.length; i++) {
+			frw.dom.addClass(items[i], "highlighted");
+		}
+	} else {
+		var items = root.querySelectorAll('div.highlighted');
+		for (var i = 0; i < items.length; i++) {
+			frw.dom.removeClass(items[i], "highlighted");
+		}
 	}
 };

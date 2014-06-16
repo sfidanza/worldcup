@@ -8,19 +8,27 @@ module.exports = function(grunt) {
 			build: { expand: true, cwd: 'src/client/', src: [ 'img/**' ], dest: 'target/static/' },
 		},
 		concat: {
-			build: grunt.file.readJSON('build/cfg/concat.json')
+			build: grunt.file.readJSON('build/cfg/concat.json'),
+			mobile: grunt.file.readJSON('build/cfg/concat.mobile.json')
 		},
 		mergeTemplates: {
-			build: grunt.file.readJSON('build/cfg/mergeTemplates.json')
+			build: grunt.file.readJSON('build/cfg/mergeTemplates.json'),
+			mobile: grunt.file.readJSON('build/cfg/mergeTemplates.mobile.json')
 		},
 		cssmin: {
-			minify: { expand: true, cwd: 'target/static/', src: [ '*.css', '!*.min.css' ], dest: 'target/static/', ext: '.min.css' }
+			minify: {
+				files: {
+					'target/static/app.min.css': 'target/static/app.css',
+					'target/static/app.mobile.min.css': 'target/static/app.mobile.css'
+				}
+			}
 		},
 		uglify: {
 			minify: {
 				files: {
 					'target/static/frw.min.js': 'target/static/frw.js',
 					'target/static/app.min.js': 'target/static/app.js',
+					'target/static/app.mobile.min.js': 'target/static/app.mobile.js'
 				}
 			}
 		},
@@ -28,6 +36,7 @@ module.exports = function(grunt) {
 			options: {
 				jshintrc: true
 			},
+			mobile: ['src/mobile/**/*.js'],
 			client: ['src/client/**/*.js'],
 			server: ['src/server/**/*.js']
 		},
@@ -35,20 +44,32 @@ module.exports = function(grunt) {
 			options: {
 				csslintrc: 'src/client/.csslintrc'
 			},
-			src: 'src/client/**/*.css'
+			src: ['src/client/**/*.css', 'src/mobile/**/*.css']
 		},
 		watch: {
 			js: {
 				files: 'src/client/**/*.js',
-				tasks: [ 'concat', 'uglify' ]
+				tasks: [ 'concat:build', 'uglify' ]
 			},
 			css: {
 				files: 'src/client/**/*.css',
-				tasks: [ 'concat', 'cssmin' ]
+				tasks: [ 'concat:build', 'cssmin' ]
 			},
 			tpl: {
 				files: 'src/client/**/*.html',
-				tasks: [ 'mergeTemplates' ]
+				tasks: [ 'mergeTemplates:build' ]
+			},
+			mjs: {
+				files: 'src/mobile/**/*.js',
+				tasks: [ 'concat:mobile', 'uglify' ]
+			},
+			mcss: {
+				files: 'src/mobile/**/*.css',
+				tasks: [ 'concat:mobile', 'cssmin' ]
+			},
+			mtpl: {
+				files: 'src/mobile/**/*.html',
+				tasks: [ 'mergeTemplates:mobile' ]
 			},
 			img: {
 				files: 'src/client/img/**',

@@ -1,0 +1,47 @@
+/***[Ranking]***************/
+table.ranking {
+	width: 100%;
+	margin:  0 auto 2em;
+	padding: 0;
+	border: 0;
+	border-collapse: collapse;
+}
+table.ranking tbody tr:nth-child(3) {
+	border-bottom: 2px solid #119911;
+}
+table.ranking thead th {
+	padding: 0.5em 0;
+	background-color: #9C0000;
+	color: #FFFFFF;
+}
+table.ranking tbody th {
+	padding: 3px;
+	background: #333333 url("img/l0.png") top left repeat-x;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+}
+table.ranking td {
+	padding: 0.3em 0.2em;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+.l0 { background-color: #EEEEEE; }
+.l1 { background-color: #FFFFFF; }
+.l0:hover, .l1:hover { background-color: #EEEEAA; }
+tr.highlighted { background-color: #EEEEAA; }
+
+table.ranking td.team {
+	text-align: left;
+	width: 40%;
+}
+
+table.quickRanking {
+	float: left;
+	width: 200px;
+	margin: 0.3em;
+}
+table.quickRanking td.team {
+	width: auto;
+}

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 	grunt.registerMultiTask('mergeTemplates', 'Merge templates.', function() {
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({
-			prefix: "src/client/templates/"
+			prefix: ""
 		});
 		
 		var tpl = new frw.Template();

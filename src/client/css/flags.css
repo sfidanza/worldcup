@@ -1,0 +1,113 @@
+/***[Team Flags]************/
+.flag {
+	background-image: url("img/flags-sprite.png");
+	background-position: left 50%;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+.left .flag, .flag.left {
+	background-position: right 50%;
+	padding-left: 0;
+	padding-right: 20px;
+}
+
+.flag.ARG { background-position: 0 2px; }
+.flag.AUS { background-position: 0 -29px; }
+.flag.BOS { background-position: 0 -60px; }
+.flag.BEL { background-position: 0 -91px; }
+.flag.BRA { background-position: 0 -122px; }
+.flag.SWI { background-position: 0 -153px; }
+.flag.CIV { background-position: 0 -184px; }
+.flag.CHI { background-position: 0 -215px; }
+.flag.CMR { background-position: 0 -246px; }
+.flag.COL { background-position: 0 -277px; }
+.flag.COS { background-position: 0 -308px; }
+.flag.GER { background-position: 0 -339px; }
+.flag.ALG { background-position: 0 -370px; }
+.flag.ECU { background-position: 0 -401px; }
+.flag.ENG { background-position: 0 -432px; }
+.flag.ESP { background-position: 0 -463px; }
+.flag.FRA { background-position: 0 -494px; }
+.flag.GHA { background-position: 0 -525px; }
+.flag.GRE { background-position: 0 -556px; }
+.flag.HON { background-position: 0 -587px; }
+.flag.CRO { background-position: 0 -618px; }
+.flag.IRA { background-position: 0 -649px; }
+.flag.ITA { background-position: 0 -680px; }
+.flag.JPN { background-position: 0 -711px; }
+.flag.KOR { background-position: 0 -742px; }
+.flag.MEX { background-position: 0 -773px; }
+.flag.NGA { background-position: 0 -804px; }
+.flag.NED { background-position: 0 -835px; }
+.flag.POR { background-position: 0 -866px; }
+.flag.RUS { background-position: 0 -897px; }
+.flag.USA { background-position: 0 -929px; }
+.flag.URU { background-position: 0 -959px; }
+
+.left .flag.ARG, .flag.ARG.left { background-position: right 2px; }
+.left .flag.AUS, .flag.AUS.left { background-position: right -29px; }
+.left .flag.BOS, .flag.BOS.left { background-position: right -60px; }
+.left .flag.BEL, .flag.BEL.left { background-position: right -91px; }
+.left .flag.BRA, .flag.BRA.left { background-position: right -122px; }
+.left .flag.SWI, .flag.SWI.left { background-position: right -153px; }
+.left .flag.CIV, .flag.CIV.left { background-position: right -184px; }
+.left .flag.CHI, .flag.CHI.left { background-position: right -215px; }
+.left .flag.CMR, .flag.CMR.left { background-position: right -246px; }
+.left .flag.COL, .flag.COL.left { background-position: right -277px; }
+.left .flag.COS, .flag.COS.left { background-position: right -308px; }
+.left .flag.GER, .flag.GER.left { background-position: right -339px; }
+.left .flag.ALG, .flag.ALG.left { background-position: right -370px; }
+.left .flag.ECU, .flag.ECU.left { background-position: right -401px; }
+.left .flag.ENG, .flag.ENG.left { background-position: right -432px; }
+.left .flag.ESP, .flag.ESP.left { background-position: right -463px; }
+.left .flag.FRA, .flag.FRA.left { background-position: right -494px; }
+.left .flag.GHA, .flag.GHA.left { background-position: right -525px; }
+.left .flag.GRE, .flag.GRE.left { background-position: right -556px; }
+.left .flag.HON, .flag.HON.left { background-position: right -587px; }
+.left .flag.CRO, .flag.CRO.left { background-position: right -618px; }
+.left .flag.IRA, .flag.IRA.left { background-position: right -649px; }
+.left .flag.ITA, .flag.ITA.left { background-position: right -680px; }
+.left .flag.JPN, .flag.JPN.left { background-position: right -711px; }
+.left .flag.KOR, .flag.KOR.left { background-position: right -742px; }
+.left .flag.MEX, .flag.MEX.left { background-position: right -773px; }
+.left .flag.NGA, .flag.NGA.left { background-position: right -804px; }
+.left .flag.NED, .flag.NED.left { background-position: right -835px; }
+.left .flag.POR, .flag.POR.left { background-position: right -866px; }
+.left .flag.RUS, .flag.RUS.left { background-position: right -897px; }
+.left .flag.USA, .flag.USA.left { background-position: right -929px; }
+.left .flag.URU, .flag.URU.left { background-position: right -959px; }
+
+/*
+.flag.ALG { background-image: url("img/flags/dz.gif"); }
+.flag.ARG { background-image: url("img/flags/ar.gif"); }
+.flag.AUS { background-image: url("img/flags/au.gif"); }
+.flag.BEL { background-image: url("img/flags/be.gif"); }
+.flag.BRA { background-image: url("img/flags/br.gif"); }
+.flag.BOS { background-image: url("img/flags/ba.gif"); }
+.flag.CHI { background-image: url("img/flags/cl.gif"); }
+.flag.CIV { background-image: url("img/flags/ci.gif"); }
+.flag.CMR { background-image: url("img/flags/cm.gif"); }
+.flag.COL { background-image: url("img/flags/co.gif"); }
+.flag.COS { background-image: url("img/flags/cr.gif"); }
+.flag.CRO { background-image: url("img/flags/hr.gif"); }
+.flag.ECU { background-image: url("img/flags/ec.gif"); }
+.flag.ENG { background-image: url("img/flags/england.gif"); }
+.flag.ESP { background-image: url("img/flags/es.gif"); }
+.flag.FRA { background-image: url("img/flags/fr.gif"); }
+.flag.GER { background-image: url("img/flags/de.gif"); }
+.flag.GHA { background-image: url("img/flags/gh.gif"); }
+.flag.GRE { background-image: url("img/flags/gr.gif"); }
+.flag.HON { background-image: url("img/flags/hn.gif"); }
+.flag.IRA { background-image: url("img/flags/ir.gif"); }
+.flag.ITA { background-image: url("img/flags/it.gif"); }
+.flag.JPN { background-image: url("img/flags/jp.gif"); }
+.flag.KOR { background-image: url("img/flags/kr.gif"); }
+.flag.MEX { background-image: url("img/flags/mx.gif"); }
+.flag.NED { background-image: url("img/flags/nl.gif"); }
+.flag.NGA { background-image: url("img/flags/ng.gif"); }
+.flag.POR { background-image: url("img/flags/pt.gif"); }
+.flag.RUS { background-image: url("img/flags/ru.gif"); }
+.flag.SWI { background-image: url("img/flags/ch.gif"); }
+.flag.URU { background-image: url("img/flags/uy.gif"); }
+.flag.USA { background-image: url("img/flags/us.gif"); }
+*/

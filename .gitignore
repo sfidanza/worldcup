@@ -3,4 +3,4 @@
 /.project
 /.settings
 *.local.txt
-.jshintrc
+/.jshintrc

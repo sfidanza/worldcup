@@ -7,10 +7,13 @@ var Router = function() {
 Router.prototype.serve = function(request, response, ctx) {
 	var view = ctx.view;
 	if (view === "" || view ==="index") {
+		var ua = request.headers['user-agent'];
+		var index = (/Mobi/.test(ua) || 'mobile' in request.query) ? "index.mobile.html" : "index.html";
+		
 		// return starting page
 		response.writeHead(200, { "Content-Type": "text/html" });
 		
-		fs.readFile("./server/templates/index.html", { encoding: "utf8" }, function (err, data) {
+		fs.readFile("./server/templates/" + index, { encoding: "utf8" }, function (err, data) {
 			if (err) throw err;
 			
 			var tpl = new frw.Template();

@@ -1,15 +1,15 @@
 {
 	"files": {
 		"target/static/app.xml": [
-			"main.html",
-			"user.html",
-			"schedule.html",
-			"ranking.html",
-			"board.html",
-			"quickRanking.html",
-			"notes.html",
-			"bet/bet.html",
-			"bet/allBets.html"
+			"src/client/templates/main.html",
+			"src/client/templates/user.html",
+			"src/client/templates/schedule.html",
+			"src/client/templates/ranking.html",
+			"src/client/templates/board.html",
+			"src/client/templates/quickRanking.html",
+			"src/client/templates/notes.html",
+			"src/client/templates/bet/bet.html",
+			"src/client/templates/bet/allBets.html"
 		]
 	}
 }

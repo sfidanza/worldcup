@@ -1,0 +1,13 @@
+{
+	"files": {
+		"target/static/app.mobile.xml": [
+			"src/mobile/templates/main.html",
+			"src/mobile/templates/user.html",
+			"src/mobile/templates/schedule.html",
+			"src/mobile/templates/ranking.html",
+			"src/mobile/templates/board.html",
+			"src/mobile/templates/quickRanking.html",
+			"src/mobile/templates/notes.html"
+		]
+	}
+}

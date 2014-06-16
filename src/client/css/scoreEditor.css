@@ -1,0 +1,38 @@
+/***[Score Editor]**********/
+#score-editor {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	background-image: url("img/backEdit.png");
+	border: 1px solid #999900;
+	padding: 2px 7px;
+	border-radius: 6px;
+}
+#score-editor .inputs {
+	width: 40px;
+	margin: 2px 0;
+	border: 1px solid #999900;
+	background: #FFFFFF;
+	text-align: center;
+}
+#score-editor .inputs input {
+	width: 1em;
+	font-size: 10px;
+	padding: 0;
+	border: none;
+	background: #FFFFFF;
+}
+#score-editor-ok {
+	display: block;
+	float: right;
+	width: 16px;
+	height: 9px;
+	background: url("img/small-accept.png") 0 0 no-repeat;
+}
+#score-editor-cancel {
+	display: block;
+	width: 16px;
+	height: 9px;
+	background: url("img/small-cross.png") 0 0 no-repeat;
+}
