@@ -66,7 +66,7 @@ frw.Template.prototype.make = function(text) {
 		
 		if (d) { // END
 			var closed = self.stack.pop(); // closed === d
-			r = self.store("{blk_"+closed+"}", closed);
+			r = self.store("{blk_" + closed + "}", closed);
 		}
 		return r;
 	});
@@ -79,7 +79,7 @@ frw.Template.prototype.make = function(text) {
 frw.Template.prototype.set = function(key, value) {
 	if (typeof value === 'object') {
 		for (var p in value) {
-			this.setValue(key+'.'+p, value[p]);
+			this.setValue(key + '.' + p, value[p]);
 		}
 	} else {
 		this.setValue(key, value);
@@ -115,8 +115,8 @@ frw.Template.prototype.retrieve = function(blkId) {
 //	if (!blk) return null;
 	var children = this.subBlocks[blkId];
 	if (!children) return null;
-	for (var i=0; i<children.length; i++) {
-		this.set("blk_"+children[i], this.retrieve(children[i]));
+	for (var i = 0; i < children.length; i++) {
+		this.set("blk_" + children[i], this.retrieve(children[i]));
 	}
 	var str = this.blocks[blkId].supplant(this.data);
 	this.parsedBlocks[blkId].push(str);
