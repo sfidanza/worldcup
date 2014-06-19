@@ -13,20 +13,21 @@
 .page-bet table.winnerCandidates {
 	border-collapse: separate;
 	border-spacing: 2px;
+	width: 100%;
 }
-.page-bet table.winnerCandidates thead th {
+.page-bet table.winnerCandidates th {
 	padding: 3px;
-	background: #333333 url("interface/img/l0.png") top left repeat-x;
+	background: #333333 url("img/l0.png") top left repeat-x;
 	font-weight: bold;
 	color: #FFFFFF;
 	text-align: center;
 }
-.page-bet table.winnerCandidates tbody td {
+.page-bet table.winnerCandidates td {
 	padding: 0.2em 0.5em;
-	width: 19%;
+	width: 21%;
 	border: 1px solid silver;
 }
-.page-bet table.winnerCandidates.selectable tbody td {
+.page-bet table.winnerCandidates.selectable td {
 	cursor: pointer;
 }
 .page-bet table.winnerCandidates.selectable td:hover {
@@ -36,4 +37,31 @@
 .page-bet table.winnerCandidates td.selected {
 	border-color: green;
 	background-color: #339933;
+}
+
+.badge {
+	background: radial-gradient(circle at 5px -8px, white 8%, #9C0000 19px);
+	border: 2px solid #FFFFFF;
+	border-radius: 12px;
+	box-shadow: 1px 1px 1px #000;
+	color: #FFFFFF;
+	font-size: 9px;
+	font-weight: bold;
+	height: 13px;
+	min-width: 8px;
+	padding: 0 3px;
+	cursor: pointer;
+	position: absolute;
+	right: -3px;
+	text-align: center;
+	top: -5px;
+}
+.page-bet .betters {
+	background: white;
+	border: 1px solid black;
+	color: black;
+	font-weight: normal;
+	padding: 2px 4px;
+	position: absolute;
+	z-index: 1;
 }

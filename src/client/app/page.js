@@ -138,7 +138,9 @@ page.refreshUser = function(data) {
 	page.templates.user.parse(data || {});
 	page.templates.user.load(page.config.area.user);
 	
-//	page.redrawView(); // why???
+	if (this.current === 'bet') {
+		page.redrawView();
+	}
 };
 
 page.getPageTitle = function(stateTitle) {
@@ -284,14 +286,9 @@ page.getRankingPopup = function(group1, group2) {
 	return page.templates.quickRanking.retrieve();
 };
 
-page.showBet = function(subpage) {
-	if (subpage === 'user') {
-		page.templates.bet.parse();
-		page.templates.bet.load(page.config.area.contents);
-	} else if (subpage === 'all') {
-		page.templates.allBets.parse();
-		page.templates.allBets.load(page.config.area.contents);
-	}
+page.showBet = function() {
+	page.templates.bet.parse();
+	page.templates.bet.load(page.config.area.contents);
 };
 
 /**********************************************************/

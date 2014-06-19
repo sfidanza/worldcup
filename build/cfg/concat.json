@@ -22,8 +22,7 @@
 			"src/client/templates/board.js",
 			"src/client/templates/quickRanking.js",
 			"src/client/templates/notes.js",
-			"src/client/templates/bet/bet.js",
-			"src/client/templates/bet/allBets.js"
+			"src/client/templates/bet/bet.js"
 		],
 		"target/static/app.css": [
 			"src/client/stylesheet.css",

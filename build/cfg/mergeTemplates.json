@@ -8,8 +8,7 @@
 			"src/client/templates/board.html",
 			"src/client/templates/quickRanking.html",
 			"src/client/templates/notes.html",
-			"src/client/templates/bet/bet.html",
-			"src/client/templates/bet/allBets.html"
+			"src/client/templates/bet/bet.html"
 		]
 	}
 }

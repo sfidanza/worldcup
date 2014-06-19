@@ -11,10 +11,12 @@ module.exports = actions;
  */
 actions.champion = function(request, response, ctx) {
 	var user = request.session.user;
-	if (user.login) {
+	if (user && user.login) {
 		var query = request.query;
-		bets.enterChampionBet(ctx.db, user.login, query.champion);
-		response.json(getUserBets(user));
+		bets.enterChampionBet(ctx.db, user.login, query.champion)
+			.then(respondUserBets(ctx.db, response))
+			.catch(response.error.bind(response, 500))
+			.done();
 	} else {
 		response.error(401);
 	}
@@ -22,18 +24,20 @@ actions.champion = function(request, response, ctx) {
 
 actions.match = function(request, response, ctx) {
 	var user = request.session.user;
-	if (user.login) {
+	if (user && user.login) {
 		var query = request.query;
-		bets.enterMatchWinnerBet(ctx.db, user.login, query.mid, query.winner);
-		response.json(getUserBets(user));
+		bets.enterMatchWinnerBet(ctx.db, user.login, query.mid, query.winner)
+			.then(respondUserBets(ctx.db, response))
+			.catch(response.error.bind(response, 500))
+			.done();
 	} else {
 		response.error(401);
 	}
 };
 
-function getUserBets(user) {
-	return {
-		bets: bets.getBets(user.login),
-		updated: true
-	};
+function respondUserBets(db, response) {
+	return bets.getBets(db)
+		.then(function(bets) {
+			response.json({ bets: bets });
+		});
 }

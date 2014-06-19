@@ -24,8 +24,7 @@ var statics = {
 		"templates/board.js",
 		"templates/quickRanking.js",
 		"templates/notes.js",
-		"templates/bet/bet.js",
-		"templates/bet/allBets.js"
+		"templates/bet/bet.js"
 	],
 	"app.css": [
 		"stylesheet.css",
@@ -39,8 +38,7 @@ var statics = {
 		"board":        "board.html",
 		"quickRanking": "quickRanking.html",
 		"notes":        "notes.html",
-		"bet":          "bet/bet.html",
-		"allBets":      "bet/allBets.html"
+		"bet":          "bet/bet.html"
 	}
 };
 

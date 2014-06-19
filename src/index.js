@@ -14,7 +14,7 @@ server.addRouting("/api/", new router.Views(require("./server/views")));
 //server.addRouting("/api/cache/", new router.Views(require("./server/views.cache")));
 server.addRouting("/api/user/", new router.Views(require("./server/actions/user")));
 server.addRouting("/api/edit/", new router.Views(require("./server/actions/edit")));
-//server.addRouting("/api/bet/", new router.Views(require("./server/actions/bet")));
+server.addRouting("/api/bet/", new router.Views(require("./server/actions/bet")));
 
 var database = MongoClient('mongodb://127.0.0.1:27017/worldcup2014');
 database.on('error', function(err) {
