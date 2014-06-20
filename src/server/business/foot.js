@@ -62,8 +62,8 @@ foot.setMatchScore = function(db, mid, score1, score2) {
 		'team2_score': score2
 	};
 	return db.collection('matches').findAndModify({ query: { id: mid }, update: { $set: edit }, new: true })
-		.then(function(result) {
-			var match = result[0]; // findAndModify returns [ doc, { whatever } ]
+		.then(function(result) { return result[0]; }) // findAndModify returns [ doc, { whatever } ]
+		.then(function(match) {
 			if (!match) throw new Error('Match not found: ' + mid);
 			delete match._id;
 			var data = { matches: [ match ] };

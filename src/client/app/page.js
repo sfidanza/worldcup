@@ -11,7 +11,10 @@ page.config = {
 		templates: "static/app.xml",
 		login: "api/user/login",
 		logout: "api/user/logout",
-		data: "api/data"
+		register: "api/user/register",
+		data: "api/data",
+		auth: "api/auth/url",
+		authProfile: "api/auth/profile"
 	},
 	i18n: {
 		pageTitle: "2014 Worldcup - {stateTitle}",
@@ -111,12 +114,23 @@ page.setData = function(data) {
 	page.data = data;
 };
 
-page.login = function(data) {
+page.register = function(data, cb) {
+	frw.ssa.sendRequest({
+		url: frw.ssa.buildGETUrl(page.config.url.register, data),
+		type: 'json',
+		callback: page.refreshUser,
+		override: page,
+		params: cb
+	});
+};
+
+page.login = function(data, cb) {
 	frw.ssa.sendRequest({
 		url: frw.ssa.buildGETUrl(page.config.url.login, data),
 		type: 'json',
 		callback: page.refreshUser,
-		override: page
+		override: page,
+		params: cb
 	});
 };
 
@@ -129,7 +143,7 @@ page.logout = function() {
 	});
 };
 
-page.refreshUser = function(data) {
+page.refreshUser = function(data, cb) {
 	page.data.user = data && data.user;
 	
 //	page.templates.main.parse(); // BREAKS!! Only bets depend on user - review solution!
@@ -141,6 +155,7 @@ page.refreshUser = function(data) {
 	if (this.current === 'bet') {
 		page.redrawView();
 	}
+	if (cb) cb();
 };
 
 page.getPageTitle = function(stateTitle) {
@@ -202,6 +217,8 @@ page.show = function(viewName, option) {
 		case 'ranking': page.showRanking(option); break;
 		case 'group': page.showGroup(option); break;
 		case 'board': page.showBoard(); break;
+		case 'login': page.showLogin(option); break;
+		case 'register': page.showRegister(option); break;
 		case 'bet': page.showBet(option); break;
 	}
 	document.getElementById(page.config.area.contents).className = "page-"+viewName;
@@ -284,6 +301,16 @@ page.getRankingPopup = function(group1, group2) {
 	this.parseGroupRanking(group1);
 	this.parseGroupRanking(group2);
 	return page.templates.quickRanking.retrieve();
+};
+
+page.showLogin = function(backTo) {
+	page.templates.login.parse(backTo);
+	page.templates.login.load(page.config.area.contents);
+};
+
+page.showRegister = function(backTo) {
+	page.templates.register.parse(backTo);
+	page.templates.register.load(page.config.area.contents);
 };
 
 page.showBet = function() {

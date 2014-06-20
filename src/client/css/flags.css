@@ -3,6 +3,8 @@
 	background-image: url("img/flags-sprite.png");
 	background-position: left 50%;
 	background-repeat: no-repeat;
+	display: inline-block; /* fix Chrome */
+	line-height: 14px; /* fix Chrome */
 	padding-left: 20px;
 }
 .left .flag, .flag.left {

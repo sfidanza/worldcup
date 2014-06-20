@@ -3,9 +3,10 @@ page.templates.bet.mode = 'default';
 
 page.templates.bet.onParse = function() {
 	var bets = page.data.bets;
+	var user = page.data.user;
 	
-	if (page.data.user) {
-		var userBets = bets && frw.data.query(bets, "$.user === '" + page.data.user + "' && $.challenge === 'champion'");
+	if (user) {
+		var userBets = bets && frw.data.query(bets, "$.user === '" + user.login + "' && $.challenge === 'champion'");
 		if (userBets && userBets.length) {
 			var championBet = userBets[0].value;
 			var team = frw.data.query(page.data.teams, "$.id === '" + championBet + "'");
@@ -58,7 +59,7 @@ page.templates.bet.parseChampion = function(bets) {
 page.templates.bet.getBetters = function(listBets) {
 	var betters = [];
 	for (var i = 0; i < listBets.length; i++) {
-		betters.push(listBets[i].user);
+		betters.push(listBets[i].userName);
 	}
 	return betters;
 };

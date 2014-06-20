@@ -47,7 +47,8 @@ page.scoreEditor.unplug = function() {
 };
 
 page.scoreEditor.editScore = function(editedScore) {
-	if (page.data.user) {
+	var user = page.data.user;
+	if (user && user.isAdmin) {
 		this.editedScore = editedScore;
 		this.showScoreEditor();
 	}

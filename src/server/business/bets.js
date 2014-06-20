@@ -1,7 +1,9 @@
 /********************************************************************
  * Bets data manipulation layer
  ********************************************************************/
-var fs = require("fs");
+var frw = {
+	data: require("../frw/frw.data")
+};
 
 var bets = {};
 module.exports = bets;
@@ -11,8 +13,24 @@ module.exports = bets;
  */
 	
 bets.getBets = function(db) {
-	return db.collection('bets').find({}, { _id: 0 })
-		.toArray();
+	var users;
+	return db.collection('users').find({}, { _id: 0 }).toArray()
+		.then(function(userList) {
+			users = frw.data.reIndex(userList, function(user) {
+				return user.type + "-" + user.login;
+			});
+			return db.collection('bets').find({}, { _id: 0 }).toArray();
+		})
+		.then(function(betList)  {
+			for (var i = 0; i < betList.length; i++) {
+				var bet = betList[i];
+				var better = users[bet.userType + "-" + bet.user];
+				if (better && better.name) {
+					bet.userName = better.name;
+				}
+			}
+			return betList;
+		});
 };
 
 /******************************************************************************
@@ -26,9 +44,9 @@ bets.getBets = function(db) {
  * @param {integer} champion - the team id on which to bet
  * @api public
  */
-bets.enterChampionBet = function(db, user, champion) {
+bets.enterChampionBet = function(db, user, userType, champion) {
 	return db.collection('bets').findAndModify({
-		query: { user: user, challenge: 'champion' },
+		query: { user: user, userType: userType, challenge: 'champion' },
 		update: { $set: { 'value': champion } },
 		new: true,
 		upsert: true

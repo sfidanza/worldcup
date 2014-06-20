@@ -1,7 +1,7 @@
 <h2>Bet on champion: who will win the championship?</h2>
 <p>
 	Your bet:
-	<!-- BEGIN: notLogged -->please <a href="#login" onclick="page.loginDlg.show(); return false;">login</a> to place your bet<!-- END: notLogged -->
+	<!-- BEGIN: notLogged -->please <a href="#login,bet" onclick="page.select(this, event);">login</a> to place your bet<!-- END: notLogged -->
 	<!-- BEGIN: noCBetYet -->you did not bet yet<!-- END: noCBetYet -->
 	<!-- BEGIN: yourCBet --><span class="flag {team.id}">{team.name}</span><!-- END: yourCBet -->
 	<span class="bet-tagline">Bet on the final winner!</span>

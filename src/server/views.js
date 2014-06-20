@@ -12,8 +12,7 @@ views.data = function(request, response, ctx) {
 			return bets.getBets(ctx.db);
 		})
 		.then(function(bets) {
-			var user = request.session.user;
-			data.user = user && user.login;
+			data.user = request.session.user;
 			data.bets = bets;
 			response.json(data);
 		}).catch(response.error.bind(response, 500)).done();

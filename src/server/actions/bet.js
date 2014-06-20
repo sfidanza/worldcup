@@ -13,7 +13,7 @@ actions.champion = function(request, response, ctx) {
 	var user = request.session.user;
 	if (user && user.login) {
 		var query = request.query;
-		bets.enterChampionBet(ctx.db, user.login, query.champion)
+		bets.enterChampionBet(ctx.db, user.login, user.type, query.champion)
 			.then(respondUserBets(ctx.db, response))
 			.catch(response.error.bind(response, 500))
 			.done();

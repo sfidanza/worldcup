@@ -1,0 +1,82 @@
+/***[Login Page]************/
+.page-login fieldset {
+	border: 1px solid #AAAAAA;
+	padding: 10px;
+	margin: 0;
+	width: 283px
+}
+.page-login fieldset input[type='text'],
+.page-login fieldset input[type='password'] {
+	width: 133px;
+}
+.page-login p {
+	margin: 0 0 10px;
+}
+.page-login div.submit {
+	margin-top: 8px;
+	text-align: right;
+}
+.page-login div.submit a {
+	float: left;
+	margin-top: 5px;
+}
+.page-login div.submit input {
+	background-color: #EEEEEE;
+	border: 1px outset #CCCCCC;
+	color: #222222;
+	padding: 1px 5px;
+}
+.page-login input.error {
+	outline: 2px solid #9C0000;
+}
+
+#social-signin {
+	float: right;
+}
+#social-signin .signin-google {
+	background: url('img/signin/Red-signin_Long_base_44dp.png') 0 0 no-repeat;
+	display: block;
+	width: 246px;
+	height: 54px;
+	margin: -1px auto;
+}
+#social-signin .signin-google:hover {
+	background-image: url('img/signin/Red-signin_Long_hover_44dp.png');
+}
+#social-signin .signin-google:active {
+	background-image: url('img/signin/Red-signin_Long_press_44dp.png');
+}
+#social-signin .signin-google.waiting {
+	background: url('img/loader.gif') center center no-repeat;
+}
+
+/***[Register Page]************/
+.page-register fieldset {
+	border: 1px solid #AAAAAA;
+	padding: 10px;
+	margin: 0 auto;
+}
+.page-register fieldset input[type='text'],
+.page-register fieldset input[type='password'] {
+	width: 140px;
+}
+.page-register p {
+	margin: 0 0 10px;
+}
+.page-register div.submit {
+	margin-top: 8px;
+	text-align: right;
+}
+.page-register div.submit a {
+	float: left;
+	margin-top: 5px;
+}
+.page-register div.submit input {
+	background-color: #EEEEEE;
+	border: 1px outset #CCCCCC;
+	color: #222222;
+	padding: 1px 5px;
+}
+.page-register input.error {
+	outline: 2px solid #9C0000;
+}
