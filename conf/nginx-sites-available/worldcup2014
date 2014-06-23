@@ -1,12 +1,25 @@
-# the IP(s) on which the node server is running
+# the IP:port on which the node server is running
 upstream app_worldcup2014 {
     server 127.0.0.1:9090;
 }
 
-# the nginx server instance
+# the nginx http server instance, to redirect to https
 server {
 	listen 80;
 	server_name worldcup2014.dagobah-online.com;
+	return 301 https://$host$request_uri;
+}
+
+# the nginx https server instance
+server {
+	listen 443 ssl;
+	server_name worldcup2014.dagobah-online.com;
+	ssl_certificate /etc/nginx/ssl/worldcup2014.pem;
+	ssl_certificate_key /etc/nginx/ssl/worldcup2014.key;
+	
+	# Force https for standard compliant browsers (for 365 days)
+	add_header Strict-Transport-Security max-age=31536000;
+	add_header X-Frame-Options SAMEORIGIN;
 	
 	access_log /var/log/nginx/worldcup2014.access.log;
 	error_log  /var/log/nginx/worldcup2014.error.log;
