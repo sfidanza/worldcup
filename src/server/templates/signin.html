@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>2014 Worldcup</title>
+	<link type="image/x-icon" rel="shortcut icon" href="static/img/favicon.ico"/>
+	<script type="text/javascript">
+function notify() {
+	if (opener && !opener.closed) {
+		opener.page.templates.login.signinCallback(location.search);
+		window.close();
+	} else {
+		document.body.innerHTML = "Something went wrong. Sorry.";
+	}
+}
+	</script>
+</head>
+
+<body onload="notify();">
+This page will close and bring you back to the main site.
+</body>
+</html>

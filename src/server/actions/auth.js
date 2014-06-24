@@ -4,6 +4,7 @@
  * Live demo of what Google+ is sending in the profile:
  *  https://developers.google.com/+/api/latest/people/get
  ******************************************************************************/
+var fs = require("fs");
 var users = require("../business/users");
 var auth = require("../business/auth");
 
@@ -11,7 +12,11 @@ var actions = {};
 module.exports = actions;
 
 actions.callback = function(request, response, ctx) {
-	response.json({});
+	fs.readFile("./server/templates/signin.html", { encoding: "utf8" }, function (err, data) {
+		response.writeHead(200, { "Content-Type": "text/html" });
+		response.write(data);
+		response.end();
+	});
 };
 
 actions.url = function(request, response, ctx) {

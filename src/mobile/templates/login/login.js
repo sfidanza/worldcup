@@ -47,34 +47,19 @@ page.templates.login.signinGoogle = function() {
 page.templates.login.openSigninPopup = function(data) {
 	if (data && data.url) {
 		var popup = window.open(data.url, 'signin', 'height=600,width=450');
-		var checkToken = function() {
-			if (popup) {
-				var origin;
-				try {
-					origin = popup.location.origin;
-				} catch (e) {
-					// while on google domain, we can't access popup.location.origin
-				}
-				if (origin && origin === location.origin) {
-					var query = frw.url.parseQueryURL(popup.location.search);
-					popup.close();
-					page.templates.login.getProfile(query.code);
-				} else {
-					setTimeout(checkToken, 1000);
-				}
-			}
-		};
-		setTimeout(checkToken, 1000);
 	}
 };
 
-page.templates.login.getProfile = function(code) {
-	frw.ssa.sendRequest({
-		url: frw.ssa.buildGETUrl(page.config.url.authProfile, { code: code }),
-		type: 'json',
-		callback: this.refreshUser,
-		override: this
-	});
+page.templates.login.signinCallback = function(search) {
+	var query = frw.url.parseQueryURL(search);
+	if (query.code) {
+		frw.ssa.sendRequest({
+			url: frw.ssa.buildGETUrl(page.config.url.authProfile, { code: query.code }),
+			type: 'json',
+			callback: this.refreshUser,
+			override: this
+		});
+	}
 };
 
 page.templates.login.refreshUser = function(data) {
