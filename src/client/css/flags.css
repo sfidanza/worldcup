@@ -3,8 +3,8 @@
 	background-image: url("img/flags-sprite.png");
 	background-position: left 50%;
 	background-repeat: no-repeat;
-	display: inline-block; /* fix Chrome */
-	line-height: 14px; /* fix Chrome */
+	display: inline-block; /* fix Chrome when using sprite */
+	line-height: 14px; /* fix Chrome when using sprite */
 	padding-left: 20px;
 }
 .left .flag, .flag.left {
@@ -80,36 +80,36 @@
 .left .flag.URU, .flag.URU.left { background-position: right -959px; }
 
 /*
-.flag.ALG { background-image: url("img/flags/dz.gif"); }
-.flag.ARG { background-image: url("img/flags/ar.gif"); }
-.flag.AUS { background-image: url("img/flags/au.gif"); }
-.flag.BEL { background-image: url("img/flags/be.gif"); }
-.flag.BRA { background-image: url("img/flags/br.gif"); }
-.flag.BOS { background-image: url("img/flags/ba.gif"); }
-.flag.CHI { background-image: url("img/flags/cl.gif"); }
-.flag.CIV { background-image: url("img/flags/ci.gif"); }
-.flag.CMR { background-image: url("img/flags/cm.gif"); }
-.flag.COL { background-image: url("img/flags/co.gif"); }
-.flag.COS { background-image: url("img/flags/cr.gif"); }
-.flag.CRO { background-image: url("img/flags/hr.gif"); }
-.flag.ECU { background-image: url("img/flags/ec.gif"); }
-.flag.ENG { background-image: url("img/flags/england.gif"); }
-.flag.ESP { background-image: url("img/flags/es.gif"); }
-.flag.FRA { background-image: url("img/flags/fr.gif"); }
-.flag.GER { background-image: url("img/flags/de.gif"); }
-.flag.GHA { background-image: url("img/flags/gh.gif"); }
-.flag.GRE { background-image: url("img/flags/gr.gif"); }
-.flag.HON { background-image: url("img/flags/hn.gif"); }
-.flag.IRA { background-image: url("img/flags/ir.gif"); }
-.flag.ITA { background-image: url("img/flags/it.gif"); }
-.flag.JPN { background-image: url("img/flags/jp.gif"); }
-.flag.KOR { background-image: url("img/flags/kr.gif"); }
-.flag.MEX { background-image: url("img/flags/mx.gif"); }
-.flag.NED { background-image: url("img/flags/nl.gif"); }
-.flag.NGA { background-image: url("img/flags/ng.gif"); }
-.flag.POR { background-image: url("img/flags/pt.gif"); }
-.flag.RUS { background-image: url("img/flags/ru.gif"); }
-.flag.SWI { background-image: url("img/flags/ch.gif"); }
-.flag.URU { background-image: url("img/flags/uy.gif"); }
-.flag.USA { background-image: url("img/flags/us.gif"); }
+.flag.ALG { background-image: url("img/flags/dz.png"); }
+.flag.ARG { background-image: url("img/flags/ar.png"); }
+.flag.AUS { background-image: url("img/flags/au.png"); }
+.flag.BEL { background-image: url("img/flags/be.png"); }
+.flag.BRA { background-image: url("img/flags/br.png"); }
+.flag.BOS { background-image: url("img/flags/ba.png"); }
+.flag.CHI { background-image: url("img/flags/cl.png"); }
+.flag.CIV { background-image: url("img/flags/ci.png"); }
+.flag.CMR { background-image: url("img/flags/cm.png"); }
+.flag.COL { background-image: url("img/flags/co.png"); }
+.flag.COS { background-image: url("img/flags/cr.png"); }
+.flag.CRO { background-image: url("img/flags/hr.png"); }
+.flag.ECU { background-image: url("img/flags/ec.png"); }
+.flag.ENG { background-image: url("img/flags/england.png"); }
+.flag.ESP { background-image: url("img/flags/es.png"); }
+.flag.FRA { background-image: url("img/flags/fr.png"); }
+.flag.GER { background-image: url("img/flags/de.png"); }
+.flag.GHA { background-image: url("img/flags/gh.png"); }
+.flag.GRE { background-image: url("img/flags/gr.png"); }
+.flag.HON { background-image: url("img/flags/hn.png"); }
+.flag.IRA { background-image: url("img/flags/ir.png"); }
+.flag.ITA { background-image: url("img/flags/it.png"); }
+.flag.JPN { background-image: url("img/flags/jp.png"); }
+.flag.KOR { background-image: url("img/flags/kr.png"); }
+.flag.MEX { background-image: url("img/flags/mx.png"); }
+.flag.NED { background-image: url("img/flags/nl.png"); }
+.flag.NGA { background-image: url("img/flags/ng.png"); }
+.flag.POR { background-image: url("img/flags/pt.png"); }
+.flag.RUS { background-image: url("img/flags/ru.png"); }
+.flag.SWI { background-image: url("img/flags/ch.png"); }
+.flag.URU { background-image: url("img/flags/uy.png"); }
+.flag.USA { background-image: url("img/flags/us.png"); }
 */
