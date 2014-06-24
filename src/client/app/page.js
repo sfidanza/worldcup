@@ -217,6 +217,7 @@ page.show = function(viewName, option) {
 		case 'ranking': page.showRanking(option); break;
 		case 'group': page.showGroup(option); break;
 		case 'board': page.showBoard(); break;
+		case 'notes': page.showPage('notes'); break;
 		case 'login': page.showLogin(option); break;
 		case 'register': page.showRegister(option); break;
 		case 'bet': page.showBet(option); break;
@@ -316,6 +317,12 @@ page.showRegister = function(backTo) {
 page.showBet = function() {
 	page.templates.bet.parse();
 	page.templates.bet.load(page.config.area.contents);
+};
+
+page.showPage = function(tplId, options) {
+	var tpl = page.templates[tplId];
+	tpl.parse(options);
+	tpl.load(page.config.area.contents);
 };
 
 /**********************************************************/
