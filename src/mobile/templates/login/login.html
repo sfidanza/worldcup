@@ -1,0 +1,20 @@
+<div id="social-signin" class="login">
+	<fieldset>
+		<p>Log in using a social network:</p>
+		<a class="signin-google" href="" onclick="page.templates.login.signinGoogle(); return false;"></a>
+	</fieldset>
+</div>
+<form id="signin-form" method="post" class="login"
+      onsubmit="frw.stopEvent(event); page.templates.login.submit(this.user_id.value, this.user_pwd.value);">
+	<fieldset>
+		<p>Log in using your credentials on this site:</p>
+		<div>
+			<input type="text" name="user_id" value="" style="float: left"/>
+			<input type="password" name="user_pwd" value="" style="float: right"/>
+		</div>
+		<div class="submit">
+			<a href="#register,{backTo}" onclick="page.select(this, event);">Register</a>
+			<input type="submit" name="do_login" value="Login"/>
+		</div>
+	</fieldset>
+</form>

@@ -21,13 +21,15 @@ page.bet.unplug = function() {
 };
 
 page.bet.betOnChampion = function(teamId) {
-	var url = "api/bet/champion?champion=" + teamId;
-	frw.ssa.sendRequest({
-		url: url,
-		type: 'json',
-		callback: this.afterBet,
-		override: this
-	});
+	if (page.data.user) { // avoid sending request if user is not logged in
+		var url = "api/bet/champion?champion=" + teamId;
+		frw.ssa.sendRequest({
+			url: url,
+			type: 'json',
+			callback: this.afterBet,
+			override: this
+		});
+	}
 };
 
 page.bet.afterBet = function(data) {

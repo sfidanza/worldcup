@@ -219,9 +219,9 @@ page.show = function(viewName, option) {
 		case 'board': page.showBoard(); break;
 		case 'history': page.showPage('history'); break;
 		case 'notes': page.showPage('notes'); break;
-		case 'login': page.showLogin(option); break;
-		case 'register': page.showRegister(option); break;
-		case 'bet': page.showBet(option); break;
+		case 'login': page.showPage('login', option); break;
+		case 'register': page.showPage('register', option); break;
+		case 'bet': page.showPage('bet', option); break;
 	}
 	document.getElementById(page.config.area.contents).className = "page-"+viewName;
 };
@@ -303,21 +303,6 @@ page.getRankingPopup = function(group1, group2) {
 	this.parseGroupRanking(group1);
 	this.parseGroupRanking(group2);
 	return page.templates.quickRanking.retrieve();
-};
-
-page.showLogin = function(backTo) {
-	page.templates.login.parse(backTo);
-	page.templates.login.load(page.config.area.contents);
-};
-
-page.showRegister = function(backTo) {
-	page.templates.register.parse(backTo);
-	page.templates.register.load(page.config.area.contents);
-};
-
-page.showBet = function() {
-	page.templates.bet.parse();
-	page.templates.bet.load(page.config.area.contents);
 };
 
 page.showPage = function(tplId, options) {

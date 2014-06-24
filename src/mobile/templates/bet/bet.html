@@ -1,0 +1,39 @@
+<h2>Bet on the final winner!</h2>
+<p>
+	Your bet:
+	<!-- BEGIN: notLogged -->please <a href="#login,bet" onclick="page.select(this, event);">login</a> to place your bet<!-- END: notLogged -->
+	<!-- BEGIN: noCBetYet -->you did not bet yet<!-- END: noCBetYet -->
+	<!-- BEGIN: yourCBet --><span class="flag {team.id}">{team.name}</span><!-- END: yourCBet -->
+</p>
+<table class="winnerCandidates {selectableClass}">
+	<tbody>
+		<!-- BEGIN: group -->
+		<tr>
+			<!-- BEGIN: groupHeader -->
+			<th rowspan="2">Group {group}</th>
+			<!-- END: groupHeader -->
+			<!-- BEGIN: team -->
+			<td style="position: relative; {betStyle}"
+			    onclick="page.bet.betOnChampion('{team.id}')">
+				<span class="flag {team.id}">{team.name}</span>
+				<!-- BEGIN: badge -->
+				<div class="badge">{betsOnTeam}</div>
+				<!-- END: badge -->
+			</td>
+			<!-- END: team -->
+		</tr>
+		<!-- END: group -->
+	</tbody>
+</table>
+
+<p>What did your friends bet?</p>
+<table class="friendsBets">
+	<tbody>
+		<!-- BEGIN: bet -->
+		<tr class="{row_class}">
+			<td>{bet.user}</td>
+			<td><span class="flag {bet.teamId}">{bet.team}</span></td>
+		</tr>
+		<!-- END: bet -->
+	</tbody>
+</table>

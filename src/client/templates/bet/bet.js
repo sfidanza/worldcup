@@ -59,7 +59,7 @@ page.templates.bet.parseChampion = function(bets) {
 page.templates.bet.getBetters = function(listBets) {
 	var betters = [];
 	for (var i = 0; i < listBets.length; i++) {
-		betters.push(listBets[i].userName);
+		betters.push(listBets[i].userName || listBets[i].user);
 	}
 	return betters;
 };

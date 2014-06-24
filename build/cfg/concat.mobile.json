@@ -3,6 +3,7 @@
 		"target/static/app.mobile.js": [
 			"src/client/app/page.js",
 			"src/client/app/page.scoreEditor.js",
+			"src/client/app/page.bet.js",
 			"src/mobile/app/page.mobile.js",
 			"src/mobile/templates/main.js",
 			"src/mobile/templates/user.js",
@@ -11,7 +12,10 @@
 			"src/mobile/templates/board.js",
 			"src/mobile/templates/quickRanking.js",
 			"src/mobile/templates/history.js",
-			"src/mobile/templates/notes.js"
+			"src/mobile/templates/notes.js",
+			"src/mobile/templates/login/login.js",
+			"src/mobile/templates/login/register.js",
+			"src/mobile/templates/bet/bet.js"
 		],
 		"target/static/app.mobile.css": [
 			"src/mobile/stylesheet.css",
@@ -21,7 +25,9 @@
 			"src/mobile/templates/board.css",
 			"src/client/css/history.css",
 			"src/client/css/uic.css",
-			"src/client/css/scoreEditor.css"
+			"src/client/css/scoreEditor.css",
+			"src/mobile/templates/login/login.css",
+			"src/mobile/templates/bet/bet.css"
 		]
 	}
 }

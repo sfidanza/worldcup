@@ -1,0 +1,16 @@
+<form id="register-form" method="post" class="login"
+      onsubmit="frw.stopEvent(event); page.templates.register.submit(this.user_id.value, this.user_name.value, this.user_pwd1.value, this.user_pwd2.value);">
+	<fieldset>
+		<p>Register here to be able to place a bet. Your name will be displayed on the bets page.</p>
+		<div>
+			<input type="text" name="user_id" value="" placeholder="Login"/>
+			<input type="text" name="user_name" value="" placeholder="Display name"/>
+			<input type="password" name="user_pwd1" value="" placeholder="Password"/>
+			<input type="password" name="user_pwd2" value="" placeholder="Repeat password"/>
+		</div>
+		<div class="submit">
+			<a href="#login,{backTo}" onclick="page.select(this, event);">Login</a>
+			<input type="submit" name="do_register" value="Register"/>
+		</div>
+	</fieldset>
+</form>

@@ -3,7 +3,7 @@
 	border: 1px solid #AAAAAA;
 	padding: 10px;
 	margin: 0;
-	width: 283px
+	width: 283px;
 }
 .page-login fieldset input[type='text'],
 .page-login fieldset input[type='password'] {

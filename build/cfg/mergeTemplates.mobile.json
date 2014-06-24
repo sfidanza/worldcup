@@ -8,7 +8,10 @@
 			"src/mobile/templates/board.html",
 			"src/mobile/templates/quickRanking.html",
 			"src/mobile/templates/history.html",
-			"src/mobile/templates/notes.html"
+			"src/mobile/templates/notes.html",
+			"src/mobile/templates/login/login.html",
+			"src/mobile/templates/login/register.html",
+			"src/mobile/templates/bet/bet.html"
 		]
 	}
 }
