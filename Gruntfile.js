@@ -47,28 +47,40 @@ module.exports = function(grunt) {
 			src: ['src/client/**/*.css', 'src/mobile/**/*.css']
 		},
 		watch: {
+			all: {
+				files: 'Gruntfile.js',
+				tasks: 'default'
+			},
 			js: {
-				files: 'src/client/**/*.js',
+				files: [ 'src/client/**/*.js' ],
 				tasks: [ 'concat:build', 'uglify' ]
 			},
 			css: {
-				files: 'src/client/**/*.css',
+				files: [ 'src/client/**/*.css' ],
 				tasks: [ 'concat:build', 'cssmin' ]
 			},
+			jscss: {
+				files: [ 'build/cfg/concat.json' ],
+				tasks: [ 'concat:build', 'cssmin', 'uglify' ]
+			},
 			tpl: {
-				files: 'src/client/**/*.html',
+				files: ['src/client/**/*.html', 'build/cfg/mergeTemplates.json' ],
 				tasks: [ 'mergeTemplates:build' ]
 			},
 			mjs: {
-				files: 'src/mobile/**/*.js',
+				files: [ 'src/mobile/**/*.js' ],
 				tasks: [ 'concat:mobile', 'uglify' ]
 			},
 			mcss: {
-				files: 'src/mobile/**/*.css',
+				files: [ 'src/mobile/**/*.css' ],
 				tasks: [ 'concat:mobile', 'cssmin' ]
 			},
+			mjscss: {
+				files: [ 'build/cfg/concat.mobile.json' ],
+				tasks: [ 'concat:mobile', 'cssmin', 'uglify' ]
+			},
 			mtpl: {
-				files: 'src/mobile/**/*.html',
+				files: [ 'src/mobile/**/*.html', 'build/cfg/mergeTemplates.mobile.json' ],
 				tasks: [ 'mergeTemplates:mobile' ]
 			},
 			img: {
