@@ -7,6 +7,7 @@
 			"src/mobile/templates/ranking.html",
 			"src/mobile/templates/board.html",
 			"src/mobile/templates/quickRanking.html",
+			"src/mobile/templates/history.html",
 			"src/mobile/templates/notes.html"
 		]
 	}

@@ -10,6 +10,7 @@
 			"src/mobile/templates/ranking.js",
 			"src/mobile/templates/board.js",
 			"src/mobile/templates/quickRanking.js",
+			"src/mobile/templates/history.js",
 			"src/mobile/templates/notes.js"
 		],
 		"target/static/app.mobile.css": [
@@ -18,6 +19,7 @@
 			"src/client/css/schedule.css",
 			"src/client/css/ranking.css",
 			"src/mobile/templates/board.css",
+			"src/client/css/history.css",
 			"src/client/css/uic.css",
 			"src/client/css/scoreEditor.css"
 		]

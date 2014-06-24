@@ -217,6 +217,7 @@ page.show = function(viewName, option) {
 		case 'ranking': page.showRanking(option); break;
 		case 'group': page.showGroup(option); break;
 		case 'board': page.showBoard(); break;
+		case 'history': page.showPage('history'); break;
 		case 'notes': page.showPage('notes'); break;
 		case 'login': page.showLogin(option); break;
 		case 'register': page.showRegister(option); break;

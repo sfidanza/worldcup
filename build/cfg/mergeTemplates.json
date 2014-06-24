@@ -7,6 +7,7 @@
 			"src/client/templates/ranking.html",
 			"src/client/templates/board.html",
 			"src/client/templates/quickRanking.html",
+			"src/client/templates/history.html",
 			"src/client/templates/notes.html",
 			"src/client/templates/login/login.html",
 			"src/client/templates/login/register.html",

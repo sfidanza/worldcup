@@ -113,3 +113,8 @@
 .flag.URU { background-image: url("img/flags/uy.png"); }
 .flag.USA { background-image: url("img/flags/us.png"); }
 */
+/* Additional flags for history */
+.flag.SWE { background-image: url("img/flags/se.png"); }
+.flag.QAT { background-image: url("img/flags/qa.png"); }
+.flag.RSA { background-image: url("img/flags/za.png"); }
+.flag.SKJ { background-image: url("img/flags/skj.png"); }

@@ -1,5 +1,6 @@
 var foot = require("./business/foot");
 var bets = require("./business/bets");
+var history = require("./business/history");
 
 var views = {};
 module.exports = views;
@@ -12,6 +13,7 @@ views.data = function(request, response, ctx) {
 			return bets.getBets(ctx.db);
 		})
 		.then(function(bets) {
+			data.history = history.getHistory();
 			data.user = request.session.user;
 			data.bets = bets;
 			response.json(data);
@@ -43,4 +45,8 @@ views.stadiums = function(request, response, ctx) {
 				"stadiums": docs
 			});
 		}).catch(response.error.bind(response, 500)).done();
+};
+
+views.history = function(request, response, ctx) {
+	response.json(history.getHistory());
 };

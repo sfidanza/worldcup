@@ -1,0 +1,19 @@
+<table class="schedule history">
+<thead>
+	<tr>
+		<th>Year</th>
+		<th>Organizer</th>
+		<th>Winner</th>
+	</tr>
+</thead>
+
+<tbody>
+	<!-- BEGIN: edition -->
+	<tr class="{row_class}">
+		<td class="time">{edition.year}</td>
+		<td class="team"><span class="flag {edition.organizerId}">{edition.organizer}</span></td>
+		<td class="team"><span class="flag {edition.winnerId}">{edition.winner}</span></td>
+	</tr>
+	<!-- END: edition -->
+</tbody>
+</table>
