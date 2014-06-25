@@ -11,9 +11,9 @@ module.exports = actions;
  */
 actions.champion = function(request, response, ctx) {
 	var user = request.session.user;
-	if (user && user.login) {
+	if (user && user.id) {
 		var query = request.query;
-		bets.enterChampionBet(ctx.db, user.login, user.type, query.champion)
+		bets.enterChampionBet(ctx.db, user.id, query.champion)
 			.then(respondUserBets(ctx.db, response))
 			.catch(response.error.bind(response, 500))
 			.done();
@@ -24,11 +24,11 @@ actions.champion = function(request, response, ctx) {
 
 actions.match = function(request, response, ctx) {
 	var user = request.session.user;
-	if (user && user.login) {
+	if (user && user.id) {
 		var query = request.query;
-		bets.enterMatchWinnerBet(ctx.db, user.login, query.mid, query.winner)
+		bets.enterMatchWinnerBet(ctx.db, user.id, +query.mid, query.winner)
 			.then(respondUserBets(ctx.db, response))
-			.catch(response.error.bind(response, 500))
+			.catch(response.error.bind(response, 400))
 			.done();
 	} else {
 		response.error(401);

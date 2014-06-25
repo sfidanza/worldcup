@@ -37,3 +37,43 @@
 		<!-- END: bet -->
 	</tbody>
 </table>
+
+
+<h2>Bet on match result</h2>
+<table class="schedule matchBet">
+<!-- BEGIN: phase -->
+<tbody>
+	<tr>
+		<th colspan="7">{phase}</th>
+	</tr>
+	<!-- BEGIN: day -->
+	<tr class="subtitle">
+		<td colspan="7">{day}</td>
+	</tr>
+	
+	<!-- BEGIN: match -->
+	<tr class="{row_class}">
+		<td class="time">{match.hour}</td>
+		<td class="team left {bet1Class}"
+		    <!-- BEGIN: bet1 -->title="Bet on {team1.name}!" onclick="page.bet.betOnMatchWinner('{match.id}', '{match.team1_id}')"<!-- END: bet1 -->
+		    >
+			<span class="flag {match.team1_id}">{team1.name}</span>
+			<!-- BEGIN: badge1 -->
+			<div class="badge">{betsOnTeam}</div>
+			<!-- END: badge1 -->
+		</td>
+		<td class="score">{match.team1_score} - {match.team2_score}{PSO}</td>
+		<td class="team {bet2Class}"
+		    <!-- BEGIN: bet2 -->title="Bet on {team2.name}!" onclick="page.bet.betOnMatchWinner('{match.id}', '{match.team2_id}')"<!-- END: bet2 -->
+		    >
+			<span class="flag {match.team2_id}">{team2.name}</span>
+			<!-- BEGIN: badge2 -->
+			<div class="badge">{betsOnTeam}</div>
+			<!-- END: badge2 -->
+		</td>
+	</tr>
+	<!-- END: match -->
+	<!-- END: day -->
+</tbody>
+<!-- END: phase -->
+</table>

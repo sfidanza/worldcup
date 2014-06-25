@@ -3,6 +3,8 @@
 	padding: 0.2em;
 	background-color: #9C0000;
 	color: #FFFFFF;
+}
+.page-bet h2:first-child {
 	margin-top: 0;
 }
 
@@ -29,10 +31,6 @@
 .page-bet table.winnerCandidates.selectable td:hover {
 	border-color: green;
 	background-color: #33FF33;
-}
-.page-bet table.winnerCandidates td.selected {
-	border-color: green;
-	background-color: #339933;
 }
 
 .badge {
@@ -61,4 +59,29 @@
 
 .page-bet table.friendsBets td {
 	padding: 1px 2px;
+}
+
+.page-bet .matchBet .selectable {
+	cursor: pointer;
+}
+.page-bet .matchBet .selectable:hover {
+	background: #33CC33;
+}
+.page-bet .matchBet .selected {
+    background: linear-gradient(to bottom, #3F3 0%, #3C3 10%, #3C3 90%, #393 100%);
+}
+.page-bet .matchBet .team {
+    position: relative;
+}
+.page-bet .matchBet .team .badge {
+    left: -12px;
+    right: auto;
+    top: -7px;
+}
+.page-bet .matchBet .team.left .badge {
+	left: auto;
+    right: -12px;
+}
+.page-bet .matchBet td.score {
+    width: 12%;
 }
