@@ -1,6 +1,6 @@
 {
   "name": "worldcup2014",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "author": "Stéphane Fidanza <stephane.fidanza@gmail.com>",
   "description": "A technical exploration site to follow the calendar and results of the 2014 worldcup",
   "homepage": "https://github.com/sfidanza/worldcup2014",
