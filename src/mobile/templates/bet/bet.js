@@ -90,6 +90,7 @@ page.templates.bet.parseTeam = function(team, betsByTeam, totalBets) {
 };
 
 page.templates.bet.parseMatches = function(bets) {
+	var user = page.data.user;
 	var matches = frw.data.filter(page.data.matches, "group", null);
 	var list = frw.data.groupBy(matches, 'phase');
 	var teams = frw.data.reIndex(page.data.teams, 'id');
@@ -116,7 +117,7 @@ page.templates.bet.parseMatches = function(bets) {
 				
 				var bet1Class = '', bet2Class = '';
 				var isOpened = this.isBettable(match);
-				if (isOpened) {
+				if (user && isOpened) {
 					bet1Class = 'selectable';
 					bet2Class = 'selectable';
 					this.parseBlock('bet1');
@@ -125,7 +126,6 @@ page.templates.bet.parseMatches = function(bets) {
 				
 				var betsOnMatch = bets[match.id];
 				if (betsOnMatch) {
-					var user = page.data.user;
 					if (user) {
 						var yourBet = frw.data.filter(betsOnMatch, 'user', user.id)[0];
 						yourBet = yourBet && yourBet.value;
