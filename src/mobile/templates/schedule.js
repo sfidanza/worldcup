@@ -23,8 +23,8 @@ page.templates.schedule.onParse = function(data) {
 				this.set('team1.name', team1 ? team1.name : match.team1_source);
 				this.set('team2.name', team2 ? team2.name : match.team2_source);
 				var pso = ''; // Penalty Shoot Out
-				if (match.team1_scorePSO != null) {
-					pso = "<br/>(" + match.team1_scorePSO + " - " + match.team2_scorePSO + ")";
+				if (match.team1_scorePK != null) {
+					pso = "<br/>(" + match.team1_scorePK + " - " + match.team2_scorePK + ")";
 				}
 				this.set('PSO', pso);
 				this.parseBlock('match');

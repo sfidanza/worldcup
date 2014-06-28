@@ -92,8 +92,8 @@ page.templates.bet.parseMatches = function(bets) {
 				this.set('team2.name', team2 ? team2.name : match.team2_source);
 				this.set('stadium', page.data.stadiums[match.stadium]);
 				var pso = ''; // Penalty Shoot Out
-				if (match.team1_scorePSO != null) {
-					pso = "<br/>(" + match.team1_scorePSO + " - " + match.team2_scorePSO + ")";
+				if (match.team1_scorePK != null) {
+					pso = "<br/>(" + match.team1_scorePK + " - " + match.team2_scorePK + ")";
 				}
 				this.set('PSO', pso);
 				

@@ -37,7 +37,7 @@ page.templates.board.onParse = function(data) {
 		var team2 = teams[match.team2_id];
 		this.set('team1.name', team1 ? team1.id : match.team1_source);
 		this.set('team2.name', team2 ? team2.id : match.team2_source);
-		if (match.team1_scorePSO != null) {
+		if (match.team1_scorePK != null) {
 			this.parseBlock('PSO');
 		}
 		if (match.phase === "H") {
