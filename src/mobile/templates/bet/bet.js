@@ -56,24 +56,17 @@ page.templates.bet.parseChampion = function(bets) {
 };
 
 page.templates.bet.parseFriends = function(bets) {
+	var user = page.data.user;
 	var friendsBets = frw.data.sort(bets, [ { key: 'userName', dir: 1 } ]);
 	var teamsById = frw.data.reIndex(page.data.teams, 'id');
 	for (var i = 0; i < friendsBets.length; i++) {
 		var bet = friendsBets[i];
 		this.set('row_class', 'l' + (i % 2));
-		this.set('bet.user', this.getBetterName(bet, page.data.user));
-		this.set('bet.teamId', bet.value);
+		this.set('bet', bet);
+		this.set('selected', (user && bet.user === user.id) ? 'selected' : '');
 		this.set('bet.team', teamsById[bet.value].name);
 		this.parseBlock('bet');
 	}
-};
-
-page.templates.bet.getBetterName = function(bet, user) {
-	var better = bet.userName;
-	if (user && bet.user === user.id) {
-		better += " (you)";
-	}
-	return better;
 };
 
 page.templates.bet.parseTeam = function(team, betsByTeam, totalBets) {

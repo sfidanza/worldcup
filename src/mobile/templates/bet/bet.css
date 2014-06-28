@@ -7,6 +7,9 @@
 .page-bet h2:first-child {
 	margin-top: 0;
 }
+.page-bet td.selected {
+    background: linear-gradient(to bottom, #3F3 0px, #3C3 10%, #3C3 90%, #393 100%);
+}
 
 .page-bet table.winnerCandidates {
 	border-collapse: separate;
@@ -66,9 +69,6 @@
 }
 .page-bet .matchBet .selectable:hover {
 	background: #33CC33;
-}
-.page-bet .matchBet .selected {
-    background: linear-gradient(to bottom, #3F3 0%, #3C3 10%, #3C3 90%, #393 100%);
 }
 .page-bet .matchBet .team {
     position: relative;
