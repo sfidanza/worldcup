@@ -80,7 +80,7 @@ foot.setMatchScore = function(db, mid, score1, score2, score1PK, score2PK) {
 					});
 			} else if (match.phase !== 'F' && match.phase !== 'T') {
 				// update score from final rounds: winner moves forward
-				advanceToNextRound(db, match);
+				advanceToNextRound(db, match); // do not wait
 			}
 			return data;
 		});
@@ -107,7 +107,7 @@ foot.setRanks = function(db, group, ranks) {
 	return db.collection('matches').count({ group: group, team1_score: { $ne: null } })
 		.then(function(count) {
 			if (count === 6) {
-				advanceToFirstRound(db, group, ranks[0], ranks[1]);
+				advanceToFirstRound(db, group, ranks[0], ranks[1]); // do not wait
 			}
 			return data;
 		});
@@ -134,7 +134,7 @@ function updateGroupStats(db, group) {
 				teamsCol.update({ _id: t._id }, { $set: t }, { w : 0 });
 			}
 			if (matches.length === 6) { // 6 matches per group
-				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id);
+				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id); // do not wait
 			}
 			return newStats;
 		});

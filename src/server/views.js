@@ -5,14 +5,16 @@ var history = require("./business/history");
 var views = {};
 module.exports = views;
 
-views.data = function(request, response, ctx) {
+views.all = function(request, response, ctx) {
 	var data;
 	foot.getData(ctx.db)
 		.then(function(footData) {
 			data = footData;
+			return bets.getLeaderboard(ctx.db);
+		}).then(function(leaderboard) {
+			data.leaderboard = leaderboard;
 			return bets.getBets(ctx.db);
-		})
-		.then(function(bets) {
+		}).then(function(bets) {
 			data.history = history.getHistory();
 			data.user = request.session.user;
 			data.bets = bets;

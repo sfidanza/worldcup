@@ -15,6 +15,7 @@
 			"src/mobile/templates/notes.js",
 			"src/mobile/templates/login/login.js",
 			"src/mobile/templates/login/register.js",
+			"src/mobile/templates/bet/leaderboard.js",
 			"src/mobile/templates/bet/bet.js"
 		],
 		"target/static/app.mobile.css": [

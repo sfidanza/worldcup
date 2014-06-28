@@ -11,6 +11,7 @@
 			"src/client/templates/notes.html",
 			"src/client/templates/login/login.html",
 			"src/client/templates/login/register.html",
+			"src/client/templates/bet/leaderboard.html",
 			"src/client/templates/bet/bet.html"
 		]
 	}

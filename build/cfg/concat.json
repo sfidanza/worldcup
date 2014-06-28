@@ -26,6 +26,7 @@
 			"src/client/templates/notes.js",
 			"src/client/templates/login/login.js",
 			"src/client/templates/login/register.js",
+			"src/client/templates/bet/leaderboard.js",
 			"src/client/templates/bet/bet.js"
 		],
 		"target/static/app.css": [

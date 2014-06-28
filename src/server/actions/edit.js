@@ -2,6 +2,7 @@
  * Competition data management
  ******************************************************************************/
 var foot = require("../business/foot");
+var bets = require("../business/bets");
 	
 var actions = {};
 module.exports = actions;
@@ -12,6 +13,10 @@ actions.editMatch = function(request, response, ctx) {
 		var query = request.query;
 		foot.setMatchScore(ctx.db, +query.mid, getScore(query.score1), getScore(query.score2),
 				getScore(query.score1PK), getScore(query.score2PK))
+			.then(function(data) {
+				bets.computeLeaderboard(ctx.db); // do not wait
+				return data;
+			})
 			.then(response.json.bind(response))
 			.catch(response.error.bind(response, 500))
 			.done();

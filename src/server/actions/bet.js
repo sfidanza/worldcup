@@ -35,6 +35,25 @@ actions.match = function(request, response, ctx) {
 	}
 };
 
+actions.leaderboard = function(request, response, ctx) {
+	bets.getLeaderboard(ctx.db)
+		.then(response.json.bind(response))
+		.catch(response.error.bind(response, 500))
+		.done();
+};
+
+actions.computeLeaderboard = function(request, response, ctx) {
+	var user = request.session.user;
+	if (user && user.isAdmin) {
+		bets.computeLeaderboard(ctx.db)
+			.then(response.json.bind(response))
+			.catch(response.error.bind(response, 500))
+			.done();
+	} else {
+		response.error(401);
+	}
+};
+
 function respondUserBets(db, response) {
 	return bets.getBets(db)
 		.then(function(bets) {

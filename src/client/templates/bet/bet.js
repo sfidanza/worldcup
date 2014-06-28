@@ -29,6 +29,9 @@ page.templates.bet.onParse = function() {
 		winnerBets = frw.data.groupBy(winnerBets, 'target');
 	}
 	this.parseMatches(winnerBets);
+	
+	page.templates.leaderboard.parse();
+	this.set('leaderboard', page.templates.leaderboard.retrieve());
 };
 
 page.templates.bet.parseChampion = function(bets) {

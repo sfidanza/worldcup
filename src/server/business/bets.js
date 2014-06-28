@@ -23,11 +23,25 @@ bets.getBets = function(db) {
 			for (var i = 0; i < betList.length; i++) {
 				var bet = betList[i];
 				var better = users[bet.user];
-				if (better) {
-					bet.userName = better.name;
-				}
+				bet.userName = (better && better.name) || bet.user;
 			}
 			return betList;
+		});
+};
+
+bets.getLeaderboard = function(db) {
+	var users;
+	return db.collection('users').find({}).toArray()
+		.then(function(userList) {
+			users = frw.data.reIndex(userList, 'id');
+			return db.collection('leaderboard').find({}, { _id: false }).toArray();
+		}).then(function(ldList) {
+			for (var i = 0; i < ldList.length; i++) {
+				var ldUser = ldList[i];
+				var better = users[ldUser.user];
+				ldUser.userName = (better && better.name) || ldUser.user;
+			}
+			return ldList;
 		});
 };
 
@@ -80,4 +94,74 @@ bets.enterMatchWinnerBet = function(db, user, mid, winner) {
 var isBettable = function(m) {
 	return (new Date(m.day + " " + m.hour) > Date.now()) && // match is not started
 		(m.team1_id && m.team2_id); // both teams are known
+};
+
+/**
+ * Compute the wins of each better
+ * @param {object} db
+ * @api public
+ */
+bets.computeLeaderboard = function(db) {
+	return getDataForLeaderboard(db)
+		.then(function(data) {
+			var ld = {};
+			for (var i = 0; i < data.matches.length; i++) {
+				var m = data.matches[i];
+				var matchBets = data.bets[m.id];
+				if (matchBets) {
+					var winner = getMatchWinner(m);
+					for (var j = 0; j < matchBets.length; j++) {
+						var bet = matchBets[j];
+						if (!ld[bet.user]) ld[bet.user] = { wins: 0, total: 0 };
+						var ldUser = ld[bet.user];
+						ldUser.user = bet.user;
+						ldUser.total++;
+						if (bet.value === winner) ldUser.wins++;
+					}
+				}
+			}
+			
+			var list = [];
+			for (var userId in ld) {
+				var ldUser = ld[userId];
+				ldUser.ratio = 100 * ldUser.wins / ldUser.total;
+				list.push(ldUser);
+			}
+			return storeLeaderboard(db, list);
+		});
+};
+
+var getDataForLeaderboard = function(db) {
+	var data = {};
+	return db.collection('bets').find({ challenge: 'match' }).toArray()
+		.then(function(betList) {
+			data.bets = frw.data.groupBy(betList, 'target');
+			return db.collection('matches').find({ group: null, team1_score: { $ne: null } }).toArray();
+		}).then(function(matchList) {
+			data.matches = matchList;
+			return data;
+		});
+};
+
+var getMatchWinner = function(match) {
+	var score1 = match['team1_score'];
+	var score2 = match['team2_score'];
+	if (score1 > score2) {
+		return match['team1_id'];
+	} else if (score1 < score2) {
+		return match['team2_id'];
+	} else if (match['team1_scorePK'] > match['team2_scorePK']) {
+		return match['team1_id'];
+	} else {
+		return match['team2_id'];
+	}
+};
+
+var storeLeaderboard = function(db, list) {
+	return db.collection('leaderboard').remove({})
+		.then(function() {
+			return db.collection('leaderboard').insert(list);
+		}).then(function() {
+			return list;
+		});
 };

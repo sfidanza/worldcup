@@ -12,7 +12,7 @@ page.config = {
 		login: "api/user/login",
 		logout: "api/user/logout",
 		register: "api/user/register",
-		data: "api/data",
+		data: "api/all",
 		auth: "api/auth/url",
 		authProfile: "api/auth/profile"
 	},

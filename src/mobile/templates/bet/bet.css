@@ -85,3 +85,16 @@
 .page-bet .matchBet td.score {
     width: 12%;
 }
+
+.page-bet table.leaderboard {
+	border-collapse: collapse;
+	margin: auto;
+	width: 75%;
+}
+.page-bet table.leaderboard td {
+	padding: 1px 2px;
+	text-align: center;
+}
+.page-bet table.leaderboard td:first-child {
+	text-align: left;
+}
