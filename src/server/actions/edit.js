@@ -10,7 +10,8 @@ actions.editMatch = function(request, response, ctx) {
 	var user = request.session.user;
 	if (user && user.isAdmin) {
 		var query = request.query;
-		foot.setMatchScore(ctx.db, +query.mid, getScore(query.score1), getScore(query.score2))
+		foot.setMatchScore(ctx.db, +query.mid, getScore(query.score1), getScore(query.score2),
+				getScore(query.score1PK), getScore(query.score2PK))
 			.then(response.json.bind(response))
 			.catch(response.error.bind(response, 500))
 			.done();

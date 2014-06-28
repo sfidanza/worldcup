@@ -47,6 +47,7 @@
 .schedule td.score {
 	width: 10%;
 	text-align: center;
+	white-space: nowrap;
 }
 .schedule td.team {
 	width: 23%;

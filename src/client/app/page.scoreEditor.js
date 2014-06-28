@@ -6,15 +6,20 @@ page.scoreEditor = {};
 
 page.scoreEditor.initialize = function() {
 	this.editor = document.getElementById("score-editor");
+	this.editor.onkeydown = function(e) {
+		if (e.keyCode === 38) { // Up
+			frw.dom.addClass(page.scoreEditor.editor, 'small');
+		} else if (e.keyCode === 40) { // Down
+			frw.dom.removeClass(page.scoreEditor.editor, 'small');
+		}
+	};
 	document.getElementById("score-editor-ok").onclick = function(e) {
 		frw.stopEvent(e);
 		page.scoreEditor.submitScoreEdit();
-		return false;
 	};
 	document.getElementById("score-editor-cancel").onclick = function(e) {
 		frw.stopEvent(e);
 		page.scoreEditor.cancelScoreEdit();
-		return false;
 	};
 };
 
@@ -61,14 +66,21 @@ page.scoreEditor.showScoreEditor = function() {
 	this.editor.style.top = (pos.top + offsetTop) + "px";
 	this.editor.style.left = (pos.left + offsetLeft) + "px";
 	
-	var goals = this.editedScore.innerHTML.split(" - ");
-	var score1 = document.getElementById("score1");
-	var score2 = document.getElementById("score2");
-	score1.value = goals[0];
-	score2.value = goals[1];
-	
-	this.editor.style.visibility = "visible";
-	score1.focus();
+	var mid = this.editedScore.parentNode.id.slice(2); // match id
+	var match = frw.data.query(page.data.matches, '$.id === ' + mid)[0];
+	if (match) {
+		this.setScore("score1", match.team1_score);
+		this.setScore("score2", match.team2_score);
+		this.setScore("score1PK", match.team1_scorePK);
+		this.setScore("score2PK", match.team2_scorePK);
+		if (match.team1_scorePK + match.team2_scorePK) { // basic check to avoid one being 0
+			frw.dom.removeClass(page.scoreEditor.editor, 'small');
+		} else {
+			frw.dom.addClass(page.scoreEditor.editor, 'small');
+		}
+		this.editor.style.visibility = "visible";
+		score1.focus();
+	}
 };
 
 page.scoreEditor.hideScoreEditor = function() {
@@ -79,9 +91,12 @@ page.scoreEditor.submitScoreEdit = function() {
 	this.hideScoreEditor();
 	var score1 = this.getScore("score1");
 	var score2 = this.getScore("score2");
+	var score1PK = this.getScore("score1PK");
+	var score2PK = this.getScore("score2PK");
 	if ((score1 != null) && (score2 != null)) {
 		var mid = this.editedScore.parentNode.id.slice(2); // match id
-		var url = "api/edit/editMatch?mid="+mid+"&score1="+score1+"&score2="+score2;
+		var url = "api/edit/editMatch?mid=" + mid + "&score1=" + score1 + "&score2=" + score2 +
+			"&score1PK=" + score1PK + "&score2PK=" + score2PK;
 		frw.ssa.sendRequest({
 			url: url,
 			type: 'json',
@@ -114,6 +129,14 @@ page.scoreEditor.getScore = function(inputId) {
 	return null;
 };
 
+page.scoreEditor.setScore = function(inputId, score) {
+	var input = document.getElementById(inputId);
+	if (input) {
+		input.value = (score == null) ? '' : score;
+	}
+	return null;
+};
+
 /**
  * Manually set ranks in a group. Updates DB (server will check for admin rights).
  *   Ex: page.scoreEditor.setRanks('A', ['CZE', 'GRE', 'RUS', 'POL'])
@@ -123,7 +146,7 @@ page.scoreEditor.getScore = function(inputId) {
 page.scoreEditor.setRanks = function(group, ranks) {
 	var sRank = ranks.join('-');
 	if (group && sRank) {
-		var url = "api/edit/setRanks?gid="+group+"&ranks="+sRank;
+		var url = "api/edit/setRanks?gid=" + group + "&ranks=" + sRank;
 		frw.ssa.sendRequest({
 			url: url,
 			type: 'json',

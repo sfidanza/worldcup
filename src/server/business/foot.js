@@ -54,12 +54,16 @@ foot.getData = function(db) {
  * @param {integer} mid - the id of the match to be updated
  * @param {integer} score1 - the score of team 1
  * @param {integer} score2 - the score of team 2
+ * @param {integer} score1PK - the penalty kicks score of team 1
+ * @param {integer} score2PK - the penalty kicks score of team 2
  * @api public
  */
-foot.setMatchScore = function(db, mid, score1, score2) {
+foot.setMatchScore = function(db, mid, score1, score2, score1PK, score2PK) {
 	var edit = {
 		'team1_score': score1,
-		'team2_score': score2
+		'team2_score': score2,
+		'team1_scorePK': score1PK,
+		'team2_scorePK': score2PK
 	};
 	return db.collection('matches').findAndModify({ query: { id: mid }, update: { $set: edit }, new: true })
 		.then(function(result) { return result[0]; }) // findAndModify returns [ doc, { whatever } ]

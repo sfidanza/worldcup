@@ -86,7 +86,7 @@ frw.dom.removeContent = frw.browser.isIE ? function(region) {
 frw.dom.hasClass = function(obj, name) {
 	if (!obj.className) {
 		return false;
-	} else if (obj.className == name) {
+	} else if (obj.className === name) {
 		return true;
 	} else {
 		return (obj.className.search(new RegExp("\\b"+name+"\\b")) != -1);
@@ -97,17 +97,17 @@ frw.dom.addClass = function(obj, name) {
 	if (!obj.className) {
 		obj.className = name;
 	} else if (!frw.dom.hasClass(obj, name)) {
-		obj.className += " "+name;
+		obj.className += " " + name;
 	}
 };
 
 frw.dom.removeClass = function(obj, name) {
-	if (obj.className == name) {
+	if (obj.className === name) {
 		obj.className = "";
 	} else if (frw.dom.hasClass(obj, name)) {
 		var classList = obj.className.split(" ");
 		var newList = [];
-		for (var i=0; i<classList.length; i++) {
+		for (var i = 0; i < classList.length; i++) {
 			if (classList[i] != name) newList.push(classList[i]);
 		}
 		obj.className = newList.join(" ");
