@@ -1,7 +1,7 @@
 /***[Finals Board]**********/
 .page-board .board {
 	position: relative;
-	height: 710px;
+	height: 723px;
 }
 .page-board .match {
 	position: absolute;
@@ -69,8 +69,8 @@
 #match-H1H { top: 640px; right: 0px; }
 #match-Q58 { top: 160px; }
 #match-Q57 { top: 160px; right: 0; }
-#match-Q59 { top: 480px; }
-#match-Q60 { top: 480px; right: 0; }
+#match-Q59 { top: 480px; right: 0; }
+#match-Q60 { top: 480px; }
 #match-S61 { top: 240px; left: 80px; }
 #match-S62 { top: 400px; left: 80px; }
 #match-T63 { top: 320px; }
