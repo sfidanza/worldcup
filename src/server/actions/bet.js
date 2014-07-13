@@ -28,7 +28,7 @@ actions.match = function(request, response, ctx) {
 		var query = request.query;
 		bets.enterMatchWinnerBet(ctx.db, user.id, +query.mid, query.winner)
 			.then(respondUserBets(ctx.db, response))
-			.catch(response.error.bind(response, 400))
+			.catch(response.error.bind(response, 403))
 			.done();
 	} else {
 		response.error(401);
