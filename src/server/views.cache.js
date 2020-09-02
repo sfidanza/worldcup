@@ -12,11 +12,11 @@ views.import = function(request, response, ctx) {
 	var db = ctx.db;
 	
 	db.collection('teams').drop(function(err, reply) {
-		db.collection('teams').insert(data.teams, function(err, docs) {
+		db.collection('teams').insertMany(data.teams, function(err, docs) {
 			db.collection('stadiums').drop(function(err, reply) {
-				db.collection('stadiums').insert(data.stadiums, function(err, docs) {
+				db.collection('stadiums').insertMany(data.stadiums, function(err, docs) {
 					db.collection('matches').drop(function(err, reply) {
-						db.collection('matches').insert(data.matches, function(err, docs) {
+						db.collection('matches').insertMany(data.matches, function(err, docs) {
 							response.json();
 						});
 					});

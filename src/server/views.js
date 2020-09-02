@@ -19,7 +19,7 @@ views.all = function(request, response, ctx) {
 			data.user = request.session.user;
 			data.bets = bets;
 			response.json(data);
-		}).catch(response.error.bind(response, 500)).done();
+		}).catch(response.error.bind(response, 500));
 };
 
 views.teams = function(request, response, ctx) {
@@ -28,7 +28,7 @@ views.teams = function(request, response, ctx) {
 			response.json({
 				"teams": docs
 			});
-		}).catch(response.error.bind(response, 500)).done();
+		}).catch(response.error.bind(response, 500));
 };
 
 views.matches = function(request, response, ctx) {
@@ -37,7 +37,7 @@ views.matches = function(request, response, ctx) {
 			response.json({
 				"matches": docs
 			});
-		}).catch(response.error.bind(response, 500)).done();
+		}).catch(response.error.bind(response, 500));
 };
 
 views.stadiums = function(request, response, ctx) {
@@ -46,7 +46,7 @@ views.stadiums = function(request, response, ctx) {
 			response.json({
 				"stadiums": docs
 			});
-		}).catch(response.error.bind(response, 500)).done();
+		}).catch(response.error.bind(response, 500));
 };
 
 views.history = function(request, response, ctx) {

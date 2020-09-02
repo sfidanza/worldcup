@@ -60,7 +60,7 @@ module.exports = function(Store) {
 		// Make sure we have a TTL index on "expires", so mongod will automatically
 		// remove expired sessions. expireAfterSeconds is set to 0 because we want
 		// mongo to remove anything expired without any additional delay.
-		this.sessions.ensureIndex({ expires: 1 }, { expireAfterSeconds: 0 }, function(err, result) {
+		this.sessions.createIndex({ expires: 1 }, { expireAfterSeconds: 0 }, function(err, result) {
 			if (err) {
 				throw new Error('Error setting TTL index on session collection');
 			}
@@ -122,7 +122,7 @@ module.exports = function(Store) {
 			expires: new Date(expireTime)
 		};
 		
-		this.sessions.update({ _id: sid }, s, { upsert: true, safe: true }, callback);
+		this.sessions.updateOne({ _id: sid }, s, { upsert: true, safe: true }, callback);
 	};
 	
 	/**

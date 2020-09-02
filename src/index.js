@@ -2,7 +2,7 @@ var settings = require('./server/settings.js');
 var fabulous = require("./server/lib/fabulous-pack");
 var server = require("./server/lib/server");
 var router = require("./server/lib/router");
-var MongoClient = require('promised-mongo');
+var MongoClient = require('mongodb').MongoClient;
 var http = require("http");
 
 var cookieParser = require('cookie-parser');
@@ -16,22 +16,30 @@ server.addRouting("/api/user/", new router.Views(require("./server/actions/user"
 server.addRouting("/api/auth/", new router.Views(require("./server/actions/auth")));
 server.addRouting("/api/edit/", new router.Views(require("./server/actions/edit")));
 server.addRouting("/api/bet/", new router.Views(require("./server/actions/bet")));
+// Serve statics if nginx is not deployed
+// server.addRouting("/static/", new router.Static());
+// server.addRouting("/static/img/", new router.Public("./client/img/"));
+// server.addRouting("/static/img/flags/", new router.Public("./client/img/flags/"));
+// server.addRouting("/static/img/signin/", new router.Public("./client/img/signin/"));
 
-var database = MongoClient('mongodb://127.0.0.1:27017/worldcup2014');
-database.on('error', function(err) {
-	if (err) throw err;
-});
+let app = new fabulous.App();
 
-var app = new fabulous.App()
-//	.use(fabulous.defaults) // where fabulous.defaults = [parseQuery, parseCookie, parseBody, easyRespond]
-	.use(cookieParser()) // required before session.
-//	.use(fabulous.session(...config...))
-	.use(session({
-		secret: settings.COOKIE_SEED,
-		store: new MongoStore({
-			db: database,
-		})
-	}))
-	.use(server.start(database));
+MongoClient.connect('mongodb://127.0.0.1:27017', {
+		useUnifiedTopology: true
+	}).then(client => {
+		console.log("Connected to mongodb!");
+		let database = client.db('worldcup2014');
 
-http.createServer(app.handler).listen(9090);
+		app.use(cookieParser()) // required before session.
+			.use(session({
+				secret: settings.COOKIE_SEED,
+				store: new MongoStore({
+					db: database,
+				})
+			}))
+			.use(server.start(database));
+
+		http.createServer(app.handler).listen(9090, function () {
+			console.log(`App listening on port 9090!`);
+		});
+	}).catch(console.error);

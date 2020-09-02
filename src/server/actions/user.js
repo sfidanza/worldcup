@@ -13,8 +13,7 @@ actions.register = function(request, response, ctx) {
 			request.session.user = user;
 			response.json((user && user.id) ? { "user": user } : null);
 		})
-		.catch(response.error.bind(response, 500))
-		.done();
+		.catch(response.error.bind(response, 500));
 };
 
 actions.login = function(request, response, ctx) {
@@ -24,8 +23,7 @@ actions.login = function(request, response, ctx) {
 			request.session.user = user;
 			response.json((user && user.id) ? { "user": user } : null);
 		})
-		.catch(response.error.bind(response, 500))
-		.done();
+		.catch(response.error.bind(response, 500));
 };
 
 actions.changePassword = function(request, response, ctx) {
@@ -35,8 +33,7 @@ actions.changePassword = function(request, response, ctx) {
 			request.session.user = user;
 			response.json((user && user.id) ? { "user": user } : null);
 		})
-		.catch(response.error.bind(response, 500))
-		.done();
+		.catch(response.error.bind(response, 500));
 };
 
 actions.logout = function(request, response, ctx) {

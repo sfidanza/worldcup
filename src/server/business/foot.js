@@ -99,7 +99,7 @@ foot.setRanks = function(db, group, ranks) {
 	// security: the query checks that each team passed is in specified group
 	var teams = db.collection('teams');
 	for (var i = 0; i < ranks.length; i++) {
-		teams.update({ id: ranks[i], group: group }, { $set: { rank: i } }, { w : 0 });
+		teams.updateOne({ id: ranks[i], group: group }, { $set: { rank: i } }, { w : 0 });
 		data.teams.push({ id: ranks[i], rank: i });
 	}
 	
@@ -131,7 +131,7 @@ function updateGroupStats(db, group) {
 			var teamsCol = db.collection('teams');
 			for (var i = 0; i < newStats.length; i++) {
 				var t = newStats[i];
-				teamsCol.update({ _id: t._id }, { $set: t }, { w : 0 });
+				teamsCol.updateOne({ _id: t._id }, { $set: t }, { w : 0 });
 			}
 			if (matches.length === 6) { // 6 matches per group
 				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id); // do not wait
@@ -231,8 +231,8 @@ function setBlankStats(team) {
  */
 function advanceToFirstRound(db, group, tid1, tid2) {
 	var matches = db.collection('matches');
-	matches.update({ 'team1_source': '1' + group }, { $set: { 'team1_id': tid1 } }, { w : 0 });
-	matches.update({ 'team2_source': '2' + group }, { $set: { 'team2_id': tid2 } }, { w : 0 });
+	matches.updateOne({ 'team1_source': '1' + group }, { $set: { 'team1_id': tid1 } }, { w : 0 });
+	matches.updateOne({ 'team2_source': '2' + group }, { $set: { 'team2_id': tid2 } }, { w : 0 });
 }
 
 /**
@@ -245,12 +245,12 @@ function advanceToNextRound(db, match) {
 	var mid = match.id;
 	
 	var matches = db.collection('matches');
-	matches.update({ 'team1_source': 'W' + mid }, { $set: { 'team1_id': match.winner } }, { w : 0 });
-	matches.update({ 'team2_source': 'W' + mid }, { $set: { 'team2_id': match.winner } }, { w : 0 });
+	matches.updateOne({ 'team1_source': 'W' + mid }, { $set: { 'team1_id': match.winner } }, { w : 0 });
+	matches.updateOne({ 'team2_source': 'W' + mid }, { $set: { 'team2_id': match.winner } }, { w : 0 });
 	
 	if (match.phase == 'S') { // Loser of semi-final goes forward to third place play-off
-		matches.update({ 'team1_source': 'L' + mid }, { $set: { 'team1_id': match.loser } }, { w : 0 });
-		matches.update({ 'team2_source': 'L' + mid }, { $set: { 'team2_id': match.loser } }, { w : 0 });
+		matches.updateOne({ 'team1_source': 'L' + mid }, { $set: { 'team1_id': match.loser } }, { w : 0 });
+		matches.updateOne({ 'team2_source': 'L' + mid }, { $set: { 'team2_id': match.loser } }, { w : 0 });
 	}
 }
 

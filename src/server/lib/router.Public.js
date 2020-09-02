@@ -11,12 +11,13 @@ var mimeTypes = {
 	"css": "text/css"
 };
 
-var Router = function() {
+var Router = function(basePath) {
+	this.basePath = basePath;
 };
 
 Router.prototype.serve = function(request, response, ctx) {
 	var view = ctx.view;
-	var filename = "./client/img/" + view;
+	var filename = this.basePath + view;
 	
 	var fileStream = fs.createReadStream(filename);
 	fileStream.on("error", function(error) {

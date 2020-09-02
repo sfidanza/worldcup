@@ -5,6 +5,7 @@ var statics = {
 	"frw.js": [
 		"frw/base.js",
 		"frw/frw.js",
+		"frw/frw.url.js",
 		"frw/frw.dom.js",
 		"frw/frw.ssa.js",
 		"frw/frw.data.js",
@@ -12,7 +13,7 @@ var statics = {
 		"frw/frw.Template.js",
 		"frw/uic.Dialog.js",
 		"frw/uic.Tooltip.js"
-	],
+],
 	"app.js": [
 		"app/page.js",
 		"app/page.scoreEditor.js",
@@ -23,23 +24,39 @@ var statics = {
 		"templates/ranking.js",
 		"templates/board.js",
 		"templates/quickRanking.js",
+		"templates/history.js",
 		"templates/notes.js",
+		"templates/login/login.js",
+		"templates/login/register.js",
+		"templates/bet/leaderboard.js",
 		"templates/bet/bet.js"
-	],
+],
 	"app.css": [
 		"stylesheet.css",
+		"css/flags.css",
+		"css/schedule.css",
+		"css/ranking.css",
+		"css/board.css",
+		"css/history.css",
+		"css/uic.css",
+		"css/scoreEditor.css",
+		"templates/login/login.css",
 		"templates/bet/bet.css"
-	],
-	"app.tpl": {
+],
+	"app.xml": {
 		"main":         "main.html",
 		"user":         "user.html",
 		"schedule":     "schedule.html",
 		"ranking":      "ranking.html",
 		"board":        "board.html",
 		"quickRanking": "quickRanking.html",
+		"history":      "history.html",
 		"notes":        "notes.html",
+		"login":        "login/login.html",
+		"register":     "login/register.html",
+		"leaderboard":  "bet/leaderboard.html",
 		"bet":          "bet/bet.html"
-	}
+}
 };
 
 var Router = function() {
@@ -56,7 +73,7 @@ Router.prototype.serve = function(request, response, ctx) {
 		} else if (type === "css") {
 			response.writeHead(200, { "Content-Type": "text/css" });
 			response.write(mergeStatics(files));
-		} else if (type === "tpl") {
+		} else if (type === "xml") {
 			response.writeHead(200, { "Content-Type": "application/xml" });
 			response.write(mergeTemplates(files));
 		}
