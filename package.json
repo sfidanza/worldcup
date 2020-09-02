@@ -29,6 +29,7 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
+    "start": "cd src && nodemon --legacy-watch index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "src/index.js",

@@ -1,0 +1,12 @@
+FROM node:14-alpine
+
+WORKDIR /usr/src/app
+
+RUN npm install -g grunt-cli
+
+# Manually RUN
+# npm install
+# grunt
+# RUN mkdir -p /var/www/worldcup2014 && cp -R ./target/* /var/www/worldcup2014
+
+CMD [ "npm", "start" ]

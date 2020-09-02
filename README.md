@@ -37,3 +37,28 @@ If you want to test it yourself, deploying the sites locally, here is what you w
   - load /api/data (to load from DB and check everything is fine)
 - build the app: `grunt`
 - that's it, you can launch it (nginx listens on port 80, node listens on port 9090 --- check the wiki for more tips on improving the development environment)
+
+## Docker
+
+Target: Be able to run everything through a simple docker-compose command
+
+    docker-compose -f "docker-compose.yml" up -d --build
+
+Still missing:
+
+- [DONE] Needed before PRD deployment: Initialization
+  - `npm install`
+  - `grunt prod`
+  - Database: <https://stackoverflow.com/questions/42912755/how-to-create-a-db-for-mongodb-container-on-start-up>
+    - Fill database (still manual through /api/cache/import as explained above)
+    - Secrets: DB access be protected by user/pwd, stored in .env file.
+    - Do not deploy mongo-express (DB admin) in PRD
+- To be done after
+  - Code folder structure
+    - Split server and client folders
+    - Move Dockerfile in each
+    - Split package.json
+    - Check total size of node_modules
+  - Tests?
+  - Migrate server to express
+  - Migrate client to webpack?

@@ -22,13 +22,21 @@ server.addRouting("/api/bet/", new router.Views(require("./server/actions/bet"))
 // server.addRouting("/static/img/flags/", new router.Public("./client/img/flags/"));
 // server.addRouting("/static/img/signin/", new router.Public("./client/img/signin/"));
 
+const {
+	MONGO_HOSTNAME,
+	MONGO_PORT,
+	MONGO_DB,
+	MONGO_USER,
+	MONGO_PWD,
+	NODE_PORT
+} = process.env;
 let app = new fabulous.App();
 
-MongoClient.connect('mongodb://127.0.0.1:27017', {
+MongoClient.connect(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`, {
 		useUnifiedTopology: true
 	}).then(client => {
 		console.log("Connected to mongodb!");
-		let database = client.db('worldcup2014');
+		let database = client.db(MONGO_DB);
 
 		app.use(cookieParser()) // required before session.
 			.use(session({
@@ -39,7 +47,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017', {
 			}))
 			.use(server.start(database));
 
-		http.createServer(app.handler).listen(9090, function () {
-			console.log(`App listening on port 9090!`);
+		http.createServer(app.handler).listen(NODE_PORT, function () {
+			console.log(`App listening on port ${NODE_PORT}!`);
 		});
 	}).catch(console.error);
