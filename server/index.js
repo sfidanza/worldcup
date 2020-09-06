@@ -1,4 +1,3 @@
-var settings = require('./src/settings.js');
 var fabulous = require("./src/lib/fabulous-pack");
 var server = require("./src/lib/server");
 var router = require("./src/lib/router");
@@ -23,7 +22,8 @@ const {
 	MONGO_DB,
 	MONGO_USER,
 	MONGO_PWD,
-	NODE_PORT
+	NODE_PORT,
+	COOKIE_SEED
 } = process.env;
 let app = new fabulous.App();
 
@@ -35,7 +35,7 @@ MongoClient.connect(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MO
 
 		app.use(cookieParser()) // required before session.
 			.use(session({
-				secret: settings.COOKIE_SEED,
+				secret: COOKIE_SEED,
 				store: new MongoStore({
 					db: database,
 				})

@@ -16,6 +16,10 @@ services:
       - MONGO_PWD
       - MONGO_DB=worldcup2014
       - NODE_PORT=9090
+      - COOKIE_SEED
+      - AUTH_CLIENT_ID
+      - AUTH_CLIENT_SECRET
+      - AUTH_REDIRECT_URL
     expose:
       - "9090"
     depends_on:
