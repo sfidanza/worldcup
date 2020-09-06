@@ -1,21 +1,14 @@
 version: '3'
 services:
   nginx:
-    build: docker/nginx
-    volumes:
-      - app-statics:/var/www/worldcup2014
+    build: client/
     ports:
       - "8090:80"
-    # expose:
-    #   - "80"
-    # networks:
-    #   - gateway
-    #   - default
     depends_on:
       - app
 
   app:
-    build: .
+    build: server/
     environment:
       - MONGO_HOSTNAME=mongo
       - MONGO_PORT=27017
@@ -23,8 +16,6 @@ services:
       - MONGO_PWD
       - MONGO_DB=worldcup2014
       - NODE_PORT=9090
-    volumes:
-      - app-statics:/usr/src/app/target
     expose:
       - "9090"
     depends_on:
@@ -38,27 +29,10 @@ services:
       - MONGO_INITDB_DATABASE=worldcup2014
     volumes:
       - mongodb:/data/db
-      - mongodb_config:/data/configdb
       - ./docker/mongo/initdb-start:/docker-entrypoint-initdb.d
     expose:
       - "27017"
   
-  # admin:
-  #   image: mongo-express
-  #   environment:
-  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGO_USER
-  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_PWD
-  #   ports:
-  #     - "8091:8081"
-  #   depends_on:
-  #     - mongo
-  
 volumes:
   mongodb:
-  mongodb_config:
   app-statics:
-
-# networks:
-#   gateway:
-#     external:
-#       name: gateway_default

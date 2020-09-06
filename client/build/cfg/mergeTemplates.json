@@ -1,0 +1,18 @@
+{
+	"files": {
+		"target/static/app.xml": [
+			"src/desktop/templates/main.html",
+			"src/desktop/templates/user.html",
+			"src/desktop/templates/schedule.html",
+			"src/desktop/templates/ranking.html",
+			"src/desktop/templates/board.html",
+			"src/desktop/templates/quickRanking.html",
+			"src/desktop/templates/history.html",
+			"src/desktop/templates/notes.html",
+			"src/desktop/templates/login/login.html",
+			"src/desktop/templates/login/register.html",
+			"src/desktop/templates/bet/leaderboard.html",
+			"src/desktop/templates/bet/bet.html"
+		]
+	}
+}
