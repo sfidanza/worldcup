@@ -25,9 +25,9 @@ data.filter = function(list, property, value) {
 data.groupBy = function(list, property, sorted) {
 	var groupedList = {};
 	var values = [];
-	for (var i = 0; i < list.length; i++) {
+	for (let i = 0; i < list.length; i++) {
 		var item = list[i];
-		var value = (typeof property == "function") ? property(item) : item[property];
+		let value = (typeof property == "function") ? property(item) : item[property];
 		if (value == null) continue;
 		if (!groupedList[value]) {
 			values.push(value);
@@ -39,8 +39,8 @@ data.groupBy = function(list, property, sorted) {
 	if (sorted) {
 		var sortedGroupedList = {};
 		values.sort();
-		for (var i = 0; i < values.length; i++) {
-			var value = values[i];
+		for (let i = 0; i < values.length; i++) {
+			let value = values[i];
 			sortedGroupedList[value] = groupedList[value];
 		}
 		groupedList = sortedGroupedList;
@@ -104,7 +104,7 @@ data.getFilter = function(expr) {
 	try {
 		f = new Function("element", "return " + expr);
 	} catch(ex_eval) {
-		f = function(element) { return true; };
+		f = function(/*element*/) { return true; };
 		console.error('[getFilter] could not execute expression: "' + expr + '"\nException: ' + ex_eval);
 	}
 	return f;

@@ -1,7 +1,6 @@
 /********************************************************************
  * Foot data manipulation layer (teams, matches, stadiums)
  ********************************************************************/
-var fs = require("fs");
 var frw = {
 	data: require("../frw/frw.data")
 };
@@ -149,13 +148,13 @@ function updateGroupStats(db, group) {
 function computeGroupStandings(teams, matches) {
 	// start with fresh data
 	var stats = {};
-	for (var i = 0; i < teams.length; i++) {
-		var team = teams[i];
+	for (let i = 0; i < teams.length; i++) {
+		let team = teams[i];
 		stats[team.id] = setBlankStats(team);
 	}
 	
 	// compute the effect of each match played
-	for (var i = 0; i < matches.length; i++) {
+	for (let i = 0; i < matches.length; i++) {
 		var m = matches[i];
 		var team1 = stats[m['team1_id']];
 		var team2 = stats[m['team2_id']];
@@ -188,7 +187,7 @@ function computeGroupStandings(teams, matches) {
 	
 	// update goal difference for each team
 	for (var id in stats) {
-		var team = stats[id];
+		let team = stats[id];
 		team['goal_difference'] = team['goals_scored'] - team['goals_against'];
 	}
 	

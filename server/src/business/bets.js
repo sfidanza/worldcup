@@ -113,7 +113,7 @@ bets.computeLeaderboard = function(db) {
 					for (var j = 0; j < matchBets.length; j++) {
 						var bet = matchBets[j];
 						if (!ld[bet.user]) ld[bet.user] = { wins: 0, total: 0 };
-						var ldUser = ld[bet.user];
+						let ldUser = ld[bet.user];
 						ldUser.user = bet.user;
 						ldUser.total++;
 						if (bet.value === winner) ldUser.wins++;
@@ -121,9 +121,9 @@ bets.computeLeaderboard = function(db) {
 				}
 			}
 			
-			var list = [];
-			for (var userId in ld) {
-				var ldUser = ld[userId];
+			let list = [];
+			for (let userId in ld) {
+				let ldUser = ld[userId];
 				ldUser.ratio = 100 * ldUser.wins / ldUser.total;
 				list.push(ldUser);
 			}

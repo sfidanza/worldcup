@@ -16,11 +16,13 @@
     "mongodb": "^3.5.9"
   },
   "devDependencies": {
+    "eslint": "^7.8.1",
     "nodemon": "^2.0.4"
   },
   "scripts": {
     "start": "node --experimental-json-modules index.js",
     "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch --experimental-json-modules index.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "index.js",

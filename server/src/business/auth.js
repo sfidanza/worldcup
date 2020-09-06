@@ -24,7 +24,7 @@ auth.url = function () {
 	return url;
 };
 
-auth.revoke = function (token) {
+auth.revoke = function (token, callback) {
 	var oauth2Client = new google.auth.OAuth2(AUTH_CLIENT_ID, AUTH_CLIENT_SECRET, AUTH_REDIRECT_URL);
 	oauth2Client.revokeToken(token, callback);
 };
