@@ -28,16 +28,16 @@ Technically:
 
 Prerequisites:
 
-- docker and docker-compose (Docker Desktop in you are on Windows)
+- docker and docker-compose (i.e. Docker Desktop if you are on Windows)
 
-For now, the containers are still built locally
+For now, the containers are still built locally. Here are the commands to start/stop everything:
 
     docker-compose -f "docker-compose.yml" up -d --build
     docker-compose -f "docker-compose.yml" down
 
 ## Run locally in development mode
 
-Running `docker-compose up` without specifying the file will take the `docker-compose.override.yml` into account:
+Running `docker-compose up` without specifying the file will take the `docker-compose.override.yml` into account. The commands are thus even simpler:
 
     docker-compose up -d --build
     docker-compose down
@@ -45,13 +45,10 @@ Running `docker-compose up` without specifying the file will take the `docker-co
 This will plug a few additional niceties for local development:
 
 - A mongo-express DB admin interface is available on port 8091
-- The server source files are mapped to your local folder:
-  - Node is run through nodemon, so you can edit the local files and the server will be refreshed on the fly
-  - The debug port is mapped (9229) so you can set breakpoints
-
-NOTE: the client files can not be edited on the fly yet. For now you still need to refresh through rebuilding the container:
-
-    docker-compose up -d --build
+- The debug port is mapped (9229) so you can set breakpoints in your node.js code
+- Whatever file you need to work on, your edits will be taken on the fly (on save)
+  - Server and client source folders in the containers are mapped to your host filesystem
+  - Both have a watcher to update what's necessary on file save (`nodemon` for server, `grunt watch` for client)
 
 ## Production setup
 
@@ -61,12 +58,10 @@ The wiki pages contain all the info based on the previous development / deployme
 
 ## To do (?)
 
-- Local dev setup for client files
-  - Make use of 'grunt watch' through a bind mount; This requires node inside the container, while the multi-stage build gets rid of it...
 - Restore login through Google and betting features
   - <https://github.com/googleapis/google-api-nodejs-client/issues/806#issuecomment-631058329>
   - <https://www.npmjs.com/package/simple-oauth2>
 - Tests
 - Migrate server to express
 - Migrate client to webpack
-- Publish docker images in dockerhub
+- Publish docker images to dockerhub

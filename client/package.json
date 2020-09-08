@@ -22,6 +22,7 @@
   },
   "scripts": {
     "build": "grunt prod",
+    "debug": "grunt watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

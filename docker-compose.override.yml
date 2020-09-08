@@ -1,15 +1,22 @@
-version: '3'
+version: '3.8'
 services:
   nginx:
-    build: client/
-    # volumes:
-    #   - ./client/target:/var/www/worldcup2014
-    #   - ./client:/usr/src/app
-    #   - client_node_modules:/usr/src/app/node_modules
-    # tty: true
+    build: ./client
+    volumes:
+      - client_target:/var/www/worldcup2014
+
+  build:
+    build:
+      context: ./client
+      target: build
+    volumes:
+      - ./client:/usr/src/app
+      - client_target:/usr/src/app/target
+      - client_node_modules:/usr/src/app/node_modules
+    command: npm run debug
 
   app:
-    build: server/
+    build: ./server
     volumes:
       - ./server:/usr/src/app
       - node_modules:/usr/src/app/node_modules
@@ -29,4 +36,5 @@ services:
 
 volumes:
   node_modules:
-  # client_node_modules:
+  client_node_modules:
+  client_target:
