@@ -33,7 +33,7 @@ services:
       - MONGO_INITDB_DATABASE=worldcup2014
     volumes:
       - mongodb:/data/db
-      - ./docker/mongo/initdb-start:/docker-entrypoint-initdb.d
+      - ./database/initdb-start:/docker-entrypoint-initdb.d
     expose:
       - "27017"
   
