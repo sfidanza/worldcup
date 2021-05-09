@@ -12,12 +12,12 @@
     "cookie-parser": "^1.4.5",
     "cookie-signature": "^1.1.0",
     "express-session": "^1.17.1",
-    "googleapis": "^54.0.0",
-    "mongodb": "^3.5.9"
+    "googleapis": "^73.0.0",
+    "mongodb": "^3.6.6"
   },
   "devDependencies": {
-    "eslint": "^7.8.1",
-    "nodemon": "^2.0.4"
+    "eslint": "^7.26.0",
+    "nodemon": "^2.0.7"
   },
   "scripts": {
     "start": "node --experimental-json-modules index.js",

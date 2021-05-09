@@ -122,7 +122,7 @@ module.exports = function(Store) {
 			expires: new Date(expireTime)
 		};
 		
-		this.sessions.updateOne({ _id: sid }, s, { upsert: true, safe: true }, callback);
+		this.sessions.updateOne({ _id: sid }, { $set: s }, { upsert: true, safe: true }, callback);
 	};
 	
 	/**

@@ -42,9 +42,9 @@ Running `docker-compose up` without specifying the file will take the `docker-co
     docker-compose up -d --build
     docker-compose down
 
-This will plug a few additional niceties for local development:
+Once started, you can access the application at <http://localhost:8090>. This local development mode will plug a few additional niceties:
 
-- A mongo-express DB admin interface is available on port 8091
+- A mongo-express DB admin interface is available on port 8091 (<http://localhost:8091>)
 - The debug port is mapped (9229) so you can set breakpoints in your node.js code
 - Whatever file you need to work on, your edits will be taken on the fly (on save)
   - Server and client source folders in the containers are mapped to your host filesystem
@@ -52,7 +52,7 @@ This will plug a few additional niceties for local development:
 
 ## Production setup
 
-The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment. The basis however is to do exactly the same as in local (with the build flag until the docker images are published in dockerhub):
+The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment. The basis however is to do exactly the same as in local (with the build flag until the docker images are published in dockerhub), except for the override of course:
 
     docker-compose -f "docker-compose.yml" up -d --build
 

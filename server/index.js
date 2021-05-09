@@ -4,7 +4,6 @@ var router = require("./src/lib/router");
 var MongoClient = require('mongodb').MongoClient;
 var http = require("http");
 
-var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoStore = require('./src/lib/fabulous/MongoStore')(session.Store);
 
@@ -33,12 +32,13 @@ MongoClient.connect(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MO
 		console.log("Connected to mongodb!");
 		let database = client.db(MONGO_DB);
 
-		app.use(cookieParser()) // required before session.
-			.use(session({
+		app.use(session({
 				secret: COOKIE_SEED,
 				store: new MongoStore({
 					db: database,
-				})
+				}),
+				resave: true,
+				saveUninitialized: true
 			}))
 			.use(server.start(database));
 
