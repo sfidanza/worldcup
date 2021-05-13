@@ -24,20 +24,22 @@ Technically:
   - server runs on node.js
   - data is stored in mongodb
 
-## Run locally in production mode
+Since we will use Docker to run all this, you will need `docker` and `docker-compose` (i.e. Docker Desktop if you are on Windows).
 
-Prerequisites:
+## Develoment setup
 
-- docker and docker-compose (i.e. Docker Desktop if you are on Windows)
+You need a `.env` file in the root folder to specify the secrets. You can simply copy `.env.sample` to get started.
 
-For now, the containers are still built locally. Here are the commands to start/stop everything:
+### Run locally in production mode
+
+Here are the commands to start/stop everything (with the containers built locally):
 
     docker-compose -f "docker-compose.yml" up -d --build
     docker-compose -f "docker-compose.yml" down
 
-## Run locally in development mode
+### Run locally in development mode
 
-Running `docker-compose up` without specifying the file will take the `docker-compose.override.yml` into account. The commands are thus even simpler:
+Running `docker-compose up` without specifying the file will automatically take the `docker-compose.override.yml` into account. The commands are thus even simpler:
 
     docker-compose up -d --build
     docker-compose down
@@ -55,6 +57,7 @@ Once started, you can access the application at <http://localhost:8090>. This lo
 The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment. The basis however is to do exactly the same as in local (with the build flag until the docker images are published in dockerhub), except for the override of course:
 
     docker-compose -f "docker-compose.yml" up -d --build
+    docker-compose -f "docker-compose.yml" down
 
 ## To do (?)
 
