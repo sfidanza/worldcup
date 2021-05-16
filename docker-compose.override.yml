@@ -4,6 +4,7 @@ services:
     build: ./client
     volumes:
       - client_target:/var/www/worldcup2014
+    restart: no
 
   build:
     build:
@@ -23,7 +24,11 @@ services:
     ports:
       - "9229:9229"
     command: npm run debug
+    restart: no
   
+  mongo:
+    restart: no
+    
   admin:
     image: mongo-express
     environment:

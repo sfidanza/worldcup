@@ -6,6 +6,7 @@ services:
       - "8090:80"
     depends_on:
       - app
+    restart: always
 
   app:
     build: ./server
@@ -24,6 +25,7 @@ services:
       - "9090"
     depends_on:
       - mongo
+    restart: always
 
   mongo:
     image: mongo:4.2.8
@@ -36,6 +38,7 @@ services:
       - ./database/initdb-start:/docker-entrypoint-initdb.d
     expose:
       - "27017"
+    restart: always
   
 volumes:
   mongodb:
