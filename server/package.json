@@ -11,13 +11,13 @@
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.5",
     "cookie-signature": "^1.1.0",
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.2",
     "googleapis": "^73.0.0",
-    "mongodb": "^3.6.6"
+    "mongodb": "^3.6.10"
   },
   "devDependencies": {
-    "eslint": "^7.26.0",
-    "nodemon": "^2.0.7"
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12"
   },
   "scripts": {
     "start": "node --experimental-json-modules index.js",
