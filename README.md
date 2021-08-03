@@ -59,6 +59,13 @@ The wiki pages contain all the info based on the previous development / deployme
     docker-compose -f "docker-compose.yml" up -d --build
     docker-compose -f "docker-compose.yml" down
 
+Alternatively, it can be run on Docker Swarm, provided images are either available in docker hub or have been built locally (through `docker-compose build` for example):
+
+    docker-compose -f docker-compose.yml config | docker stack deploy -c - worldcup2014
+    docker stack rm worldcup2014
+
+Note: the `docker-compose config` command resolves the environment variables inside the compose file from `.env`, which is not supported by `docker stack deploy`. It is acting as a preprocessor.
+
 ## To do (?)
 
 - Restore login through Google and betting features

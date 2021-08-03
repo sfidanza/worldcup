@@ -1,15 +1,15 @@
 version: '3.8'
 services:
   nginx:
-    build: ./client
+    image: sfidanza/worldcup2014-frontend
     ports:
       - "8090:80"
-    depends_on:
-      - app
+    # depends_on: # not supported by docker stack and not resilient anyway (if a dependency crashes)
+    #   - app
     restart: always
 
   app:
-    build: ./server
+    image: sfidanza/worldcup2014-backend
     environment:
       - MONGO_HOSTNAME=mongo
       - MONGO_PORT=27017
@@ -21,10 +21,10 @@ services:
       - AUTH_CLIENT_ID
       - AUTH_CLIENT_SECRET
       - AUTH_REDIRECT_URL
-    expose:
-      - "9090"
-    depends_on:
-      - mongo
+    # expose: # indicative only as all ports are reachable anyway inside the virtual network
+    #   - "9090"
+    # depends_on:
+    #   - mongo
     restart: always
 
   mongo:
@@ -36,8 +36,8 @@ services:
     volumes:
       - mongodb:/data/db
       - ./database/initdb-start:/docker-entrypoint-initdb.d
-    expose:
-      - "27017"
+    # expose:
+    #   - "27017"
     restart: always
   
 volumes:
