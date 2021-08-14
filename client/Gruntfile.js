@@ -1,11 +1,11 @@
-module.exports = function(grunt) {
-	
+module.exports = function (grunt) {
+
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		clean: ["target"],
+		clean: ['target/*'],
 		copy: {
-			build: { expand: true, cwd: 'src/desktop/', src: [ 'img/**' ], dest: 'target/static/' },
+			build: { expand: true, cwd: 'src/desktop/', src: ['img/**'], dest: 'target/static/' },
 		},
 		concat: {
 			build: grunt.file.readJSON('build/cfg/concat.json'),
@@ -51,28 +51,28 @@ module.exports = function(grunt) {
 				tasks: 'default'
 			},
 			jscss: {
-				files: [ 'src/desktop/**/*.js', 'src/desktop/**/*.css', 'build/cfg/concat.json' ],
-				tasks: [ 'concat:build' ]
+				files: ['src/desktop/**/*.js', 'src/desktop/**/*.css', 'build/cfg/concat.json'],
+				tasks: ['concat:build']
 			},
 			tpl: {
-				files: ['src/desktop/**/*.html', 'build/cfg/mergeTemplates.json' ],
-				tasks: [ 'mergeTemplates:build' ]
+				files: ['src/desktop/**/*.html', 'build/cfg/mergeTemplates.json'],
+				tasks: ['mergeTemplates:build']
 			},
 			mjscss: {
-				files: [ 'src/mobile/**/*.js', 'src/mobile/**/*.css', 'build/cfg/concat.mobile.json' ],
-				tasks: [ 'concat:mobile' ]
+				files: ['src/mobile/**/*.js', 'src/mobile/**/*.css', 'build/cfg/concat.mobile.json'],
+				tasks: ['concat:mobile']
 			},
 			mtpl: {
-				files: [ 'src/mobile/**/*.html', 'build/cfg/mergeTemplates.mobile.json' ],
-				tasks: [ 'mergeTemplates:mobile' ]
+				files: ['src/mobile/**/*.html', 'build/cfg/mergeTemplates.mobile.json'],
+				tasks: ['mergeTemplates:mobile']
 			},
 			img: {
 				files: 'src/desktop/img/**',
-				tasks: [ 'copy' ]
+				tasks: ['copy']
 			}
 		}
 	});
-	
+
 	// Load plugins
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -83,9 +83,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadTasks('build/tasks');
-	
+
 	// Default tasks
-	grunt.registerTask('default', [ 'jshint', 'clean', 'copy', 'concat', 'mergeTemplates' ]);
-	grunt.registerTask('minify', [ 'cssmin', 'uglify' ]);
-	grunt.registerTask('prod', [ 'default', 'minify' ]);
+	grunt.registerTask('default', ['jshint', 'clean', 'copy', 'concat', 'mergeTemplates']);
+	grunt.registerTask('minify', ['cssmin', 'uglify']);
+	grunt.registerTask('prod', ['default', 'minify']);
 };
