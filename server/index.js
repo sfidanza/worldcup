@@ -26,20 +26,19 @@ const {
 } = process.env;
 let app = new fabulous.App();
 
-MongoClient.connect(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`, {
-		useUnifiedTopology: true
-	}).then(client => {
+MongoClient.connect(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`)
+	.then(client => {
 		console.log("Connected to mongodb!");
 		let database = client.db(MONGO_DB);
 
 		app.use(session({
-				secret: COOKIE_SEED,
-				store: new MongoStore({
-					db: database,
-				}),
-				resave: true,
-				saveUninitialized: true
-			}))
+			secret: COOKIE_SEED,
+			store: new MongoStore({
+				db: database,
+			}),
+			resave: true,
+			saveUninitialized: true
+		}))
 			.use(server.start(database));
 
 		http.createServer(app.handler).listen(NODE_PORT, function () {
