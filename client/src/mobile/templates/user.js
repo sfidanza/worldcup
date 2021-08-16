@@ -1,3 +1,4 @@
+/* global page, frw */
 page.templates.user = new frw.Template();
 
 page.templates.user.onParse = function(data) {

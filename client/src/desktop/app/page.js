@@ -1,7 +1,8 @@
+/* global frw, uic */
 /**********************************************************
  * Page
  **********************************************************/
- 
+
 var page = {};
 page.templates = {};
 page.data = {};
@@ -9,16 +10,16 @@ page.data = {};
 page.config = {
 	url: {
 		templates: "static/app.xml",
-		login: "api/user/login",
-		logout: "api/user/logout",
-		register: "api/user/register",
 		data: "api/all",
-		auth: "api/auth/url",
-		authProfile: "api/auth/profile"
+		logout: "api/user/logout",
+		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`,
+		register: (login) => `api/user/register?id=${login.id}&pwd=${login.pwd}&name=${login.name}`,
+		auth: (provider) => `api/auth/url?provider=${provider}`,
+		authProfile: (code) => `api/auth/profile?code=${code}`
 	},
 	i18n: {
-		pageTitle: "2014 Worldcup - {stateTitle}",
-		group: "Group {group}",
+		pageTitle: (state) => `2014 Worldcup - ${state}`,
+		group: (group) => `Group ${group}`,
 		phaseG: "Group Matches",
 		phaseH: "Round of 16",
 		phaseQ: "Quarter-Finals",
@@ -38,41 +39,40 @@ page.config = {
 	lang: "en-GB"
 };
 
-page.initialize = function() {
-	// retrieve templates
-	page.notify("Loading templates...", true);
-	frw.ssa.loadTemplates(page.config.url.templates, page.templates);
-	
-	// retrieve data
-	page.notify("Loading data...");
-	page.getData();
-	
-	// Initialize history
-	frw.history.initialize(page.select.bind(page));
-	
-	// display
-	page.notify(null);
-	page.templates.main.parse();
-	page.templates.main.load(page.config.area.main);
-	
-	page.templates.user.parse(page.data);
-	page.templates.user.load(page.config.area.user);
-	page.scoreEditor.initialize();
-	
-	this.loginDlg = new uic.Dialog({
-		id: page.config.area.loginDlg,
-		centered: true
+page.initialize = function () {
+	// retrieve templates and data
+	page.notify("Loading data...", true);
+	Promise.all([
+		frw.ssa.loadTemplates(page.config.url.templates, page.templates),
+		page.getData()
+	]).then(() => {
+		// Initialize history
+		frw.history.initialize(page.select.bind(page));
+
+		// display
+		page.templates.main.parse();
+		page.templates.main.load(page.config.area.main);
+
+		page.templates.user.parse(page.data);
+		page.templates.user.load(page.config.area.user);
+		page.scoreEditor.initialize();
+
+		this.loginDlg = new uic.Dialog({
+			id: page.config.area.loginDlg,
+			centered: true
+		});
+		this.genericDlg = new uic.Dialog({
+			id: page.config.area.genericDlg,
+			centered: true
+		});
+		this.tooltip = new uic.Tooltip(0);
+
+		page.select(frw.history.getCurrentState() || page.config.defaultPage);
+		page.notify(null);
 	});
-	this.genericDlg = new uic.Dialog({
-		id: page.config.area.genericDlg,
-		centered: true
-	});
-	this.tooltip = new uic.Tooltip(0);
-	
-	page.select(frw.history.getCurrentState() || page.config.defaultPage);
 };
 
-page.destroy = function() {
+page.destroy = function () {
 	this.genericDlg.destroy();
 	this.loginDlg.destroy();
 	this.tooltip.destroy();
@@ -81,11 +81,11 @@ page.destroy = function() {
 		var tpl = page.templates[id];
 		if (tpl.destroy) tpl.destroy();
 	}
-	
+
 	page.scoreEditor.destroy();
 };
 
-page.notify = function(message, init) {
+page.notify = function (message, init) {
 	if (!this.pwl) this.pwl = document.getElementById(page.config.area.pwl);
 	if (message) {
 		this.pwl.innerHTML = message;
@@ -99,95 +99,80 @@ page.notify = function(message, init) {
 	}
 };
 
-page.getData = function() {
-	frw.ssa.sendRequest({
-		async: true,
-		url: page.config.url.data,
-		type: 'json',
-		callback: page.setData,
-		override: page
-	});
+page.getData = async function () {
+	return fetch(page.config.url.data)
+		.then(response => response.json())
+		.then(data => {
+			data.stadiums = frw.data.reIndex(data.stadiums, 'id');
+			page.data = data;
+		});
 };
 
-page.setData = function(data) {
-	data.stadiums = frw.data.reIndex(data.stadiums, 'id');
-	page.data = data;
+page.register = function (login, cb) {
+	fetch(page.config.url.register(login))
+		.then(response => response.json())
+		.then(data => {
+			page.refreshUser(data, cb);
+		});
 };
 
-page.register = function(data, cb) {
-	frw.ssa.sendRequest({
-		url: frw.ssa.buildGETUrl(page.config.url.register, data),
-		type: 'json',
-		callback: page.refreshUser,
-		override: page,
-		params: cb
-	});
+page.login = function (login, cb) {
+	fetch(page.config.url.login(login))
+		.then(response => response.json())
+		.then(data => {
+			page.refreshUser(data, cb);
+		});
 };
 
-page.login = function(data, cb) {
-	frw.ssa.sendRequest({
-		url: frw.ssa.buildGETUrl(page.config.url.login, data),
-		type: 'json',
-		callback: page.refreshUser,
-		override: page,
-		params: cb
-	});
+page.logout = function () {
+	fetch(page.config.url.logout)
+		.then(response => response.json())
+		.then(data => {
+			page.refreshUser(data);
+		});
 };
 
-page.logout = function() {
-	frw.ssa.sendRequest({
-		url: page.config.url.logout,
-		type: 'json',
-		callback: page.refreshUser,
-		override: page
-	});
-};
-
-page.refreshUser = function(data, cb) {
+page.refreshUser = function (data, cb) {
 	page.data.user = data && data.user;
-	
-//	page.templates.main.parse(); // BREAKS!! Only bets depend on user - review solution!
-//	page.templates.main.load(page.config.area.main);
-	
+
+	//	page.templates.main.parse(); // BREAKS!! Only bets depend on user - review solution!
+	//	page.templates.main.load(page.config.area.main);
+
 	page.templates.user.parse(data || {});
 	page.templates.user.load(page.config.area.user);
-	
+
 	if (this.current === 'bet') {
 		page.redrawView();
 	}
 	if (cb) cb();
 };
 
-page.getPageTitle = function(stateTitle) {
-	return page.config.i18n.pageTitle.supplant({ stateTitle: stateTitle });
+page.getPageTitle = function (stateTitle) {
+	return page.config.i18n.pageTitle(stateTitle);
 };
 
-page.getMenuItem = function(hash) {
-	var menu = document.getElementById('menu');
-	var items = menu.getElementsByTagName('a');
-	for (var i=0; i<items.length; i++) {
-		if (items[i].hash == hash) return items[i];
-	}
-	return null;
+page.getMenuItem = function (hash) {
+	let items = document.querySelectorAll('#menu a');
+	Array.from(items).find(item => {
+		return item.hash === hash;
+	});
 };
 
-page.highlight = function(link) {
-	var menu = document.getElementById('menu');
-	var items = getElementsByClassName(menu, 'selected');
-	for (var i=0; i<items.length; i++) {
-		items[i].className = '';
-	}
+page.highlight = function (link) {
+	document.querySelectorAll('#menu a.selected').forEach(item => {
+		item.className = '';
+	});
 	link.className = 'selected';
 	link.blur();
 };
 
-page.select = function(link, event) {
+page.select = function (link, event) {
 	if (event) frw.stopEvent(event);
-	
-	var target;
+
+	let target;
 	if (typeof link === "string") {
 		target = link;
-		link = page.getMenuItem('#'+target);
+		link = page.getMenuItem('#' + target);
 	} else {
 		target = link.href.split('#')[1];
 	}
@@ -201,68 +186,67 @@ page.select = function(link, event) {
 	}
 };
 
-page.redrawView = function() {
+page.redrawView = function () {
 	page.view(this.current);
 };
 
-page.view = function(viewName) {
+page.view = function (viewName) {
 	page.scoreEditor.unplug();
-	var args = viewName.split(",", 2);
-	page.show(args[0], args[1]);
+	page.show(...viewName.split(","));
 };
 
-page.show = function(viewName, option) {
+page.show = function (viewName, ...option) {
 	switch (viewName) {
-		case 'schedule': page.showSchedule(option); break;
-		case 'ranking': page.showRanking(option); break;
-		case 'group': page.showGroup(option); break;
+		case 'schedule': page.showSchedule(...option); break;
+		case 'ranking': page.showRanking(...option); break;
+		case 'group': page.showGroup(...option); break;
 		case 'board': page.showBoard(); break;
 		case 'history': page.showPage('history'); break;
 		case 'notes': page.showPage('notes'); break;
-		case 'login': page.showPage('login', option); break;
-		case 'register': page.showPage('register', option); break;
-		case 'bet': page.showPage('bet', option); break;
+		case 'login': page.showPage('login', ...option); break;
+		case 'register': page.showPage('register', ...option); break;
+		case 'bet': page.showPage('bet', ...option); break;
 	}
-	document.getElementById(page.config.area.contents).className = "page-"+viewName;
+	document.getElementById(page.config.area.contents).className = "page-" + viewName;
 };
 
-page.showSchedule = function(phase) {
-	var matches = (phase == 1) ? frw.data.filter(page.data.matches, "phase", "G") :
-		((phase == 2) ? frw.data.filter(page.data.matches, "group", null) : page.data.matches);
-	
-	var data = {
+page.showSchedule = function (phase) {
+	let matches = (phase == 1) ? page.data.matches.filter(m => m.phase == 'G') :
+		((phase == 2) ? page.data.matches.filter(m => m.group == null) : page.data.matches);
+
+	let data = {
 		teams: page.data.teams,
 		matches: matches,
 		stadiums: page.data.stadiums
 	};
-	
+
 	page.templates.schedule.parse(data);
 	page.templates.schedule.load(page.config.area.contents);
 	page.scoreEditor.plug();
 };
 
-page.showRanking = function(group) {
+page.showRanking = function (group) {
 	if (!group) {
-		var teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
-		for (var g in teamsByGroup) {
+		let teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
+		for (let g in teamsByGroup) {
 			page.templates.ranking.parse(teamsByGroup[g], g);
 		}
 	} else {
-		var data = {
-			teams: frw.data.filter(page.data.teams, "group", group)
+		let data = {
+			teams: page.data.teams.filter(item => item.group === group)
 		};
 		page.templates.ranking.parse(data.teams, group);
 	}
 	page.templates.ranking.load(page.config.area.contents);
 };
 
-page.showGroup = function(group) {
+page.showGroup = function (group) {
 	var data = {
-		teams: frw.data.filter(page.data.teams, "group", group),
-		matches: frw.data.filter(page.data.matches, "group", group),
+		teams: page.data.teams.filter(item => item.group === group),
+		matches: page.data.matches.filter(item => item.group === group),
 		stadiums: page.data.stadiums
 	};
-	
+
 	page.templates.ranking.parse(data.teams, group);
 	page.templates.schedule.parse(data);
 	var content = [
@@ -275,37 +259,37 @@ page.showGroup = function(group) {
 	page.scoreEditor.plug();
 };
 
-page.showBoard = function() {
+page.showBoard = function () {
 	var data = {
 		teams: page.data.teams,
-		matches: frw.data.filter(page.data.matches, "group", null),
+		matches: page.data.matches.filter(m => m.group == null),
 		stadiums: page.data.stadiums
 	};
-	
+
 	page.templates.board.parse(data);
 	page.templates.board.load(page.config.area.contents);
 };
 
-page.showNotes = function() {
+page.showNotes = function () {
 	page.templates.notes.parse();
 	page.templates.notes.load(page.genericDlg.getBody());
 	page.genericDlg.setTitle("Notes");
 	page.genericDlg.show();
 };
 
-page.parseGroupRanking = function(group) {
+page.parseGroupRanking = function (group) {
 	var g = group.charAt(1);
-	var teams = frw.data.filter(page.data.teams, "group", g);
+	var teams = page.data.teams.filter(t => t.group == g);
 	page.templates.quickRanking.parse(teams, g, group.charAt(0));
 };
 
-page.getRankingPopup = function(group1, group2) {
+page.getRankingPopup = function (group1, group2) {
 	this.parseGroupRanking(group1);
 	this.parseGroupRanking(group2);
 	return page.templates.quickRanking.retrieve();
 };
 
-page.showPage = function(tplId, options) {
+page.showPage = function (tplId, options) {
 	var tpl = page.templates[tplId];
 	tpl.parse(options);
 	tpl.load(page.config.area.contents);
@@ -313,10 +297,9 @@ page.showPage = function(tplId, options) {
 
 /**********************************************************/
 
-frw.addListener(window, "load", function() {
+window.addEventListener("load", function () {
 	page.initialize();
 });
-frw.addListener(window, "unload", function() {
+window.addEventListener("unload", function () {
 	page.destroy();
 });
-

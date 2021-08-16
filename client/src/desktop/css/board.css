@@ -2,7 +2,6 @@
 #contents.page-board {
 	margin-left: -100px;
 	margin-right: -100px;
-	zoom: 1; /* IE7 fix */
 }
 .page-board .board {
 	position: relative;

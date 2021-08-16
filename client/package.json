@@ -16,9 +16,9 @@
     "grunt-contrib-copy": "1.0.x",
     "grunt-contrib-csslint": "2.0.x",
     "grunt-contrib-cssmin": "4.0.x",
-    "grunt-contrib-jshint": "3.0.x",
     "grunt-contrib-uglify": "5.0.x",
-    "grunt-contrib-watch": "1.1.x"
+    "grunt-contrib-watch": "1.1.x",
+    "grunt-eslint": "^23.0.0"
   },
   "scripts": {
     "build": "grunt prod",

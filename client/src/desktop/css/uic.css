@@ -53,5 +53,4 @@
 	position: absolute;
 	background-color: #000000;
 	opacity: 0.6;
-/*	filter: alpha(opacity=50); /* IE quickfix. Uses a lot of memory. */
 }

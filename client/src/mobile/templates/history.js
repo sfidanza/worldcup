@@ -1,3 +1,4 @@
+/* global page, frw */
 page.templates.history = new frw.Template();
 
 page.templates.history.onParse = function() {

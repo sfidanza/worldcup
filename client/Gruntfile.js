@@ -32,16 +32,13 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		jshint: {
-			options: {
-				jshintrc: true
-			},
-			mobile: ['src/mobile/**/*.js'],
-			desktop: ['src/desktop/**/*.js']
+		eslint: {
+			desktop: ['src/desktop/**/*.js'],
+			mobile: ['src/mobile/**/*.js']
 		},
 		csslint: {
 			options: {
-				csslintrc: 'src/desktop/.csslintrc'
+				csslintrc: '.csslintrc'
 			},
 			src: ['src/desktop/**/*.css', 'src/mobile/**/*.css']
 		},
@@ -53,6 +50,10 @@ module.exports = function (grunt) {
 			jscss: {
 				files: ['src/desktop/**/*.js', 'src/desktop/**/*.css', 'build/cfg/concat.json'],
 				tasks: ['concat:build']
+			},
+			eslint: {
+				files: ['src/desktop/**/*.js', 'src/mobile/**/*.js'],
+				tasks: ['eslint']
 			},
 			tpl: {
 				files: ['src/desktop/**/*.html', 'build/cfg/mergeTemplates.json'],
@@ -74,7 +75,7 @@ module.exports = function (grunt) {
 	});
 
 	// Load plugins
-	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-eslint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -85,7 +86,7 @@ module.exports = function (grunt) {
 	grunt.loadTasks('build/tasks');
 
 	// Default tasks
-	grunt.registerTask('default', ['jshint', 'clean', 'copy', 'concat', 'mergeTemplates']);
+	grunt.registerTask('default', ['eslint', 'clean', 'copy', 'concat', 'mergeTemplates']);
 	grunt.registerTask('minify', ['cssmin', 'uglify']);
-	grunt.registerTask('prod', ['default', 'minify']);
+	grunt.registerTask('prod', ['default'/*, 'minify'*/]);
 };

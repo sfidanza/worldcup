@@ -1,3 +1,4 @@
+/* global page, frw */
 page.templates.register = new frw.Template();
 
 page.templates.register.onParse = function(backTo) {
@@ -23,15 +24,15 @@ page.templates.register.submit = function(id, name, pwd1, pwd2) {
 };
 
 page.templates.register.setError = function(fieldId) {
-	var field = document.forms['register-form'][fieldId];
+	let field = document.forms['register-form'][fieldId];
 	if (field) {
-		frw.dom.addClass(field, 'error');
+		field.classList.add('error');
 	}
 };
 
 page.templates.register.cleanErrors = function() {
-	var fields = document.forms['register-form'].querySelectorAll('.error');
-	for (var i = 0; i < fields.length; i++) {
-		frw.dom.removeClass(fields[i], 'error');
+	let fields = document.forms['register-form'].querySelectorAll('.error');
+	for (let field of fields) {
+		field.classList.remove('error');
 	}
 };

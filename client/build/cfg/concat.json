@@ -3,7 +3,6 @@
 		"target/static/frw.js": [
 			"src/desktop/frw/base.js",
 			"src/desktop/frw/frw.js",
-			"src/desktop/frw/frw.url.js",
 			"src/desktop/frw/frw.dom.js",
 			"src/desktop/frw/frw.ssa.js",
 			"src/desktop/frw/frw.data.js",

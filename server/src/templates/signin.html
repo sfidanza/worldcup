@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 function notify() {
 	if (opener && !opener.closed) {
-		opener.page.templates.login.signinCallback(location.search);
+		opener.page.templates.login.signinCallback(location.search.substring(1));
 		window.close();
 	} else {
 		document.body.innerHTML = "Something went wrong. Sorry.";

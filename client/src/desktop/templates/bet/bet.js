@@ -1,17 +1,17 @@
+/* global page, frw */
 page.templates.bet = new frw.Template();
 page.templates.bet.mode = 'default';
 
 page.templates.bet.onParse = function() {
-	var bets = page.data.bets;
-	var user = page.data.user;
+	const bets = page.data.bets;
+	const user = page.data.user;
 	
 	if (user) {
-		var userBets = bets && frw.data.query(bets, "$.user === '" + user.id + "' && $.challenge === 'champion'");
-		if (userBets && userBets.length) {
-			var championBet = userBets[0].value;
-			var team = frw.data.query(page.data.teams, "$.id === '" + championBet + "'");
-			if (team[0]) {
-				this.set('team', team[0]);
+		const championBet = bets?.find(b => b.user === user.id && b.challenge === 'champion');
+		if (championBet) {
+			const team = page.data.teams.find(t => t.id === championBet.value);
+			if (team) {
+				this.set('team', team);
 				this.parseBlock('yourCBet');
 			}
 		} else {
@@ -21,10 +21,10 @@ page.templates.bet.onParse = function() {
 		this.parseBlock('notLogged');
 	}
 	
-	var championBets = bets && frw.data.query(bets, "$.challenge === 'champion'");
+	const championBets = bets?.filter(b => b.challenge === 'champion');
 	this.parseChampion(championBets);
 	
-	var winnerBets = bets && frw.data.query(bets, "$.challenge === 'match'");
+	let winnerBets = bets?.filter(b => b.challenge === 'match');
 	if (winnerBets) {
 		winnerBets = frw.data.groupBy(winnerBets, 'target');
 	}
@@ -74,34 +74,33 @@ page.templates.bet.getBetters = function(listBets) {
 };
 
 page.templates.bet.parseMatches = function(bets) {
-	var user = page.data.user;
-	var matches = frw.data.filter(page.data.matches, "group", null);
-	var list = frw.data.groupBy(matches, 'phase');
-	var teams = frw.data.reIndex(page.data.teams, 'id');
+	const user = page.data.user;
+	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
+	const teams = frw.data.reIndex(page.data.teams, 'id');
 	
-	for (var phase in list) {
+	for (const phase in list) {
 		this.set('phase', page.config.i18n["phase"+phase]);
-		var phaseList = frw.data.groupBy(list[phase], 'day');
-		for (var day in phaseList) {
-			var matches = phaseList[day];
-			this.set('day', day.capitalize());
-			for (var i = 0; i < matches.length; i++) {
-				var match = matches[i];
+		const phaseList = frw.data.groupBy(list[phase], 'day');
+		for (const day in phaseList) {
+			const matches = phaseList[day];
+			this.set('day', day);
+			for (let i = 0; i < matches.length; i++) {
+				const match = matches[i];
 				this.set('row_class', 'l'+(i % 2));
 				this.set('match', match);
-				var team1 = teams[match.team1_id];
-				var team2 = teams[match.team2_id];
+				const team1 = teams[match.team1_id];
+				const team2 = teams[match.team2_id];
 				this.set('team1.name', team1 ? team1.name : match.team1_source);
 				this.set('team2.name', team2 ? team2.name : match.team2_source);
 				this.set('stadium', page.data.stadiums[match.stadium]);
-				var pso = ''; // Penalty Shoot Out
+				let pso = ''; // Penalty Shoot Out
 				if (match.team1_scorePK != null) {
 					pso = "<br/>(" + match.team1_scorePK + " - " + match.team2_scorePK + ")";
 				}
 				this.set('PSO', pso);
 				
-				var bet1Class = '', bet2Class = '';
-				var isOpened = this.isBettable(match);
+				let bet1Class = '', bet2Class = '';
+				const isOpened = this.isBettable(match);
 				if (user && isOpened) {
 					bet1Class = 'selectable';
 					bet2Class = 'selectable';
@@ -109,10 +108,10 @@ page.templates.bet.parseMatches = function(bets) {
 					this.parseBlock('bet2');
 				}
 				
-				var betsOnMatch = bets[match.id];
+				const betsOnMatch = bets[match.id];
 				if (betsOnMatch) {
 					if (user) {
-						var yourBet = frw.data.filter(betsOnMatch, 'user', user.id)[0];
+						let yourBet = betsOnMatch.find(b => b.user === user.id);
 						yourBet = yourBet && yourBet.value;
 						if (yourBet === team1.id) {
 							bet1Class += ' selected';
@@ -121,7 +120,7 @@ page.templates.bet.parseMatches = function(bets) {
 						}
 					}
 					
-					var betsOnTeams = frw.data.groupBy(betsOnMatch, 'value');
+					const betsOnTeams = frw.data.groupBy(betsOnMatch, 'value');
 					this.parseTeamBadge('badge1', betsOnTeams[team1.id]);
 					this.parseTeamBadge('badge2', betsOnTeams[team2.id]);
 				}

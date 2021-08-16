@@ -1,3 +1,4 @@
+/* global frw */
 /**********************************************************
  * uic.Dialog
  **********************************************************/
@@ -29,6 +30,12 @@ uic.Dialog.prototype.center = function() {
 	frw.dom.center(this.dom.dlg, 0.5, 0.4);
 };
 
+uic.Dialog.prototype.handleEvent = function(event) {
+	if (event.type === 'resize') {
+		this.keepInPlace();
+	}
+};
+
 uic.Dialog.prototype.show = function() {
 	if (this.params.centered) {
 		this.center();
@@ -42,7 +49,7 @@ uic.Dialog.prototype.show = function() {
 	document.body.appendChild(dlg);
 	dlg.style.visibility = "visible";
 	
-	frw.addListener(window, "resize", this.keepInPlace.bindListener(this));
+	window.addEventListener("resize", this); // registers this.handleEvent in the correct scope
 };
 
 uic.Dialog.prototype.keepInPlace = function() {
@@ -56,7 +63,7 @@ uic.Dialog.prototype.isVisible = function() {
 
 uic.Dialog.prototype.hide = function() {
 	if (this.isVisible()) {
-		frw.removeListener(window, "resize", this.keepInPlace.bindListener(this));
+		window.removeEventListener("resize", this);
 		document.body.style.overflow = "auto";
 		frw.dom.removeOverlay();
 		var dlg = this.dom.dlg;
