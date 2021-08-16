@@ -107,6 +107,18 @@ Template.prototype.retrieve = function(blkId) {
 };
 
 /**
+ * Replace the placeholders in the string by the values in the object
+ */
+ Template.prototype.supplant = function (str, o) {
+	return str.replace(/{([^{}]*)}/g,
+		function (a, b) {
+			let r = o[b];
+			return (r !== undefined) ? r : a;
+		}
+	);
+};
+
+/**
  * Parse the specified block
  *  Blocks allow conditional and multiple parsing of content
  */
@@ -118,7 +130,7 @@ Template.prototype.retrieve = function(blkId) {
 	for (var i=0; i<children.length; i++) {
 		this.set("blk_"+children[i], this.retrieve(children[i]));
 	}
-	var str = this.blocks[blkId].supplant(this.data);
+	var str = this.supplant(this.blocks[blkId], this.data);
 	this.parsedBlocks[blkId].push(str);
 };
 

@@ -1,5 +1,5 @@
 var fs = require("fs");
-var frw = require("../frw/frw");
+var Template = require("../frw/Template");
 
 var Router = function() {
 };
@@ -16,7 +16,7 @@ Router.prototype.serve = function(request, response, ctx) {
 		fs.readFile("./src/templates/" + index, { encoding: "utf8" }, function (err, data) {
 			if (err) throw err;
 			
-			var tpl = new frw.Template();
+			var tpl = new Template();
 			tpl.create(data);
 			tpl.parse();
 			response.write(tpl.retrieve());
