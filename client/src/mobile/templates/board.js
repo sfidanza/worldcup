@@ -3,11 +3,11 @@ page.templates.board = new frw.Template();
 page.templates.board.mode = 'default';
 
 page.templates.board.phaseClasses = {
-	"H": "round16",
-	"Q": "quarter",
-	"S": "semi",
-	"T": "third",
-	"F": "final"
+	'H': 'round16',
+	'Q': 'quarter',
+	'S': 'semi',
+	'T': 'third',
+	'F': 'final'
 };
 
 page.templates.board.onCreate = function () {
@@ -15,10 +15,10 @@ page.templates.board.onCreate = function () {
 	this.tooltip.positionTooltip = function (mouseEvent) {
 		const html = document.documentElement;
 		const offsetWidth = this.tooltipDiv.offsetWidth;
-		this.tooltipDiv.style.left = ((html.clientWidth - offsetWidth) / 2) + "px";
+		this.tooltipDiv.style.left = ((html.clientWidth - offsetWidth) / 2) + 'px';
 
 		const scroll = frw.dom.getScroll();
-		this.tooltipDiv.style.top = (scroll.top + mouseEvent.clientY < 400) ? "300px" : "570px";
+		this.tooltipDiv.style.top = (scroll.top + mouseEvent.clientY < 400) ? '300px' : '570px';
 	};
 };
 
@@ -32,7 +32,7 @@ page.templates.board.onParse = function (data) {
 	for (const match of data.matches) {
 		this.set('match', match);
 		this.set('class', this.phaseClasses[match.phase]);
-		this.set('category', page.config.i18n["phase" + match.phase]);
+		this.set('category', page.config.i18n['phase' + match.phase]);
 		const team1 = teams[match.team1_id];
 		const team2 = teams[match.team2_id];
 		this.set('team1.name', team1 ? team1.id : match.team1_source);
@@ -40,12 +40,12 @@ page.templates.board.onParse = function (data) {
 		if (match.team1_scorePK != null) {
 			this.parseBlock('PSO');
 		}
-		if (match.phase === "H") {
+		if (match.phase === 'H') {
 			this.set('num', match.team1_source);
 			this.parseBlock('tooltip');
 		} else {
 			this.set('num', match.id);
-			if (match.phase === "Q" || match.phase === "S") {
+			if (match.phase === 'Q' || match.phase === 'S') {
 				this.parseBlock('highlight');
 			}
 		}

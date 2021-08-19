@@ -12,7 +12,7 @@ frw.data.groupBy = function (list, key, sorted) {
 	let groupedList = {};
 	const keys = [];
 	for (const item of list) {
-		const newKey = (typeof key == "function") ? key(item) : item[key];
+		const newKey = (typeof key == 'function') ? key(item) : item[key];
 		if (newKey == null) continue;
 		if (!groupedList[newKey]) {
 			keys.push(newKey);
@@ -40,7 +40,7 @@ frw.data.reIndex = function (list, key) {
 	if (!list) return null;
 	const indexedList = {};
 	for (const item of list) {
-		const newKey = (typeof key == "function") ? key(item) : item[key];
+		const newKey = (typeof key == 'function') ? key(item) : item[key];
 		indexedList[newKey] = item;
 	}
 	return indexedList;
@@ -79,7 +79,7 @@ frw.data._sortMultipleKeys = function (sorters, a, b) {
  */
 frw.data.update = function (table, updates, key) {
 	if (!table || !updates) return;
-	key = key || "id";
+	key = key || 'id';
 	const kTable = frw.data.reIndex(table, key);
 	for (const update of updates) {
 		const item = kTable[update[key]];

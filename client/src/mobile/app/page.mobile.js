@@ -3,4 +3,4 @@
  * Page
  **********************************************************/
  
-page.config.url.templates = "static/app.mobile.xml";
+page.config.url.templates = 'static/app.mobile.xml';

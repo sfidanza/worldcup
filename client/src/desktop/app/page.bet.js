@@ -23,7 +23,7 @@ page.bet.unplug = function () {
 
 page.bet.betOnChampion = function (teamId) {
 	if (page.data.user) { // avoid sending request if user is not logged in
-		fetch("api/bet/champion?champion=" + teamId)
+		fetch('api/bet/champion?champion=' + teamId)
 			.then(response => response.json())
 			.then(data => {
 				this.afterBet(data);
@@ -33,7 +33,7 @@ page.bet.betOnChampion = function (teamId) {
 
 page.bet.betOnMatchWinner = function (mid, teamId) {
 	if (page.data.user) { // avoid sending request if user is not logged in
-		fetch("api/bet/match?mid=" + mid + "&winner=" + teamId)
+		fetch('api/bet/match?mid=' + mid + '&winner=' + teamId)
 			.then(response => response.json())
 			.then(data => {
 				this.afterBet(data);

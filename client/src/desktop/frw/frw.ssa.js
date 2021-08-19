@@ -12,7 +12,7 @@ frw.ssa = {};
 frw.ssa.loadTemplates = async function (url, repository) {
 	return fetch(url)
 		.then(response => response.text())
-		.then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+		.then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
 		.then(frw.ssa.parseResponseXml)
 		.then(response => {
 			if (response) {
@@ -36,7 +36,7 @@ frw.ssa.parseResponseXml = function (responseXML) {
 		if (nodeList.length > 0) {
 			parsedResponse.templates = {};
 			for (const templateNode of nodeList) {
-				const tid = templateNode.getAttribute("id");
+				const tid = templateNode.getAttribute('id');
 				parsedResponse.templates[tid] = templateNode.firstChild.nodeValue;
 			}
 		}

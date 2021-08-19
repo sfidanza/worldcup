@@ -9,9 +9,9 @@ page.data = {};
 
 page.config = {
 	url: {
-		templates: "static/app.xml",
-		data: "api/all",
-		logout: "api/user/logout",
+		templates: 'static/app.xml',
+		data: 'api/all',
+		logout: 'api/user/logout',
 		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`,
 		register: (login) => `api/user/register?id=${login.id}&pwd=${login.pwd}&name=${login.name}`,
 		auth: (provider) => `api/auth/url?provider=${provider}`,
@@ -20,28 +20,28 @@ page.config = {
 	i18n: {
 		pageTitle: (state) => `2014 Worldcup - ${state}`,
 		group: (group) => `Group ${group}`,
-		phaseG: "Group Matches",
-		phaseH: "Round of 16",
-		phaseQ: "Quarter-Finals",
-		phaseS: "Semi-Finals",
-		phaseT: "Third place",
-		phaseF: "Final"
+		phaseG: 'Group Matches',
+		phaseH: 'Round of 16',
+		phaseQ: 'Quarter-Finals',
+		phaseS: 'Semi-Finals',
+		phaseT: 'Third place',
+		phaseF: 'Final'
 	},
 	area: {
-		main: "global-container",
-		pwl: "app-pwl",
-		contents: "contents",
-		user: "user-area",
-		genericDlg: "generic-dlg",
-		loginDlg: "login-dlg"
+		main: 'global-container',
+		pwl: 'app-pwl',
+		contents: 'contents',
+		user: 'user-area',
+		genericDlg: 'generic-dlg',
+		loginDlg: 'login-dlg'
 	},
 	defaultPage: 'schedule',
-	lang: "en-GB"
+	lang: 'en-GB'
 };
 
 page.initialize = function () {
 	// retrieve templates and data
-	page.notify("Loading data...", true);
+	page.notify('Loading data...', true);
 	Promise.all([
 		frw.ssa.loadTemplates(page.config.url.templates, page.templates),
 		page.getData()
@@ -90,12 +90,12 @@ page.notify = function (message, init) {
 	if (message) {
 		this.pwl.innerHTML = message;
 	} else {
-		this.pwl.innerHTML = "";
-		this.pwl.style.visibility = "hidden";
+		this.pwl.innerHTML = '';
+		this.pwl.style.visibility = 'hidden';
 	}
 	if (init) {
 		frw.dom.center(this.pwl);
-		this.pwl.style.visibility = "visible";
+		this.pwl.style.visibility = 'visible';
 	}
 };
 
@@ -170,7 +170,7 @@ page.select = function (link, event) {
 	if (event) frw.stopEvent(event);
 
 	let target;
-	if (typeof link === "string") {
+	if (typeof link === 'string') {
 		target = link;
 		link = page.getMenuItem('#' + target);
 	} else {
@@ -192,7 +192,7 @@ page.redrawView = function () {
 
 page.view = function (viewName) {
 	page.scoreEditor.unplug();
-	page.show(...viewName.split(","));
+	page.show(...viewName.split(','));
 };
 
 page.show = function (viewName, ...option) {
@@ -207,7 +207,7 @@ page.show = function (viewName, ...option) {
 		case 'register': page.showPage('register', ...option); break;
 		case 'bet': page.showPage('bet', ...option); break;
 	}
-	document.getElementById(page.config.area.contents).className = "page-" + viewName;
+	document.getElementById(page.config.area.contents).className = 'page-' + viewName;
 };
 
 page.showSchedule = function (phase) {
@@ -252,7 +252,7 @@ page.showGroup = function (group) {
 	const content = [
 		page.templates.ranking.retrieve(),
 		page.templates.schedule.retrieve()
-	].join("\n");
+	].join('\n');
 	frw.dom.updateContainer(content, document.getElementById(page.config.area.contents));
 	page.templates.ranking.onLoad();
 	page.templates.schedule.onLoad();
@@ -273,7 +273,7 @@ page.showBoard = function () {
 page.showNotes = function () {
 	page.templates.notes.parse();
 	page.templates.notes.load(page.genericDlg.getBody());
-	page.genericDlg.setTitle("Notes");
+	page.genericDlg.setTitle('Notes');
 	page.genericDlg.show();
 };
 
@@ -297,9 +297,9 @@ page.showPage = function (tplId, options) {
 
 /**********************************************************/
 
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
 	page.initialize();
 });
-window.addEventListener("unload", function () {
+window.addEventListener('unload', function () {
 	page.destroy();
 });

@@ -13,9 +13,9 @@
  */
 uic.Tooltip = function(hideDelay) {
 	this.hideDelay = (hideDelay == null) ? 500 : hideDelay;
-	this.tooltipDiv = document.createElement("div");
-	this.tooltipDiv.className = "uic-tooltip-container";
-	this.tooltipDiv.style.display = "none";
+	this.tooltipDiv = document.createElement('div');
+	this.tooltipDiv.className = 'uic-tooltip-container';
+	this.tooltipDiv.style.display = 'none';
 	this.tooltipDiv.onmouseover = this.mouseOverTooltip.bind(this);
 	this.tooltipDiv.onmouseout = this.mouseOutTooltip.bind(this);
 	document.body.appendChild(this.tooltipDiv);
@@ -32,7 +32,7 @@ uic.Tooltip.prototype.showTooltip = function(mouseEvent, content) {
 	if (this.tooltipDiv) {
 		this.stopHideTimer();
 		frw.dom.updateContainer(content, this.tooltipDiv);
-		this.tooltipDiv.style.display = "";
+		this.tooltipDiv.style.display = '';
 		this.positionTooltip(mouseEvent);
 	}
 };
@@ -51,14 +51,14 @@ uic.Tooltip.prototype.positionTooltip = function(mouseEvent) {
 	if (leftPos > html.clientWidth - offsetWidth) {
 		leftPos = mouseEvent.clientX - 20 - offsetWidth;
 	}
-	this.tooltipDiv.style.left = (leftPos + scroll.left) + "px";
+	this.tooltipDiv.style.left = (leftPos + scroll.left) + 'px';
 	
 	let topPos = mouseEvent.clientY + 20;
 	const offsetHeight = this.tooltipDiv.offsetHeight;
 	if (topPos > html.clientHeight - offsetHeight) {
 		topPos = mouseEvent.clientY - 20 - offsetHeight;
 	}
-	this.tooltipDiv.style.top = (topPos + scroll.top) + "px";
+	this.tooltipDiv.style.top = (topPos + scroll.top) + 'px';
 };
 
 /**
@@ -86,7 +86,7 @@ uic.Tooltip.prototype.stopHideTimer = function() {
  */
 uic.Tooltip.prototype.closeTooltip = function() {
 	if (this.tooltipDiv){
-		this.tooltipDiv.style.display = "none";
+		this.tooltipDiv.style.display = 'none';
 		frw.dom.cleanContainer(this.tooltipDiv);
 	}
 };
@@ -111,8 +111,8 @@ uic.Tooltip.prototype.mouseOutTooltip = function(){
  */
 uic.Tooltip.prototype.destroy = function() {
 	if (this.tooltipDiv) {
-		this.tooltipDiv.onmouseover = "";
-		this.tooltipDiv.onmouseout = "";
+		this.tooltipDiv.onmouseover = '';
+		this.tooltipDiv.onmouseout = '';
 		this.tooltipDiv = null;
 	}
 };

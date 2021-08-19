@@ -10,9 +10,9 @@ uic.Dialog = function(params) {
 	
 	this.dom = {};
 	this.dom.dlg = document.getElementById(params.id);
-	this.dom.close = document.getElementById(params.id + "-close");
+	this.dom.close = document.getElementById(params.id + '-close');
 	this.dom.title = this.dom.dlg.getElementsByTagName('h5')[0];
-	this.dom.body = document.getElementById(params.id + "-body");
+	this.dom.body = document.getElementById(params.id + '-body');
 	
 	this.dom.close.onclick = this.hide.bind(this);
 	this.dom.close.onmousedown = function(e) { if (e) e.cancelBubble=true; };
@@ -41,15 +41,15 @@ uic.Dialog.prototype.show = function() {
 		this.center();
 	}
 	
-	document.body.style.overflow = "hidden";
+	document.body.style.overflow = 'hidden';
 	frw.dom.addOverlay();
 	
 	const dlg = this.dom.dlg;
 	dlg.parentNode.removeChild(dlg);
 	document.body.appendChild(dlg);
-	dlg.style.visibility = "visible";
+	dlg.style.visibility = 'visible';
 	
-	window.addEventListener("resize", this); // registers this.handleEvent in the correct scope
+	window.addEventListener('resize', this); // registers this.handleEvent in the correct scope
 };
 
 uic.Dialog.prototype.keepInPlace = function() {
@@ -58,18 +58,18 @@ uic.Dialog.prototype.keepInPlace = function() {
 };
 
 uic.Dialog.prototype.isVisible = function() {
-	return (this.dom.dlg.style.visibility == "visible");
+	return (this.dom.dlg.style.visibility == 'visible');
 };
 
 uic.Dialog.prototype.hide = function() {
 	if (this.isVisible()) {
-		window.removeEventListener("resize", this);
-		document.body.style.overflow = "auto";
+		window.removeEventListener('resize', this);
+		document.body.style.overflow = 'auto';
 		frw.dom.removeOverlay();
 		const dlg = this.dom.dlg;
-		dlg.style.visibility = "hidden";
-		dlg.style.top = "0px";
-		dlg.style.left = "0px";
+		dlg.style.visibility = 'hidden';
+		dlg.style.top = '0px';
+		dlg.style.left = '0px';
 	}
 	return false;
 };

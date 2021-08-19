@@ -16,7 +16,7 @@ frw.Template = function () {
 	this.defExpr = /(?:<!-- BEGIN: ([-\w]+) -->)?([\s\S]*?)(?:<!-- END: ([-\w]+) -->|(?=<!-- BEGIN: [-\w]+ -->))/g;
 	this.nsbExpr = /<!-- BEGIN: ([-\w]+) -->([\s\S]*?)<!-- END: ([-\w]+) -->/g;
 };
-frw.Template.prototype.MAIN = "_main";
+frw.Template.prototype.MAIN = '_main';
 
 /**
  * Initialize the template object with the source text
@@ -32,7 +32,7 @@ frw.Template.prototype.store = function (s, child) {
 	if (this.stack.length > 0) {
 		current = this.stack[this.stack.length - 1];
 		this.blocks[current] += s;
-		s = "";
+		s = '';
 	} else {
 		current = this.MAIN;
 	}
@@ -55,17 +55,17 @@ frw.Template.prototype.make = function (text) {
 	this.blocks[this.MAIN] = text.replace(expr, (a, b, c, d) => {
 		if (b) { // BEGIN
 			this.stack.push(b);
-			this.blocks[b] = "";
+			this.blocks[b] = '';
 			this.subBlocks[b] = [];
 			this.parsedBlocks[b] = [];
-			this.set("blk_" + b, "");
+			this.set('blk_' + b, '');
 		}
 
 		let r = this.store(c);
 
 		if (d) { // END
 			const closed = this.stack.pop(); // closed === d
-			r = this.store("{blk_" + closed + "}", closed);
+			r = this.store('{blk_' + closed + '}', closed);
 		}
 		return r;
 	});
@@ -86,7 +86,7 @@ frw.Template.prototype.set = function (key, value) {
 };
 
 frw.Template.prototype.setValue = function (key, value) {
-	this.data[key] = (value != null) ? value : "";
+	this.data[key] = (value != null) ? value : '';
 };
 
 frw.Template.prototype.get = function (key) {
@@ -125,7 +125,7 @@ frw.Template.prototype.parseBlock = function (blkId) {
 	const children = this.subBlocks[blkId];
 	if (!children) return null;
 	for (const child of children) {
-		this.set("blk_" + child, this.retrieve(child));
+		this.set('blk_' + child, this.retrieve(child));
 	}
 	const str = this.supplant(this.blocks[blkId], this.data);
 	this.parsedBlocks[blkId].push(str);
@@ -142,12 +142,12 @@ frw.Template.prototype.parse = function () {
 };
 
 frw.Template.prototype.load = function (container, display, block) {
-	if (typeof container === "string") {
+	if (typeof container === 'string') {
 		container = document.getElementById(container);
 	}
 	if (container) {
 		display = display || container.style.display;
-		container.style.display = "none";
+		container.style.display = 'none';
 		frw.dom.updateContainer(this.retrieve(block), container);
 		this.onLoad.apply(this);
 		container.style.display = display;

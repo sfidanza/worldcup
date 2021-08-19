@@ -54,7 +54,7 @@ page.templates.bet.parseChampion = function(bets) {
 			this.set('betStyle', betsOnTeamNb ? 'background-color: rgba(0, 255, 0, ' + betRatio + ');' : '');
 			if (betsOnTeam) {
 				this.set('betsOnTeam', betsOnTeamNb);
-				this.set('betters', this.getBetters(betsOnTeam).join(", "));
+				this.set('betters', this.getBetters(betsOnTeam).join(', '));
 				this.parseBlock('badge');
 			}
 			this.parseBlock('team');
@@ -74,7 +74,7 @@ page.templates.bet.parseMatches = function(bets) {
 	const teams = frw.data.reIndex(page.data.teams, 'id');
 	
 	for (const phase in list) {
-		this.set('phase', page.config.i18n["phase"+phase]);
+		this.set('phase', page.config.i18n['phase'+phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
 		for (const day in phaseList) {
 			const matches = phaseList[day];
@@ -89,7 +89,7 @@ page.templates.bet.parseMatches = function(bets) {
 				this.set('stadium', page.data.stadiums[match.stadium]);
 				let pso = ''; // Penalty Shoot Out
 				if (match.team1_scorePK != null) {
-					pso = "<br/>(" + match.team1_scorePK + " - " + match.team2_scorePK + ")";
+					pso = '<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')';
 				}
 				this.set('PSO', pso);
 				
@@ -130,14 +130,14 @@ page.templates.bet.parseMatches = function(bets) {
 };
 
 page.templates.bet.isBettable = function(m) {
-	return (new Date(m.day + " " + m.hour) > Date.now()) && // match is not started
+	return (new Date(m.day + ' ' + m.hour) > Date.now()) && // match is not started
 		(m.team1_id && m.team2_id); // both teams are known
 };
 
 page.templates.bet.parseTeamBadge = function(badge, betsOnTeam) {
 	if (betsOnTeam) {
 		this.set('betsOnTeam', betsOnTeam.length);
-		this.set('betters', this.getBetters(betsOnTeam).join(", "));
+		this.set('betters', this.getBetters(betsOnTeam).join(', '));
 		this.parseBlock(badge);
 	}
 };

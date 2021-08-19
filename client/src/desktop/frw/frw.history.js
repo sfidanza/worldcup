@@ -7,7 +7,7 @@ frw.history = {};
 
 frw.history.initialize = function(onRestore) {
 	this.onRestore = onRestore;
-	window.addEventListener("hashchange", this.restoreState.bind(this));
+	window.addEventListener('hashchange', this.restoreState.bind(this));
 };
 
 frw.history.getCurrentState = function() {

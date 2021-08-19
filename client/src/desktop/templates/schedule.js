@@ -7,7 +7,7 @@ page.templates.schedule.onParse = function (data) {
 	const teams = frw.data.reIndex(data.teams, 'id');
 
 	for (const phase in list) {
-		this.set('phase', page.config.i18n["phase" + phase]);
+		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
 		for (const day in phaseList) {
 			const matches = phaseList[day];
@@ -26,7 +26,7 @@ page.templates.schedule.onParse = function (data) {
 				this.set('stadium', data.stadiums[match.stadium]);
 				let pso = ''; // Penalty Shoot Out
 				if (match.team1_scorePK != null) {
-					pso = "<br/>(" + match.team1_scorePK + " - " + match.team2_scorePK + ")";
+					pso = '<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')';
 				}
 				this.set('PSO', pso);
 				if (match.channel) {

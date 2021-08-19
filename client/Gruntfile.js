@@ -33,6 +33,7 @@ module.exports = function (grunt) {
 			}
 		},
 		eslint: {
+			// options: { fix: true },
 			desktop: ['src/desktop/**/*.js'],
 			mobile: ['src/mobile/**/*.js']
 		},

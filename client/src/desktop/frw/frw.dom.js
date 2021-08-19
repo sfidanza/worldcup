@@ -32,7 +32,7 @@ frw.dom.cleanContainer = function (region) {
 frw.dom.addOverlay = function () {
 	if (!this.overlay) {
 		this.overlay = document.createElement('div');
-		this.overlay.className = "uic-overlay";
+		this.overlay.className = 'uic-overlay';
 	}
 	frw.dom.positionOverlay();
 	document.body.appendChild(this.overlay);
@@ -42,10 +42,10 @@ frw.dom.positionOverlay = function () {
 	const overlay = this.overlay;
 	const html = document.documentElement;
 	const scroll = frw.dom.getScroll();
-	overlay.style.left = (scroll.left) + "px";
-	overlay.style.top = (scroll.top) + "px";
-	overlay.style.width = (html.clientWidth) + "px";
-	overlay.style.height = (html.clientHeight) + "px";
+	overlay.style.left = (scroll.left) + 'px';
+	overlay.style.top = (scroll.top) + 'px';
+	overlay.style.width = (html.clientWidth) + 'px';
+	overlay.style.height = (html.clientHeight) + 'px';
 };
 
 frw.dom.removeOverlay = function () {
@@ -92,6 +92,6 @@ frw.dom.center = function (element, ratioX, ratioY) {
 	const elTop = scroll.top + Math.max(0, Math.round(html.clientHeight * ratioY - element.clientHeight / 2));
 	const elLeft = scroll.left + Math.round(html.clientWidth * ratioX - element.clientWidth / 2);
 
-	element.style.top = elTop + "px";
-	element.style.left = elLeft + "px";
+	element.style.top = elTop + 'px';
+	element.style.left = elLeft + 'px';
 };
