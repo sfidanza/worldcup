@@ -27,18 +27,16 @@ frw.ssa.loadTemplates = async function (url, repository) {
 };
 
 frw.ssa.parseResponseXml = function (responseXML) {
-	var parsedResponse = null;
+	let parsedResponse = null;
 
 	if (responseXML && responseXML.getElementsByTagName('response')) {
 		parsedResponse = {};
 
-		var nodeList = responseXML.getElementsByTagName('template');
+		const nodeList = responseXML.getElementsByTagName('template');
 		if (nodeList.length > 0) {
 			parsedResponse.templates = {};
-			var tid, templateNode;
-			for (var i = 0; i < nodeList.length; i++) {
-				templateNode = nodeList[i];
-				tid = templateNode.getAttribute("id");
+			for (const templateNode of nodeList) {
+				const tid = templateNode.getAttribute("id");
 				parsedResponse.templates[tid] = templateNode.firstChild.nodeValue;
 			}
 		}

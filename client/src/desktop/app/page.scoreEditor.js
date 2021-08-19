@@ -30,7 +30,7 @@ page.scoreEditor.destroy = function () {
 
 page.scoreEditor.plug = function () {
 	this.active = true;
-	var calendar = document.getElementById("schedule-foot");
+	const calendar = document.getElementById("schedule-foot");
 	if (calendar) {
 		calendar.querySelectorAll(".score").forEach(score => {
 			score.onclick = this.editScore.bind(this, score);
@@ -41,7 +41,7 @@ page.scoreEditor.plug = function () {
 page.scoreEditor.unplug = function () {
 	if (this.active) {
 		this.active = false;
-		var calendar = document.getElementById("schedule-foot");
+		const calendar = document.getElementById("schedule-foot");
 		if (calendar) {
 			calendar.querySelectorAll(".score").forEach(score => {
 				score.onclick = null;
@@ -51,7 +51,7 @@ page.scoreEditor.unplug = function () {
 };
 
 page.scoreEditor.editScore = function (editedScore) {
-	var user = page.data.user;
+	const user = page.data.user;
 	if (user && user.isAdmin) {
 		this.editedScore = editedScore;
 		this.showScoreEditor();
@@ -59,14 +59,14 @@ page.scoreEditor.editScore = function (editedScore) {
 };
 
 page.scoreEditor.showScoreEditor = function () {
-	var pos = frw.dom.getPos(this.editedScore);
-	var offsetTop = Math.round(this.editedScore.clientHeight / 2) - 13;
-	var offsetLeft = Math.round(this.editedScore.clientWidth / 2 - this.editor.clientWidth / 2) - 2;
+	const pos = frw.dom.getPos(this.editedScore);
+	const offsetTop = Math.round(this.editedScore.clientHeight / 2) - 13;
+	const offsetLeft = Math.round(this.editedScore.clientWidth / 2 - this.editor.clientWidth / 2) - 2;
 	this.editor.style.top = (pos.top + offsetTop) + "px";
 	this.editor.style.left = (pos.left + offsetLeft) + "px";
 
-	var mid = this.editedScore.parentNode.id.slice(2); // match id
-	var match = page.data.matches.find(m => m.id == mid);
+	const mid = this.editedScore.parentNode.id.slice(2); // match id
+	const match = page.data.matches.find(m => m.id == mid);
 	if (match) {
 		this.setScore("score1", match.team1_score);
 		this.setScore("score2", match.team2_score);
@@ -88,13 +88,13 @@ page.scoreEditor.hideScoreEditor = function () {
 
 page.scoreEditor.submitScoreEdit = function () {
 	this.hideScoreEditor();
-	var score1 = this.getScore("score1");
-	var score2 = this.getScore("score2");
-	var score1PK = this.getScore("score1PK");
-	var score2PK = this.getScore("score2PK");
+	const score1 = this.getScore("score1");
+	const score2 = this.getScore("score2");
+	const score1PK = this.getScore("score1PK");
+	const score2PK = this.getScore("score2PK");
 	if ((score1 != null) && (score2 != null)) {
-		var mid = this.editedScore.parentNode.id.slice(2); // match id
-		var url = "api/edit/editMatch?mid=" + mid + "&score1=" + score1 + "&score2=" + score2 +
+		const mid = this.editedScore.parentNode.id.slice(2); // match id
+		const url = "api/edit/editMatch?mid=" + mid + "&score1=" + score1 + "&score2=" + score2 +
 			"&score1PK=" + score1PK + "&score2PK=" + score2PK;
 		fetch(url)
 			.then(response => response.json())
@@ -116,7 +116,7 @@ page.scoreEditor.cancelScoreEdit = function () {
 };
 
 page.scoreEditor.getScore = function (inputId) {
-	var input = document.getElementById(inputId);
+	const input = document.getElementById(inputId);
 	if (input) {
 		if ((input.value === "") || !isNaN(+input.value)) return input.value;
 	}
@@ -124,7 +124,7 @@ page.scoreEditor.getScore = function (inputId) {
 };
 
 page.scoreEditor.setScore = function (inputId, score) {
-	var input = document.getElementById(inputId);
+	const input = document.getElementById(inputId);
 	if (input) {
 		input.value = (score == null) ? '' : score;
 	}
@@ -138,7 +138,7 @@ page.scoreEditor.setScore = function (inputId, score) {
  * @param Array  ranks
  */
 page.scoreEditor.setRanks = function (group, ranks) {
-	var sRank = ranks.join('-');
+	const sRank = ranks.join('-');
 	if (group && sRank) {
 		fetch("api/edit/setRanks?gid=" + group + "&ranks=" + sRank)
 			.then(response => response.json())

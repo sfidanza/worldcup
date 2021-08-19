@@ -41,20 +41,20 @@ uic.Tooltip.prototype.showTooltip = function(mouseEvent, content) {
  * Set the tooltip position depending on the mouse and the viewport
  */
 uic.Tooltip.prototype.positionTooltip = function(mouseEvent) {
-	var html = document.documentElement;
-	var scroll = frw.dom.getScroll();
+	const html = document.documentElement;
+	const scroll = frw.dom.getScroll();
 	
 	// Set the tooltip on the lower right of the point that triggered the event.
 	// If it cannot fit on a particular axis, place it to the opposite side on that axis. 
-	var leftPos = mouseEvent.clientX + 20;
-	var offsetWidth = this.tooltipDiv.offsetWidth;
+	let leftPos = mouseEvent.clientX + 20;
+	const offsetWidth = this.tooltipDiv.offsetWidth;
 	if (leftPos > html.clientWidth - offsetWidth) {
 		leftPos = mouseEvent.clientX - 20 - offsetWidth;
 	}
 	this.tooltipDiv.style.left = (leftPos + scroll.left) + "px";
 	
-	var topPos = mouseEvent.clientY + 20;
-	var offsetHeight = this.tooltipDiv.offsetHeight;
+	let topPos = mouseEvent.clientY + 20;
+	const offsetHeight = this.tooltipDiv.offsetHeight;
 	if (topPos > html.clientHeight - offsetHeight) {
 		topPos = mouseEvent.clientY - 20 - offsetHeight;
 	}

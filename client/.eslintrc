@@ -3,5 +3,11 @@
   "env": {
     "browser": true,
     "es2021": true
+  },
+  "rules": {
+    "no-var": "error",
+    "no-extra-bind": "error",
+    "no-shadow": "error",
+    "semi": ["error", "always"]
   }
 }

@@ -3,7 +3,7 @@
  * uic.Dialog
  **********************************************************/
  
-var uic = {};
+const uic = {};
 
 uic.Dialog = function(params) {
 	this.params = params;
@@ -44,7 +44,7 @@ uic.Dialog.prototype.show = function() {
 	document.body.style.overflow = "hidden";
 	frw.dom.addOverlay();
 	
-	var dlg = this.dom.dlg;
+	const dlg = this.dom.dlg;
 	dlg.parentNode.removeChild(dlg);
 	document.body.appendChild(dlg);
 	dlg.style.visibility = "visible";
@@ -66,7 +66,7 @@ uic.Dialog.prototype.hide = function() {
 		window.removeEventListener("resize", this);
 		document.body.style.overflow = "auto";
 		frw.dom.removeOverlay();
-		var dlg = this.dom.dlg;
+		const dlg = this.dom.dlg;
 		dlg.style.visibility = "hidden";
 		dlg.style.top = "0px";
 		dlg.style.left = "0px";
@@ -92,8 +92,8 @@ frw.drag = {
 frw.drag.start = function(dragged, e) {
 	frw.stopEvent(e);
 	this.dragged = dragged;
-	var iPos = frw.dom.getPos(dragged);
-	var mPos = frw.dom.mousePosition(e);
+	const iPos = frw.dom.getPos(dragged);
+	const mPos = frw.dom.mousePosition(e);
 	this.dragOffset.x = mPos.x - iPos.left;
 	this.dragOffset.y = mPos.y - iPos.top;
 	document.onmousemove = this.move.bind(this);
@@ -103,7 +103,7 @@ frw.drag.start = function(dragged, e) {
 frw.drag.move = function(e) {
 	frw.stopEvent(e);
 	if (this.dragged != null) {
-		var mPos = frw.dom.mousePosition(e);
+		const mPos = frw.dom.mousePosition(e);
 		this.dragged.style.left = (mPos.x - this.dragOffset.x) + 'px';
 		this.dragged.style.top = (mPos.y - this.dragOffset.y) + 'px';
 	}

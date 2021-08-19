@@ -11,8 +11,7 @@ frw.history.initialize = function(onRestore) {
 };
 
 frw.history.getCurrentState = function() {
-	var hash = window.location.hash.slice(1);
-	return hash;
+	return window.location.hash.slice(1);
 };
 
 frw.history.pushState = function(hash, title) {
@@ -22,7 +21,7 @@ frw.history.pushState = function(hash, title) {
 };
 
 frw.history.restoreState = function() {
-	var hash = window.location.hash.slice(1);
+	const hash = window.location.hash.slice(1);
 	if (hash !== this.manualHash) {
 		this.manualHash = null;
 		this.onRestore(hash);

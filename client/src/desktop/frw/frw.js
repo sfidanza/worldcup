@@ -2,7 +2,7 @@
  * Framework
  **********************************************************/
  
-var frw = {};
+ const frw = {};
 
 /**
  * Stops both default action and event propagation

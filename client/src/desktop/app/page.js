@@ -3,7 +3,7 @@
  * Page
  **********************************************************/
 
-var page = {};
+const page = {};
 page.templates = {};
 page.data = {};
 
@@ -77,8 +77,8 @@ page.destroy = function () {
 	this.loginDlg.destroy();
 	this.tooltip.destroy();
 	this.pwl = null;
-	for (var id in page.templates) {
-		var tpl = page.templates[id];
+	for (const id in page.templates) {
+		const tpl = page.templates[id];
 		if (tpl.destroy) tpl.destroy();
 	}
 
@@ -241,7 +241,7 @@ page.showRanking = function (group) {
 };
 
 page.showGroup = function (group) {
-	var data = {
+	const data = {
 		teams: page.data.teams.filter(item => item.group === group),
 		matches: page.data.matches.filter(item => item.group === group),
 		stadiums: page.data.stadiums
@@ -249,7 +249,7 @@ page.showGroup = function (group) {
 
 	page.templates.ranking.parse(data.teams, group);
 	page.templates.schedule.parse(data);
-	var content = [
+	const content = [
 		page.templates.ranking.retrieve(),
 		page.templates.schedule.retrieve()
 	].join("\n");
@@ -260,7 +260,7 @@ page.showGroup = function (group) {
 };
 
 page.showBoard = function () {
-	var data = {
+	const data = {
 		teams: page.data.teams,
 		matches: page.data.matches.filter(m => m.group == null),
 		stadiums: page.data.stadiums
@@ -278,8 +278,8 @@ page.showNotes = function () {
 };
 
 page.parseGroupRanking = function (group) {
-	var g = group.charAt(1);
-	var teams = page.data.teams.filter(t => t.group == g);
+	const g = group.charAt(1);
+	const teams = page.data.teams.filter(t => t.group == g);
 	page.templates.quickRanking.parse(teams, g, group.charAt(0));
 };
 
@@ -290,7 +290,7 @@ page.getRankingPopup = function (group1, group2) {
 };
 
 page.showPage = function (tplId, options) {
-	var tpl = page.templates[tplId];
+	const tpl = page.templates[tplId];
 	tpl.parse(options);
 	tpl.load(page.config.area.contents);
 };

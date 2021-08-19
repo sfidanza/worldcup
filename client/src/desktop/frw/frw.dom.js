@@ -39,9 +39,9 @@ frw.dom.addOverlay = function () {
 };
 
 frw.dom.positionOverlay = function () {
-	var overlay = this.overlay;
-	var html = document.documentElement;
-	var scroll = frw.dom.getScroll();
+	const overlay = this.overlay;
+	const html = document.documentElement;
+	const scroll = frw.dom.getScroll();
 	overlay.style.left = (scroll.left) + "px";
 	overlay.style.top = (scroll.top) + "px";
 	overlay.style.width = (html.clientWidth) + "px";
@@ -57,7 +57,7 @@ frw.dom.removeOverlay = function () {
 /*********************************************************/
 
 frw.dom.getPos = function (obj) {
-	var objTop = 0, objLeft = 0;
+	let objTop = 0, objLeft = 0;
 	while (obj) {
 		objTop += obj.offsetTop;
 		objLeft += obj.offsetLeft;
@@ -67,7 +67,7 @@ frw.dom.getPos = function (obj) {
 };
 
 frw.dom.mousePosition = function (e) {
-	var html = document.documentElement;
+	const html = document.documentElement;
 	return {
 		x: e.clientX + html.scrollLeft,
 		y: e.clientY + html.scrollTop
@@ -75,8 +75,8 @@ frw.dom.mousePosition = function (e) {
 };
 
 frw.dom.getScroll = function () {
-	var html = document.documentElement;
-	var body = document.body;
+	const html = document.documentElement;
+	const body = document.body;
 	return {
 		top: html.scrollTop + body.scrollTop, // fix for Chrome
 		left: html.scrollLeft + body.scrollLeft
@@ -87,10 +87,10 @@ frw.dom.center = function (element, ratioX, ratioY) {
 	ratioX = ratioX || 0.5;
 	ratioY = ratioY || 0.5;
 
-	var html = document.documentElement;
-	var scroll = frw.dom.getScroll();
-	var elTop = scroll.top + Math.max(0, Math.round(html.clientHeight * ratioY - element.clientHeight / 2));
-	var elLeft = scroll.left + Math.round(html.clientWidth * ratioX - element.clientWidth / 2);
+	const html = document.documentElement;
+	const scroll = frw.dom.getScroll();
+	const elTop = scroll.top + Math.max(0, Math.round(html.clientHeight * ratioY - element.clientHeight / 2));
+	const elLeft = scroll.left + Math.round(html.clientWidth * ratioX - element.clientWidth / 2);
 
 	element.style.top = elTop + "px";
 	element.style.left = elLeft + "px";

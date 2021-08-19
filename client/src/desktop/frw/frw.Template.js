@@ -22,14 +22,13 @@ frw.Template.prototype.MAIN = "_main";
  * Initialize the template object with the source text
  *  this calls the onCreate callback, passing it any additional parameter
  */
-frw.Template.prototype.create = function (tplText) {
-	var params = Array.prototype.slice.call(arguments, 1);
-	this.onCreate.apply(this, params);
+frw.Template.prototype.create = function (tplText, ...params) {
+	this.onCreate(...params);
 	this.make(tplText.trim());
 };
 
 frw.Template.prototype.store = function (s, child) {
-	var current;
+	let current;
 	if (this.stack.length > 0) {
 		current = this.stack[this.stack.length - 1];
 		this.blocks[current] += s;
@@ -44,8 +43,7 @@ frw.Template.prototype.store = function (s, child) {
 };
 
 frw.Template.prototype.make = function (text) {
-	var self = this;
-	var expr = (this.mode == 'noSubBlock') ? this.nsbExpr : this.defExpr;
+	const expr = (this.mode == 'noSubBlock') ? this.nsbExpr : this.defExpr;
 
 	this.blocks = {};
 	this.subBlocks = {};
@@ -54,20 +52,20 @@ frw.Template.prototype.make = function (text) {
 
 	this.subBlocks[this.MAIN] = [];
 	this.parsedBlocks[this.MAIN] = [];
-	this.blocks[this.MAIN] = text.replace(expr, function (a, b, c, d) {
+	this.blocks[this.MAIN] = text.replace(expr, (a, b, c, d) => {
 		if (b) { // BEGIN
-			self.stack.push(b);
-			self.blocks[b] = "";
-			self.subBlocks[b] = [];
-			self.parsedBlocks[b] = [];
-			self.set("blk_" + b, "");
+			this.stack.push(b);
+			this.blocks[b] = "";
+			this.subBlocks[b] = [];
+			this.parsedBlocks[b] = [];
+			this.set("blk_" + b, "");
 		}
 
-		var r = self.store(c);
+		let r = this.store(c);
 
 		if (d) { // END
-			var closed = self.stack.pop(); // closed === d
-			r = self.store("{blk_" + closed + "}", closed);
+			const closed = this.stack.pop(); // closed === d
+			r = this.store("{blk_" + closed + "}", closed);
 		}
 		return r;
 	});
@@ -79,7 +77,7 @@ frw.Template.prototype.make = function (text) {
  */
 frw.Template.prototype.set = function (key, value) {
 	if (typeof value === 'object') {
-		for (var p in value) {
+		for (const p in value) {
 			this.setValue(key + '.' + p, value[p]);
 		}
 	} else {
@@ -102,7 +100,7 @@ frw.Template.prototype.get = function (key) {
  */
 frw.Template.prototype.retrieve = function (blkId) {
 	blkId = blkId || this.MAIN;
-	var str = this.parsedBlocks[blkId].join('');
+	const str = this.parsedBlocks[blkId].join('');
 	this.parsedBlocks[blkId] = [];
 	return str;
 };
@@ -124,14 +122,12 @@ frw.Template.prototype.supplant = function (str, o) {
  *  Blocks allow conditional and multiple parsing of content
  */
 frw.Template.prototype.parseBlock = function (blkId) {
-	// var blk = this.blocks[blkId];
-	// if (!blk) return null;
-	var children = this.subBlocks[blkId];
+	const children = this.subBlocks[blkId];
 	if (!children) return null;
-	for (var i = 0; i < children.length; i++) {
-		this.set("blk_" + children[i], this.retrieve(children[i]));
+	for (const child of children) {
+		this.set("blk_" + child, this.retrieve(child));
 	}
-	var str = this.supplant(this.blocks[blkId], this.data);
+	const str = this.supplant(this.blocks[blkId], this.data);
 	this.parsedBlocks[blkId].push(str);
 };
 

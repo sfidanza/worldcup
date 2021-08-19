@@ -5,7 +5,7 @@
  */
  if (typeof Object.assign !== 'function') {
 	Object.assign = function(target, source) {
-		for (var p in source) {
+		for (const p in source) {
 			target[p] = source[p];
 		}
 	};

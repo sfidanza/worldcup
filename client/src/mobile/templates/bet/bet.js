@@ -35,15 +35,15 @@ page.templates.bet.onParse = function() {
 };
 
 page.templates.bet.parseChampion = function(bets) {
-	var betAllowed = (!!page.data.user);
+	const betAllowed = (!!page.data.user);
 	this.set('selectableClass', (betAllowed) ? 'selectable' : '');
 	
-	var betsByTeam = bets && frw.data.groupBy(bets, 'value');
-	var totalBets = bets && bets.length;
+	const betsByTeam = bets && frw.data.groupBy(bets, 'value');
+	const totalBets = bets && bets.length;
 	
-	var teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
-	for (var g in teamsByGroup) {
-		var teams = teamsByGroup[g];
+	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
+	for (const g in teamsByGroup) {
+		const teams = teamsByGroup[g];
 		this.set('group', g);
 		
 		this.parseBlock('groupHeader');
@@ -58,23 +58,22 @@ page.templates.bet.parseChampion = function(bets) {
 };
 
 page.templates.bet.parseFriends = function(bets) {
-	var user = page.data.user;
-	var friendsBets = frw.data.sort(bets, [ { key: 'userName', dir: 1 } ]);
-	var teamsById = frw.data.reIndex(page.data.teams, 'id');
-	for (var i = 0; i < friendsBets.length; i++) {
-		var bet = friendsBets[i];
+	const user = page.data.user;
+	const friendsBets = frw.data.sort(bets, [ { key: 'userName', dir: 1 } ]);
+	const teamsById = frw.data.reIndex(page.data.teams, 'id');
+	friendsBets.forEach((bet, i) => {
 		this.set('row_class', 'l' + (i % 2));
 		this.set('bet', bet);
 		this.set('selected', (user && bet.user === user.id) ? 'selected' : '');
 		this.set('bet.team', teamsById[bet.value].name);
 		this.parseBlock('bet');
-	}
+	});
 };
 
 page.templates.bet.parseTeam = function(team, betsByTeam, totalBets) {
-	var betsOnTeam = betsByTeam && betsByTeam[team.id];
-	var betsOnTeamNb = betsOnTeam && betsOnTeam.length;
-	var betRatio = betsOnTeamNb / totalBets;
+	const betsOnTeam = betsByTeam && betsByTeam[team.id];
+	const betsOnTeamNb = betsOnTeam && betsOnTeam.length;
+	const betRatio = betsOnTeamNb / totalBets;
 	this.set('team', team);
 	this.set('betStyle', betsOnTeamNb ? 'background-color: rgba(0, 255, 0, ' + betRatio + ');' : '');
 	if (betsOnTeam) {
@@ -95,8 +94,7 @@ page.templates.bet.parseMatches = function(bets) {
 		for (const day in phaseList) {
 			const matches = phaseList[day];
 			this.set('day', day);
-			for (let i = 0; i < matches.length; i++) {
-				const match = matches[i];
+			matches.forEach((match, i) => {
 				this.set('row_class', 'l'+(i % 2));
 				this.set('match', match);
 				const team1 = teams[match.team1_id];
@@ -138,7 +136,7 @@ page.templates.bet.parseMatches = function(bets) {
 				this.set('bet1Class', bet1Class);
 				this.set('bet2Class', bet2Class);
 				this.parseBlock('match');
-			}
+			});
 			this.parseBlock('day');
 		}
 		this.parseBlock('phase');

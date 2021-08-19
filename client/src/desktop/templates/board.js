@@ -11,15 +11,14 @@ page.templates.board.phaseClasses = {
 };
 
 page.templates.board.onParse = function (data) {
-	var teams = frw.data.reIndex(data.teams, 'id');
+	const teams = frw.data.reIndex(data.teams, 'id');
 
-	for (var i = 0, len = data.matches.length; i < len; i++) {
-		var match = data.matches[i];
+	for (const match of data.matches) {
 		this.set('match', match);
 		this.set('class', this.phaseClasses[match.phase]);
 		this.set('category', page.config.i18n["phase" + match.phase]);
-		var team1 = teams[match.team1_id];
-		var team2 = teams[match.team2_id];
+		const team1 = teams[match.team1_id];
+		const team2 = teams[match.team2_id];
 		this.set('team1.name', team1 ? team1.name : match.team1_source);
 		this.set('team2.name', team2 ? team2.name : match.team2_source);
 		this.set('stadium', data.stadiums[match.stadium]);
