@@ -6,17 +6,17 @@ module.exports = function (grunt) {
 
 	grunt.registerMultiTask('mergeTemplates', 'Merge templates.', function () {
 		// Merge task-specific and/or target-specific options with these defaults.
-		let options = this.options({
+		const options = this.options({
 			prefix: ""
 		});
 
-		let tpl = new Template();
+		const tpl = new Template();
 		tpl.create(grunt.file.read("build/tasks/templates.tpl"));
 
 		// Iterate over all src-dest file pairs.
 		this.files.forEach(file => {
 			file.orig.src.forEach(src => {
-				let id = path.basename(src, path.extname(src));
+				const id = path.basename(src, path.extname(src));
 				// grunt.log.writeln('File: ' + id + ', ' + src);
 				tpl.set('id', id);
 				tpl.set('content', grunt.file.read(options.prefix + src));

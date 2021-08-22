@@ -9,7 +9,7 @@ frw.ssa = {};
  * Load client sides templates
  * @param {object} repository  templates repository to register templates in
  */
-frw.ssa.loadTemplates = async function (url, repository) {
+frw.ssa.loadTemplates = async function (url, repository, i18nRepository) {
 	return fetch(url)
 		.then(response => response.text())
 		.then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
@@ -17,7 +17,7 @@ frw.ssa.loadTemplates = async function (url, repository) {
 		.then(response => {
 			if (response) {
 				for (let tid in response.templates) {
-					repository[tid].create(response.templates[tid]);
+					repository[tid].create(response.templates[tid], i18nRepository);
 				}
 			} else {
 				// connection error

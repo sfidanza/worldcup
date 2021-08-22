@@ -1,5 +1,4 @@
 var fs = require("fs");
-var Template = require("../frw/Template");
 
 var Router = function() {
 };
@@ -13,13 +12,9 @@ Router.prototype.serve = function(request, response, ctx) {
 		// return starting page
 		response.writeHead(200, { "Content-Type": "text/html" });
 		
-		fs.readFile("./src/templates/" + index, { encoding: "utf8" }, function (err, data) {
+		fs.readFile("./src/pages/" + index, { encoding: "utf8" }, function (err, data) {
 			if (err) throw err;
-			
-			var tpl = new Template();
-			tpl.create(data);
-			tpl.parse();
-			response.write(tpl.retrieve());
+			response.write(data);
 			response.end();
 		});
 		return 200;

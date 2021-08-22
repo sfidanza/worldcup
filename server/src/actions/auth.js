@@ -12,7 +12,8 @@ var actions = {};
 module.exports = actions;
 
 actions.callback = function(request, response, ctx) {
-	fs.readFile("./server/templates/signin.html", { encoding: "utf8" }, function (err, data) {
+	fs.readFile("./server/pages/signin.html", { encoding: "utf8" }, function (err, data) {
+		if (err) throw err;
 		response.writeHead(200, { "Content-Type": "text/html" });
 		response.write(data);
 		response.end();
