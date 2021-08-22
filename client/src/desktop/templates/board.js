@@ -38,8 +38,7 @@ page.templates.board.onParse = function (data) {
 };
 
 page.templates.board.highlight = function (match) {
-	let root = document.getElementById('contents');
-
+	const root = document.getElementById('contents');
 	if (match) {
 		root.querySelectorAll('.for-' + match).forEach(item => {
 			item.classList.add('highlighted');

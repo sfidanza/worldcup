@@ -16,7 +16,7 @@ frw.ssa.loadTemplates = async function (url, repository, i18nRepository) {
 		.then(frw.ssa.parseResponseXml)
 		.then(response => {
 			if (response) {
-				for (let tid in response.templates) {
+				for (const tid in response.templates) {
 					repository[tid].create(response.templates[tid], i18nRepository);
 				}
 			} else {

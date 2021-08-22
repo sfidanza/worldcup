@@ -139,12 +139,7 @@ frw.Template.prototype.retrieve = function (blkId) {
  * Replace the placeholders in the string by the values in the object
  */
 frw.Template.prototype.supplant = function (str, o) {
-	return str.replace(/{([^{}]*)}/g,
-		function (a, b) {
-			let r = o[b];
-			return (r !== undefined) ? r : a;
-		}
-	);
+	return str.replace(/{([.\w]+)}/g, (a, b) => o[b] ?? a);
 };
 
 /**

@@ -24,15 +24,15 @@ page.templates.register.submit = function(id, name, pwd1, pwd2) {
 };
 
 page.templates.register.setError = function(fieldId) {
-	let field = document.forms['register-form'][fieldId];
+	const field = document.forms['register-form'][fieldId];
 	if (field) {
 		field.classList.add('error');
 	}
 };
 
 page.templates.register.cleanErrors = function() {
-	let fields = document.forms['register-form'].querySelectorAll('.error');
-	for (let field of fields) {
+	const fields = document.forms['register-form'].querySelectorAll('.error');
+	for (const field of fields) {
 		field.classList.remove('error');
 	}
 };

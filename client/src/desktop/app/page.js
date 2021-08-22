@@ -152,7 +152,7 @@ page.getPageTitle = function (stateTitle) {
 };
 
 page.getMenuItem = function (hash) {
-	let items = document.querySelectorAll('#menu a');
+	const items = document.querySelectorAll('#menu a');
 	Array.from(items).find(item => {
 		return item.hash === hash;
 	});
@@ -211,10 +211,10 @@ page.show = function (viewName, ...option) {
 };
 
 page.showSchedule = function (phase) {
-	let matches = (phase == 1) ? page.data.matches.filter(m => m.phase == 'G') :
+	const matches = (phase == 1) ? page.data.matches.filter(m => m.phase == 'G') :
 		((phase == 2) ? page.data.matches.filter(m => m.group == null) : page.data.matches);
 
-	let data = {
+		const data = {
 		teams: page.data.teams,
 		matches: matches,
 		stadiums: page.data.stadiums
@@ -227,12 +227,12 @@ page.showSchedule = function (phase) {
 
 page.showRanking = function (group) {
 	if (!group) {
-		let teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
-		for (let g in teamsByGroup) {
+		const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
+		for (const g in teamsByGroup) {
 			page.templates.ranking.parse(teamsByGroup[g], g);
 		}
 	} else {
-		let data = {
+		const data = {
 			teams: page.data.teams.filter(item => item.group === group)
 		};
 		page.templates.ranking.parse(data.teams, group);
