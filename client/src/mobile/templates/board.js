@@ -1,6 +1,5 @@
 /* global page, frw, uic */
 page.templates.board = new frw.Template();
-page.templates.board.mode = 'default';
 
 page.templates.board.phaseClasses = {
 	'H': 'round16',

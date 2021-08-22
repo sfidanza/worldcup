@@ -1,84 +1,115 @@
 /* global frw */
 /**********************************************************
  * Template Engine
- * 
- * regexp hints:
- *   \w is the "word" character class [A-Za-z0-9_]
- *   (?: starts a non-capturing expression
- *   (?= starts a positive lookahead expression
- * More about regular expressions: http://www.regular-expressions.info
- **********************************************************/
-
+ * @class
+ */
 frw.Template = function () {
-	this.data = {}; // stores data to supplant in templates
-	//	this.mode = 'default'; // 'default' supports blocks inside blocks, but create is longer
-	this.mode = 'noSubBlock'; // 'noSubBlock' triggers simpler parsing (faster create)
-	this.defExpr = /(?:<!-- BEGIN: ([-\w]+) -->)?([\s\S]*?)(?:<!-- END: ([-\w]+) -->|(?=<!-- BEGIN: [-\w]+ -->))/g;
-	this.nsbExpr = /<!-- BEGIN: ([-\w]+) -->([\s\S]*?)<!-- END: ([-\w]+) -->/g;
 };
+/*
+ * regexp hints:
+ *   \w  is the "word" character class [A-Za-z0-9_]
+ *   (?:  starts a non-capturing expression
+ *   (?=  starts a positive lookahead expression
+ *   
+ * More about regular expressions:
+ *  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+ *  http://www.regular-expressions.info
+ *  http://blog.stevenlevithan.com
+ */
+frw.Template.prototype.PARSER = /<!-- (BEGIN|END): ([-\w]+) -->(.*?)(?=(?:<!-- (?:BEGIN|END): (?:[-\w]+) -->)|$)/sg;
 frw.Template.prototype.MAIN = '_main';
 
 /**
- * Initialize the template object with the source text
- *  this calls the onCreate callback, passing it any additional parameter
+ * Initialize the template object with the source text.
+ * This calls the onCreate callback, passing it any additional parameter.
  */
 frw.Template.prototype.create = function (tplText, ...params) {
 	this.onCreate(...params);
+
+	// i18n support: replaces directly "{i18n.xxx}" by the string from the i18n repository.
+	if (this.i18n) {
+		tplText = tplText.replace(/{i18n\.([.\w]+)}/g, (match, key) => this.i18n[key] ?? match);
+	}
+	
+	// Extract variables
+	this.extractObjectVariables(tplText);
+	
+	// Main parsing
 	this.make(tplText.trim());
 };
 
-frw.Template.prototype.store = function (s, child) {
-	let current;
-	if (this.stack.length > 0) {
-		current = this.stack[this.stack.length - 1];
-		this.blocks[current] += s;
+frw.Template.prototype.store = function(s, parent, child) {
+	if (parent) {
+		this.blocks[parent] += s;
 		s = '';
 	} else {
-		current = this.MAIN;
+		parent = this.MAIN;
 	}
-	if (child) {
-		this.subBlocks[current].push(child);
-	}
+	this.subBlocks[parent].push(child);
 	return s;
 };
 
 frw.Template.prototype.make = function (text) {
-	const expr = (this.mode == 'noSubBlock') ? this.nsbExpr : this.defExpr;
-
 	this.blocks = {};
 	this.subBlocks = {};
 	this.parsedBlocks = {};
-	this.stack = [];
+	const stack = [];
 
 	this.subBlocks[this.MAIN] = [];
-	this.parsedBlocks[this.MAIN] = [];
-	this.blocks[this.MAIN] = text.replace(expr, (a, b, c, d) => {
-		if (b) { // BEGIN
-			this.stack.push(b);
-			this.blocks[b] = '';
-			this.subBlocks[b] = [];
-			this.parsedBlocks[b] = [];
-			this.set('blk_' + b, '');
-		}
-
-		let r = this.store(c);
-
-		if (d) { // END
-			const closed = this.stack.pop(); // closed === d
-			r = this.store('{blk_' + closed + '}', closed);
+	this.blocks[this.MAIN] = text.replace(this.PARSER, (match, tag, blockName, content) => {
+		let r;
+		if (tag === 'BEGIN') {
+			if (blockName in this.blocks) {
+				console.error('Duplicated block <%s>.', blockName);
+			}
+			stack.push(blockName);
+			this.blocks[blockName] = content;
+			this.subBlocks[blockName] = [];
+			r = '';
+		} else if (tag === 'END') {
+			const closed = stack.pop();
+			if (closed !== blockName) {
+				console.error('Incorrect block closed <%s>. Opened block was <%s>.', blockName, closed);
+			}
+			r = this.store('{blk_' + closed + '}' + content, stack[stack.length - 1], closed);
 		}
 		return r;
 	});
+	if (stack.length > 0) {
+		console.error('There are unclosed blocks: <%s>.', stack.join('>, <'));
+	}
 };
 
 /**
- * Set a template variable to a value
- *  if value is an object, all its properties are placed into key_property
+ * Extract variables containing '.', to optimize 'this.set' with object values.
+ * No recursivity: only supports 'key.property', 'key1.key2.key3...property'
  */
-frw.Template.prototype.set = function (key, value) {
-	if (typeof value === 'object') {
-		for (const p in value) {
-			this.setValue(key + '.' + p, value[p]);
+frw.Template.prototype.extractObjectVariables = function(text) {
+	this.variables = {};
+	const varList = text.match(/{[.\w]+}/g);
+	if (varList) {
+		for (const variable of varList) {
+			const pos = variable.indexOf('.');
+			if (pos > 1) { // account for '{' and no '.' as first character
+				const objName = variable.slice(1, pos); // remove opening '{'
+				const property = variable.slice(pos + 1, -1); // remove closing '}'
+				if (!this.variables[objName]) {
+					this.variables[objName] = {};
+				}
+				this.variables[objName][property] = true;
+			}
+		}
+	}
+};
+
+/**
+ * Set a template variable to a value.
+ * If value is an object, all the template variables of the form 'key.property' are set to value[property].
+ */
+frw.Template.prototype.set = function(key, value) {
+	if (value && typeof value === 'object') { // filter out null (typeof null is "object")
+		for (const p in this.variables[key]) {
+			this.setValue(key + '.' + p, value[p]); // avoid recursivity (for now at least)
 		}
 	} else {
 		this.setValue(key, value);
@@ -86,7 +117,7 @@ frw.Template.prototype.set = function (key, value) {
 };
 
 frw.Template.prototype.setValue = function (key, value) {
-	this.data[key] = (value != null) ? value : '';
+	this.data[key] = (value == null) ? '' : value;
 };
 
 frw.Template.prototype.get = function (key) {
@@ -94,13 +125,12 @@ frw.Template.prototype.get = function (key) {
 };
 
 /**
- * Retrieve the parsed content
- *  An optional block id can be passed to target a specific block
- *  The targeted block content is reset
+ * Retrieve the parsed content.
+ * An optional block id can be passed to target a specific block. The targeted block content is reset.
  */
 frw.Template.prototype.retrieve = function (blkId) {
 	blkId = blkId || this.MAIN;
-	const str = this.parsedBlocks[blkId].join('');
+	const str = (this.parsedBlocks[blkId] || []).join('');
 	this.parsedBlocks[blkId] = [];
 	return str;
 };
@@ -118,44 +148,60 @@ frw.Template.prototype.supplant = function (str, o) {
 };
 
 /**
- * Parse the specified block
- *  Blocks allow conditional and multiple parsing of content
+ * Parse the specified block.
+ * Blocks allow conditional and multiple parsing of content.
  */
 frw.Template.prototype.parseBlock = function (blkId) {
 	const children = this.subBlocks[blkId];
-	if (!children) return null;
+	if (!children) {
+		console.error('Not existing block parsed <%s>.', blkId);
+		return null;
+	}
 	for (const child of children) {
 		this.set('blk_' + child, this.retrieve(child));
 	}
 	const str = this.supplant(this.blocks[blkId], this.data);
+	if (!this.parsedBlocks[blkId]) this.parsedBlocks[blkId] = [];
 	this.parsedBlocks[blkId].push(str);
 };
 
 /**
- * Parse the template
- *  Pass any argument to the OnParse callback, that should prepare the data
- *  (using 'set' and 'parseBlock')
+ * Parse the template.
+ * Forward any argument to the onParse callback, that will prepare the data (using 'set' and 'parseBlock').
  */
 frw.Template.prototype.parse = function () {
+	this.data = {}; // stores data to supplant in templates
 	this.onParse.apply(this, arguments);
 	this.parseBlock(this.MAIN);
 };
 
-frw.Template.prototype.load = function (container, display, block) {
+/**
+ * Load the parsed template
+ * @param {string | DomNode} container
+ * @param {string} [display] - During template load, the container will be set to `display: none`. This control the
+ *                             value of the `display` property after the load. By default, the initial container
+ *                             `display` is restored.
+ * @param {string} [blk] - Only loads the specified subBlock in the container
+ */
+frw.Template.prototype.load = function (container, display, blk) {
 	if (typeof container === 'string') {
 		container = document.getElementById(container);
 	}
 	if (container) {
 		display = display || container.style.display;
 		container.style.display = 'none';
-		frw.dom.updateContainer(this.retrieve(block), container);
-		this.onLoad.apply(this);
+		frw.dom.updateContainer(this.retrieve(blk), container);
+		this.onLoad();
 		container.style.display = display;
 	}
 };
 
-frw.Template.prototype.onCreate = function () {
+/**
+ * Standard callbacks to be overriden.
+ */
+frw.Template.prototype.onCreate = function(i18nRepository) {
 	// to be overridden
+	this.i18n = i18nRepository;
 };
 frw.Template.prototype.onParse = function (pfx, obj) {
 	// to be overridden

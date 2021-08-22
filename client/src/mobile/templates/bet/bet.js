@@ -1,6 +1,5 @@
 /* global page, frw */
 page.templates.bet = new frw.Template();
-page.templates.bet.mode = 'default';
 
 page.templates.bet.onParse = function() {
 	const bets = page.data.bets;

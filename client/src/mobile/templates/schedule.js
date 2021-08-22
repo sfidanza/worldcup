@@ -1,6 +1,5 @@
 /* global page, frw */
 page.templates.schedule = new frw.Template();
-page.templates.schedule.mode = 'default';
 
 page.templates.schedule.onParse = function (data) {
 	const list = frw.data.groupBy(data.matches, 'phase');
