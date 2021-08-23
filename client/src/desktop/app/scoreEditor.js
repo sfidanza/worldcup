@@ -1,34 +1,37 @@
-/* global page, frw */
 /**********************************************************
  * Score Editor
  **********************************************************/
 
-page.scoreEditor = {};
+let page, frw;
 
-page.scoreEditor.initialize = function () {
+export const scoreEditor = {};
+
+scoreEditor.initialize = function (pageRef, frwRef) {
+	page = pageRef;
+	frw = frwRef;
 	this.editor = document.getElementById('score-editor');
 	this.editor.onkeydown = function (e) {
 		if (e.code === 'ArrowUp') {
-			page.scoreEditor.editor.classList.add('small');
+			scoreEditor.editor.classList.add('small');
 		} else if (e.code === 'ArrowDown') {
-			page.scoreEditor.editor.classList.remove('small');
+			scoreEditor.editor.classList.remove('small');
 		}
 	};
 	document.getElementById('score-editor-ok').onclick = function (e) {
-		frw.stopEvent(e);
-		page.scoreEditor.submitScoreEdit();
+		e.preventDefault();
+		scoreEditor.submitScoreEdit();
 	};
 	document.getElementById('score-editor-cancel').onclick = function (e) {
-		frw.stopEvent(e);
-		page.scoreEditor.cancelScoreEdit();
+		e.preventDefault();
+		scoreEditor.cancelScoreEdit();
 	};
 };
 
-page.scoreEditor.destroy = function () {
+scoreEditor.destroy = function () {
 	this.editor = null;
 };
 
-page.scoreEditor.plug = function () {
+scoreEditor.plug = function () {
 	this.active = true;
 	const calendar = document.getElementById('schedule-foot');
 	if (calendar) {
@@ -38,7 +41,7 @@ page.scoreEditor.plug = function () {
 	}
 };
 
-page.scoreEditor.unplug = function () {
+scoreEditor.unplug = function () {
 	if (this.active) {
 		this.active = false;
 		const calendar = document.getElementById('schedule-foot');
@@ -50,7 +53,7 @@ page.scoreEditor.unplug = function () {
 	}
 };
 
-page.scoreEditor.editScore = function (editedScore) {
+scoreEditor.editScore = function (editedScore) {
 	const user = page.data.user;
 	if (user && user.isAdmin) {
 		this.editedScore = editedScore;
@@ -58,7 +61,7 @@ page.scoreEditor.editScore = function (editedScore) {
 	}
 };
 
-page.scoreEditor.showScoreEditor = function () {
+scoreEditor.showScoreEditor = function () {
 	const pos = frw.dom.getPos(this.editedScore);
 	const offsetTop = Math.round(this.editedScore.clientHeight / 2) - 13;
 	const offsetLeft = Math.round(this.editedScore.clientWidth / 2 - this.editor.clientWidth / 2) - 2;
@@ -73,20 +76,20 @@ page.scoreEditor.showScoreEditor = function () {
 		this.setScore('score1PK', match.team1_scorePK);
 		this.setScore('score2PK', match.team2_scorePK);
 		if (match.team1_scorePK + match.team2_scorePK) { // basic check to avoid one being 0
-			page.scoreEditor.editor.classList.remove('small');
+			scoreEditor.editor.classList.remove('small');
 		} else {
-			page.scoreEditor.editor.classList.add('small');
+			scoreEditor.editor.classList.add('small');
 		}
 		this.editor.style.visibility = 'visible';
 		document.getElementById('score1').focus();
 	}
 };
 
-page.scoreEditor.hideScoreEditor = function () {
+scoreEditor.hideScoreEditor = function () {
 	this.editor.style.visibility = 'hidden';
 };
 
-page.scoreEditor.submitScoreEdit = function () {
+scoreEditor.submitScoreEdit = function () {
 	this.hideScoreEditor();
 	const score1 = this.getScore('score1');
 	const score2 = this.getScore('score2');
@@ -109,13 +112,12 @@ page.scoreEditor.submitScoreEdit = function () {
 	}
 };
 
-page.scoreEditor.cancelScoreEdit = function () {
+scoreEditor.cancelScoreEdit = function () {
 	this.hideScoreEditor();
 	this.editedScore = null;
-	return false;
 };
 
-page.scoreEditor.getScore = function (inputId) {
+scoreEditor.getScore = function (inputId) {
 	const input = document.getElementById(inputId);
 	if (input) {
 		if ((input.value === '') || !isNaN(+input.value)) return input.value;
@@ -123,7 +125,7 @@ page.scoreEditor.getScore = function (inputId) {
 	return null;
 };
 
-page.scoreEditor.setScore = function (inputId, score) {
+scoreEditor.setScore = function (inputId, score) {
 	const input = document.getElementById(inputId);
 	if (input) {
 		input.value = (score == null) ? '' : score;
@@ -133,11 +135,11 @@ page.scoreEditor.setScore = function (inputId, score) {
 
 /**
  * Manually set ranks in a group. Updates DB (server will check for admin rights).
- *   Ex: page.scoreEditor.setRanks('A', ['CZE', 'GRE', 'RUS', 'POL'])
+ *   Ex: scoreEditor.setRanks('A', ['CZE', 'GRE', 'RUS', 'POL'])
  * @param String group
  * @param Array  ranks
  */
-page.scoreEditor.setRanks = function (group, ranks) {
+scoreEditor.setRanks = function (group, ranks) {
 	const sRank = ranks.join('-');
 	if (group && sRank) {
 		fetch('api/edit/setRanks?gid=' + group + '&ranks=' + sRank)

@@ -1,7 +1,10 @@
-/* global page, frw */
-page.templates.board = new frw.Template();
+import { Template } from '../frw/frw.Template.js';
 
-page.templates.board.phaseClasses = {
+let page, frw;
+
+export const board = new Template();
+
+board.phaseClasses = {
 	'H': 'round16',
 	'Q': 'quarter',
 	'S': 'semi',
@@ -9,7 +12,13 @@ page.templates.board.phaseClasses = {
 	'F': 'final'
 };
 
-page.templates.board.onParse = function (data) {
+board.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	frw = frwRef;
+	this.i18n = i18nRepository;
+};
+
+board.onParse = function (data) {
 	const teams = frw.data.reIndex(data.teams, 'id');
 
 	for (const match of data.matches) {
@@ -25,19 +34,15 @@ page.templates.board.onParse = function (data) {
 			this.parseBlock('PSO');
 		}
 		if (match.phase === 'H') {
-			this.set('num', match.team1_source);
 			this.parseBlock('tooltip');
-		} else {
-			this.set('num', match.id);
-			if (match.phase === 'Q' || match.phase === 'S') {
-				this.parseBlock('highlight');
-			}
+		} else if (match.phase === 'Q' || match.phase === 'S') {
+			this.parseBlock('highlight');
 		}
 		this.parseBlock('match');
 	}
 };
 
-page.templates.board.highlight = function (match) {
+board.highlight = function (match) {
 	const root = document.getElementById('contents');
 	if (match) {
 		root.querySelectorAll('.for-' + match).forEach(item => {

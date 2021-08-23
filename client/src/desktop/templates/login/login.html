@@ -5,7 +5,7 @@
 	</fieldset>
 </div>
 <form id="signin-form" method="post"
-      onsubmit="frw.stopEvent(event); page.templates.login.submit(this.user_id.value, this.user_pwd.value);">
+      onsubmit="page.templates.login.submit(this.user_id.value, this.user_pwd.value); return false;">
 	<fieldset>
 		<p>Log in using your credentials on this site:</p>
 		<div>

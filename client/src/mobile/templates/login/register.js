@@ -1,12 +1,20 @@
-/* global page, frw */
-page.templates.register = new frw.Template();
+import { Template } from '../../../frw/frw.Template.js';
 
-page.templates.register.onParse = function(backTo) {
+let page;
+
+export const register = new Template();
+
+register.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	this.i18n = i18nRepository;
+};
+
+register.onParse = function(backTo) {
 	this.backTo = backTo || 'bet';
 	this.set('backTo', this.backTo);
 };
 
-page.templates.register.submit = function(id, name, pwd1, pwd2) {
+register.submit = function(id, name, pwd1, pwd2) {
 	this.cleanErrors();
 	if (!id) {
 		this.setError('user_id');
@@ -23,14 +31,14 @@ page.templates.register.submit = function(id, name, pwd1, pwd2) {
 	}
 };
 
-page.templates.register.setError = function(fieldId) {
+register.setError = function(fieldId) {
 	const field = document.forms['register-form'][fieldId];
 	if (field) {
 		field.classList.add('error');
 	}
 };
 
-page.templates.register.cleanErrors = function() {
+register.cleanErrors = function() {
 	const fields = document.forms['register-form'].querySelectorAll('.error');
 	for (const field of fields) {
 		field.classList.remove('error');

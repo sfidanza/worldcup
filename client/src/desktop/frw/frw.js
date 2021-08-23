@@ -1,14 +1,9 @@
 /**********************************************************
  * Framework
  **********************************************************/
- 
- const frw = {};
 
-/**
- * Stops both default action and event propagation
- */
-frw.stopEvent = function(event) {
-	if (!event) return;
-	event.preventDefault();
-	event.stopPropagation();
-};
+export { data } from './frw.data.js';
+export { dom } from './frw.dom.js';
+export { history } from './frw.history.js';
+export { ssa } from './frw.ssa.js';
+export { Template } from './frw.Template.js';

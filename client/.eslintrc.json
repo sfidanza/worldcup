@@ -4,12 +4,15 @@
     "browser": true,
     "es2021": true
   },
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
-    "no-var": "error",
     "no-extra-bind": "error",
     "no-shadow": "error",
+    "no-var": "error",
     "prefer-const": "error",
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "quotes": [ "error", "single" ],
+    "semi": [ "error", "always" ]
   }
 }

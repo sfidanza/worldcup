@@ -1,7 +1,15 @@
-/* global page, frw */
-page.templates.ranking = new frw.Template();
+import { Template } from '../../frw/frw.Template.js';
 
-page.templates.ranking.onParse = function(teams, group) {
+let frw;
+
+export const ranking = new Template();
+
+ranking.onCreate = function (pageRef, frwRef, i18nRepository) {
+	frw = frwRef;
+	this.i18n = i18nRepository;
+};
+
+ranking.onParse = function (teams, group) {
 	this.set('group', group);
 	teams = frw.data.sort(teams, [{ key: 'rank', dir: +1 }]);
 	teams.forEach((team, i) => {

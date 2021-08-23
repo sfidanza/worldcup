@@ -5,14 +5,20 @@ module.exports = function (grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		clean: ['target/*'],
 		copy: {
-			build: { expand: true, cwd: 'src/desktop/', src: ['img/**'], dest: 'target/static/' },
+			build: {
+				files: [
+					{ expand: true, cwd: 'src/desktop/', src: ['img/**'], dest: 'target/static/' },
+					{ expand: true, cwd: 'src/desktop/', src: ['**/*.js'], dest: 'target/static/' },
+					{ expand: true, cwd: 'src/mobile/', src: ['**/*.js'], dest: 'target/static/mobile/' }
+				]
+			}
 		},
 		concat: {
-			build: grunt.file.readJSON('build/cfg/concat.json'),
+			desktop: grunt.file.readJSON('build/cfg/concat.json'),
 			mobile: grunt.file.readJSON('build/cfg/concat.mobile.json')
 		},
 		mergeTemplates: {
-			build: grunt.file.readJSON('build/cfg/mergeTemplates.json'),
+			desktop: grunt.file.readJSON('build/cfg/mergeTemplates.json'),
 			mobile: grunt.file.readJSON('build/cfg/mergeTemplates.mobile.json')
 		},
 		cssmin: {
@@ -48,28 +54,36 @@ module.exports = function (grunt) {
 				files: 'Gruntfile.js',
 				tasks: 'default'
 			},
-			jscss: {
-				files: ['src/desktop/**/*.js', 'src/desktop/**/*.css', 'build/cfg/concat.json'],
-				tasks: ['concat:build']
+			css: {
+				files: ['src/desktop/**/*.css', 'build/cfg/concat.json'],
+				tasks: ['concat:desktop']
+			},
+			mcss: {
+				files: ['src/mobile/**/*.css', 'build/cfg/concat.mobile.json'],
+				tasks: ['concat:mobile']
+			},
+			eslintDesktop: {
+				files: ['src/desktop/**/*.js'],
+				tasks: ['eslint:desktop']
+			},
+			eslintMobile: {
+				files: ['src/mobile/**/*.js'],
+				tasks: ['eslint:mobile']
 			},
 			eslint: {
-				files: ['src/desktop/**/*.js', 'src/mobile/**/*.js'],
+				files: ['.eslintrc'],
 				tasks: ['eslint']
 			},
 			tpl: {
 				files: ['src/desktop/**/*.html', 'build/cfg/mergeTemplates.json'],
-				tasks: ['mergeTemplates:build']
-			},
-			mjscss: {
-				files: ['src/mobile/**/*.js', 'src/mobile/**/*.css', 'build/cfg/concat.mobile.json'],
-				tasks: ['concat:mobile']
+				tasks: ['mergeTemplates:desktop']
 			},
 			mtpl: {
 				files: ['src/mobile/**/*.html', 'build/cfg/mergeTemplates.mobile.json'],
 				tasks: ['mergeTemplates:mobile']
 			},
-			img: {
-				files: 'src/desktop/img/**',
+			copy: {
+				files: ['src/desktop/img/**', 'src/desktop/**/*.js', 'src/mobile/**/*.js'],
 				tasks: ['copy']
 			}
 		}

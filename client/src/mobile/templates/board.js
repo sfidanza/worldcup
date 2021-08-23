@@ -1,7 +1,10 @@
-/* global page, frw, uic */
-page.templates.board = new frw.Template();
+import { Template } from '../../frw/frw.Template.js';
 
-page.templates.board.phaseClasses = {
+let page, frw;
+
+export const board = new Template();
+
+board.phaseClasses = {
 	'H': 'round16',
 	'Q': 'quarter',
 	'S': 'semi',
@@ -9,23 +12,13 @@ page.templates.board.phaseClasses = {
 	'F': 'final'
 };
 
-page.templates.board.onCreate = function () {
-	this.tooltip = new uic.Tooltip(0);
-	this.tooltip.positionTooltip = function (mouseEvent) {
-		const html = document.documentElement;
-		const offsetWidth = this.tooltipDiv.offsetWidth;
-		this.tooltipDiv.style.left = ((html.clientWidth - offsetWidth) / 2) + 'px';
-
-		const scroll = frw.dom.getScroll();
-		this.tooltipDiv.style.top = (scroll.top + mouseEvent.clientY < 400) ? '300px' : '570px';
-	};
+board.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	frw = frwRef;
+	this.i18n = i18nRepository;
 };
 
-page.templates.board.destroy = function () {
-	this.tooltip.destroy();
-};
-
-page.templates.board.onParse = function (data) {
+board.onParse = function (data) {
 	const teams = frw.data.reIndex(data.teams, 'id');
 
 	for (const match of data.matches) {
@@ -40,27 +33,8 @@ page.templates.board.onParse = function (data) {
 			this.parseBlock('PSO');
 		}
 		if (match.phase === 'H') {
-			this.set('num', match.team1_source);
 			this.parseBlock('tooltip');
-		} else {
-			this.set('num', match.id);
-			if (match.phase === 'Q' || match.phase === 'S') {
-				this.parseBlock('highlight');
-			}
 		}
 		this.parseBlock('match');
-	}
-};
-
-page.templates.board.highlight = function (match) {
-	const root = document.getElementById('contents');
-	if (match) {
-		root.querySelectorAll('.for-' + match).forEach(item => {
-			item.classList.add('highlighted');
-		});
-	} else {
-		root.querySelectorAll('div.highlighted').forEach(item => {
-			item.classList.remove('highlighted');
-		});
 	}
 };

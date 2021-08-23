@@ -5,14 +5,14 @@
 <div id="link-T1" class="link"></div><div id="link-F1" class="link"></div>
 
 <!-- BEGIN: match -->
-<div class="match {class}" id="match-{match.phase}{num}"
+<div class="match {class}" id="match-{match.phase}{match.id}"
      <!-- BEGIN: tooltip -->
      onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}'));"
      onmousemove="page.tooltip.positionTooltip(event);"
      onmouseout="page.tooltip.hideTooltip();"
      <!-- END: tooltip -->
      <!-- BEGIN: highlight -->
-     onmouseover="page.templates.board.highlight('{match.phase}{num}');"
+     onmouseover="page.templates.board.highlight('{match.phase}{match.id}');"
      onmouseout="page.templates.board.highlight();"
      <!-- END: highlight -->
      >

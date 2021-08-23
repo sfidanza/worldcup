@@ -1,10 +1,18 @@
-/* global page, frw */
-page.templates.main = new frw.Template();
+import { Template } from '../../frw/frw.Template.js';
 
-page.templates.main.onParse = function() {
+let page;
+
+export const main = new Template();
+
+main.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	this.i18n = i18nRepository;
 };
 
-page.templates.main.submitLogin = function(id, pwd) {
+main.onParse = function () {
+};
+
+main.submitLogin = function (id, pwd) {
 	page.login({
 		id: id,
 		pwd: pwd

@@ -1,5 +1,10 @@
-/* global page, frw */
-page.templates.notes = new frw.Template();
+import { Template } from '../frw/frw.Template.js';
 
-page.templates.notes.onParse = function () {
+export const notes = new Template();
+
+notes.onCreate = function (pageRef, frwRef, i18nRepository) {
+	this.i18n = i18nRepository;
+};
+
+notes.onParse = function () {
 };

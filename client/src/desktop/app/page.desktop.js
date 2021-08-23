@@ -1,9 +1,9 @@
 /**********************************************************
- * Mobile
+ * Desktop
  **********************************************************/
 
 import * as templates from './templates.js';
-import { page } from '../../app/page.js';
+import { page } from './page.js';
 
-page.config.url.templates = 'static/app.mobile.xml';
+page.config.url.templates = 'static/app.xml';
 page.templates = templates;

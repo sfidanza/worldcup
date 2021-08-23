@@ -1,12 +1,20 @@
-/* global page, frw */
-page.templates.login = new frw.Template();
+import { Template } from '../../../frw/frw.Template.js';
 
-page.templates.login.onParse = function(backTo) {
+let page;
+
+export const login = new Template();
+
+login.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	this.i18n = i18nRepository;
+};
+
+login.onParse = function (backTo) {
 	this.backTo = backTo || 'bet';
 	this.set('backTo', this.backTo);
 };
 
-page.templates.login.submit = function(id, pwd) {
+login.submit = function (id, pwd) {
 	this.cleanErrors();
 	if (!id) {
 		this.setError('user_id');
@@ -20,21 +28,21 @@ page.templates.login.submit = function(id, pwd) {
 	}
 };
 
-page.templates.login.setError = function(fieldId) {
+login.setError = function (fieldId) {
 	const field = document.forms['signin-form'][fieldId];
 	if (field) {
 		field.classList.add('error');
 	}
 };
 
-page.templates.login.cleanErrors = function() {
+login.cleanErrors = function () {
 	const fields = document.forms['signin-form'].querySelectorAll('.error');
 	for (const field of fields) {
 		field.classList.remove('error');
 	}
 };
 
-page.templates.login.signinGoogle = function() {
+login.signinGoogle = function () {
 	const button = document.getElementById('social-signin').querySelector('.signin-google');
 	button.classList.add('waiting');
 	fetch(page.config.url.auth('google'))
@@ -46,7 +54,7 @@ page.templates.login.signinGoogle = function() {
 		});
 };
 
-page.templates.login.signinCallback = function(query) {
+login.signinCallback = function (query) {
     const params = new URLSearchParams(query);
     const code = params.get('code');
 	if (code) {

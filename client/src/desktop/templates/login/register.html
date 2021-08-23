@@ -1,5 +1,5 @@
 <form id="register-form" method="post"
-      onsubmit="frw.stopEvent(event); page.templates.register.submit(this.user_id.value, this.user_name.value, this.user_pwd1.value, this.user_pwd2.value);">
+      onsubmit="page.templates.register.submit(this.user_id.value, this.user_name.value, this.user_pwd1.value, this.user_pwd2.value); return false;">
 	<fieldset>
 		<p>Register here to be able to place a bet. Your name will be displayed on the bets page.</p>
 		<div>

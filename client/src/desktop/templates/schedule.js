@@ -1,7 +1,16 @@
-/* global page, frw */
-page.templates.schedule = new frw.Template();
+import { Template } from '../frw/frw.Template.js';
 
-page.templates.schedule.onParse = function (data) {
+let page, frw;
+
+export const schedule = new Template();
+
+schedule.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	frw = frwRef;
+	this.i18n = i18nRepository;
+};
+
+schedule.onParse = function (data) {
 	const list = frw.data.groupBy(data.matches, 'phase');
 	const teams = frw.data.reIndex(data.teams, 'id');
 
@@ -39,7 +48,7 @@ page.templates.schedule.onParse = function (data) {
 	}
 };
 
-page.templates.schedule.highlight = function (team) {
+schedule.highlight = function (team) {
 	const table = document.getElementById('schedule-foot');
 	if (!table) return; // no schedule on this page
 

@@ -1,7 +1,12 @@
-/* global page, frw */
-page.templates.quickRanking = new frw.Template();
+import { Template } from '../../frw/frw.Template.js';
 
-page.templates.quickRanking.onParse = function(teams, group, highlighted) {
+export const quickRanking = new Template();
+
+quickRanking.onCreate = function (pageRef, frwRef, i18nRepository) {
+	this.i18n = i18nRepository;
+};
+
+quickRanking.onParse = function (teams, group, highlighted) {
 	this.set('group', group);
 	teams.forEach((team, i) => {
 		this.set('row_class', 'l'+(i % 2));

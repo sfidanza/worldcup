@@ -1,7 +1,16 @@
-/* global page, frw */
-page.templates.bet = new frw.Template();
+import { Template } from '../../../frw/frw.Template.js';
 
-page.templates.bet.onParse = function() {
+let page, frw;
+
+export const bet = new Template();
+
+bet.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	frw = frwRef;
+	this.i18n = i18nRepository;
+};
+
+bet.onParse = function() {
 	const bets = page.data.bets;
 	const user = page.data.user;
 	
@@ -33,7 +42,7 @@ page.templates.bet.onParse = function() {
 	this.set('leaderboard', page.templates.leaderboard.retrieve());
 };
 
-page.templates.bet.parseChampion = function(bets) {
+bet.parseChampion = function(bets) {
 	const betAllowed = (!!page.data.user);
 	this.set('selectableClass', (betAllowed) ? 'selectable' : '');
 	
@@ -56,20 +65,20 @@ page.templates.bet.parseChampion = function(bets) {
 	}
 };
 
-page.templates.bet.parseFriends = function(bets) {
+bet.parseFriends = function(bets) {
 	const user = page.data.user;
 	const friendsBets = frw.data.sort(bets, [ { key: 'userName', dir: 1 } ]);
 	const teamsById = frw.data.reIndex(page.data.teams, 'id');
-	friendsBets.forEach((bet, i) => {
+	friendsBets.forEach((b, i) => {
 		this.set('row_class', 'l' + (i % 2));
-		this.set('bet', bet);
+		this.set('bet', b);
 		this.set('selected', (user && bet.user === user.id) ? 'selected' : '');
 		this.set('bet.team', teamsById[bet.value].name);
 		this.parseBlock('bet');
 	});
 };
 
-page.templates.bet.parseTeam = function(team, betsByTeam, totalBets) {
+bet.parseTeam = function(team, betsByTeam, totalBets) {
 	const betsOnTeam = betsByTeam && betsByTeam[team.id];
 	const betsOnTeamNb = betsOnTeam && betsOnTeam.length;
 	const betRatio = betsOnTeamNb / totalBets;
@@ -82,7 +91,7 @@ page.templates.bet.parseTeam = function(team, betsByTeam, totalBets) {
 	this.parseBlock('team');
 };
 
-page.templates.bet.parseMatches = function(bets) {
+bet.parseMatches = function(bets) {
 	const user = page.data.user;
 	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
 	const teams = frw.data.reIndex(page.data.teams, 'id');
@@ -142,12 +151,12 @@ page.templates.bet.parseMatches = function(bets) {
 	}
 };
 
-page.templates.bet.isBettable = function(m) {
+bet.isBettable = function(m) {
 	return (new Date(m.day + ' ' + m.hour) > Date.now()) && // match is not started
 		(m.team1_id && m.team2_id); // both teams are known
 };
 
-page.templates.bet.parseTeamBadge = function(badge, betsOnTeam) {
+bet.parseTeamBadge = function(badge, betsOnTeam) {
 	if (betsOnTeam) {
 		this.set('betsOnTeam', betsOnTeam.length);
 		this.parseBlock(badge);

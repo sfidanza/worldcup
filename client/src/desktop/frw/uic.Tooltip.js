@@ -1,9 +1,8 @@
-/* global frw, uic */
 /**********************************************************
  * uic.Tooltip
  **********************************************************/
- 
-//frw.namespace("uic");
+
+import { dom } from './frw.dom.js';
 
 /**
  * Create the tooltip container and attaches it to document.body
@@ -11,15 +10,19 @@
  * @param {integer} hideDelay  The number of milliseconds, after the mouse moves off the target that triggered
  *                             the display of the tooltip, before the tooltip is hidden (optional, default=500).
  */
-uic.Tooltip = function(hideDelay) {
-	this.hideDelay = (hideDelay == null) ? 500 : hideDelay;
+export const Tooltip = function (hideDelay) {
+	this.hideDelay = hideDelay ?? 500;
+	this.hideTimer = null;
 	this.tooltipDiv = document.createElement('div');
 	this.tooltipDiv.className = 'uic-tooltip-container';
 	this.tooltipDiv.style.display = 'none';
-	this.tooltipDiv.onmouseover = this.mouseOverTooltip.bind(this);
-	this.tooltipDiv.onmouseout = this.mouseOutTooltip.bind(this);
+	if (this.hideDelay > 0) {
+		// Keep tooltip opened when mouse is inside the tooltip
+		this.tooltipDiv.onmouseover = this.stopHideTimer.bind(this);
+		// Restart the delayed close when mouse is moved out of the tooltip
+		this.tooltipDiv.onmouseout = this.setHideTimer.bind(this);
+	}
 	document.body.appendChild(this.tooltipDiv);
-	this.hideTimer = null;
 };
 
 /**
@@ -27,34 +30,39 @@ uic.Tooltip = function(hideDelay) {
  * 
  * @param {object} mouseEvent The event which triggered the method call.
  * @param {string} content The HTML content to place in the tooltip container.
+ * @param {string} option If 'centerX' is passed, then horizontal position is centered
  */
-uic.Tooltip.prototype.showTooltip = function(mouseEvent, content) {
+Tooltip.prototype.showTooltip = function (mouseEvent, content, option) {
 	if (this.tooltipDiv) {
 		this.stopHideTimer();
-		frw.dom.updateContainer(content, this.tooltipDiv);
+		dom.updateContainer(content, this.tooltipDiv);
 		this.tooltipDiv.style.display = '';
-		this.positionTooltip(mouseEvent);
+		this.positionTooltip(mouseEvent, option);
 	}
 };
 
 /**
- * Set the tooltip position depending on the mouse and the viewport
+ * Set the tooltip on the lower right of the point that triggered the event.
+ * If it cannot fit in the viewport on a particular axis, place it to the opposite side on that axis.
+ * 
+ * @param {object} mouseEvent The event which triggered the method call.
+ * @param {string} option If 'centerX' is passed, then x-axis position is centered instead
  */
-uic.Tooltip.prototype.positionTooltip = function(mouseEvent) {
+Tooltip.prototype.positionTooltip = function (mouseEvent, option) {
 	const html = document.documentElement;
-	const scroll = frw.dom.getScroll();
-	
-	// Set the tooltip on the lower right of the point that triggered the event.
-	// If it cannot fit on a particular axis, place it to the opposite side on that axis. 
-	let leftPos = mouseEvent.clientX + 20;
+	const scroll = dom.getScroll();
+
 	const offsetWidth = this.tooltipDiv.offsetWidth;
+	let leftPos = (option === 'centerX')
+		? (html.clientWidth - offsetWidth) / 2
+		: mouseEvent.clientX + 20;
 	if (leftPos > html.clientWidth - offsetWidth) {
 		leftPos = mouseEvent.clientX - 20 - offsetWidth;
 	}
 	this.tooltipDiv.style.left = (leftPos + scroll.left) + 'px';
-	
-	let topPos = mouseEvent.clientY + 20;
+
 	const offsetHeight = this.tooltipDiv.offsetHeight;
+	let topPos = mouseEvent.clientY + 20;
 	if (topPos > html.clientHeight - offsetHeight) {
 		topPos = mouseEvent.clientY - 20 - offsetHeight;
 	}
@@ -62,19 +70,29 @@ uic.Tooltip.prototype.positionTooltip = function(mouseEvent) {
 };
 
 /**
+ * Hide the tooltip
+ */
+Tooltip.prototype.closeTooltip = function () {
+	if (this.tooltipDiv) {
+		this.tooltipDiv.style.display = 'none';
+		dom.cleanContainer(this.tooltipDiv);
+	}
+};
+
+/**
  * Trigger the hide of the tooltip a short time after the mouse leaves the target
  * 
  * @param {integer} hideDelay  A custom duration, in milliseconds, to wait before hiding the tooltip (optional, default defined in constructor).
  */
-uic.Tooltip.prototype.hideTooltip = function(hideDelay) {
+Tooltip.prototype.hideTooltip = function (hideDelay) {
 	this.stopHideTimer();
-	this.hideTimer = setTimeout(this.closeTooltip.bind(this), hideDelay || this.hideDelay);
+	this.setHideTimer(hideDelay);
 };
 
 /**
  * Stop the timer which triggers the hide of the tooltip
  */
-uic.Tooltip.prototype.stopHideTimer = function() {
+Tooltip.prototype.stopHideTimer = function () {
 	if (this.hideTimer) {
 		clearTimeout(this.hideTimer);
 		this.hideTimer = null;
@@ -82,34 +100,18 @@ uic.Tooltip.prototype.stopHideTimer = function() {
 };
 
 /**
- * Hide the tooltip
+ * Stop the timer which triggers the hide of the tooltip
+ * 
+ * @param {integer} hideDelay  A custom duration, in milliseconds, to wait before hiding the tooltip (optional, default defined in constructor).
  */
-uic.Tooltip.prototype.closeTooltip = function() {
-	if (this.tooltipDiv){
-		this.tooltipDiv.style.display = 'none';
-		frw.dom.cleanContainer(this.tooltipDiv);
-	}
-};
-
-/**
- * Disable the delayed close of the tooltip if the mouse was moved inside the tooltip
- */
-uic.Tooltip.prototype.mouseOverTooltip = function(mouseEvent) {
-	this.stopHideTimer();
-	this.positionTooltip(mouseEvent);
-};
-
-/**
- * Restart the delayed close of the tooltip if the mouse was moved out of the tooltip
- */
-uic.Tooltip.prototype.mouseOutTooltip = function(){
-	this.hideTimer = setTimeout(this.closeTooltip.bind(this), this.hideDelay);
+Tooltip.prototype.setHideTimer = function (hideDelay) {
+	this.hideTimer = setTimeout(this.closeTooltip.bind(this), hideDelay ?? this.hideDelay);
 };
 
 /**
  * Method must be called when unloading the component. Removes DOM reference.
  */
-uic.Tooltip.prototype.destroy = function() {
+Tooltip.prototype.destroy = function () {
 	if (this.tooltipDiv) {
 		this.tooltipDiv.onmouseover = '';
 		this.tooltipDiv.onmouseout = '';

@@ -1,54 +1,53 @@
-/* global frw */
 /**********************************************************
  * Framework - DOM utilities
  **********************************************************/
 
-frw.dom = {};
+export const dom = {};
 
 /*********************************************************/
 
-frw.dom.updateContainer = function (content, region) {
-	frw.dom.addContent(content, region);
-	frw.dom.executeScripts(region);
+dom.updateContainer = function (content, region) {
+	dom.addContent(content, region);
+	dom.executeScripts(region);
 };
 
-frw.dom.executeScripts = function (region) {
+dom.executeScripts = function (region) {
 	const scripts = region.getElementsByTagName('script');
 	for (const script of scripts) {
 		window.eval(script.text);
 	}
 };
 
-frw.dom.addContent = function (content, region) {
+dom.addContent = function (content, region) {
 	region.innerHTML = content;
 };
 
-frw.dom.cleanContainer = function (region) {
+dom.cleanContainer = function (region) {
 	region.innerHTML = '';
 };
 
 /*********************************************************/
 
-frw.dom.addOverlay = function () {
+dom.addOverlay = function () {
 	if (!this.overlay) {
 		this.overlay = document.createElement('div');
 		this.overlay.className = 'uic-overlay';
 	}
-	frw.dom.positionOverlay();
+	dom.positionOverlay();
 	document.body.appendChild(this.overlay);
 };
 
-frw.dom.positionOverlay = function () {
+dom.positionOverlay = function () {
 	const overlay = this.overlay;
 	const html = document.documentElement;
-	const scroll = frw.dom.getScroll();
+	const scroll = dom.getScroll();
 	overlay.style.left = (scroll.left) + 'px';
 	overlay.style.top = (scroll.top) + 'px';
 	overlay.style.width = (html.clientWidth) + 'px';
 	overlay.style.height = (html.clientHeight) + 'px';
 };
 
-frw.dom.removeOverlay = function () {
+dom.removeOverlay = function () {
 	if (this.overlay) {
 		this.overlay.parentNode.removeChild(this.overlay);
 	}
@@ -56,7 +55,7 @@ frw.dom.removeOverlay = function () {
 
 /*********************************************************/
 
-frw.dom.getPos = function (obj) {
+dom.getPos = function (obj) {
 	let objTop = 0, objLeft = 0;
 	while (obj) {
 		objTop += obj.offsetTop;
@@ -66,7 +65,7 @@ frw.dom.getPos = function (obj) {
 	return { top: objTop, left: objLeft };
 };
 
-frw.dom.mousePosition = function (e) {
+dom.mousePosition = function (e) {
 	const html = document.documentElement;
 	return {
 		x: e.clientX + html.scrollLeft,
@@ -74,7 +73,7 @@ frw.dom.mousePosition = function (e) {
 	};
 };
 
-frw.dom.getScroll = function () {
+dom.getScroll = function () {
 	const html = document.documentElement;
 	const body = document.body;
 	return {
@@ -83,12 +82,12 @@ frw.dom.getScroll = function () {
 	};
 };
 
-frw.dom.center = function (element, ratioX, ratioY) {
+dom.center = function (element, ratioX, ratioY) {
 	ratioX = ratioX || 0.5;
 	ratioY = ratioY || 0.5;
 
 	const html = document.documentElement;
-	const scroll = frw.dom.getScroll();
+	const scroll = dom.getScroll();
 	const elTop = scroll.top + Math.max(0, Math.round(html.clientHeight * ratioY - element.clientHeight / 2));
 	const elLeft = scroll.left + Math.round(html.clientWidth * ratioX - element.clientWidth / 2);
 

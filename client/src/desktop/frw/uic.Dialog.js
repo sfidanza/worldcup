@@ -1,11 +1,10 @@
-/* global frw */
 /**********************************************************
  * uic.Dialog
  **********************************************************/
- 
-const uic = {};
 
-uic.Dialog = function(params) {
+import { dom } from './frw.dom.js';
+
+export const Dialog = function(params) {
 	this.params = params;
 	
 	this.dom = {};
@@ -15,34 +14,34 @@ uic.Dialog = function(params) {
 	this.dom.body = document.getElementById(params.id + '-body');
 	
 	this.dom.close.onclick = this.hide.bind(this);
-	this.dom.close.onmousedown = function(e) { if (e) e.cancelBubble=true; };
-	this.dom.title.onmousedown = frw.drag.start.bind(frw.drag, this.dom.dlg);
+	this.dom.close.onmousedown = function(e) { if (e) e.cancelBubble = true; };
+	this.dom.title.onmousedown = drag.start.bind(drag, this.dom.dlg);
 };
 
-uic.Dialog.prototype.destroy = function() {
+Dialog.prototype.destroy = function() {
 	this.dom.dlg = null;
 	this.dom.close = null;
 	this.dom.title = null;
 	this.dom.body = null;
 };
 
-uic.Dialog.prototype.center = function() {
-	frw.dom.center(this.dom.dlg, 0.5, 0.4);
+Dialog.prototype.center = function() {
+	dom.center(this.dom.dlg, 0.5, 0.4);
 };
 
-uic.Dialog.prototype.handleEvent = function(event) {
+Dialog.prototype.handleEvent = function(event) {
 	if (event.type === 'resize') {
 		this.keepInPlace();
 	}
 };
 
-uic.Dialog.prototype.show = function() {
+Dialog.prototype.show = function() {
 	if (this.params.centered) {
 		this.center();
 	}
 	
 	document.body.style.overflow = 'hidden';
-	frw.dom.addOverlay();
+	dom.addOverlay();
 	
 	const dlg = this.dom.dlg;
 	dlg.parentNode.removeChild(dlg);
@@ -52,20 +51,20 @@ uic.Dialog.prototype.show = function() {
 	window.addEventListener('resize', this); // registers this.handleEvent in the correct scope
 };
 
-uic.Dialog.prototype.keepInPlace = function() {
+Dialog.prototype.keepInPlace = function() {
 	if (this.params.centered) this.center();
-	frw.dom.positionOverlay();
+	dom.positionOverlay();
 };
 
-uic.Dialog.prototype.isVisible = function() {
+Dialog.prototype.isVisible = function() {
 	return (this.dom.dlg.style.visibility == 'visible');
 };
 
-uic.Dialog.prototype.hide = function() {
+Dialog.prototype.hide = function() {
 	if (this.isVisible()) {
 		window.removeEventListener('resize', this);
 		document.body.style.overflow = 'auto';
-		frw.dom.removeOverlay();
+		dom.removeOverlay();
 		const dlg = this.dom.dlg;
 		dlg.style.visibility = 'hidden';
 		dlg.style.top = '0px';
@@ -74,43 +73,43 @@ uic.Dialog.prototype.hide = function() {
 	return false;
 };
 
-uic.Dialog.prototype.setTitle = function(title) {
+Dialog.prototype.setTitle = function(title) {
 	this.dom.title.innerHTML = title;
 };
 
-uic.Dialog.prototype.getBody = function() {
+Dialog.prototype.getBody = function() {
 	return this.dom.body;
 };
 
 /*********************************************************/
 
-frw.drag = {
+const drag = {
 	dragged: null,
 	dragOffset: {x:0, y:0}
 };
 
-frw.drag.start = function(dragged, e) {
-	frw.stopEvent(e);
+drag.start = function(dragged, e) {
+	e.preventDefault();
 	this.dragged = dragged;
-	const iPos = frw.dom.getPos(dragged);
-	const mPos = frw.dom.mousePosition(e);
+	const iPos = dom.getPos(dragged);
+	const mPos = dom.mousePosition(e);
 	this.dragOffset.x = mPos.x - iPos.left;
 	this.dragOffset.y = mPos.y - iPos.top;
 	document.onmousemove = this.move.bind(this);
 	document.onmouseup = this.end.bind(this);
 };
 
-frw.drag.move = function(e) {
-	frw.stopEvent(e);
+drag.move = function(e) {
+	e.preventDefault();
 	if (this.dragged != null) {
-		const mPos = frw.dom.mousePosition(e);
+		const mPos = dom.mousePosition(e);
 		this.dragged.style.left = (mPos.x - this.dragOffset.x) + 'px';
 		this.dragged.style.top = (mPos.y - this.dragOffset.y) + 'px';
 	}
 };
 
-frw.drag.end = function(e) {
-	frw.stopEvent(e);
+drag.end = function(e) {
+	e.preventDefault();
 	if (this.dragged != null) {
 		this.dragged = null;
 		document.onmousemove = null;

@@ -1,33 +1,5 @@
 {
 	"files": {
-		"target/static/frw.js": [
-			"src/desktop/frw/base.js",
-			"src/desktop/frw/frw.js",
-			"src/desktop/frw/frw.dom.js",
-			"src/desktop/frw/frw.ssa.js",
-			"src/desktop/frw/frw.data.js",
-			"src/desktop/frw/frw.history.js",
-			"src/desktop/frw/frw.Template.js",
-			"src/desktop/frw/uic.Dialog.js",
-			"src/desktop/frw/uic.Tooltip.js"
-		],
-		"target/static/app.js": [
-			"src/desktop/app/page.js",
-			"src/desktop/app/page.scoreEditor.js",
-			"src/desktop/app/page.bet.js",
-			"src/desktop/templates/main.js",
-			"src/desktop/templates/user.js",
-			"src/desktop/templates/schedule.js",
-			"src/desktop/templates/ranking.js",
-			"src/desktop/templates/board.js",
-			"src/desktop/templates/quickRanking.js",
-			"src/desktop/templates/history.js",
-			"src/desktop/templates/notes.js",
-			"src/desktop/templates/login/login.js",
-			"src/desktop/templates/login/register.js",
-			"src/desktop/templates/bet/leaderboard.js",
-			"src/desktop/templates/bet/bet.js"
-		],
 		"target/static/app.css": [
 			"src/desktop/stylesheet.css",
 			"src/desktop/css/flags.css",

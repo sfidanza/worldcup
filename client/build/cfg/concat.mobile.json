@@ -1,23 +1,5 @@
 {
 	"files": {
-		"target/static/app.mobile.js": [
-			"src/desktop/app/page.js",
-			"src/desktop/app/page.scoreEditor.js",
-			"src/desktop/app/page.bet.js",
-			"src/mobile/app/page.mobile.js",
-			"src/mobile/templates/main.js",
-			"src/mobile/templates/user.js",
-			"src/mobile/templates/schedule.js",
-			"src/mobile/templates/ranking.js",
-			"src/mobile/templates/board.js",
-			"src/mobile/templates/quickRanking.js",
-			"src/mobile/templates/history.js",
-			"src/mobile/templates/notes.js",
-			"src/mobile/templates/login/login.js",
-			"src/mobile/templates/login/register.js",
-			"src/mobile/templates/bet/leaderboard.js",
-			"src/mobile/templates/bet/bet.js"
-		],
 		"target/static/app.mobile.css": [
 			"src/mobile/stylesheet.css",
 			"src/desktop/css/flags.css",

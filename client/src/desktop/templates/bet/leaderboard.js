@@ -1,15 +1,24 @@
-/* global page, frw */
-page.templates.leaderboard = new frw.Template();
+import { Template } from '../../frw/frw.Template.js';
 
-page.templates.leaderboard.onParse = function() {
+let page, frw;
+
+export const leaderboard = new Template();
+
+leaderboard.onCreate = function (pageRef, frwRef, i18nRepository) {
+	page = pageRef;
+	frw = frwRef;
+	this.i18n = i18nRepository;
+};
+
+leaderboard.onParse = function() {
 	const user = page.data.user;
-	const leaderboard = frw.data.sort(page.data.leaderboard, [
+	const board = frw.data.sort(page.data.leaderboard, [
 		{ key: 'ratio', dir: -1 },
 		{ key: 'total', dir: -1 },
 		{ key: 'userName', dir: 1 }
 	]);
 	
-	leaderboard.forEach((ldUser, i) => {
+	board.forEach((ldUser, i) => {
 		this.set('row_class', 'l' + (i % 2));
 		this.set('ldUser', ldUser);
 		this.set('ldUser.ratio', ldUser.ratio.toFixed(0));

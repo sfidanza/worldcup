@@ -1,23 +1,22 @@
-/* global frw */
 /**********************************************************
  * Server side access layer
  **********************************************************/
 
-frw.ssa = {};
+export const ssa = {};
 
 /**
  * Load client sides templates
  * @param {object} repository  templates repository to register templates in
  */
-frw.ssa.loadTemplates = async function (url, repository, i18nRepository) {
+ssa.loadTemplates = async function (url, repository, ...params) {
 	return fetch(url)
 		.then(response => response.text())
 		.then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
-		.then(frw.ssa.parseResponseXml)
+		.then(ssa.parseResponseXml)
 		.then(response => {
 			if (response) {
 				for (const tid in response.templates) {
-					repository[tid].create(response.templates[tid], i18nRepository);
+					repository[tid].create(response.templates[tid], ...params);
 				}
 			} else {
 				// connection error
@@ -26,7 +25,7 @@ frw.ssa.loadTemplates = async function (url, repository, i18nRepository) {
 		});
 };
 
-frw.ssa.parseResponseXml = function (responseXML) {
+ssa.parseResponseXml = function (responseXML) {
 	let parsedResponse = null;
 
 	if (responseXML && responseXML.getElementsByTagName('response')) {

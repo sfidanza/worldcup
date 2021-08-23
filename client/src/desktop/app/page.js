@@ -1,11 +1,16 @@
-/* global frw, uic */
 /**********************************************************
  * Page
  **********************************************************/
+import * as frw from '../frw/frw.js';
+import * as uic from '../frw/uic.js';
+import { scoreEditor } from './scoreEditor.js';
+import { bet } from './bet.js';
 
-const page = {};
-page.templates = {};
+export const page = {};
+window.page = page; // make page callable from global scope so it can be used from html
 page.data = {};
+page.scoreEditor = scoreEditor;
+page.bet = bet;
 
 page.config = {
 	url: {
@@ -43,7 +48,7 @@ page.initialize = function () {
 	// retrieve templates and data
 	page.notify('Loading data...', true);
 	Promise.all([
-		frw.ssa.loadTemplates(page.config.url.templates, page.templates),
+		frw.ssa.loadTemplates(page.config.url.templates, page.templates, page, frw),
 		page.getData()
 	]).then(() => {
 		// Initialize history
@@ -55,7 +60,8 @@ page.initialize = function () {
 
 		page.templates.user.parse(page.data);
 		page.templates.user.load(page.config.area.user);
-		page.scoreEditor.initialize();
+		page.scoreEditor.initialize(page, frw);
+		page.bet.initialize(page);
 
 		this.loginDlg = new uic.Dialog({
 			id: page.config.area.loginDlg,
@@ -83,6 +89,7 @@ page.destroy = function () {
 	}
 
 	page.scoreEditor.destroy();
+	page.bet.destroy();
 };
 
 page.notify = function (message, init) {
@@ -153,9 +160,7 @@ page.getPageTitle = function (stateTitle) {
 
 page.getMenuItem = function (hash) {
 	const items = document.querySelectorAll('#menu a');
-	Array.from(items).find(item => {
-		return item.hash === hash;
-	});
+	return Array.from(items).find(item => item.hash === hash);
 };
 
 page.highlight = function (link) {
@@ -167,7 +172,7 @@ page.highlight = function (link) {
 };
 
 page.select = function (link, event) {
-	if (event) frw.stopEvent(event);
+	if (event) event.preventDefault();
 
 	let target;
 	if (typeof link === 'string') {

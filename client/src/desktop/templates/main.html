@@ -3,7 +3,7 @@
 	<dl id="menu">
 		<dt>Schedules:</dt>
 		<dd><a onclick="page.select(this, event);" href="#schedule">Full Schedule</a></dd>
-		<!--dd><a onclick="page.select(this, event);" href="#schedule,1">Group Schedule</a></dd-->
+		<!-- <dd><a onclick="page.select(this, event);" href="#schedule,1">Group Schedule</a></dd> -->
 		<dd><a onclick="page.select(this, event);" href="#schedule,2">Finals Schedule</a></dd>
 		<dd style="float: right;"><a onclick="page.select(this, event);" href="#history">History</a></dd>
 		<dd style="float: none; height: 0;"></dd>
@@ -19,7 +19,7 @@
 		<dt>Rankings:</dt>
 		<dd><a onclick="page.select(this, event);" href="#ranking">Group Rankings</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#board">Finals Board</a></dd>
-		<!--dd style="float: right;"><a onclick="page.select(this, event);" href="#bet">Place a bet</a></dd-->
+		<!-- <dd style="float: right;"><a onclick="page.select(this, event);" href="#bet">Place a bet</a></dd> -->
 		<dd style="float: none; height: 0;"></dd>
 	</dl>
 </div>
@@ -39,7 +39,7 @@
 	<h5>Login</h5>
 	<div id="login-dlg-body">
 		<form id="login-form" method="post"
-		      onsubmit="frw.stopEvent(event); page.templates.main.submitLogin(this.user_id.value, this.user_pwd.value);">
+		      onsubmit="page.templates.main.submitLogin(this.user_id.value, this.user_pwd.value); return false;">
 			<fieldset>
 				<div>
 					<input type="text" name="user_id" size="12" value=""/>

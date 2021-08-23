@@ -1,14 +1,13 @@
-/* global frw */
 /**********************************************************
  * Data Management layer
  **********************************************************/
 
-frw.data = {};
+export const data = {};
 
 /**
  * Group the list by a given property
  */
-frw.data.groupBy = function (list, key, sorted) {
+data.groupBy = function (list, key, sorted) {
 	let groupedList = {};
 	const keys = [];
 	for (const item of list) {
@@ -36,7 +35,7 @@ frw.data.groupBy = function (list, key, sorted) {
 /**
  * Change a list to an object, indexed by a given property
  */
-frw.data.reIndex = function (list, key) {
+data.reIndex = function (list, key) {
 	if (!list) return null;
 	const indexedList = {};
 	for (const item of list) {
@@ -53,15 +52,15 @@ frw.data.reIndex = function (list, key) {
  *           {string} key  the property to sort on
  *           {number} dir  the sort direction: ascending (1, default) or descending (-1)
  */
-frw.data.sort = function (list, sorters) {
+data.sort = function (list, sorters) {
 	if (!list.length) return list;
 
 	// no bind as bind is killing performance (3x more)
-	list.sort((a, b) => this._sortMultipleKeys(sorters, a, b));
+	list.sort((a, b) => _sortMultipleKeys(sorters, a, b));
 	return list;
 };
 
-frw.data._sortMultipleKeys = function (sorters, a, b) {
+const _sortMultipleKeys = function(sorters, a, b) {
 	if (!sorters || !sorters.length) return 0;
 
 	for (const sorter of sorters) {
@@ -77,10 +76,10 @@ frw.data._sortMultipleKeys = function (sorters, a, b) {
 /**
  * Update data
  */
-frw.data.update = function (table, updates, key) {
+data.update = function (table, updates, key) {
 	if (!table || !updates) return;
 	key = key || 'id';
-	const kTable = frw.data.reIndex(table, key);
+	const kTable = data.reIndex(table, key);
 	for (const update of updates) {
 		const item = kTable[update[key]];
 		if (item) {
@@ -90,3 +89,16 @@ frw.data.update = function (table, updates, key) {
 		}
 	}
 };
+
+/**
+ * Update target with properties from source.
+ * Values already present in receiver are overwritten by new values.
+ * Very basic polyfill for Object.assign to support IE
+ */
+if (typeof Object.assign !== 'function') {
+	Object.assign = function(target, source) {
+		for (const p in source) {
+			target[p] = source[p];
+		}
+	};
+}
