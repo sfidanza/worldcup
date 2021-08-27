@@ -1,12 +1,12 @@
-var foot = require("./business/foot");
-var bets = require("./business/bets");
-var history = require("./business/history");
+const foot = require('./business/foot');
+const bets = require('./business/bets');
+const history = require('./business/history');
 
-var views = {};
+const views = {};
 module.exports = views;
 
 views.all = function(request, response, ctx) {
-	var data;
+	let data;
 	foot.getData(ctx.db)
 		.then(function(footData) {
 			data = footData;
@@ -14,10 +14,10 @@ views.all = function(request, response, ctx) {
 		}).then(function(leaderboard) {
 			data.leaderboard = leaderboard;
 			return bets.getBets(ctx.db);
-		}).then(function(bets) {
+		}).then(function(betList) {
 			data.history = history.getHistory();
 			data.user = request.session.user;
-			data.bets = bets;
+			data.bets = betList;
 			response.json(data);
 		}).catch(response.error.bind(response, 500));
 };
@@ -26,7 +26,7 @@ views.teams = function(request, response, ctx) {
 	foot.getTeams(ctx.db)
 		.then(function(docs) {
 			response.json({
-				"teams": docs
+				'teams': docs
 			});
 		}).catch(response.error.bind(response, 500));
 };
@@ -35,7 +35,7 @@ views.matches = function(request, response, ctx) {
 	foot.getMatches(ctx.db)
 		.then(function(docs) {
 			response.json({
-				"matches": docs
+				'matches': docs
 			});
 		}).catch(response.error.bind(response, 500));
 };
@@ -44,11 +44,11 @@ views.stadiums = function(request, response, ctx) {
 	foot.getStadiums(ctx.db)
 		.then(function(docs) {
 			response.json({
-				"stadiums": docs
+				'stadiums': docs
 			});
 		}).catch(response.error.bind(response, 500));
 };
 
-views.history = function(request, response, ctx) {
+views.history = function(request, response/*, ctx*/) {
 	response.json(history.getHistory());
 };

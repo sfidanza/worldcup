@@ -9,6 +9,11 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "no-unused-vars": ["off"]
+        "no-extra-bind": "error",
+        "no-shadow": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "quotes": [ "error", "single" ],
+        "semi": [ "error", "always" ]
     }
 }

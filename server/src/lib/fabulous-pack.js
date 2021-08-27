@@ -1,2 +1,2 @@
-var fabulous = module.exports = {};
-fabulous.App = require("./fabulous/App");
+const fabulous = module.exports = {};
+fabulous.App = require('./fabulous/App');

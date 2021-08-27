@@ -9,7 +9,7 @@
 /**
  * Create a new fabulous app.
  */
-var App = module.exports = function() {
+ const App = module.exports = function() {
 	this.stack = [];
 	this.handler = this.handle.bind(this);
 };
@@ -30,14 +30,14 @@ App.prototype.use = function(fn) {
  * Handle server requests, delegating them through the middleware stack.
  */
 App.prototype.handle = function(req, res, next) {
-	var stack = this.stack;
-	var index = 0;
+	const stack = this.stack;
+	let index = 0;
 	
 	// needed to simulate connect
 	req.originalUrl = req.originalUrl || req.url;
 	
 	function nextChild() {
-		var child = stack[index++];
+		const child = stack[index++];
 		if (child) {
 			child(req, res, nextChild);
 		} else if (next) {

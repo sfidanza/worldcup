@@ -1,16 +1,16 @@
 /******************************************************************************
  * Competition data management
  ******************************************************************************/
-var foot = require("../business/foot");
-var bets = require("../business/bets");
+const foot = require('../business/foot');
+const bets = require('../business/bets');
 	
-var actions = {};
+const actions = {};
 module.exports = actions;
 
 actions.editMatch = function(request, response, ctx) {
-	var user = request.session.user;
+	const user = request.session.user;
 	if (user && user.isAdmin) {
-		var query = request.query;
+		const query = request.query;
 		foot.setMatchScore(ctx.db, +query.mid, getScore(query.score1), getScore(query.score2),
 				getScore(query.score1PK), getScore(query.score2PK))
 			.then(function(data) {
@@ -26,9 +26,9 @@ actions.editMatch = function(request, response, ctx) {
 };
 
 actions.setRanks = function(request, response, ctx) {
-	var user = request.session.user;
+	const user = request.session.user;
 	if (user && user.isAdmin) {
-		var query = request.query;
+		const query = request.query;
 		foot.setRanks(ctx.db, query.gid, query.ranks.split('-'))
 			.then(response.json.bind(response))
 			.catch(response.error.bind(response, 500))

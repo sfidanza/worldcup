@@ -1,6 +1,6 @@
-var data = require("./data/history.json");
+const data = require('./data/history.json');
 
-var history = {};
+const history = {};
 module.exports = history;
 
 history.getHistory = function() {

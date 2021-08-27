@@ -1,7 +1,7 @@
 /********************************************************************
  * User Authentication Class
  ********************************************************************/
-var users = {};
+ const users = {};
 module.exports = users;
 
 /**
@@ -27,7 +27,7 @@ users.authenticate = function (db, login, pwd) {
  * If successful, returns a user object (like authenticate).
  */
 users.register = function (db, login, pwd, type, info) {
-	var id = getId(type, login);
+	const id = getId(type, login);
 	delete info.login; // can not be changed
 	delete info.type; // can not be changed
 	info.name = info.name || login;

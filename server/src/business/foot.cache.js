@@ -1,8 +1,8 @@
-var teams = require("./data/teams.json");
-var matches = require("./data/matches.json");
-var stadiums = require("./data/stadiums.json");
+const teams = require('./data/teams.json');
+const matches = require('./data/matches.json');
+const stadiums = require('./data/stadiums.json');
 
-var foot = {};
+const foot = {};
 module.exports = foot;
 
 foot.getTeams = function() {
@@ -19,8 +19,8 @@ foot.getStadiums = function() {
 
 foot.getData = function() {
 	return {
-		"teams": foot.getTeams(),
-		"matches": foot.getMatches(),
-		"stadiums": foot.getStadiums()
+		'teams': foot.getTeams(),
+		'matches': foot.getMatches(),
+		'stadiums': foot.getStadiums()
 	};
 };

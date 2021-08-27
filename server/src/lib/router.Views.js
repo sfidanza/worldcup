@@ -1,9 +1,9 @@
-var Router = function(controller) {
+const Router = function(controller) {
 	this.views = controller;
 };
 
 Router.prototype.serve = function(request, response, ctx) {
-	var method = this.views && this.views[ctx.view];
+	const method = this.views && this.views[ctx.view];
 	if (typeof method === 'function') {
 		method(request, response, ctx);
 		return 200;

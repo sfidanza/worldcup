@@ -15,8 +15,7 @@
 /**
  * Default options
  */
-
-var defaultOptions = {
+const defaultOptions = {
 	collection: 'sessions',
 	defaultExpirationTime: 1000 * 60 * 60 * 24 * 14 // 2 weeks
 };
@@ -57,10 +56,10 @@ module.exports = function(Store) {
 		this.db = db;
 		this.sessions = this.db.collection(this.dbCollectionName);
 		
-		// Make sure we have a TTL index on "expires", so mongod will automatically
+		// Make sure we have a TTL index on 'expires', so mongod will automatically
 		// remove expired sessions. expireAfterSeconds is set to 0 because we want
 		// mongo to remove anything expired without any additional delay.
-		this.sessions.createIndex({ expires: 1 }, { expireAfterSeconds: 0 }, function(err, result) {
+		this.sessions.createIndex({ expires: 1 }, { expireAfterSeconds: 0 }, function(err/*, result*/) {
 			if (err) {
 				throw new Error('Error setting TTL index on session collection');
 			}
@@ -75,16 +74,15 @@ module.exports = function(Store) {
 	 * @api public
 	 */
 	MongoStore.prototype.get = function(sid, callback) {
-		var self = this;
-		this.sessions.findOne({ _id: sid }, function(err, session) {
+		this.sessions.findOne({ _id: sid }, (err, session) => {
 			if (err || !session) {
 				if (callback) callback(err);
 			} else {
 				try {
 					if (!session.expires || new Date() < session.expires) {
-						callback(null, self._unserializeSession(session.session));
+						callback(null, this._unserializeSession(session.session));
 					} else {
-						self.destroy(sid, callback);
+						this.destroy(sid, callback);
 					}
 				} catch (e) {
 					if (callback) callback(e);
@@ -102,21 +100,21 @@ module.exports = function(Store) {
 	 * @api public
 	 */
 	MongoStore.prototype.set = function(sid, session, callback) {
-		var serialized;
+		let serialized;
 		try { // in case serialization fails
 			serialized = this._serializeSession(session);
 		} catch (err) {
 			if (callback) callback(err);
 		}
 		
-		var expireTime = (session && session.cookie && session.cookie.expires);
+		let expireTime = (session && session.cookie && session.cookie.expires);
 		if (!expireTime) {
 			/* If no expiration date is specified, it is a browser-session cookie or there is
 			 * no cookie at all. In DB, we default to a customizable two-weeks expiration.
 			 */
 			expireTime = Date.now() + this.defaultExpirationTime;
 		}
-		var s = {
+		const s = {
 			_id: sid,
 			session: serialized,
 			expires: new Date(expireTime)

@@ -1,11 +1,11 @@
 /********************************************************************
  * Bets data manipulation layer
  ********************************************************************/
-var frw = {
-	data: require("../frw/frw.data")
+ const frw = {
+	data: require('../frw/frw.data')
 };
 
-var bets = {};
+const bets = {};
 module.exports = bets;
 
 /********************************************************************
@@ -13,16 +13,15 @@ module.exports = bets;
  */
 	
 bets.getBets = function(db) {
-	var users;
+	let users;
 	return db.collection('users').find({}).toArray()
-		.then(function(userList) {
+		.then(userList => {
 			users = frw.data.reIndex(userList, 'id');
 			return db.collection('bets').find({}, { _id: 0 }).toArray();
 		})
-		.then(function(betList)  {
-			for (var i = 0; i < betList.length; i++) {
-				var bet = betList[i];
-				var better = users[bet.user];
+		.then(betList => {
+			for (const bet of betList) {
+				const better = users[bet.user];
 				bet.userName = (better && better.name) || bet.user;
 			}
 			return betList;
@@ -30,15 +29,14 @@ bets.getBets = function(db) {
 };
 
 bets.getLeaderboard = function(db) {
-	var users;
+	let users;
 	return db.collection('users').find({}).toArray()
-		.then(function(userList) {
+		.then(userList => {
 			users = frw.data.reIndex(userList, 'id');
 			return db.collection('leaderboard').find({}, { _id: false }).toArray();
-		}).then(function(ldList) {
-			for (var i = 0; i < ldList.length; i++) {
-				var ldUser = ldList[i];
-				var better = users[ldUser.user];
+		}).then(ldList => {
+			for (const ldUser of ldList) {
+				const better = users[ldUser.user];
 				ldUser.userName = (better && better.name) || ldUser.user;
 			}
 			return ldList;
@@ -57,12 +55,11 @@ bets.getLeaderboard = function(db) {
  * @api public
  */
 bets.enterChampionBet = function(db, user, champion) {
-	return db.collection('bets').findAndModify({
-		query: { user: user, challenge: 'champion' },
-		update: { $set: { 'value': champion } },
-		new: true,
-		upsert: true
-	});
+	return db.collection('bets').updateOne(
+		{ user: user, challenge: 'champion' },
+		{ $set: { 'value': champion } },
+		{ upsert: true }
+	);
 };
 
 /**
@@ -91,8 +88,8 @@ bets.enterMatchWinnerBet = function(db, user, mid, winner) {
 		});
 };
 
-var isBettable = function(m) {
-	return (new Date(m.day + " " + m.hour) > Date.now()) && // match is not started
+const isBettable = function(m) {
+	return (new Date(m.day + ' ' + m.hour) > Date.now()) && // match is not started
 		(m.team1_id && m.team2_id); // both teams are known
 };
 
@@ -103,17 +100,15 @@ var isBettable = function(m) {
  */
 bets.computeLeaderboard = function(db) {
 	return getDataForLeaderboard(db)
-		.then(function(data) {
-			var ld = {};
-			for (var i = 0; i < data.matches.length; i++) {
-				var m = data.matches[i];
-				var matchBets = data.bets[m.id];
+		.then(data => {
+			const ld = {};
+			for (const m of data.matches) {
+				const matchBets = data.bets[m.id];
 				if (matchBets) {
-					var winner = getMatchWinner(m);
-					for (var j = 0; j < matchBets.length; j++) {
-						var bet = matchBets[j];
+					const winner = getMatchWinner(m);
+					for (const bet of matchBets) {
 						if (!ld[bet.user]) ld[bet.user] = { wins: 0, total: 0 };
-						let ldUser = ld[bet.user];
+						const ldUser = ld[bet.user];
 						ldUser.user = bet.user;
 						ldUser.total++;
 						if (bet.value === winner) ldUser.wins++;
@@ -121,9 +116,8 @@ bets.computeLeaderboard = function(db) {
 				}
 			}
 			
-			let list = [];
-			for (let userId in ld) {
-				let ldUser = ld[userId];
+			const list = [];
+			for (const ldUser of ld) {
 				ldUser.ratio = 100 * ldUser.wins / ldUser.total;
 				list.push(ldUser);
 			}
@@ -131,21 +125,21 @@ bets.computeLeaderboard = function(db) {
 		});
 };
 
-var getDataForLeaderboard = function(db) {
-	var data = {};
+const getDataForLeaderboard = function(db) {
+	const data = {};
 	return db.collection('bets').find({ challenge: 'match' }).toArray()
-		.then(function(betList) {
+		.then(betList => {
 			data.bets = frw.data.groupBy(betList, 'target');
 			return db.collection('matches').find({ group: null, team1_score: { $ne: null } }).toArray();
-		}).then(function(matchList) {
+		}).then(matchList => {
 			data.matches = matchList;
 			return data;
 		});
 };
 
-var getMatchWinner = function(match) {
-	var score1 = match['team1_score'];
-	var score2 = match['team2_score'];
+const getMatchWinner = function(match) {
+	const score1 = match['team1_score'];
+	const score2 = match['team2_score'];
 	if (score1 > score2) {
 		return match['team1_id'];
 	} else if (score1 < score2) {
@@ -157,11 +151,11 @@ var getMatchWinner = function(match) {
 	}
 };
 
-var storeLeaderboard = function(db, list) {
+const storeLeaderboard = function(db, list) {
 	return db.collection('leaderboard').remove({})
-		.then(function() {
+		.then(() => {
 			return db.collection('leaderboard').insert(list);
-		}).then(function() {
+		}).then(() => {
 			return list;
 		});
 };

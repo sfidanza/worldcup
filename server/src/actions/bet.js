@@ -1,31 +1,33 @@
 /******************************************************************************
  * Bet management
  ******************************************************************************/
-var bets = require("../business/bets");
+const bets = require('../business/bets');
 	
-var actions = {};
+const actions = {};
 module.exports = actions;
 
 /**
  * Update Bet
  */
 actions.champion = function(request, response, ctx) {
-	var user = request.session.user;
+	const user = request.session.user;
 	if (user && user.id) {
-		var query = request.query;
+		const query = request.query;
 		bets.enterChampionBet(ctx.db, user.id, query.champion)
 			.then(respondUserBets(ctx.db, response))
-			.catch(response.error.bind(response, 500))
-			.done();
+			.catch(err => {
+				console.error(err);
+				response.status(500).json({ error: err.errmsg });
+			});
 	} else {
 		response.error(401);
 	}
 };
 
 actions.match = function(request, response, ctx) {
-	var user = request.session.user;
+	const user = request.session.user;
 	if (user && user.id) {
-		var query = request.query;
+		const query = request.query;
 		bets.enterMatchWinnerBet(ctx.db, user.id, +query.mid, query.winner)
 			.then(respondUserBets(ctx.db, response))
 			.catch(response.error.bind(response, 403))
@@ -43,7 +45,7 @@ actions.leaderboard = function(request, response, ctx) {
 };
 
 actions.computeLeaderboard = function(request, response, ctx) {
-	var user = request.session.user;
+	const user = request.session.user;
 	if (user && user.isAdmin) {
 		bets.computeLeaderboard(ctx.db)
 			.then(response.json.bind(response))
@@ -56,7 +58,7 @@ actions.computeLeaderboard = function(request, response, ctx) {
 
 function respondUserBets(db, response) {
 	return bets.getBets(db)
-		.then(function(bets) {
-			response.json({ bets: bets });
+		.then(betList => {
+			response.json({ bets: betList });
 		});
 }

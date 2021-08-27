@@ -1,5 +1,5 @@
-var router = {};
+const router = {};
 module.exports = router;
 
-router.Index = require("./router.Index");
-router.Views = require("./router.Views");
+router.Index = require('./router.Index');
+router.Views = require('./router.Views');

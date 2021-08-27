@@ -1,11 +1,11 @@
 /********************************************************************
  * Foot data manipulation layer (teams, matches, stadiums)
  ********************************************************************/
-var frw = {
-	data: require("../frw/frw.data")
+const frw = {
+	data: require('../frw/frw.data')
 };
 
-var foot = {};
+const foot = {};
 module.exports = foot;
 
 /********************************************************************
@@ -33,7 +33,7 @@ foot.getStadiums = function (db) {
 };
 
 foot.getData = function (db) {
-	var data = {};
+	const data = {};
 	return foot.getTeams(db)
 		.then(function (teams) {
 			data.teams = teams;
@@ -62,7 +62,7 @@ foot.getData = function (db) {
  * @api public
  */
 foot.setMatchScore = function (db, mid, score1, score2, score1PK, score2PK) {
-	var edit = {
+	const edit = {
 		'team1_score': score1,
 		'team2_score': score2,
 		'team1_scorePK': score1PK,
@@ -74,7 +74,7 @@ foot.setMatchScore = function (db, mid, score1, score2, score1PK, score2PK) {
 		.then(function (match) {
 			if (!match) throw new Error('Match not found: ' + mid);
 			delete match._id;
-			var data = { matches: [match] };
+			const data = { matches: [match] };
 			if (match.group) {
 				// update group results
 				return updateGroupStats(db, match.group)
@@ -98,11 +98,11 @@ foot.setMatchScore = function (db, mid, score1, score2, score1PK, score2PK) {
  * @api public
  */
 foot.setRanks = function (db, group, ranks) {
-	var data = { teams: [] };
+	const data = { teams: [] };
 
 	// security: the query checks that each team passed is in specified group
-	var teams = db.collection('teams');
-	for (var i = 0; i < ranks.length; i++) {
+	const teams = db.collection('teams');
+	for (let i = 0; i < ranks.length; i++) {
 		teams.updateOne({ id: ranks[i], group: group }, { $set: { rank: i } }, { w: 0 });
 		data.teams.push({ id: ranks[i], rank: i });
 	}
@@ -124,20 +124,19 @@ foot.setRanks = function (db, group, ranks) {
  * @param {string} group - the group to be updated ('A', 'B', ...)
  */
 function updateGroupStats(db, group) {
-	var teams;
+	let teams;
 	return db.collection('teams')
 		.find({ group: group }, { id: 1 })
 		.toArray()
-		.then(function (t) {
+		.then(t => {
 			teams = t;
 			return db.collection('matches')
 				.find({ group: group, team1_score: { $ne: null } })
 				.toArray();
-		}).then(function (matches) {
-			var newStats = computeGroupStandings(teams, matches);
-			var teamsCol = db.collection('teams');
-			for (var i = 0; i < newStats.length; i++) {
-				var t = newStats[i];
+		}).then(matches => {
+			const newStats = computeGroupStandings(teams, matches);
+			const teamsCol = db.collection('teams');
+			for (const t of newStats) {
 				teamsCol.updateOne({ _id: t._id }, { $set: t }, { w: 0 });
 			}
 			if (matches.length === 6) { // 6 matches per group
@@ -155,19 +154,17 @@ function updateGroupStats(db, group) {
  */
 function computeGroupStandings(teams, matches) {
 	// start with fresh data
-	var stats = {};
-	for (let i = 0; i < teams.length; i++) {
-		let team = teams[i];
+	const stats = {};
+	for (const team of teams) {
 		stats[team.id] = setBlankStats(team);
 	}
 
 	// compute the effect of each match played
-	for (let i = 0; i < matches.length; i++) {
-		var m = matches[i];
-		var team1 = stats[m['team1_id']];
-		var team2 = stats[m['team2_id']];
-		var score1 = m['team1_score'];
-		var score2 = m['team2_score'];
+	for (const m of matches) {
+		const team1 = stats[m['team1_id']];
+		const team2 = stats[m['team2_id']];
+		const score1 = m['team1_score'];
+		const score2 = m['team2_score'];
 
 		team1['played']++;
 		team2['played']++;
@@ -194,8 +191,8 @@ function computeGroupStandings(teams, matches) {
 	}
 
 	// update goal difference for each team
-	for (var id in stats) {
-		let team = stats[id];
+	for (const id in stats) {
+		const team = stats[id];
 		team['goal_difference'] = team['goals_scored'] - team['goals_against'];
 	}
 
@@ -207,7 +204,7 @@ function computeGroupStandings(teams, matches) {
 		{ key: 'name', dir: 1 } // to get sort stable - if not enough, set ranking manually
 	]);
 
-	for (var i = 0; i < teams.length; i++) {
+	for (let i = 0; i < teams.length; i++) {
 		teams[i]['rank'] = i + 1;
 	}
 
@@ -232,12 +229,12 @@ function setBlankStats(team) {
 /**
  * Once a group has played all 6 matches, first 2 teams go to final phase
  * @param {object} db
- * @param {string} group - group id ("A", "B", ...)
+ * @param {string} group - group id ('A', 'B', ...)
  * @param {string} team1 - Id of the best team in the group to advance to finals
  * @param {string} team2 - Id of the second team in the group to advance to finals
  */
 function advanceToFirstRound(db, group, tid1, tid2) {
-	var matches = db.collection('matches');
+	const matches = db.collection('matches');
 	matches.updateOne({ 'team1_source': '1' + group }, { $set: { 'team1_id': tid1 } }, { w: 0 });
 	matches.updateOne({ 'team2_source': '2' + group }, { $set: { 'team2_id': tid2 } }, { w: 0 });
 }
@@ -249,9 +246,9 @@ function advanceToFirstRound(db, group, tid1, tid2) {
  */
 function advanceToNextRound(db, match) {
 	defineWinner(match);
-	var mid = match.id;
+	const mid = match.id;
 
-	var matches = db.collection('matches');
+	const matches = db.collection('matches');
 	matches.updateOne({ 'team1_source': 'W' + mid }, { $set: { 'team1_id': match.winner } }, { w: 0 });
 	matches.updateOne({ 'team2_source': 'W' + mid }, { $set: { 'team2_id': match.winner } }, { w: 0 });
 
@@ -262,8 +259,8 @@ function advanceToNextRound(db, match) {
 }
 
 function defineWinner(match) {
-	var score1 = match['team1_score'];
-	var score2 = match['team2_score'];
+	const score1 = match['team1_score'];
+	const score2 = match['team2_score'];
 	if (score1 > score2) {
 		match.winner = match['team1_id'];
 		match.loser = match['team2_id'];

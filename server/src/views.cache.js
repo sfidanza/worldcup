@@ -1,22 +1,22 @@
-var foot = require("./business/foot.cache.js");
+const foot = require('./business/foot.cache.js');
 
-var views = {};
+const views = {};
 module.exports = views;
 
-views.data = function(request, response, ctx) {
+views.data = function(request, response/*, ctx*/) {
 	response.json(foot.getData());
 };
 
 views.import = function(request, response, ctx) {
-	var data = foot.getData();
-	var db = ctx.db;
+	const data = foot.getData();
+	const db = ctx.db;
 	
-	db.collection('teams').drop(function(err, reply) {
-		db.collection('teams').insertMany(data.teams, function(err, docs) {
-			db.collection('stadiums').drop(function(err, reply) {
-				db.collection('stadiums').insertMany(data.stadiums, function(err, docs) {
-					db.collection('matches').drop(function(err, reply) {
-						db.collection('matches').insertMany(data.matches, function(err, docs) {
+	db.collection('teams').drop(() => {
+		db.collection('teams').insertMany(data.teams, () => {
+			db.collection('stadiums').drop(() => {
+				db.collection('stadiums').insertMany(data.stadiums, () => {
+					db.collection('matches').drop(() => {
+						db.collection('matches').insertMany(data.matches, () => {
 							response.json();
 						});
 					});
