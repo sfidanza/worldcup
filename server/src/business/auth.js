@@ -1,7 +1,7 @@
 /******************************************************************************
  * Social Authentication/Authorization Management
  ******************************************************************************/
-const { google } = require('googleapis');
+import { google } from 'googleapis';
 
 const {
 	AUTH_CLIENT_ID,
@@ -10,7 +10,7 @@ const {
 } = process.env;
 
 const auth = {};
-module.exports = auth;
+export default auth;
 
 auth.url = function () {
 	const oauth2Client = new google.auth.OAuth2(AUTH_CLIENT_ID, AUTH_CLIENT_SECRET, AUTH_REDIRECT_URL);

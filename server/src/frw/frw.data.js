@@ -3,7 +3,10 @@
  **********************************************************/
 
 const data = {};
-module.exports = data;
+const frw = {
+	data: data
+};
+export default frw;
 
 /**
  * Group the list by a given property

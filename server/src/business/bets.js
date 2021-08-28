@@ -1,46 +1,36 @@
 /********************************************************************
  * Bets data manipulation layer
  ********************************************************************/
- const frw = {
-	data: require('../frw/frw.data')
-};
+import frw from '../frw/frw.data.js';
 
 const bets = {};
-module.exports = bets;
+export default bets;
 
 /********************************************************************
  * Retrieve data
  */
 	
 bets.getBets = function(db) {
-	let users;
-	return db.collection('users').find({}).toArray()
-		.then(userList => {
-			users = frw.data.reIndex(userList, 'id');
-			return db.collection('bets').find({}, { _id: 0 }).toArray();
-		})
-		.then(betList => {
-			for (const bet of betList) {
-				const better = users[bet.user];
-				bet.userName = (better && better.name) || bet.user;
-			}
-			return betList;
-		});
+	return Promise.all([
+			db.collection('users').find({}).toArray(),
+			db.collection('bets').find({}, { projection: { _id: false } }).toArray()
+		]).then(values => respondList(...values));
 };
 
 bets.getLeaderboard = function(db) {
-	let users;
-	return db.collection('users').find({}).toArray()
-		.then(userList => {
-			users = frw.data.reIndex(userList, 'id');
-			return db.collection('leaderboard').find({}, { _id: false }).toArray();
-		}).then(ldList => {
-			for (const ldUser of ldList) {
-				const better = users[ldUser.user];
-				ldUser.userName = (better && better.name) || ldUser.user;
-			}
-			return ldList;
-		});
+	return Promise.all([
+			db.collection('users').find({}).toArray(),
+			db.collection('leaderboard').find({}, { projection: { _id: false } }).toArray()
+		]).then(values => respondList(...values));
+};
+
+const respondList = function (userList, list) {
+	const users = frw.data.reIndex(userList, 'id');
+	for (const item of list) {
+		const better = users[item.user];
+		item.userName = (better && better.name) || item.user;
+	}
+	return list;
 };
 
 /******************************************************************************
@@ -72,19 +62,18 @@ bets.enterChampionBet = function(db, user, champion) {
  */
 bets.enterMatchWinnerBet = function(db, user, mid, winner) {
 	return db.collection('matches').findOne({ 'id': mid })
-		.then(function(match) {
+		.then(match => {
 			if (!isBettable(match)) {
 				throw new Error('Match is not opened to bet!');
 			} else if (winner !== match.team1_id && winner !== match.team2_id) {
 				throw new Error('You can only bet for one of the two teams playing!');
 			}
-		}).then(function() {
-			return db.collection('bets').findAndModify({
-				query: { user: user, challenge: 'match', 'target': mid },
-				update: { $set: { 'value': winner } },
-				new: true,
-				upsert: true
-			});
+		}).then(() => {
+			return db.collection('bets').findOneAndUpdate(
+				{ user: user, challenge: 'match', 'target': mid },
+				{ $set: { 'value': winner } },
+				{ upsert: true }
+			);
 		});
 };
 

@@ -1,11 +1,13 @@
-const fs = require('fs');
+/******************************************************************************
+ * Index page
+ ******************************************************************************/
+import { Router } from 'express';
+import fs from 'fs';
 
-const Router = function() {
-};
+export default function getRouter() {
+	const router = Router();
 
-Router.prototype.serve = function(request, response, ctx) {
-	const view = ctx.view;
-	if (view === '' || view === 'index') {
+	router.get('/', function (request, response) {
 		const ua = request.headers['user-agent'];
 		const index = (/Mobi/.test(ua) || 'mobile' in request.query) ? 'index.mobile.html' : 'index.html';
 		
@@ -17,8 +19,7 @@ Router.prototype.serve = function(request, response, ctx) {
 			response.write(data);
 			response.end();
 		});
-		return 200;
-	}
-};
+	});
 
-module.exports = Router;
+	return router;
+}

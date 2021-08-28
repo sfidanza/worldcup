@@ -1,7 +1,7 @@
-const data = require('./data/history.json');
+import data from './data/history.json';
 
 const history = {};
-module.exports = history;
+export default history;
 
 history.getHistory = function() {
 	return data;

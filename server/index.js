@@ -1,19 +1,9 @@
-const fabulous = require('./src/lib/fabulous-pack');
-const server = require('./src/lib/server');
-const router = require('./src/lib/router');
-const MongoClient = require('mongodb').MongoClient;
-const http = require('http');
+import express from 'express';
+import { MongoClient } from 'mongodb';
+import * as routers from './src/routers.js';
 
-const session = require('express-session');
-const MongoStore = require('./src/lib/fabulous/MongoStore')(session.Store);
-
-server.addRouting('/', new router.Index());
-server.addRouting('/api/', new router.Views(require('./src/views')));
-//server.addRouting('/api/cache/', new router.Views(require('./views.cache')));
-server.addRouting('/api/user/', new router.Views(require('./src/actions/user')));
-server.addRouting('/api/auth/', new router.Views(require('./src/actions/auth')));
-server.addRouting('/api/edit/', new router.Views(require('./src/actions/edit')));
-server.addRouting('/api/bet/', new router.Views(require('./src/actions/bet')));
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 const {
 	MONGO_HOSTNAME,
@@ -25,24 +15,36 @@ const {
 	COOKIE_SEED
 } = process.env;
 
-const app = new fabulous.App();
+const app = express();
 
-MongoClient.connect(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`)
-	.then(client => {
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`)
+	.connect()
+	.then(dbClient => {
 		console.log('Connected to mongodb!');
-		const database = client.db(MONGO_DB);
+		const database = dbClient.db(MONGO_DB);
 
 		app.use(session({
 			secret: COOKIE_SEED,
-			store: new MongoStore({
-				db: database,
+			store: MongoStore.create({
+				client: dbClient,
+				dbName: MONGO_DB
 			}),
 			resave: true,
 			saveUninitialized: true
-		}))
-			.use(server.start(database));
+		}));
 
-		http.createServer(app.handler).listen(NODE_PORT, function () {
+		app.use('/', routers.index());
+		app.use('/api/', routers.data(database));
+		// app.use('/api/cache/', new router.Views(require('./views.cache')));
+		app.use('/api/user/', routers.user(database));
+		app.use('/api/auth/', routers.auth(database));
+		app.use('/api/edit/', routers.edit(database));
+		app.use('/api/bet/', routers.bet(database));
+
+		app.listen(NODE_PORT, function () {
 			console.log(`App listening on port ${NODE_PORT}!`);
 		});
 	}).catch(console.error);

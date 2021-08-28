@@ -1,8 +1,8 @@
 /********************************************************************
  * User Authentication Class
  ********************************************************************/
- const users = {};
-module.exports = users;
+const users = {};
+export default users;
 
 /**
  * Takes login/pwd to authenticate against a MongoDB collection.
@@ -33,18 +33,16 @@ users.register = function (db, login, pwd, type, info) {
 	info.name = info.name || login;
 	return db.collection('users')
 		.findOne({ 'id': id })
-		.then(function (user) {
+		.then(user => {
 			if (user && user.pwd !== pwd) {
 				throw new Error('User already exists: ' + login);
 			}
 			return db.collection('users').findOneAndUpdate(
 				{ 'id': id, 'pwd': pwd },
 				{ $set: info },
-				{ new: true, upsert: true }
+				{ upsert: true }
 			);
-		})
-		.then(function (result) { return result[0]; }) // findAndModify returns [ doc, { whatever } ]
-		.then(filterUser);
+		}).then(filterUser);
 };
 
 function getId(type, login) {

@@ -1,12 +1,10 @@
 /********************************************************************
  * Foot data manipulation layer (teams, matches, stadiums)
  ********************************************************************/
-const frw = {
-	data: require('../frw/frw.data')
-};
+import frw from '../frw/frw.data.js';
 
 const foot = {};
-module.exports = foot;
+export default foot;
 
 /********************************************************************
  * Retrieve data
@@ -14,37 +12,25 @@ module.exports = foot;
 
 foot.getTeams = function (db) {
 	return db.collection('teams')
-		.find({}, { _id: 0 })
-		.sort([['rank', 'asc'], ['name', 'asc']])
+		.find({}, { projection: { _id: false }, sort: [['rank', 'asc'], ['name', 'asc']] })
 		.toArray();
 };
 
 foot.getMatches = function (db) {
 	return db.collection('matches')
-		.find({}, { _id: 0 })
-		.sort([['id', 'asc']]) // [[['date', 'asc'], ['id', 'asc']] but needs date objects instead of strings
+		.find({}, { projection: { _id: false }, sort: [['id', 'asc']] })
 		.toArray();
 };
 
 foot.getStadiums = function (db) {
 	return db.collection('stadiums')
-		.find({}, { _id: 0 })
+		.find({}, { projection: { _id: false } })
 		.toArray();
 };
 
 foot.getData = function (db) {
-	const data = {};
-	return foot.getTeams(db)
-		.then(function (teams) {
-			data.teams = teams;
-			return foot.getMatches(db);
-		}).then(function (matches) {
-			data.matches = matches;
-			return foot.getStadiums(db);
-		}).then(function (stadiums) {
-			data.stadiums = stadiums;
-			return data;
-		});
+	return Promise.all([ foot.getTeams(db), foot.getMatches(db), foot.getStadiums(db) ])
+		.then(([ teams, matches, stadiums ]) => { return { teams, matches, stadiums } });
 };
 
 /******************************************************************************
@@ -69,16 +55,16 @@ foot.setMatchScore = function (db, mid, score1, score2, score1PK, score2PK) {
 		'team2_scorePK': score2PK
 	};
 	return db.collection('matches')
-		.findAndModify({ query: { id: mid }, update: { $set: edit }, new: true })
-		.then(function (result) { return result[0]; }) // findAndModify returns [ doc, { whatever } ]
-		.then(function (match) {
+		.findOneAndUpdate({ id: mid }, { $set: edit }, { returnDocument: 'after' })
+		.then(result => {
+			const match = result.value;
 			if (!match) throw new Error('Match not found: ' + mid);
 			delete match._id;
 			const data = { matches: [match] };
 			if (match.group) {
 				// update group results
 				return updateGroupStats(db, match.group)
-					.then(function (teams) {
+					.then(teams => {
 						data.teams = teams;
 						return data;
 					});
@@ -124,20 +110,13 @@ foot.setRanks = function (db, group, ranks) {
  * @param {string} group - the group to be updated ('A', 'B', ...)
  */
 function updateGroupStats(db, group) {
-	let teams;
-	return db.collection('teams')
-		.find({ group: group }, { id: 1 })
-		.toArray()
-		.then(t => {
-			teams = t;
-			return db.collection('matches')
-				.find({ group: group, team1_score: { $ne: null } })
-				.toArray();
-		}).then(matches => {
+	return Promise.all([
+			db.collection('teams').find({ group: group }, { id: true }).toArray(),
+			db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
+		]).then(([ teams, matches ]) => {
 			const newStats = computeGroupStandings(teams, matches);
-			const teamsCol = db.collection('teams');
 			for (const t of newStats) {
-				teamsCol.updateOne({ _id: t._id }, { $set: t }, { w: 0 });
+				db.collection('teams').updateOne({ _id: t._id }, { $set: t });
 			}
 			if (matches.length === 6) { // 6 matches per group
 				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id); // do not wait

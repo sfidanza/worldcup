@@ -72,6 +72,6 @@ Note: the `docker-compose config` command resolves the environment variables ins
   - <https://github.com/googleapis/google-api-nodejs-client/issues/806#issuecomment-631058329>
   - <https://www.npmjs.com/package/simple-oauth2>
 - Tests
-- Migrate server to express
+- Try full responsive design to merge desktop & mobile templates
 - Migrate client to webpack
 - Publish docker images to dockerhub
