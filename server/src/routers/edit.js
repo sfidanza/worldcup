@@ -19,7 +19,7 @@ export default function getRouter(db) {
 					response.json(data);
 				}).catch(err => {
 					console.error(err);
-					response.status(500).json({ error: err.message });
+					response.status(err.statusCode  ?? 500).json({ error: err.message });
 				});
 		} else {
 			response.status(401).json({ error: 'Unauthorized' });
