@@ -38,7 +38,6 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 
 		app.use('/', routers.index());
 		app.use('/api/', routers.data(database));
-		// app.use('/api/cache/', new router.Views(require('./views.cache')));
 		app.use('/api/user/', routers.user(database));
 		app.use('/api/auth/', routers.auth(database));
 		app.use('/api/edit/', routers.edit(database));
