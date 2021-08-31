@@ -1,6 +1,8 @@
 /********************************************************************
  * User Authentication Class
  ********************************************************************/
+import httpError from 'http-errors';
+
 const users = {};
 export default users;
 
@@ -15,10 +17,12 @@ export default users;
  *   isAdmin: true
  * }
  */
-users.authenticate = function (db, login, pwd) {
+users.authenticate = async function (db, login, pwd) {
 	return db.collection('users')
-		.findOne({ 'id': getId('native', login), 'pwd': pwd })
-		.then(filterUser);
+		.findOne(
+			{ 'id': getId('native', login), 'pwd': pwd },
+			{ projection: { _id: false, pwd: false} }
+		);
 };
 
 /**
@@ -26,7 +30,7 @@ users.authenticate = function (db, login, pwd) {
  * Uses a Promise API.
  * If successful, returns a user object (like authenticate).
  */
-users.register = function (db, login, pwd, type, info) {
+users.register = async function (db, login, pwd, type, info) {
 	const id = getId(type, login);
 	delete info.login; // can not be changed
 	delete info.type; // can not be changed
@@ -35,24 +39,16 @@ users.register = function (db, login, pwd, type, info) {
 		.findOne({ 'id': id })
 		.then(user => {
 			if (user && user.pwd !== pwd) {
-				throw new Error('User already exists: ' + login);
+				throw new httpError.UnprocessableEntity('User already exists: ' + login);
 			}
 			return db.collection('users').findOneAndUpdate(
 				{ 'id': id, 'pwd': pwd },
 				{ $set: info },
-				{ upsert: true }
+				{ upsert: true, returnDocument: 'after', projection: { _id: false, pwd: false} }
 			);
-		}).then(filterUser);
+		}).then(result => result.value);
 };
 
 function getId(type, login) {
 	return type + '-' + login;
-}
-
-function filterUser(user) {
-	if (user) {
-		delete user._id;
-		delete user.pwd;
-	}
-	return user;
 }

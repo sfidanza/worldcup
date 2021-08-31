@@ -13,7 +13,7 @@ export default function getRouter(db) {
 			.then(user => {
 				request.session.user = user;
 				response.json((user && user.id) ? { 'user': user } : {});
-			}).catch(err => response.status(500).json({ error: err.message }));
+			}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	router.get('/logout', function (request, response) {
@@ -27,7 +27,7 @@ export default function getRouter(db) {
 			.then(user => {
 				request.session.user = user;
 				response.json((user && user.id) ? { 'user': user } : {});
-			}).catch(err => response.status(500).json({ error: err.message }));
+			}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	router.get('/changePassword', function (request, response) {
@@ -36,7 +36,7 @@ export default function getRouter(db) {
 			.then(user => {
 				request.session.user = user;
 				response.json((user && user.id) ? { 'user': user } : {});
-			}).catch(err => response.status(500).json({ error: err.message }));
+			}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	return router;

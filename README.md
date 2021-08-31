@@ -68,10 +68,17 @@ Note: the `docker-compose config` command resolves the environment variables ins
 
 ## To do (?)
 
-- Restore login through Google and betting features
-  - <https://github.com/googleapis/google-api-nodejs-client/issues/806#issuecomment-631058329>
-  - <https://www.npmjs.com/package/simple-oauth2>
-- Tests
+- [ONGOING] Tests
+  - <https://mochajs.org/#installation>
 - Try full responsive design to merge desktop & mobile templates
 - Migrate client to webpack
+  - <https://webpack.js.org/guides/getting-started/>
 - Publish docker images to dockerhub
+- client/.csslintrc
+
+## References
+
+- Mongodb driver documentation
+  - <http://mongodb.github.io/node-mongodb-native/4.1/classes/Collection.html#updateMany>
+- setup local https? (was not needed to test Google login)
+  - <https://web.dev/how-to-use-local-https/>

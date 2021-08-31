@@ -3,7 +3,7 @@
 	<dl id="menu">
 		<dd><a onclick="page.select(this, event);" href="#schedule">Schedule</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#board">Finals Board</a></dd>
-		<!--dd><a onclick="page.select(this, event);" href="#bet">Bet</a></dd-->
+		<dd><a onclick="page.select(this, event);" href="#bet">Bet</a></dd>
 		<dt style="float: none; height: 0;"></dt>
 		<dd><a onclick="page.select(this, event);" href="#group,A" title="Group A">A</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#group,B" title="Group B">B</a></dd>
@@ -32,10 +32,10 @@
 	<h5>Login</h5>
 	<div id="login-dlg-body">
 		<form id="login-form" method="post"
-		      onsubmit="page.templates.main.submitLogin(this.user_name.value, this.user_pwd.value); return false;">
+		      onsubmit="page.templates.main.submitLogin(this.user_id.value, this.user_pwd.value); return false;">
 			<fieldset>
 				<div>
-					<input type="text" name="user_name" size="12" value=""/>
+					<input type="text" name="user_id" size="12" value=""/>
 					<input type="password" name="user_pwd" size="12" value=""/>
 				</div>
 				<div class="submit">

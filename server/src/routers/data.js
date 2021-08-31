@@ -17,25 +17,25 @@ export default function getRouter(db) {
 				data.leaderboard = leaderboard;
 				data.bets = betList;
 				response.json(data);
-			}).catch(err => response.status(500).json({ error: err.message }));
+			}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	router.get('/teams', function (request, response) {
 		foot.getTeams(db)
 			.then(docs => response.json({ 'teams': docs }))
-			.catch(err => response.status(500).json({ error: err.message }));
+			.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	router.get('/matches', function (request, response) {
 		foot.getMatches(db)
 			.then(docs => response.json({ 'matches': docs }))
-			.catch(err => response.status(500).json({ error: err.message }));
+			.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	router.get('/stadiums', function (request, response) {
 		foot.getStadiums(db)
 			.then(docs => response.json({ 'stadiums': docs }))
-			.catch(err => response.status(500).json({ error: err.message }));
+			.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		});
 
 	router.get('/history', function (request, response) {

@@ -43,13 +43,16 @@ login.cleanErrors = function () {
 };
 
 login.signinGoogle = function () {
+	window.open(' about:blank', 'signin', 'height=600,width=450'); // create the 'signin' popup on user action, or it will get blocked in the async process
 	const button = document.getElementById('social-signin').querySelector('.signin-google');
 	button.classList.add('waiting');
 	fetch(page.config.url.auth('google'))
 		.then(response => response.json())
 		.then(data => {
 			if (data && data.url) {
-				window.open(data.url, 'signin', 'height=600,width=450');
+				//const wh = 
+				window.open(data.url, 'signin');
+				// should check wh to handle fail/cancel cases
 			}
 		});
 };

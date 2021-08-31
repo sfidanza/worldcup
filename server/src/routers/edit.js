@@ -3,8 +3,8 @@
  ******************************************************************************/
 import { Router } from 'express';
 import foot from '../business/foot.js';
-// import bets from '../business/bets.js';
-	
+import bets from '../business/bets.js';
+
 export default function getRouter(db) {
 	const router = Router();
 
@@ -13,13 +13,15 @@ export default function getRouter(db) {
 		if (user && user.isAdmin) {
 			const query = request.query;
 			foot.setMatchScore(db, +query.mid, getScore(query.score1), getScore(query.score2),
-					getScore(query.score1PK), getScore(query.score2PK))
+				getScore(query.score1PK), getScore(query.score2PK))
 				.then(data => {
-					// bets.computeLeaderboard(db); // do not wait
+					// if (!match.group) { // if the match is in the final phase, trigger a betting leaderboard update
+						bets.updateLeaderboard(db); // no need to wait for result
+					// }
 					response.json(data);
 				}).catch(err => {
 					console.error(err);
-					response.status(err.statusCode  ?? 500).json({ error: err.message });
+					response.status(err.statusCode ?? 500).json({ error: err.message });
 				});
 		} else {
 			response.status(401).json({ error: 'Unauthorized' });
@@ -35,7 +37,7 @@ export default function getRouter(db) {
 					response.json(data);
 				}).catch(err => {
 					console.error(err);
-					response.status(500).json({ error: err.message });
+					response.status(err.statusCode ?? 500).json({ error: err.message });
 				});
 		} else {
 			response.status(401).json({ error: 'Unauthorized' });

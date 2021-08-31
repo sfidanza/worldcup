@@ -13,7 +13,7 @@ export default function getRouter(db) {
 	const router = Router();
 
 	router.get('/callback', function (request, response) {
-		fs.readFile('./server/pages/signin.html', { encoding: 'utf8' }, function (err, data) {
+		fs.readFile('src/pages/signin.html', { encoding: 'utf8' }, function (err, data) {
 			if (err) throw err;
 			response.writeHead(200, { 'Content-Type': 'text/html' });
 			response.write(data);
@@ -26,10 +26,11 @@ export default function getRouter(db) {
 	});
 
 	router.get('/revoke', function (request, response) {
-		const token = null; // store token somewhere (db, session) to be able to revoke
-		auth.revoke(token, (err/*, result*/) => {
+		const token = null; // store token in session at login time to be able to revoke
+		auth.revoke(token)
+			.then((err/*, result*/) => {
 			if (err) {
-				response.status(500).json({ error: err.message });
+				response.status(err.statusCode ?? 500).json({ error: err.message });
 			} else {
 				response.json({});
 			}
@@ -38,19 +39,19 @@ export default function getRouter(db) {
 
 	router.get('/profile', function (request, response) {
 		const query = request.query;
-		auth.profile(query.code, (error, profile) => {
-			if (error) {
-				response.status(500).json(error);
-			} else {
-				users.register(db, profile.emails[0].value, null, 'google', {
-					'name': profile.displayName
-				}).then(user => {
-					user.profile = profile;
-					request.session.user = user;
-					response.json({ user: user });
-				}).catch(err => response.status(500).json({ error: err.message }));
-			}
-		});
+		auth.profile(query.code)
+			.then(profile => {
+				// profile photo: profile.photos?.[0]?.url
+				return users.register(db, profile.resourceName, null, 'google', {
+					'name': profile.names?.[0]?.displayName
+				});
+			}).then(user => {
+				request.session.user = user;
+				response.json((user && user.id) ? { 'user': user } : {});
+			}).catch(err => {
+				console.error(err);
+				response.status(err.statusCode ?? 500).json({ error: err.message });
+			});
 	});
 
 	return router;
