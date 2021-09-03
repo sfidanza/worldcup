@@ -14,7 +14,7 @@ page.bet = bet;
 
 page.config = {
 	url: {
-		templates: 'static/app.xml',
+		templates: 'app.xml',
 		data: 'api/all',
 		logout: 'api/user/logout',
 		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`,

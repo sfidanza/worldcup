@@ -36,7 +36,6 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 			saveUninitialized: true
 		}));
 
-		app.use('/', routers.index());
 		app.use('/api/', routers.data(database));
 		app.use('/api/user/', routers.user(database));
 		app.use('/api/auth/', routers.auth(database));

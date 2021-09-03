@@ -70,7 +70,6 @@ Note: the `docker-compose config` command resolves the environment variables ins
 
 - [ONGOING] Tests
   - <https://mochajs.org/#installation>
-- Try full responsive design to merge desktop & mobile templates
 - Migrate client to webpack
   - <https://webpack.js.org/guides/getting-started/>
 - Publish docker images to dockerhub
@@ -82,3 +81,5 @@ Note: the `docker-compose config` command resolves the environment variables ins
   - <http://mongodb.github.io/node-mongodb-native/4.1/classes/Collection.html#updateMany>
 - setup local https? (was not needed to test Google login)
   - <https://web.dev/how-to-use-local-https/>
+- SSL security test
+  - <https://www.ssllabs.com/ssltest/index.html>

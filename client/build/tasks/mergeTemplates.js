@@ -1,17 +1,16 @@
-const path = require("path");
-const Template = require("./frw/Template.js");
+const path = require('path');
+const chalk = require('chalk');
+const Template = require('./frw/Template.js');
 
 module.exports = function (grunt) {
-	const chalk = require('chalk');
-
 	grunt.registerMultiTask('mergeTemplates', 'Merge templates.', function () {
 		// Merge task-specific and/or target-specific options with these defaults.
 		const options = this.options({
-			prefix: ""
+			prefix: ''
 		});
 
 		const tpl = new Template();
-		tpl.create(grunt.file.read("build/tasks/templates.tpl"));
+		tpl.create(grunt.file.read('build/tasks/templates.tpl'));
 
 		// Iterate over all src-dest file pairs.
 		this.files.forEach(file => {

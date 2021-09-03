@@ -1,16 +1,16 @@
 {
 	"files": {
 		"target/static/app.css": [
-			"src/desktop/stylesheet.css",
-			"src/desktop/css/flags.css",
-			"src/desktop/css/schedule.css",
-			"src/desktop/css/ranking.css",
-			"src/desktop/css/board.css",
-			"src/desktop/css/history.css",
-			"src/desktop/css/uic.css",
-			"src/desktop/css/scoreEditor.css",
-			"src/desktop/templates/login/login.css",
-			"src/desktop/templates/bet/bet.css"
+			"src/css/main.css",
+			"src/css/flags.css",
+			"src/css/schedule.css",
+			"src/css/ranking.css",
+			"src/css/board.css",
+			"src/css/history.css",
+			"src/css/uic.css",
+			"src/css/scoreEditor.css",
+			"src/templates/login/login.css",
+			"src/templates/bet/bet.css"
 		]
 	}
 }

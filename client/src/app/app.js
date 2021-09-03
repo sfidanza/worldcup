@@ -1,9 +1,11 @@
 /**********************************************************
- * Desktop
+ * Application loader
+ * Avoids circular dependencies between page and templates
+ *  app -> page
+ *  app -> templates -> page
  **********************************************************/
 
 import * as templates from './templates.js';
 import { page } from './page.js';
 
-page.config.url.templates = 'static/app.xml';
 page.templates = templates;

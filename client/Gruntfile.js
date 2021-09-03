@@ -7,25 +7,22 @@ module.exports = function (grunt) {
 		copy: {
 			build: {
 				files: [
-					{ expand: true, cwd: 'src/desktop/', src: ['img/**'], dest: 'target/static/' },
-					{ expand: true, cwd: 'src/desktop/', src: ['**/*.js'], dest: 'target/static/' },
-					{ expand: true, cwd: 'src/mobile/', src: ['**/*.js'], dest: 'target/static/mobile/' }
+					{ expand: true, cwd: 'src/', src: ['img/**'], dest: 'target/static/' },
+					{ expand: true, cwd: 'src/', src: ['**/*.js'], dest: 'target/static/' },
+					{ expand: true, cwd: 'src/', src: ['*.html'], dest: 'target/static/' }
 				]
 			}
 		},
 		concat: {
-			desktop: grunt.file.readJSON('build/cfg/concat.json'),
-			mobile: grunt.file.readJSON('build/cfg/concat.mobile.json')
+			target: grunt.file.readJSON('build/cfg/concat.json')
 		},
 		mergeTemplates: {
-			desktop: grunt.file.readJSON('build/cfg/mergeTemplates.json'),
-			mobile: grunt.file.readJSON('build/cfg/mergeTemplates.mobile.json')
+			target: grunt.file.readJSON('build/cfg/mergeTemplates.json')
 		},
 		cssmin: {
 			minify: {
 				files: {
-					'target/static/app.css': 'target/static/app.css',
-					'target/static/app.mobile.css': 'target/static/app.mobile.css'
+					'target/static/app.css': 'target/static/app.css'
 				}
 			}
 		},
@@ -33,21 +30,19 @@ module.exports = function (grunt) {
 			minify: {
 				files: {
 					'target/static/frw.js': 'target/static/frw.js',
-					'target/static/app.js': 'target/static/app.js',
-					'target/static/app.mobile.js': 'target/static/app.mobile.js'
+					'target/static/app.js': 'target/static/app.js'
 				}
 			}
 		},
 		eslint: {
 			// options: { fix: true },
-			desktop: ['src/desktop/**/*.js'],
-			mobile: ['src/mobile/**/*.js']
+			target: ['src/**/*.js']
 		},
 		csslint: {
 			options: {
 				csslintrc: '.csslintrc'
 			},
-			src: ['src/desktop/**/*.css', 'src/mobile/**/*.css']
+			src: ['src/**/*.css']
 		},
 		watch: {
 			all: {
@@ -55,35 +50,19 @@ module.exports = function (grunt) {
 				tasks: 'default'
 			},
 			css: {
-				files: ['src/desktop/**/*.css', 'build/cfg/concat.json'],
-				tasks: ['concat:desktop']
-			},
-			mcss: {
-				files: ['src/mobile/**/*.css', 'build/cfg/concat.mobile.json'],
-				tasks: ['concat:mobile']
-			},
-			eslintDesktop: {
-				files: ['src/desktop/**/*.js'],
-				tasks: ['eslint:desktop']
-			},
-			eslintMobile: {
-				files: ['src/mobile/**/*.js'],
-				tasks: ['eslint:mobile']
+				files: ['src/**/*.css', 'build/cfg/concat.json'],
+				tasks: ['concat']
 			},
 			eslint: {
-				files: ['.eslintrc'],
+				files: ['.eslintrc', 'src/**/*.js'],
 				tasks: ['eslint']
 			},
 			tpl: {
-				files: ['src/desktop/**/*.html', 'build/cfg/mergeTemplates.json'],
-				tasks: ['mergeTemplates:desktop']
-			},
-			mtpl: {
-				files: ['src/mobile/**/*.html', 'build/cfg/mergeTemplates.mobile.json'],
-				tasks: ['mergeTemplates:mobile']
+				files: ['src/templates/**/*.html', 'build/cfg/mergeTemplates.json'],
+				tasks: ['mergeTemplates']
 			},
 			copy: {
-				files: ['src/desktop/img/**', 'src/desktop/**/*.js', 'src/mobile/**/*.js'],
+				files: ['src/img/**', 'src/**/*.js', 'src/*.html'],
 				tasks: ['copy']
 			}
 		}

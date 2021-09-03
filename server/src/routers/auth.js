@@ -5,21 +5,11 @@
  *  https://developers.google.com/+/api/latest/people/get
  ******************************************************************************/
 import { Router } from 'express';
-import fs from 'fs';
 import users from '../business/users.js';
 import auth from '../business/auth.js';
 
 export default function getRouter(db) {
 	const router = Router();
-
-	router.get('/callback', function (request, response) {
-		fs.readFile('src/pages/signin.html', { encoding: 'utf8' }, function (err, data) {
-			if (err) throw err;
-			response.writeHead(200, { 'Content-Type': 'text/html' });
-			response.write(data);
-			response.end();
-		});
-	});
 
 	router.get('/url', function (request, response) {
 		response.json({ url: auth.url() });
