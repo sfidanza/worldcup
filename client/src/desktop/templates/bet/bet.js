@@ -10,10 +10,10 @@ bet.onCreate = function (pageRef, frwRef, i18nRepository) {
 	this.i18n = i18nRepository;
 };
 
-bet.onParse = function() {
+bet.onParse = function () {
 	const bets = page.data.bets;
 	const user = page.data.user;
-	
+
 	if (user) {
 		const championBet = bets?.find(b => b.user === user.id && b.challenge === 'champion');
 		if (championBet) {
@@ -28,67 +28,85 @@ bet.onParse = function() {
 	} else {
 		this.parseBlock('notLogged');
 	}
-	
+
 	const championBets = bets?.filter(b => b.challenge === 'champion');
 	this.parseChampion(championBets);
-	
+	// this.parseFriends(championBets);
+
 	let winnerBets = bets?.filter(b => b.challenge === 'match');
 	if (winnerBets) {
 		winnerBets = frw.data.groupBy(winnerBets, 'target');
 	}
 	this.parseMatches(winnerBets);
-	
-	page.templates.leaderboard.parse();
-	this.set('leaderboard', page.templates.leaderboard.retrieve());
+
+	if (page.data.leaderboard.length) {
+		this.parseLeaderboard(page.data.user, page.data.leaderboard);
+		this.parseBlock('leaderboard');
+	}
 };
 
-bet.parseChampion = function(bets) {
+bet.parseChampion = function (bets) {
 	const betAllowed = (!!page.data.user);
 	this.set('selectableClass', (betAllowed) ? 'selectable' : '');
-	
+
 	const betsByTeam = bets && frw.data.groupBy(bets, 'value');
 	const totalBets = bets && bets.length;
-	
+
 	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
 	for (const g in teamsByGroup) {
-		const teams = teamsByGroup[g];
 		this.set('group', g);
-		
-		for (const team of teams) {
-			const betsOnTeam = betsByTeam && betsByTeam[team.id];
-			const betsOnTeamNb = betsOnTeam && betsOnTeam.length;
-			const betRatio = betsOnTeamNb / totalBets;
-			this.set('team', team);
-			this.set('betStyle', betsOnTeamNb ? 'background-color: rgba(0, 255, 0, ' + betRatio + ');' : '');
-			if (betsOnTeam) {
-				this.set('betsOnTeam', betsOnTeamNb);
-				this.set('betters', this.getBetters(betsOnTeam).join(', '));
-				this.parseBlock('badge');
-			}
-			this.parseBlock('team');
+		for (const team of teamsByGroup[g]) {
+			this.parseTeam(team, betsByTeam, totalBets);
 		}
-		
 		this.parseBlock('group');
 	}
 };
 
-bet.getBetters = function(listBets) {
+bet.parseTeam = function (team, betsByTeam, totalBets) {
+	const betsOnTeam = betsByTeam && betsByTeam[team.id];
+	const betsOnTeamNb = betsOnTeam && betsOnTeam.length;
+	const betRatio = betsOnTeamNb / totalBets;
+	this.set('team', team);
+	this.set('betStyle', betsOnTeamNb ? 'background-color: rgba(0, 255, 0, ' + betRatio + ');' : '');
+	if (betsOnTeam) {
+		this.set('betsOnTeam', betsOnTeamNb);
+		this.set('betters', this.getBetters(betsOnTeam).join(', '));
+		this.parseBlock('badge');
+	}
+	this.parseBlock('team');
+};
+
+bet.getBetters = function (listBets) {
 	return listBets.map(b => b.userName);
 };
 
-bet.parseMatches = function(bets) {
+bet.parseFriends = function (bets) {
+	const user = page.data.user;
+	const friendsBets = frw.data.sort(bets, [{ key: 'userName', dir: 1 }]);
+	const teamsById = frw.data.reIndex(page.data.teams, 'id');
+	friendsBets.forEach((b, i) => {
+		this.set('row_class', 'l' + (i % 2));
+		this.set('bet', b);
+		this.set('selected', (user && b.user === user.id) ? 'selected' : '');
+		this.set('bet.team', teamsById[b.value]?.name);
+		this.parseBlock('bet');
+	});
+	this.parseBlock('friends');
+};
+
+bet.parseMatches = function (bets) {
 	const user = page.data.user;
 	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
 	const teams = frw.data.reIndex(page.data.teams, 'id');
-	
+
 	for (const phase in list) {
-		this.set('phase', page.config.i18n['phase'+phase]);
+		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
 		for (const day in phaseList) {
 			const matches = phaseList[day];
 			this.set('day', day);
 			matches.forEach((match, i) => {
-				this.set('row_class', 'l'+(i % 2));
+				this.set('row_class', 'l' + (i % 2));
 				this.set('match', match);
 				const team1 = teams[match.team1_id];
 				const team2 = teams[match.team2_id];
@@ -100,7 +118,7 @@ bet.parseMatches = function(bets) {
 					pso = '<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')';
 				}
 				this.set('PSO', pso);
-				
+
 				let bet1Class = '', bet2Class = '';
 				const isOpened = this.isBettable(match);
 				if (user && isOpened) {
@@ -109,7 +127,7 @@ bet.parseMatches = function(bets) {
 					this.parseBlock('bet1');
 					this.parseBlock('bet2');
 				}
-				
+
 				const betsOnMatch = bets[match.id];
 				if (betsOnMatch) {
 					if (user) {
@@ -121,12 +139,12 @@ bet.parseMatches = function(bets) {
 							bet2Class += ' selected';
 						}
 					}
-					
+
 					const betsOnTeams = frw.data.groupBy(betsOnMatch, 'value');
 					this.parseTeamBadge('badge1', betsOnTeams[team1.id]);
 					this.parseTeamBadge('badge2', betsOnTeams[team2.id]);
 				}
-				
+
 				this.set('bet1Class', bet1Class);
 				this.set('bet2Class', bet2Class);
 				this.parseBlock('match');
@@ -137,15 +155,30 @@ bet.parseMatches = function(bets) {
 	}
 };
 
-bet.isBettable = function(m) {
+bet.isBettable = function (m) {
 	return (new Date(m.day + ' ' + m.hour) > Date.now()) && // match is not started
 		(m.team1_id && m.team2_id); // both teams are known
 };
 
-bet.parseTeamBadge = function(badge, betsOnTeam) {
+bet.parseTeamBadge = function (badge, betsOnTeam) {
 	if (betsOnTeam) {
 		this.set('betsOnTeam', betsOnTeam.length);
 		this.set('betters', this.getBetters(betsOnTeam).join(', '));
 		this.parseBlock(badge);
 	}
+};
+
+bet.parseLeaderboard = function(user, board) {
+	frw.data.sort(board, [
+		{ key: 'ratio', dir: -1 },
+		{ key: 'total', dir: -1 },
+		{ key: 'userName', dir: 1 }
+	]).forEach((ldUser, i) => {
+		this.set('row_class', 'l' + (i % 2));
+		this.set('ldUser', ldUser);
+		this.set('ldUser.ratio', ldUser.ratio.toFixed(0));
+		this.set('transparency', ldUser.ratio/100);
+		this.set('selected', (user && ldUser.user === user.id) ? 'selected' : '');
+		this.parseBlock('ldUser');
+	});
 };

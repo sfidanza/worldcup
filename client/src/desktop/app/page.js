@@ -37,7 +37,6 @@ page.config = {
 		pwl: 'app-pwl',
 		contents: 'contents',
 		user: 'user-area',
-		genericDlg: 'generic-dlg',
 		loginDlg: 'login-dlg'
 	},
 	defaultPage: 'schedule',
@@ -67,10 +66,6 @@ page.initialize = function () {
 			id: page.config.area.loginDlg,
 			centered: true
 		});
-		this.genericDlg = new uic.Dialog({
-			id: page.config.area.genericDlg,
-			centered: true
-		});
 		this.tooltip = new uic.Tooltip(0);
 
 		page.select(frw.history.getCurrentState() || page.config.defaultPage);
@@ -79,7 +74,6 @@ page.initialize = function () {
 };
 
 page.destroy = function () {
-	this.genericDlg.destroy();
 	this.loginDlg.destroy();
 	this.tooltip.destroy();
 	this.pwl = null;
@@ -98,11 +92,11 @@ page.notify = function (message, init) {
 		this.pwl.innerHTML = message;
 	} else {
 		this.pwl.innerHTML = '';
-		this.pwl.style.visibility = 'hidden';
+		this.pwl.style.display = 'none';
 	}
 	if (init) {
+		this.pwl.style.display = 'block';
 		frw.dom.center(this.pwl);
-		this.pwl.style.visibility = 'visible';
 	}
 };
 
@@ -273,13 +267,6 @@ page.showBoard = function () {
 
 	page.templates.board.parse(data);
 	page.templates.board.load(page.config.area.contents);
-};
-
-page.showNotes = function () {
-	page.templates.notes.parse();
-	page.templates.notes.load(page.genericDlg.getBody());
-	page.genericDlg.setTitle('Notes');
-	page.genericDlg.show();
 };
 
 page.parseGroupRanking = function (group) {

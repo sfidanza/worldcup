@@ -12,5 +12,4 @@ export { history } from '../templates/history.js';
 export { notes } from '../templates/notes.js';
 export { login } from '../templates/login/login.js';
 export { register } from '../templates/login/register.js';
-export { leaderboard } from '../templates/bet/leaderboard.js';
 export { bet } from '../templates/bet/bet.js';

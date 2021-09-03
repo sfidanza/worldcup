@@ -1,37 +1,44 @@
-/***[Login Page]************/
-.page-login fieldset {
+/***[Login/Register]********/
+.page-login fieldset, .page-register fieldset {
 	border: 1px solid #AAAAAA;
 	padding: 10px;
-	margin: 0;
+	margin: 0 auto;
+}
+.page-login fieldset {
 	width: 283px;
 }
 .page-login fieldset input[type='text'],
 .page-login fieldset input[type='password'] {
 	width: 131px;
 }
-.page-login p {
+.page-register fieldset input[type='text'],
+.page-register fieldset input[type='password'] {
+	margin-bottom: 5px;
+	width: 138px;
+}
+.page-login p, .page-register p {
 	margin: 0 0 10px;
 }
-.page-login div.submit {
-	margin-top: 8px;
+.page-login div.submit, .page-register div.submit {
+	margin-top: 10px;
 	text-align: right;
 }
-.page-login div.submit a {
+.page-login div.submit a, .page-register div.submit a {
 	float: left;
 	margin-top: 5px;
 }
-.page-login div.submit input {
+.page-login div.submit input, .page-register div.submit input {
 	background-color: #EEEEEE;
 	border: 1px outset #CCCCCC;
 	color: #222222;
 	padding: 1px 5px;
 }
-.page-login input.error {
+.page-login input.error, .page-register input.error {
 	outline: 2px solid #9C0000;
 }
 
 #social-signin {
-	float: right;
+	margin-bottom: 1em;
 }
 #social-signin .signin-google {
 	background: url('img/signin/Red-signin_Long_base_44dp.png') 0 0 no-repeat;
@@ -50,33 +57,14 @@
 	background: url('img/loader.gif') center center no-repeat;
 }
 
-/***[Register Page]************/
-.page-register fieldset {
-	border: 1px solid #AAAAAA;
-	padding: 10px;
-	margin: 0 auto;
+/***[Responsive Design]*****/
+@media (min-width: 641px) { /* Target size: L */
+	#social-signin {
+		float: right;
+	}
 }
-.page-register fieldset input[type='text'],
-.page-register fieldset input[type='password'] {
-	width: 138px;
-}
-.page-register p {
-	margin: 0 0 10px;
-}
-.page-register div.submit {
-	margin-top: 8px;
-	text-align: right;
-}
-.page-register div.submit a {
-	float: left;
-	margin-top: 5px;
-}
-.page-register div.submit input {
-	background-color: #EEEEEE;
-	border: 1px outset #CCCCCC;
-	color: #222222;
-	padding: 1px 5px;
-}
-.page-register input.error {
-	outline: 2px solid #9C0000;
+@media (max-width: 640px) { /* Target sizes: S, M */
+	.page-register fieldset {
+		width: 296px;
+	}
 }

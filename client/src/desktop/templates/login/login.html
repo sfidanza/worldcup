@@ -8,10 +8,8 @@
       onsubmit="page.templates.login.submit(this.user_id.value, this.user_pwd.value); return false;">
 	<fieldset>
 		<p>Log in using your credentials on this site:</p>
-		<div>
-			<input type="text" name="user_id" value=""/>
-			<input type="password" name="user_pwd" value=""/>
-		</div>
+		<input type="text" name="user_id" value=""/>
+		<input type="password" name="user_pwd" value=""/>
 		<div class="submit">
 			<a href="#register,{backTo}" onclick="page.select(this, event);">Register</a>
 			<input type="submit" name="do_login" value="Login"/>

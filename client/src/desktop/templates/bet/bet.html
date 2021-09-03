@@ -1,10 +1,9 @@
-<h2>Bet on champion: who will win the championship?</h2>
+<h2>Bet on the final winner!</h2>
 <p>
 	Your bet:
 	<!-- BEGIN: notLogged -->please <a href="#login,bet" onclick="page.select(this, event);">login</a> to place your bet<!-- END: notLogged -->
 	<!-- BEGIN: noCBetYet -->you did not bet yet<!-- END: noCBetYet -->
 	<!-- BEGIN: yourCBet --><span class="flag {team.id}">{team.name}</span><!-- END: yourCBet -->
-	<span class="bet-tagline">Bet on the final winner!</span>
 </p>
 <table class="winnerCandidates {selectableClass}">
 	<tbody>
@@ -25,14 +24,28 @@
 	</tbody>
 </table>
 
+<!-- BEGIN: friends -->
+<p>What did your friends bet?</p>
+<table class="friendsBets">
+	<tbody>
+		<!-- BEGIN: bet -->
+		<tr class="{row_class}">
+			<td class="{selected}">{bet.userName}</td>
+			<td><span class="flag {bet.value}">{bet.team}</span></td>
+		</tr>
+		<!-- END: bet -->
+	</tbody>
+</table>
+<!-- END: friends -->
+
 <h2>Bet on match result</h2>
 <table class="schedule matchBet">
 <thead>
 	<tr>
 		<th>Time</th>
-		<th></th>
+		<th class="media-ML"></th>
 		<th colspan="3">Match</th>
-		<th style="text-align: left;">Stadium</th>
+		<th class="media-ML" style="text-align: left;">Stadium</th>
 	</tr>
 </thead>
 
@@ -49,7 +62,7 @@
 	<!-- BEGIN: match -->
 	<tr class="{row_class}">
 		<td class="time">{match.hour}</td>
-		<td class="group">{match.id}</td>
+		<td class="group media-ML">{match.id}</td>
 		<td class="team left {bet1Class}"
 		    <!-- BEGIN: bet1 -->title="Bet on {team1.name}!" onclick="page.bet.betOnMatchWinner('{match.id}', '{match.team1_id}')"<!-- END: bet1 -->
 		    >
@@ -67,7 +80,7 @@
 			<div class="badge" title="{betters}">{betsOnTeam}</div>
 			<!-- END: badge2 -->
 		</td>
-		<td>{stadium.city}</td>
+		<td class="media-ML">{stadium.city}</td>
 	</tr>
 	<!-- END: match -->
 	<!-- END: day -->
@@ -75,5 +88,17 @@
 <!-- END: phase -->
 </table>
 
+<!-- BEGIN: leaderboard -->
 <h2>Leaderboard</h2>
-{leaderboard}
+<table class="leaderboard">
+	<tbody>
+		<!-- BEGIN: ldUser -->
+		<tr class="{row_class}">
+			<td class="{selected}">{ldUser.userName}</td>
+			<td style="background-color: rgba(0, 255, 0, {transparency});">{ldUser.ratio}%</td>
+			<td>{ldUser.wins}/{ldUser.total}</td>
+		</tr>
+		<!-- END: ldUser -->
+	</tbody>
+</table>
+<!-- END: leaderboard -->

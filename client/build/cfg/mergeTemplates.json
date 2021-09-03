@@ -11,7 +11,6 @@
 			"src/desktop/templates/notes.html",
 			"src/desktop/templates/login/login.html",
 			"src/desktop/templates/login/register.html",
-			"src/desktop/templates/bet/leaderboard.html",
 			"src/desktop/templates/bet/bet.html"
 		]
 	}

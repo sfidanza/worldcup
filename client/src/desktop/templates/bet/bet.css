@@ -11,11 +11,6 @@
     background: linear-gradient(to bottom, #3F3 0px, #3C3 10%, #3C3 90%, #393 100%);
 }
 
-.page-bet .bet-tagline {
-	float: right;
-	font-style: italic;
-}
-
 .page-bet table.winnerCandidates {
 	border-collapse: separate;
 	border-spacing: 2px;
@@ -37,7 +32,7 @@
 	cursor: pointer;
 }
 .page-bet table.winnerCandidates.selectable td:hover {
-	background: #33CC33;
+	background-color: #33CC33;
 	border-color: green;
 }
 
@@ -57,6 +52,16 @@
 	right: -3px;
 	text-align: center;
 	top: -5px;
+}
+
+.page-bet table.friendsBets {
+	border-collapse: collapse;
+	margin: auto;
+	width: 75%;
+}
+
+.page-bet table.friendsBets td {
+	padding: 1px 2px;
 }
 
 .page-bet .matchBet .selectable {

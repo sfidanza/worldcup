@@ -1,0 +1,91 @@
+/***[Finals Board]**********/
+#contents.page-board {
+	margin-left: -100px;
+	margin-right: -100px;
+}
+.page-board .board {
+	position: relative;
+	height: 900px;
+}
+.page-board .match {
+	position: absolute;
+	width: 290px;
+	border: 1px solid #CCCCCC;
+	background-color: #F4F4F4;
+	border-radius: 0 0 0.6em 0.6em;
+}
+.page-board .match h3 {
+	margin: 0;
+	padding: 1px 0;
+	border-bottom: 1px solid #CCCCCC;
+	background-repeat: repeat-x;
+	text-align: center;
+	font-size: 100%;
+	color: #444444;
+}
+.page-board .match.round16 h3 { background: url('img/final-lime.png'); }
+.page-board .match.quarter h3 { background: url('img/final-bronze.png'); }
+.page-board .match.semi    h3 { background: url('img/final-silver.png'); }
+.page-board .match.final   h3 { background: url('img/final-gold.png'); }
+.page-board .match.third   h3 { background: url('img/final-gold.png'); }
+.page-board .match span.date {
+	font-size: 85%;
+}
+.page-board .match .content {
+	padding: 0.3em 0.6em 0.6em;
+	text-align: center;
+}
+.page-board .match div.teams {
+	margin-top: 0.4em;
+	text-align: center;
+	font-weight: bold;
+}
+.page-board .match div.teams .score {
+	display: inline-block;
+	width: 45px;
+}
+.page-board .match span.flag {
+	display: inline-block;
+	width: 90px;
+	text-align: left;
+}
+.page-board .match span.flag.left {
+	text-align: right;
+}
+.page-board .match div.teams .pso {
+	font-size: 85%;
+}
+.link {
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	border-left: none;
+}
+.link.highlighted {
+	border-width: 3px;
+	border-color: #666666;
+}
+/* #match-H49 {  } */
+#match-H50 { top: 140px; }
+#match-H53 { top: 230px; }
+#match-H54 { top: 360px; }
+#match-H51 { top: 470px; }
+#match-H52 { top: 600px; }
+#match-H55 { top: 710px; }
+#match-H56 { top: 840px; }
+#match-Q58 { top:  77px; left: 180px; }
+#match-Q57 { top: 295px; left: 180px; }
+#match-Q59 { top: 775px; left: 180px; }
+#match-Q60 { top: 535px; left: 180px; }
+#match-S61 { top: 180px; left: 350px; }
+#match-S62 { top: 660px; left: 350px; }
+#match-T63 { top: 775px; left: 525px; }
+#match-F64 { top: 420px; left: 525px; }
+#link-Q1 { top:  35px; left: 292px; width: 20px; height: 130px; }
+#link-Q2 { top: 265px; left: 292px; width: 20px; height: 130px; }
+#link-Q3 { top: 505px; left: 292px; width: 20px; height: 130px; }
+#link-Q4 { top: 745px; left: 292px; width: 20px; height: 130px; }
+#link-S1 { top: 100px; left: 472px; width: 20px; height: 230px; }
+#link-S2 { top: 570px; left: 472px; width: 20px; height: 240px; }
+#link-F1 { top: 210px; left: 642px; width: 20px; height: 480px; }
+#link-T1 { top: 690px; left: 642px; width: 20px; height:  85px;
+           border-top: none; border-bottom: none; border-right-style: dashed; }

@@ -2,9 +2,9 @@
 <thead>
 	<tr>
 		<th>Time</th>
-		<th></th>
+		<th class="media-ML"></th>
 		<th colspan="3">Match</th>
-		<th style="text-align: left;">Stadium</th>
+		<th class="media-ML" style="text-align: left;">Stadium</th>
 		<!--th>Channel</th-->
 	</tr>
 </thead>
@@ -22,16 +22,16 @@
 	<!-- BEGIN: match -->
 	<tr id="m-{match.id}" class="{row_class}">
 		<td class="time">{match.hour}</td>
-		<td class="group">{category}</td>
+		<td class="group media-ML">{category}</td>
 		<td class="team left"><span class="flag {match.team1_id}">{team1.name}</span></td>
 		<td class="score">{match.team1_score} - {match.team2_score}{PSO}</td>
 		<td class="team"><span class="flag {match.team2_id}">{team2.name}</span></td>
-		<td>{stadium.city}</td>
-		<!--td class="channel">
+		<td class="media-ML">{stadium.city}</td>
+		<!-- <td class="channel"> -->
 			<!-- BEGIN: channelLogo -->
-			<img alt="{match.channel}" src="interface/img/{match.channel}.png"/>
+			<!-- <img alt="{match.channel}" src="interface/img/{match.channel}.png"/> -->
 			<!-- END: channelLogo -->
-		</td-->
+		<!-- </td> -->
 	</tr>
 	<!-- END: match -->
 	<!-- END: day -->

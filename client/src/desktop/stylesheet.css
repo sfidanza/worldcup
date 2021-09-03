@@ -10,8 +10,9 @@ td, th {
 	font-size: 10px;
 }
 #global-container {
-	width: 640px;
-	margin: 1em auto;
+	margin: 0 auto;
+	max-width: 640px;
+	min-width: 360px;
 }
 #header {
 	height: 102px;
@@ -34,7 +35,7 @@ td, th {
 /***[Header]****************/
 #header h1 {
 	margin-top: 0;
-	margin-right: 120px;
+	margin-right: 100px;
 	margin-bottom: 0.5em;
 	padding: 0.2em 0.3em;
 	background-color: #9C0000;
@@ -42,17 +43,16 @@ td, th {
 	font-size: 20px;
 }
 dl#menu {
-	margin: 0;
-	margin-right: 120px;
+	margin: 0 100px 0 0;
 	padding: 0;
 }
 dl#menu dt {
+	line-height: 21px;
 	font-size: 140%;
 	font-weight: bold;
 	clear: left;
 	float: left;
-	width: 100px;
-	margin-bottom: 0.3em;
+	width: 110px;
 }
 dl#menu dd {
 	font-size: 110%;
@@ -61,14 +61,15 @@ dl#menu dd {
 }
 dl#menu dd a {
 	display: block;
-	padding: 0.2em 1.25em;
+	padding: 0.4em 1.35em;
 	text-decoration: none;
 	color: black;
 }
-dl#menu dd a.selected {
-	background: url("img/arrow_right.png") 2px 50% no-repeat;
-}
 dl#menu dd a:hover {
+	background: #999999;
+	color: #FFFFFF;
+}
+dl#menu dd a.selected {
 	background: #333333 url("img/l0.png") top left repeat-x;
 	color: #FFFFFF;
 }
@@ -102,7 +103,7 @@ dl#menu li ul li a {
 /***[PWL]*******************/
 #app-pwl {
 	position: absolute;
-	visibility: hidden;
+	display: none;
 	top: 0;
 	left: 0;
 	background: #FFFFFF url('img/loader.gif') 1.5em 50% no-repeat;
@@ -111,18 +112,6 @@ dl#menu li ul li a {
 	padding: 2em 4em;
 	width: 15em;
 	text-align: center;
-}
-
-/***[Generic Dialog]********/
-#generic-dlg-body {
-	padding: 1em;
-	width: 400px;
-}
-#generic-dlg-body p {
-	margin-top: 0;
-}
-#generic-dlg-body p+ul {
-	margin-top: -0.7em;
 }
 
 /***[Login]*****************/
@@ -147,3 +136,25 @@ dl#menu li ul li a {
 	padding: 1px 5px;
 }
 
+/***[Responsive Design]*****/
+/**
+ * Small   360px - 460px
+ * Medium  460px - 640px
+ * Large   640px+
+ */
+@media (max-width: 640px) { /* Target sizes: S, M */
+	.media-L { /* Only visible in `large` screens (L) */
+		display: none;
+	}
+	dl#menu dt + dd {
+		clear: left;
+	}
+}
+@media (max-width: 460px) { /* Target size: S */
+	.media-ML { /* Only visible in `medium` and `large` screens (ML) */
+		display: none;
+	}
+	dl#menu dd a {
+		padding: 0.4em 1em;
+	}
+}

@@ -1,15 +1,11 @@
 /***[Finals Board]**********/
-#contents.page-board {
-	margin-left: -100px;
-	margin-right: -100px;
-}
 .page-board .board {
 	position: relative;
-	height: 900px;
+	height: 723px;
 }
 .page-board .match {
 	position: absolute;
-	width: 290px;
+	width: 45%;
 	border: 1px solid #CCCCCC;
 	background-color: #F4F4F4;
 	border-radius: 0 0 0.6em 0.6em;
@@ -32,7 +28,7 @@
 	font-size: 85%;
 }
 .page-board .match .content {
-	padding: 0.3em 0.6em 0.6em;
+	padding: 0.3em;
 	text-align: center;
 }
 .page-board .match div.teams {
@@ -42,11 +38,11 @@
 }
 .page-board .match div.teams .score {
 	display: inline-block;
-	width: 45px;
+	width: 35px;
 }
 .page-board .match span.flag {
 	display: inline-block;
-	width: 90px;
+	width: 25px;
 	text-align: left;
 }
 .page-board .match span.flag.left {
@@ -58,34 +54,32 @@
 .link {
 	position: absolute;
 	border: 1px solid #CCCCCC;
-	border-left: none;
 }
 .link.highlighted {
 	border-width: 3px;
 	border-color: #666666;
 }
 /* #match-H49 {  } */
-#match-H50 { top: 140px; }
-#match-H53 { top: 230px; }
-#match-H54 { top: 360px; }
-#match-H51 { top: 470px; }
-#match-H52 { top: 600px; }
-#match-H55 { top: 710px; }
-#match-H56 { top: 840px; }
-#match-Q58 { top:  77px; left: 180px; }
-#match-Q57 { top: 295px; left: 180px; }
-#match-Q59 { top: 775px; left: 180px; }
-#match-Q60 { top: 535px; left: 180px; }
-#match-S61 { top: 180px; left: 350px; }
-#match-S62 { top: 660px; left: 350px; }
-#match-T63 { top: 775px; left: 525px; }
-#match-F64 { top: 420px; left: 525px; }
-#link-Q1 { top:  35px; left: 292px; width: 20px; height: 130px; }
-#link-Q2 { top: 265px; left: 292px; width: 20px; height: 130px; }
-#link-Q3 { top: 505px; left: 292px; width: 20px; height: 130px; }
-#link-Q4 { top: 745px; left: 292px; width: 20px; height: 130px; }
-#link-S1 { top: 100px; left: 472px; width: 20px; height: 230px; }
-#link-S2 { top: 570px; left: 472px; width: 20px; height: 240px; }
-#link-F1 { top: 210px; left: 642px; width: 20px; height: 480px; }
-#link-T1 { top: 690px; left: 642px; width: 20px; height:  85px;
-           border-top: none; border-bottom: none; border-right-style: dashed; }
+#match-H50 { top:  80px; }
+#match-H53 { top:     0; right: 0; }
+#match-H54 { top:  80px; right: 0; }
+#match-H51 { top: 560px; }
+#match-H52 { top: 640px; }
+#match-H55 { top: 560px; right: 0; }
+#match-H56 { top: 640px; right: 0; }
+#match-Q58 { top: 160px; }
+#match-Q57 { top: 160px; right: 0; }
+#match-Q59 { top: 480px; right: 0; }
+#match-Q60 { top: 480px; }
+#match-S61 { top: 240px; left: 50%; transform: translate(-50%); }
+#match-S62 { top: 400px; left: 50%; transform: translate(-50%); }
+#match-T63 { top: 320px; left:   0; }
+#match-F64 { top: 320px; right:  0; }
+#link-Q1 { top:  65px; left:  22.5%; width:     0; height:  95px; border-top: none; border-left: none; }
+#link-Q2 { top:  65px; right: 22.5%; width:     0; height:  95px; border-top: none; border-left: none; }
+#link-Q3 { top: 545px; left:  22.5%; width:     0; height:  95px; border-top: none; border-left: none; }
+#link-Q4 { top: 545px; right: 22.5%; width:     0; height:  95px; border-top: none; border-left: none; }
+#link-S1 { top: 225px; left:  22.5%; right: 22.5%; height:  35px; border-top: none; }
+#link-S2 { top: 450px; left:  22.5%; right: 22.5%; height:  35px; border-bottom: none; }
+#link-F1 { top: 285px; left:  72.5%; right: 22.5%; height: 145px; border-left: none; }
+#link-T1 { top: 285px; right: 72.5%; left:  22.5%; height: 145px; border-style: dashed; border-right: none; }

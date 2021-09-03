@@ -1,15 +1,14 @@
 <table class="ranking">
 <thead>
 	<tr>
-		<th title="Rank">Rk</th>
 		<th>Team</th>
-		<th title="Points">Points</th>
+		<th>Points</th>
 		<th title="Goal Difference">Diff.</th>
 		<th title="Goals Scored">GS</th>
-		<th title="Goals Against">GA</th>
-		<th title="Won">W</th>
-		<th title="Draw">D</th>
-		<th title="Lost">L</th>
+		<th title="Goals Against" class="media-ML">GA</th>
+		<th title="Won" class="media-ML">W</th>
+		<th title="Draw" class="media-ML">D</th>
+		<th title="Lost" class="media-ML">L</th>
 		<th title="Matches played">MP</th>
 	</tr>
 </thead>
@@ -21,15 +20,14 @@
 	<tr class="{row_class}"
 	    onmouseover="page.templates.schedule.highlight('{team.id}')"
 	    onmouseout="page.templates.schedule.highlight()">
-		<td>{row}</td>
 		<td class="team"><span class="flag {team.id}">{team.name}</span></td>
 		<td>{team.points}</td>
 		<td>{team.goal_difference}</td>
 		<td>{team.goals_scored}</td>
-		<td>{team.goals_against}</td>
-		<td>{team.victories}</td>
-		<td>{team.draws}</td>
-		<td>{team.defeats}</td>
+		<td class="media-ML">{team.goals_against}</td>
+		<td class="media-ML">{team.victories}</td>
+		<td class="media-ML">{team.draws}</td>
+		<td class="media-ML">{team.defeats}</td>
 		<td>{team.played}</td>
 	</tr>
 	<!-- END: team -->

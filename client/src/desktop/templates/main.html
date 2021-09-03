@@ -1,13 +1,16 @@
 <div id="header">
 	<h1>2014 Worldcup</h1>
 	<dl id="menu">
-		<dt>Schedules:</dt>
+		<dt class="media-L">Tournament:</dt>
+		<dd><a onclick="page.select(this, event);" href="#history">History</a></dd>
+		<dd style="float: right;"><a onclick="page.select(this, event);" href="#bet">Place a bet</a></dd>
+		<dt class="media-L">Schedules:</dt>
 		<dd><a onclick="page.select(this, event);" href="#schedule">Full Schedule</a></dd>
 		<!-- <dd><a onclick="page.select(this, event);" href="#schedule,1">Group Schedule</a></dd> -->
-		<dd><a onclick="page.select(this, event);" href="#schedule,2">Finals Schedule</a></dd>
-		<dd style="float: right;"><a onclick="page.select(this, event);" href="#history">History</a></dd>
-		<dd style="float: none; height: 0;"></dd>
-		<dt>Groups:</dt>
+		<!-- <dd class="media-ML"><a onclick="page.select(this, event);" href="#schedule,2">Finals Schedule</a></dd> -->
+		<dd class="media-ML"><a onclick="page.select(this, event);" href="#ranking">Group Rankings</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#board">Finals Board</a></dd>
+		<dt class="media-L">Groups:</dt>
 		<dd><a onclick="page.select(this, event);" href="#group,A" title="Group A">A</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#group,B" title="Group B">B</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#group,C" title="Group C">C</a></dd>
@@ -16,11 +19,6 @@
 		<dd><a onclick="page.select(this, event);" href="#group,F" title="Group F">F</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#group,G" title="Group G">G</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#group,H" title="Group H">H</a></dd>
-		<dt>Rankings:</dt>
-		<dd><a onclick="page.select(this, event);" href="#ranking">Group Rankings</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#board">Finals Board</a></dd>
-		<dd style="float: right;"><a onclick="page.select(this, event);" href="#bet">Place a bet</a></dd>
-		<dd style="float: none; height: 0;"></dd>
 	</dl>
 </div>
 
@@ -28,8 +26,7 @@
 
 <div id="footer">
 	<p style="float: left;">
-		Credits: <a href="http://www.fifa.com/worldcup/index.html">FIFA</a>, <a href="http://www.famfamfam.com/" title="licensed under Creative Commons Attribution 2.5">famfamfam icons</a>
-		- <a href="" onclick="page.showNotes(); return false;">Notes</a>
+		<a onclick="page.select(this, event);" href="#notes">About</a>
 	</p>
 	<div id="user-area"></div>
 </div>
@@ -64,10 +61,4 @@
 	</div>
 	<a id="score-editor-ok" href="" title="OK"></a>
 	<a id="score-editor-cancel" href="" title="Cancel"></a>
-</div>
-
-<div id="generic-dlg" class="uic-dlg">
-	<a id="generic-dlg-close" class="uic-dlg-close"></a>
-	<h5> </h5>
-	<div id="generic-dlg-body"></div>
 </div>
