@@ -12,14 +12,14 @@ export default bets;
  * Retrieve data
  */
 	
-bets.getBets = function(db) {
+bets.getBets = async function(db) {
 	return Promise.all([
 			db.collection('users').find({}).toArray(),
 			db.collection('bets').find({}, { projection: { _id: false } }).toArray()
 		]).then(values => respondList(...values));
 };
 
-bets.getLeaderboard = function(db) {
+bets.getLeaderboard = async function(db) {
 	return Promise.all([
 			db.collection('users').find({}).toArray(),
 			db.collection('leaderboard').find({}, { projection: { _id: false } }).toArray()
@@ -46,7 +46,7 @@ const respondList = function (userList, list) {
  * @param {string} champion - the team id on which to bet
  * @api public
  */
-bets.enterChampionBet = function(db, user, champion) {
+bets.enterChampionBet = async function(db, user, champion) {
 	return db.collection('bets').updateOne(
 		{ user: user, challenge: 'champion' },
 		{ $set: { 'value': champion } },
@@ -62,7 +62,7 @@ bets.enterChampionBet = function(db, user, champion) {
  * @param {string} winner - the team id on which to bet
  * @api public
  */
-bets.enterMatchWinnerBet = function(db, user, mid, winner) {
+bets.enterMatchWinnerBet = async function(db, user, mid, winner) {
 	return db.collection('matches').findOne({ 'id': mid })
 		.then(match => {
 			if (!isBettable(match)) {
@@ -98,12 +98,3 @@ bets.updateLeaderboard = async function(db) {
 	await db.collection('leaderboard').insertMany(list);
 	return list;
 };
-
-// const storeLeaderboard = function(db, list) {
-// 	return db.collection('leaderboard').deleteMany({})
-// 		.then(() => {
-// 			return db.collection('leaderboard').insertMany(list);
-// 		}).then(() => {
-// 			return list;
-// 		});
-// };

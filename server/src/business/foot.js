@@ -11,25 +11,25 @@ export default foot;
  * Retrieve data
  */
 
-foot.getTeams = function (db) {
+foot.getTeams = async function (db) {
 	return db.collection('teams')
 		.find({}, { projection: { _id: false }, sort: [['rank', 'asc'], ['name', 'asc']] })
 		.toArray();
 };
 
-foot.getMatches = function (db) {
+foot.getMatches = async function (db) {
 	return db.collection('matches')
 		.find({}, { projection: { _id: false }, sort: [['id', 'asc']] })
 		.toArray();
 };
 
-foot.getStadiums = function (db) {
+foot.getStadiums = async function (db) {
 	return db.collection('stadiums')
 		.find({}, { projection: { _id: false } })
 		.toArray();
 };
 
-foot.getData = function (db) {
+foot.getData = async function (db) {
 	return Promise.all([ foot.getTeams(db), foot.getMatches(db), foot.getStadiums(db) ])
 		.then(([ teams, matches, stadiums ]) => { return { teams, matches, stadiums }; });
 };
@@ -48,7 +48,7 @@ foot.getData = function (db) {
  * @param {integer} score2PK - the penalty kicks score of team 2
  * @api public
  */
-foot.setMatchScore = function (db, mid, score1, score2, score1PK, score2PK) {
+foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK) {
 	const edit = {
 		'team1_score': score1,
 		'team2_score': score2,
@@ -84,7 +84,7 @@ foot.setMatchScore = function (db, mid, score1, score2, score1PK, score2PK) {
  * @param {string[]} ranks - array of teams id in order (['CZE', 'GRE', 'RUS', 'POL'])
  * @api public
  */
-foot.setRanks = function (db, group, ranks) {
+foot.setRanks = async function (db, group, ranks) {
 	const data = { teams: [] };
 
 	// security: the query checks that each team passed is in the specified group
@@ -110,7 +110,7 @@ foot.setRanks = function (db, group, ranks) {
  * @param {object} db
  * @param {string} group - the group to be updated ('A', 'B', ...)
  */
-function updateGroupStats(db, group) {
+async function updateGroupStats(db, group) {
 	return Promise.all([
 			db.collection('teams').find({ group: group }, { id: true }).toArray(),
 			db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
