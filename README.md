@@ -32,10 +32,11 @@ You need a `.env` file in the root folder to specify the secrets. You can simply
 
 ### Run locally in production mode
 
-Here are the commands to start/stop everything (with the containers built locally):
+Here are the commands to start/stop everything (with the images built locally):
 
-    docker-compose -f "docker-compose.yml" up -d --build
-    docker-compose -f "docker-compose.yml" down
+    docker-compose build                             # build images from local sources
+    docker-compose -f "docker-compose.yml" up -d     # start containers
+    docker-compose -f "docker-compose.yml" down      # stop containers and remove images
 
 ### Run locally in development mode
 
@@ -56,7 +57,7 @@ Once started, you can access the application at <http://localhost:8090>. This lo
 
 The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment. The basis however is to do exactly the same as in local (with the build flag until the docker images are published in dockerhub), except for the override of course:
 
-    docker-compose -f "docker-compose.yml" up -d --build
+    docker-compose -f "docker-compose.yml" up -d
     docker-compose -f "docker-compose.yml" down
 
 Alternatively, it can be run on Docker Swarm, provided images are either available in docker hub or have been built locally (through `docker-compose build` for example):
@@ -72,7 +73,7 @@ Note: the `docker-compose config` command resolves the environment variables ins
   - <https://mochajs.org/#installation>
 - Migrate client to webpack
   - <https://webpack.js.org/guides/getting-started/>
-- Publish docker images to dockerhub
+- Automate publication of docker images to dockerhub
 - client/.csslintrc
 
 ## References
