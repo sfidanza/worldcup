@@ -21,8 +21,8 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
-    "start": "node --experimental-json-modules index.js",
-    "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch --experimental-json-modules index.js",
+    "start": "node --experimental-json-modules src/index.js",
+    "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch --experimental-json-modules src/index.js",
     "lint": "eslint .",
     "test": "mocha"
   },

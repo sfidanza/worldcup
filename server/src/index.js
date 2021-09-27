@@ -1,6 +1,6 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
-import * as routers from './src/routers.js';
+import * as routers from './routers.js';
 
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
