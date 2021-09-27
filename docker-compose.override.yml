@@ -4,7 +4,6 @@ services:
     build: ./client
     volumes:
       - client_target:/var/www/worldcup2014
-    restart: "no"
 
   build:
     build:
@@ -24,11 +23,7 @@ services:
     ports:
       - "9229:9229"
     command: npm run debug
-    restart: "no"
   
-  mongo:
-    restart: "no"
-    
   admin:
     image: mongo-express:0.54
     environment:
@@ -36,8 +31,6 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_PWD
     ports:
       - "8091:8081"
-    depends_on:
-      - mongo
 
 volumes:
   node_modules:

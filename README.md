@@ -55,25 +55,28 @@ Once started, you can access the application at <http://localhost:8090>. This lo
 
 ## Production setup
 
-The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment. The basis however is to do exactly the same as in local (with the build flag until the docker images are published in dockerhub), except for the override of course:
-
-    docker-compose -f "docker-compose.yml" up -d
-    docker-compose -f "docker-compose.yml" down
-
-Alternatively, it can be run on Docker Swarm, provided images are either available in docker hub or have been built locally (through `docker-compose build` for example):
+For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker-compose build` for example):
 
     docker-compose -f docker-compose.yml config | docker stack deploy -c - worldcup2014
     docker stack rm worldcup2014
 
-Note: the `docker-compose config` command resolves the environment variables inside the compose file from `.env`, which is not supported by `docker stack deploy`. It is acting as a preprocessor.
+Note: the `docker-compose config` command is acting as a preprocessor to resolve the environment variables inside the compose file from `.env`, which is not supported by `docker stack deploy`.
+
+Alternatively, containers can be started with `docker-compose`:
+
+    docker-compose -f "docker-compose.yml" up -d
+    docker-compose -f "docker-compose.yml" down
+
+Note: The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment.
 
 ## To do (?)
 
-- [ONGOING] Tests
+- [ONGOING] Unit tests
   - <https://mochajs.org/#installation>
+- E2e tests
+  - <https://github.com/microsoft/playwright>
 - Migrate client to webpack
   - <https://webpack.js.org/guides/getting-started/>
-- Automate publication of docker images to dockerhub
 - client/.csslintrc
 
 ## References
@@ -84,3 +87,5 @@ Note: the `docker-compose config` command resolves the environment variables ins
   - <https://web.dev/how-to-use-local-https/>
 - SSL security test
   - <https://www.ssllabs.com/ssltest/index.html>
+- Use Github workflows to build and push docker images
+  - <https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching>
