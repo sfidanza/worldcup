@@ -2,6 +2,7 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import * as routers from './routers.js';
 
+import rateLimit from 'express-rate-limit';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
@@ -17,6 +18,12 @@ const {
 
 const app = express();
 
+const limiter = rateLimit({
+	windowMs: 60 * 1000, // 1 minute
+	max: 5
+});
+
+app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
