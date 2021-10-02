@@ -78,6 +78,8 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Migrate client to webpack
   - <https://webpack.js.org/guides/getting-started/>
 - client/.csslintrc
+- Support multiple competitions
+  - <https://newbedev.com/how-to-create-a-db-for-mongodb-container-on-start-up>
 
 ## References
 

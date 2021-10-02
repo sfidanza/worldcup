@@ -1,0 +1,519 @@
+[
+		{
+			"id": 1,
+			"day": "10 June 2016",
+			"hour": "21:00",
+			"stadium": "8",
+			"group": "A",
+			"team1_id": "FRA",
+			"team2_id": "ROU",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 2,
+			"day": "11 June 2016",
+			"hour": "15:00",
+			"stadium": "2",
+			"group": "A",
+			"team1_id": "ALB",
+			"team2_id": "SUI",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 3,
+			"day": "11 June 2016",
+			"hour": "18:00",
+			"stadium": "1",
+			"group": "B",
+			"team1_id": "WAL",
+			"team2_id": "SVK",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 4,
+			"day": "11 June 2016",
+			"hour": "21:00",
+			"stadium": "5",
+			"group": "B",
+			"team1_id": "ENG",
+			"team2_id": "RUS",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 5,
+			"day": "12 June 2016",
+			"hour": "15:00",
+			"stadium": "7",
+			"group": "D",
+			"team1_id": "TUR",
+			"team2_id": "CRO",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 6,
+			"day": "12 June 2016",
+			"hour": "18:00",
+			"stadium": "6",
+			"group": "C",
+			"team1_id": "POL",
+			"team2_id": "NIR",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 7,
+			"day": "12 June 2016",
+			"hour": "21:00",
+			"stadium": "3",
+			"group": "C",
+			"team1_id": "GER",
+			"team2_id": "UKR",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 8,
+			"day": "13 June 2016",
+			"hour": "15:00",
+			"stadium": "10",
+			"group": "D",
+			"team1_id": "ESP",
+			"team2_id": "CZE",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 9,
+			"day": "13 June 2016",
+			"hour": "18:00",
+			"stadium": "8",
+			"group": "E",
+			"team1_id": "IRL",
+			"team2_id": "SWE",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 10,
+			"day": "13 June 2016",
+			"hour": "21:00",
+			"stadium": "4",
+			"group": "E",
+			"team1_id": "BEL",
+			"team2_id": "ITA",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 11,
+			"day": "14 June 2016",
+			"hour": "18:00",
+			"stadium": "1",
+			"group": "F",
+			"team1_id": "AUT",
+			"team2_id": "HUN",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 12,
+			"day": "14 June 2016",
+			"hour": "21:00",
+			"stadium": "9",
+			"group": "F",
+			"team1_id": "POR",
+			"team2_id": "ISL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 13,
+			"day": "15 June 2016",
+			"hour": "15:00",
+			"stadium": "3",
+			"group": "B",
+			"team1_id": "RUS",
+			"team2_id": "SVK",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 14,
+			"day": "15 June 2016",
+			"hour": "18:00",
+			"stadium": "7",
+			"group": "A",
+			"team1_id": "ROU",
+			"team2_id": "SUI",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 15,
+			"day": "15 June 2016",
+			"hour": "21:00",
+			"stadium": "5",
+			"group": "A",
+			"team1_id": "FRA",
+			"team2_id": "ALB",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 16,
+			"day": "16 June 2016",
+			"hour": "15:00",
+			"stadium": "2",
+			"group": "B",
+			"team1_id": "ENG",
+			"team2_id": "WAL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 17,
+			"day": "16 June 2016",
+			"hour": "18:00",
+			"stadium": "4",
+			"group": "C",
+			"team1_id": "UKR",
+			"team2_id": "NIR",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 18,
+			"day": "16 June 2016",
+			"hour": "21:00",
+			"stadium": "8",
+			"group": "C",
+			"team1_id": "GER",
+			"team2_id": "POL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 19,
+			"day": "17 June 2016",
+			"hour": "15:00",
+			"stadium": "10",
+			"group": "E",
+			"team1_id": "ITA",
+			"team2_id": "SWE",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 20,
+			"day": "17 June 2016",
+			"hour": "18:00",
+			"stadium": "9",
+			"group": "D",
+			"team1_id": "CZE",
+			"team2_id": "CRO",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 21,
+			"day": "17 June 2016",
+			"hour": "21:00",
+			"stadium": "6",
+			"group": "D",
+			"team1_id": "ESP",
+			"team2_id": "TUR",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 22,
+			"day": "18 June 2016",
+			"hour": "15:00",
+			"stadium": "1",
+			"group": "E",
+			"team1_id": "BEL",
+			"team2_id": "IRL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 23,
+			"day": "18 June 2016",
+			"hour": "18:00",
+			"stadium": "5",
+			"group": "F",
+			"team1_id": "ISL",
+			"team2_id": "HUN",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 24,
+			"day": "18 June 2016",
+			"hour": "21:00",
+			"stadium": "7",
+			"group": "F",
+			"team1_id": "POR",
+			"team2_id": "AUT",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 25,
+			"day": "19 June 2016",
+			"hour": "21:00",
+			"stadium": "4",
+			"group": "A",
+			"team1_id": "ROU",
+			"team2_id": "ALB",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 26,
+			"day": "19 June 2016",
+			"hour": "21:00",
+			"stadium": "3",
+			"group": "A",
+			"team1_id": "SUI",
+			"team2_id": "FRA",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 27,
+			"day": "20 June 2016",
+			"hour": "21:00",
+			"stadium": "10",
+			"group": "B",
+			"team1_id": "RUS",
+			"team2_id": "WAL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 28,
+			"day": "20 June 2016",
+			"hour": "21:00",
+			"stadium": "9",
+			"group": "B",
+			"team1_id": "SVK",
+			"team2_id": "ENG",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 29,
+			"day": "21 June 2016",
+			"hour": "18:00",
+			"stadium": "5",
+			"group": "C",
+			"team1_id": "UKR",
+			"team2_id": "POL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 30,
+			"day": "21 June 2016",
+			"hour": "18:00",
+			"stadium": "7",
+			"group": "C",
+			"team1_id": "NIR",
+			"team2_id": "GER",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 31,
+			"day": "21 June 2016",
+			"hour": "21:00",
+			"stadium": "2",
+			"group": "D",
+			"team1_id": "CZE",
+			"team2_id": "TUR",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 32,
+			"day": "21 June 2016",
+			"hour": "21:00",
+			"stadium": "1",
+			"group": "D",
+			"team1_id": "CRO",
+			"team2_id": "ESP",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 33,
+			"day": "22 June 2016",
+			"hour": "18:00",
+			"stadium": "8",
+			"group": "F",
+			"team1_id": "ISL",
+			"team2_id": "AUT",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 34,
+			"day": "22 June 2016",
+			"hour": "18:00",
+			"stadium": "4",
+			"group": "F",
+			"team1_id": "HUN",
+			"team2_id": "POR",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 35,
+			"day": "22 June 2016",
+			"hour": "21:00",
+			"stadium": "3",
+			"group": "E",
+			"team1_id": "ITA",
+			"team2_id": "IRL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 36,
+			"day": "22 June 2016",
+			"hour": "21:00",
+			"stadium": "6",
+			"group": "E",
+			"team1_id": "SWE",
+			"team2_id": "BEL",
+			"team1_score": null,
+			"team2_score": null,
+			"phase": "G"
+		}, {
+			"id": 37,
+			"day": "25 June 2016",
+			"hour": "15:00",
+			"stadium": "9",
+			"team1_source": "2A",
+			"team2_source": "2C",
+			"phase": "H"
+		}, {
+			"id": 38,
+			"day": "25 June 2016",
+			"hour": "18:00",
+			"stadium": "7",
+			"team1_source": "1B",
+			"team2_source": "3ACD",
+			"phase": "H"
+		}, {
+			"id": 39,
+			"day": "25 June 2016",
+			"hour": "21:00",
+			"stadium": "2",
+			"team1_source": "1D",
+			"team2_source": "3BEF",
+			"phase": "H"
+		}, {
+			"id": 40,
+			"day": "26 June 2016",
+			"hour": "15:00",
+			"stadium": "4",
+			"team1_source": "1A",
+			"team2_source": "3CDE",
+			"phase": "H"
+		}, {
+			"id": 41,
+			"day": "26 June 2016",
+			"hour": "18:00",
+			"stadium": "3",
+			"team1_source": "1C",
+			"team2_source": "3ABF",
+			"phase": "H"
+		}, {
+			"id": 42,
+			"day": "26 June 2016",
+			"hour": "21:00",
+			"stadium": "10",
+			"team1_source": "1F",
+			"team2_source": "2E",
+			"phase": "H"
+		}, {
+			"id": 43,
+			"day": "27 June 2016",
+			"hour": "18:00",
+			"stadium": "8",
+			"team1_source": "1E",
+			"team2_source": "2D",
+			"phase": "H"
+		}, {
+			"id": 44,
+			"day": "27 June 2016",
+			"hour": "21:00",
+			"stadium": "6",
+			"team1_source": "2B",
+			"team2_source": "2F",
+			"phase": "H"
+		}, {
+			"id": 45,
+			"day": "30 June 2016",
+			"hour": "21:00",
+			"stadium": "5",
+			"team1_source": "W37",
+			"team2_source": "W39",
+			"phase": "Q"
+		}, {
+			"id": 46,
+			"day": "01 July 2016",
+			"hour": "21:00",
+			"stadium": "3",
+			"team1_source": "W38",
+			"team2_source": "W42",
+			"phase": "Q"
+		}, {
+			"id": 47,
+			"day": "02 July 2016",
+			"hour": "21:00",
+			"stadium": "1",
+			"team1_source": "W41",
+			"team2_source": "W43",
+			"phase": "Q"
+		}, {
+			"id": 48,
+			"day": "03 July 2016",
+			"hour": "21:00",
+			"stadium": "8",
+			"team1_source": "W40",
+			"team2_source": "W44",
+			"phase": "Q"
+		}, {
+			"id": 49,
+			"day": "06 July 2016",
+			"hour": "21:00",
+			"stadium": "4",
+			"team1_source": "W45",
+			"team2_source": "W46",
+			"phase": "S"
+		}, {
+			"id": 50,
+			"day": "07 July 2016",
+			"hour": "21:00",
+			"stadium": "5",
+			"team1_source": "W47",
+			"team2_source": "W48",
+			"phase": "S"
+		}, {
+			"id": 51,
+			"day": "10 July 2016",
+			"hour": "21:00",
+			"stadium": "8",
+			"team1_source": "W49",
+			"team2_source": "W50",
+			"phase": "F"
+		}
+]
