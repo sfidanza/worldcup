@@ -28,6 +28,6 @@ services:
     volumes:
       - mongodb:/data/db
       - ./database/initdb-start:/docker-entrypoint-initdb.d
-  
+
 volumes:
   mongodb:

@@ -3,7 +3,7 @@
  * https://www.npmjs.com/package/googleapis#oauth2-client
  * https://googleapis.dev/nodejs/googleapis/latest/people/classes/Resource$People.html#get
  ******************************************************************************/
-import { google } from 'googleapis';
+import google from '@googleapis/people';
 
 const {
 	AUTH_CLIENT_ID,
