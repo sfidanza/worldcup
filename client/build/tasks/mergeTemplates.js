@@ -1,5 +1,5 @@
 const path = require('path');
-const chalk = require('chalk');
+//const chalk = require('chalk');
 const Template = require('./frw/Template.js');
 
 module.exports = function (grunt) {
@@ -27,7 +27,8 @@ module.exports = function (grunt) {
 			grunt.file.write(file.dest, tpl.retrieve());
 
 			// Print a success message.
-			grunt.log.writeln('File ' + chalk.cyan(file.dest) + ' created.');
+//			grunt.log.writeln('File ' + chalk.cyan(file.dest) + ' created.'); // need to migrate to webpack
+			grunt.log.writeln('File ' + file.dest + ' created.');
 		});
 	});
 };

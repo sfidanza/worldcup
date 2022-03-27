@@ -80,6 +80,7 @@ Note: The wiki pages contain all the info based on the previous development / de
 - client/.csslintrc
 - Support multiple competitions
   - <https://newbedev.com/how-to-create-a-db-for-mongodb-container-on-start-up>
+- Support error cases on response.json() parsing (rate limiter can return 429 http codes)
 
 ## References
 

@@ -19,7 +19,7 @@ const {
 const app = express();
 
 const limiter = rateLimit({
-	windowMs: 60 * 1000, // 1 minute
+	windowMs: 10 * 1000, // 10s
 	max: 5
 });
 
@@ -35,6 +35,9 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 
 		app.use(session({
 			secret: COOKIE_SEED,
+			cookie: {
+				secure: 'auto'
+			},
 			store: MongoStore.create({
 				client: dbClient,
 				dbName: MONGO_DB

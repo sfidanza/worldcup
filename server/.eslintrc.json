@@ -8,6 +8,7 @@
     "parserOptions": {
         "sourceType": "module"
     },
+    "ignorePatterns": ["/src/business/history.js"], // pending import assertions being supported by eslint: https://v8.dev/features/import-assertions
     "rules": {
         "no-extra-bind": "error",
         "no-shadow": "error",
