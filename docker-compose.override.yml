@@ -2,6 +2,8 @@ version: '3.8'
 services:
   nginx:
     build: ./client
+    ports:
+      - "8090:80"
     volumes:
       - client_target:/var/www/worldcup2014
 
