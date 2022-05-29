@@ -55,12 +55,12 @@ Once started, you can access the application at <http://localhost:8090>. This lo
 
 ## Production setup
 
-For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker-compose build` for example):
+For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker-compose build` for example). To enable routing from the Traefik gateway, the corresponding `compose` file should be used as well:
 
-    docker-compose -f docker-compose.yml config | docker stack deploy -c - worldcup2014
+    docker-compose -f docker-compose.yml -f docker-compose.traefik.yml config | docker stack deploy -c - worldcup2014
     docker stack rm worldcup2014
 
-Note: the `docker-compose config` command is acting as a preprocessor to resolve the environment variables inside the compose file from `.env`, which is not supported by `docker stack deploy`.
+Note: the `docker-compose config` command is acting as a preprocessor to resolve the environment variables inside the compose files from `.env`, which is not supported by `docker stack deploy`.
 
 Alternatively, containers can be started with `docker-compose`:
 

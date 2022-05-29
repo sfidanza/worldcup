@@ -4,7 +4,7 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.worldcup2014.rule=Host(`worldcup2014.dagobah-online.com`)
+        - traefik.http.routers.worldcup2014.rule=Host(`$HOST`)
         - traefik.http.services.worldcup2014.loadbalancer.server.port=80
         # Activate https
         - traefik.http.routers.worldcup2014.tls=true
@@ -18,7 +18,7 @@ services:
   #   deploy:
   #     labels:
   #       - traefik.enable=true
-  #       - traefik.http.routers.worldcup2014-admin.rule=Host(`worldcup2014-admin.localhost`)
+  #       - traefik.http.routers.worldcup2014-admin.rule=Host(`$HOST_ADMIN`)
   #       - traefik.http.services.worldcup2014-admin.loadbalancer.server.port=8081
   #       # Activate https
   #       - traefik.http.routers.worldcup2014-admin.tls=true
