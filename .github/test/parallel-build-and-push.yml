@@ -1,0 +1,61 @@
+# Test: run backend and frontend builds in parallel
+# Outcome: Conceptually better as each is taking 30s in sequential, a bit more in parallel but time is still gained (total ~45s instead of ~60s)
+#     However, jobs are queued until a runner is available. In sequential run, once a runner is found, evertyhing is built. In parallel, we wait 3 times.
+#     So if runners are lacking, the parallel workflow actually takes much longer.
+#
+# Build all and push to container repository
+name: build-and-push
+on: [push]
+
+env:
+  FRONTEND_IMAGE: ghcr.io/${{ github.repository_owner }}/worldcup-frontend
+  BACKEND_IMAGE: ghcr.io/${{ github.repository_owner }}/worldcup-backend
+
+jobs:
+  set-version:
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.version.outputs.VERSION }}
+    steps:
+      - name: Set version
+        id: version
+        run: |
+          echo "BRANCH=${{ github.ref }}"
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+          echo VERSION=$VERSION
+          echo "::set-output name=VERSION::$VERSION"
+
+  frontend:
+    runs-on: ubuntu-latest
+    needs: set-version
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Log in to registry
+        run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🎉 Build and push frontend image
+        run: |
+          docker build ./client/ -t $FRONTEND_IMAGE:${{ needs.set-version.outputs.VERSION }}
+          docker push $FRONTEND_IMAGE:${{ needs.set-version.outputs.VERSION }}
+
+  backend:
+    runs-on: ubuntu-latest
+    needs: set-version
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: 🎉 Build and push backend image
+        run: |
+          docker build ./server/ -t $BACKEND_IMAGE:${{ needs.set-version.outputs.VERSION }}
+          docker push $BACKEND_IMAGE:${{ needs.set-version.outputs.VERSION }}
