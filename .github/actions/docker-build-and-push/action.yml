@@ -1,0 +1,21 @@
+name: 'Docker build and push'
+description: 'Build the Dockerfile in the specified path and push the built image to ghcr.io'
+inputs:
+  path:
+    description: 'Folder in which the Dockerfile to build is located'
+    required: false
+    default: './'
+  tag:
+    description: 'String to tag the built image with'
+    required: true
+    default: 'latest'
+runs:
+  using: "composite"
+  steps:
+    - name: Log in to registry
+      run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 🎉 Build and push docker image
+      run: |
+        docker build ${{ inputs.path }} -t ${{ inputs.tag }}
+        docker push ${{ inputs.tag }}
