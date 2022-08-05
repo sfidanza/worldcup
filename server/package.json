@@ -12,7 +12,7 @@
     "express": "4.x",
     "express-rate-limit": "6.x",
     "express-session": "1.x",
-    "@googleapis/people": "1.x",
+    "@googleapis/people": "2.x",
     "http-errors": "2.x",
     "mongodb": "4.x"
   },
