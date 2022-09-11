@@ -17,9 +17,9 @@
     "mongodb": "4.x"
   },
   "devDependencies": {
-    "eslint": "8.x",
-    "mocha": "10.x",
-    "nodemon": "2.x"
+    "eslint": "8.21.0",
+    "mocha": "10.0.0",
+    "nodemon": "2.0.19"
   },
   "scripts": {
     "start": "node --experimental-json-modules src/index.js",
