@@ -27,11 +27,5 @@ services:
       - mongodb:/data/db
       - ./database/initdb-start:/docker-entrypoint-initdb.d
 
-  # admin:
-  #   image: mongo-express:0.54
-  #   environment:
-  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGO_USER
-  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_PWD
-
 volumes:
   mongodb:
