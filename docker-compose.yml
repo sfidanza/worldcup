@@ -25,7 +25,7 @@ services:
       - MONGO_INITDB_DATABASE=worldcup2014
     volumes:
       - mongodb:/data/db
-      - ./database/initdb-start:/docker-entrypoint-initdb.d
+      - ./database/initdb-full:/docker-entrypoint-initdb.d
 
 volumes:
   mongodb:
