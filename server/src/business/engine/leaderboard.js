@@ -28,9 +28,10 @@ leaderboard.compute = function(bets, matches) {
 			}
 		}
 	}
-	
+
 	const list = [];
-	for (const ldUser of ld) {
+	for (const ldId in ld) {
+		const ldUser = ld[ldId];
 		ldUser.ratio = 100 * ldUser.wins / ldUser.total;
 		list.push(ldUser);
 	}

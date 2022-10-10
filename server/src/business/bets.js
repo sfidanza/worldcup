@@ -94,7 +94,9 @@ bets.updateLeaderboard = async function(db) {
 		db.collection('matches').find({ group: null, team1_score: { $ne: null } }).toArray()
 	]);
 	const list = leaderboard.compute(...values);
-	await db.collection('leaderboard').deleteMany({});
-	await db.collection('leaderboard').insertMany(list);
+	if (list?.length > 0) {
+		await db.collection('leaderboard').deleteMany({});
+		await db.collection('leaderboard').insertMany(list);
+	}
 	return list;
 };
