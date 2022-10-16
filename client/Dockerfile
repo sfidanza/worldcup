@@ -12,9 +12,9 @@ RUN npm run build
 # Stage 2
 FROM nginx:1.23.2-alpine
 
-WORKDIR /var/www/worldcup2014
+WORKDIR /var/www/worldcup
 
 RUN rm /etc/nginx/conf.d/default.conf
-COPY sites-available/worldcup2014.conf /etc/nginx/conf.d
+COPY sites-available/worldcup.conf /etc/nginx/conf.d
 
 COPY --from=build /usr/src/app/target .

@@ -5,13 +5,14 @@ import { Router } from 'express';
 import foot from '../business/foot.js';
 // import bets from '../business/bets.js';
 
-export default function getRouter(db) {
+export default function getRouter() {
 	const router = Router();
 
 	router.get('/editMatch', function (request, response) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
 			const query = request.query;
+			const db = request.database;
 			foot.setMatchScore(db, +query.mid, getScore(query.score1), getScore(query.score2),
 				getScore(query.score1PK), getScore(query.score2PK))
 				.then(data => {
@@ -32,6 +33,7 @@ export default function getRouter(db) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
 			const query = request.query;
+			const db = request.database;
 			foot.setRanks(db, query.gid, query.ranks.split('-'))
 				.then(data => {
 					response.json(data);

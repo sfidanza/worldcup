@@ -9,7 +9,8 @@ main.onCreate = function (pageRef, frwRef, i18nRepository) {
 	this.i18n = i18nRepository;
 };
 
-main.onParse = function () {
+main.onParse = function (year) {
+	this.set('year', year);
 };
 
 main.submitLogin = function (id, pwd) {

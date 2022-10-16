@@ -97,8 +97,7 @@ scoreEditor.submitScoreEdit = function () {
 	const score2PK = this.getScore('score2PK');
 	if ((score1 != null) && (score2 != null)) {
 		const mid = this.editedScore.parentNode.id.slice(2); // match id
-		const url = 'api/edit/editMatch?mid=' + mid + '&score1=' + score1 + '&score2=' + score2 +
-			'&score1PK=' + score1PK + '&score2PK=' + score2PK;
+		const url = page.config.url.editMatch(page.config.year, mid, score1, score2, score1PK, score2PK);
 		fetch(url)
 			.then(response => response.json())
 			.then(data => {
@@ -142,7 +141,7 @@ scoreEditor.setScore = function (inputId, score) {
 scoreEditor.setRanks = function (group, ranks) {
 	const sRank = ranks.join('-');
 	if (group && sRank) {
-		fetch('api/edit/setRanks?gid=' + group + '&ranks=' + sRank)
+		fetch(page.config.url.setRanks(page.config.year, group, sRank))
 			.then(response => response.json())
 			.then(data => {
 				if (data) {

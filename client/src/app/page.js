@@ -5,45 +5,20 @@ import * as frw from '../frw/frw.js';
 import * as uic from '../frw/uic.js';
 import { scoreEditor } from './scoreEditor.js';
 import { bet } from './bet.js';
+import { config } from './config.js';
 
-export const page = {};
-window.page = page; // make page callable from global scope so it can be used from html
-page.data = {};
-page.scoreEditor = scoreEditor;
-page.bet = bet;
-
-page.config = {
-	url: {
-		templates: 'app.xml',
-		data: 'api/all',
-		logout: 'api/user/logout',
-		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`,
-		register: (login) => `api/user/register?id=${login.id}&pwd=${login.pwd}&name=${login.name}`,
-		auth: (provider) => `api/auth/url?provider=${provider}`,
-		authProfile: (code) => `api/auth/profile?code=${code}`
-	},
-	i18n: {
-		pageTitle: (state) => `2014 Worldcup - ${state}`,
-		group: (group) => `Group ${group}`,
-		phaseG: 'Group Matches',
-		phaseH: 'Round of 16',
-		phaseQ: 'Quarter-Finals',
-		phaseS: 'Semi-Finals',
-		phaseT: 'Third place',
-		phaseF: 'Final'
-	},
-	area: {
-		main: 'global-container',
-		pwl: 'app-pwl',
-		contents: 'contents',
-		user: 'user-area',
-		loginDlg: 'login-dlg'
-	},
-	defaultPage: 'schedule',
-	lang: 'en-GB'
+export const page = {
+	data: {},
+	config: config,
+	scoreEditor: scoreEditor,
+	bet: bet
 };
+window.page = page; // make page callable from global scope so it can be used from html
 
 page.initialize = function () {
+	// compute which competition to retrieve
+	page.config.year = page.getYear();
+
 	// retrieve templates and data
 	page.notify('Loading data...', true);
 	Promise.all([
@@ -53,8 +28,11 @@ page.initialize = function () {
 		// Initialize history
 		frw.history.initialize(page.select.bind(page));
 
+		// Set pageTitle function
+		page.config.i18n.pageTitle = page.config.i18n.title.bind(null, page.config.year);
+
 		// display
-		page.templates.main.parse();
+		page.templates.main.parse(page.config.year);
 		page.templates.main.load(page.config.area.main);
 
 		page.templates.user.parse(page.data);
@@ -86,6 +64,14 @@ page.destroy = function () {
 	page.bet.destroy();
 };
 
+page.getYear = function () {
+	let year = location.pathname.slice(1);
+	if (!page.config.validYears.includes(year)) {
+		year = page.config.defaultYear;
+	}
+	return year;
+};
+
 page.notify = function (message, init) {
 	if (!this.pwl) this.pwl = document.getElementById(page.config.area.pwl);
 	if (message) {
@@ -101,7 +87,7 @@ page.notify = function (message, init) {
 };
 
 page.getData = async function () {
-	return fetch(page.config.url.data)
+	return fetch(page.config.url.data(page.config.year))
 		.then(response => response.json())
 		.then(data => {
 			data.stadiums = frw.data.reIndex(data.stadiums, 'id');

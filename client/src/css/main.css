@@ -18,8 +18,17 @@ td, th {
 	height: 102px;
 	margin: 1em auto;
 	padding: 1em;
-	background: #FFFFFF url("img/logo_wc2014.png") right 8px no-repeat;
+	background: #FFFFFF right 8px no-repeat;
 	border-radius: 1em;
+}
+#header.wc-2014 {
+	background-image: url("img/logo_wc2014.png");
+}
+#header.wc-2018 {
+	background-image: url("img/logo_wc2018.png");
+}
+#header.wc-2022 {
+	background-image: url("img/logo_wc2022.png");
 }
 #contents {
 	margin: 1em auto;
