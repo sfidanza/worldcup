@@ -3,7 +3,7 @@
  ******************************************************************************/
 import { Router } from 'express';
 import foot from '../business/foot.js';
-import bets from '../business/bets.js';
+// import bets from '../business/bets.js';
 
 export default function getRouter(db) {
 	const router = Router();
@@ -16,7 +16,7 @@ export default function getRouter(db) {
 				getScore(query.score1PK), getScore(query.score2PK))
 				.then(data => {
 					// if (!match.group) { // if the match is in the final phase, trigger a betting leaderboard update
-						bets.updateLeaderboard(db); // no need to wait for result
+					// 	bets.updateLeaderboard(db); // no need to wait for result
 					// }
 					response.json(data);
 				}).catch(err => {
