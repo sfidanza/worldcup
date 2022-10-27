@@ -48,9 +48,9 @@ data.reIndex = function (list, key) {
 /**
  * Sort an array of objects on the specified properties
  * @param {Object[]} list  the list of object to sort
- * @param {array} sorters  the sorting criterias as an array of object:
+ * @param {Array} sorters  the sorting criterias as an array of Objects:
  *           {string} key  the property to sort on
- *           {number} dir  the sort direction: ascending (1, default) or descending (-1)
+ *           {number} dir  the sort direction: ascending (+1) or descending (-1)
  */
 data.sort = function (list, sorters) {
 	if (!list.length) return list;
