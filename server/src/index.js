@@ -1,6 +1,7 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import * as routers from './routers.js';
+import database from './database.js';
 
 import rateLimit from 'express-rate-limit';
 import session from 'express-session';
@@ -9,7 +10,6 @@ import MongoStore from 'connect-mongo';
 const {
 	MONGO_HOSTNAME,
 	MONGO_PORT,
-	// MONGO_DB,
 	MONGO_USER,
 	MONGO_PWD,
 	NODE_PORT,
@@ -39,28 +39,15 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 			},
 			store: MongoStore.create({
 				client: dbClient,
-				dbName: 'worldcup-sessions'
+				dbName: database.DB_SESSIONS
 			}),
 			resave: true,
 			saveUninitialized: true
 		}));
 
-		const VALID_YEARS = {
-			'2014': 'worldcup2014',
-			'2018': 'worldcup2018',
-			'2022': 'worldcup2022'
-		};
-		app.param('year', (req, res, next) => {
-			const year = req.params.year;
-			if (year in VALID_YEARS) {
-				req.database = dbClient.db(VALID_YEARS[year]);
-				next(); // return error if not valid db
-			} else {
-				res.status(404).json({ error: 'Not Found' });
-			}
-		});
+		app.param('year', database.getDataAccess(dbClient));
 
-		const dbUsers = dbClient.db('worldcup-users');
+		const dbUsers = dbClient.db(database.DB_USERS);
 		app.use('/api/user/', routers.user(dbUsers));
 		app.use('/api/auth/', routers.auth(dbUsers));
 		app.use('/api/:year([0-9]{4})/data', routers.data());

@@ -73,3 +73,10 @@
 /* Additional flags for 2022 worldcup */
 .flag.WAL { background-image: url("img/flags/wales.png"); }
 .flag.CAN { background-image: url("img/flags/ca.png"); }
+
+/* Additional flags for 2010 worldcup */
+.flag.NZL { background-image: url("img/flags/nz.png"); }
+.flag.PAR { background-image: url("img/flags/py.png"); }/*PRY*/
+.flag.PRK { background-image: url("img/flags/kp.png"); }
+.flag.SVN { background-image: url("img/flags/si.png"); }
+.flag.SVK { background-image: url("img/flags/sk.png"); }

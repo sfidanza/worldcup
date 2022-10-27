@@ -32,7 +32,7 @@ export const config = {
 		user: 'user-area',
 		loginDlg: 'login-dlg'
 	},
-	validYears: [ '2014', '2018', '2022' ],
+	validYears: [ '2010', '2014', '2018', '2022' ],
 	defaultYear: '2014',
 	defaultPage: 'schedule',
 	lang: 'en-GB'
