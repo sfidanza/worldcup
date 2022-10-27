@@ -15,6 +15,8 @@ scoreEditor.initialize = function (pageRef, frwRef) {
 			scoreEditor.editor.classList.add('small');
 		} else if (e.code === 'ArrowDown') {
 			scoreEditor.editor.classList.remove('small');
+		} else if (e.code === 'Escape') {
+			scoreEditor.cancelScoreEdit();
 		}
 	};
 	document.getElementById('score-editor-ok').onclick = function (e) {

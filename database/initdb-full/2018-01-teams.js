@@ -1,3 +1,4 @@
+db = db.getSiblingDB('worldcup2018');
 db.getCollection('teams')
     .insertMany([
         {"id":"URU","name":"Uruguay","group":"A","played":3,"victories":3,"draws":0,"defeats":0,"points":9,"goals_scored":5,"goals_against":0,"goal_difference":5,"rank":1},

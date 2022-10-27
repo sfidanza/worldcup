@@ -1,3 +1,4 @@
+db = db.getSiblingDB('worldcup2018');
 db.getCollection('matches')
     .insertMany([
         {"id":1,"day":"Thursday 14 June 2018","hour":"17:00","stadium":"4","group":"A","team1_id":"RUS","team2_id":"KSA","team1_score":5,"team2_score":0,"phase":"G","team1_scorePK":null,"team2_scorePK":null},

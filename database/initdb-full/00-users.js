@@ -1,5 +1,5 @@
-db.getCollection('teams')
+db.getCollection('users')
     .insertMany([
-        {"id":"native-stephane","pwd":"test","name":"Stephane","isAdmin":true},
-        {"id":"native-test","pwd":"test","name":"Me2"}
+        {"id":"native-admin","pwd":"admin","name":"Admin","isAdmin":true},
+        {"id":"native-user","pwd":"user","name":"User"}
     ]);

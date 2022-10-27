@@ -1,3 +1,4 @@
+db = db.getSiblingDB('worldcup2014');
 db.getCollection('teams')
     .insertMany([
         {"id":"BRA","name":"Brazil","group":"A","played":3,"victories":2,"draws":1,"defeats":0,"points":7,"goals_scored":7,"goals_against":2,"goal_difference":5,"rank":1},

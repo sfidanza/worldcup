@@ -1,3 +1,4 @@
+db = db.getSiblingDB('worldcup2022');
 db.getCollection('stadiums')
     .insertMany([
         {

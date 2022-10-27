@@ -1,3 +1,4 @@
+db = db.getSiblingDB('worldcup2022');
 db.getCollection('teams')
     .insertMany([
         {"id":"QAT","name":"Qatar","group":"A","played":0,"victories":0,"draws":0,"defeats":0,"points":0,"goals_scored":0,"goals_against":0,"goal_difference":0,"rank":1},
