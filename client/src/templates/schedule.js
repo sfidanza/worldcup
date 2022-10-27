@@ -37,9 +37,6 @@ schedule.onParse = function (data) {
 					pso = '<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')';
 				}
 				this.set('PSO', pso);
-				if (match.channel) {
-					this.parseBlock('channelLogo');
-				}
 				this.parseBlock('match');
 			});
 			this.parseBlock('day');
