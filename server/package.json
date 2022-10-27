@@ -3,9 +3,9 @@
   "version": "3.0.0",
   "author": "Stéphane Fidanza <stephane.fidanza@gmail.com>",
   "description": "A technical exploration site to follow the calendar and results of the worldcup",
-  "homepage": "https://github.com/sfidanza/worldcup2014",
+  "homepage": "https://github.com/sfidanza/worldcup",
   "bugs": {
-    "url": "https://github.com/sfidanza/worldcup2014/issues"
+    "url": "https://github.com/sfidanza/worldcup/issues"
   },
   "dependencies": {
     "connect-mongo": "4.6.0",
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sfidanza/worldcup2014.git",
+    "url": "https://github.com/sfidanza/worldcup.git",
     "directory": "server/"
   },
   "license": "MIT"

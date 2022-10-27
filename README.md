@@ -1,8 +1,8 @@
 # worldcup
 
-A site to follow the calendar and results of the 2014 worldcup. It is deployed live at:
+A site to follow the calendar and results of the worldcup competitions. It is deployed live at:
 
-- <https://worldcup2014.dagobah-online.com>
+- <https://worldcup.dagobah-online.com>
 
 The site is using a node.js backend to retrieve data, and a javascript frontend to display them. It is as much a functional interest, to follow the worldcup, as a technical one, to play with technologies.
 

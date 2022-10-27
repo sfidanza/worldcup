@@ -4,12 +4,12 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.worldcup2014.rule=Host(`$HOST`)
-        - traefik.http.services.worldcup2014.loadbalancer.server.port=80
+        - traefik.http.routers.worldcup.rule=Host(`$HOST`)
+        - traefik.http.services.worldcup.loadbalancer.server.port=80
         # Activate https
-        - traefik.http.routers.worldcup2014.tls=true
-        - traefik.http.routers.worldcup2014.tls.certresolver=myresolver
-        - traefik.http.routers.worldcup2014.middlewares=security@file
+        - traefik.http.routers.worldcup.tls=true
+        - traefik.http.routers.worldcup.tls.certresolver=myresolver
+        - traefik.http.routers.worldcup.middlewares=security@file
     networks:
       - gateway
       - default
@@ -18,12 +18,12 @@ services:
   #   deploy:
   #     labels:
   #       - traefik.enable=true
-  #       - traefik.http.routers.worldcup2014-admin.rule=Host(`$HOST_ADMIN`)
-  #       - traefik.http.services.worldcup2014-admin.loadbalancer.server.port=8081
+  #       - traefik.http.routers.worldcup-admin.rule=Host(`$HOST_ADMIN`)
+  #       - traefik.http.services.worldcup-admin.loadbalancer.server.port=8081
   #       # Activate https
-  #       - traefik.http.routers.worldcup2014-admin.tls=true
-  #       - traefik.http.routers.worldcup2014-admin.tls.certresolver=myresolver
-  #       - traefik.http.routers.worldcup2014-admin.middlewares=security@file
+  #       - traefik.http.routers.worldcup-admin.tls=true
+  #       - traefik.http.routers.worldcup-admin.tls.certresolver=myresolver
+  #       - traefik.http.routers.worldcup-admin.middlewares=security@file
   #   networks:
   #     - gateway
   #     - default
