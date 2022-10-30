@@ -12,16 +12,16 @@ export default bets;
  * Retrieve data
  */
 	
-bets.getBets = async function(db) {
+bets.getBets = async function(dbUsers, db) {
 	return Promise.all([
-			db.collection('users').find({}).toArray(),
+			dbUsers.collection('users').find({}).toArray(),
 			db.collection('bets').find({}, { projection: { _id: false } }).toArray()
 		]).then(values => respondList(...values));
 };
 
-bets.getLeaderboard = async function(db) {
+bets.getLeaderboard = async function(dbUsers, db) {
 	return Promise.all([
-			db.collection('users').find({}).toArray(),
+			dbUsers.collection('users').find({}).toArray(),
 			db.collection('leaderboard').find({}, { projection: { _id: false } }).toArray()
 		]).then(values => respondList(...values));
 };

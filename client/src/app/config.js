@@ -9,6 +9,8 @@ export const config = {
 		editMatch: (year, mid, score1, score2, score1PK, score2PK) =>
             `api/${year}/edit/editMatch?mid=${mid}&score1=${score1}&score2=${score2}&score1PK=${score1PK}&score2PK=${score2PK}`,
 		setRanks: (year, gid, ranks) => `api/${year}/edit/setRanks?gid=${gid}&ranks=${ranks}`,
+		betOnChampion: (year, teamId) => `api/${year}/bet/champion?champion=${teamId}`,
+		betOnMatchWinner: (year, mid, teamId) => `api/${year}/bet/match?mid=${mid}&winner=${teamId}`,
 		logout: 'api/user/logout',
 		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`,
 		register: (login) => `api/user/register?id=${login.id}&pwd=${login.pwd}&name=${login.name}`,

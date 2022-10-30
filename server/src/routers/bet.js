@@ -4,7 +4,7 @@
 import { Router } from 'express';
 import bets from '../business/bets.js';
 
-export default function getRouter(/*, dbUsers*/) { // TODO: use dbUsers to access users
+export default function getRouter(dbUsers) {
 	const router = Router();
 
 	/**
@@ -16,7 +16,7 @@ export default function getRouter(/*, dbUsers*/) { // TODO: use dbUsers to acces
 			const query = request.query;
 			const db = request.database;
 			bets.enterChampionBet(db, user.id, query.champion)
-				.then(() => bets.getBets(db))
+				.then(() => bets.getBets(dbUsers, db))
 				.then(betList => response.json({ bets: betList }))
 				.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		} else {
@@ -30,7 +30,7 @@ export default function getRouter(/*, dbUsers*/) { // TODO: use dbUsers to acces
 			const query = request.query;
 			const db = request.database;
 			bets.enterMatchWinnerBet(db, user.id, +query.mid, query.winner)
-				.then(() => bets.getBets(db))
+				.then(() => bets.getBets(dbUsers, db))
 				.then(betList => response.json({ bets: betList }))
 				.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 		} else {
@@ -40,7 +40,7 @@ export default function getRouter(/*, dbUsers*/) { // TODO: use dbUsers to acces
 
 	router.get('/leaderboard', function (request, response) {
 		const db = request.database;
-		bets.getLeaderboard(db)
+		bets.getLeaderboard(dbUsers, db)
 			.then(result => response.json(result))
 			.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 	});

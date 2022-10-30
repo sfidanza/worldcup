@@ -11,6 +11,10 @@ main.onCreate = function (pageRef, frwRef, i18nRepository) {
 
 main.onParse = function (year) {
 	this.set('year', year);
+	const current = page.data.history.find(el => el.year == page.config.year);
+	if (!current.winnerId) {
+		this.parseBlock('bet');
+	}
 };
 
 main.submitLogin = function (id, pwd) {
