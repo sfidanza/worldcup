@@ -22,6 +22,9 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PWD
       - MONGO_INITDB_DATABASE=worldcup-users
+      - ADMIN_ID
+      - ADMIN_PWD
+      - ADMIN_NAME
     volumes:
       - mongodb:/data/db
       - ./database/initdb-full:/docker-entrypoint-initdb.d
