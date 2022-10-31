@@ -80,3 +80,10 @@
 .flag.PRK { background-image: url("img/flags/kp.png"); }
 .flag.SVN { background-image: url("img/flags/si.png"); }
 .flag.SVK { background-image: url("img/flags/sk.png"); }
+
+/* Additional flags for 2006 worldcup */
+.flag.AGO { background-image: url("img/flags/ao.png"); }/*Angola*/
+.flag.CZE { background-image: url("img/flags/cz.png"); }/*Czech Republic*/
+.flag.TGO { background-image: url("img/flags/tg.png"); }/*Togo*/
+.flag.TTO { background-image: url("img/flags/tt.png"); }/*Trinidad and Tobago*/
+.flag.UKR { background-image: url("img/flags/ua.png"); }/*Ukraine*/

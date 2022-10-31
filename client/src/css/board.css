@@ -19,11 +19,11 @@
 	font-size: 100%;
 	color: #444444;
 }
-.page-board .match.round16 h3 { background: url('img/final-lime.png'); }
-.page-board .match.quarter h3 { background: url('img/final-bronze.png'); }
-.page-board .match.semi    h3 { background: url('img/final-silver.png'); }
-.page-board .match.final   h3 { background: url('img/final-gold.png'); }
-.page-board .match.third   h3 { background: url('img/final-gold.png'); }
+.page-board .match.round16 h3 { background-image: url('img/final-lime.png'); }
+.page-board .match.quarter h3 { background-image: url('img/final-bronze.png'); }
+.page-board .match.semi    h3 { background-image: url('img/final-silver.png'); }
+.page-board .match.final   h3 { background-image: url('img/final-gold.png'); }
+.page-board .match.third   h3 { background-image: url('img/final-gold.png'); }
 .page-board .match span.date {
 	font-size: 85%;
 }
