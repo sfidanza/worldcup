@@ -1,7 +1,11 @@
 {
 	"adjoining-classes": false,
+	"box-model": false,
+	"duplicate-background-images": false,
 	"ids": false,
+	"known-properties": false,
 	"order-alphabetical": false,
-	"unique-headings": false,
-	"qualified-headings": false
+	"overqualified-elements": false,
+	"qualified-headings": false,
+	"unique-headings": false
 }

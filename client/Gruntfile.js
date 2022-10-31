@@ -80,7 +80,7 @@ module.exports = function (grunt) {
 	grunt.loadTasks('build/tasks');
 
 	// Default tasks
-	grunt.registerTask('default', ['eslint', 'clean', 'copy', 'concat', 'mergeTemplates']);
+	grunt.registerTask('default', ['eslint', 'csslint', 'clean', 'copy', 'concat', 'mergeTemplates']);
 	grunt.registerTask('minify', ['cssmin', 'uglify']);
 	grunt.registerTask('prod', ['default'/*, 'minify'*/]);
 };
