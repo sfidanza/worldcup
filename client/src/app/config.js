@@ -34,7 +34,7 @@ export const config = {
 		user: 'user-area',
 		loginDlg: 'login-dlg'
 	},
-	minYear: '2002',
+	minYear: '1998',
 	defaultYear: '2022',
 	defaultPage: 'schedule',
 	lang: 'en-GB'

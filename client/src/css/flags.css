@@ -92,3 +92,12 @@
 .flag.IRL { background-image: url("img/flags/ie.png"); }
 .flag.TUR { background-image: url("img/flags/tr.png"); }
 .flag.CHN { background-image: url("img/flags/cn.png"); }
+
+/* Additional flags for 1998 worldcup */
+.flag.NOR { background-image: url("img/flags/no.png"); }
+.flag.SCO { background-image: url("img/flags/scotland.png"); }
+.flag.AUT { background-image: url("img/flags/at.png"); }
+.flag.BUL { background-image: url("img/flags/bg.png"); }
+.flag.YUG { background-image: url("img/flags/yugoslavia-98.png"); }
+.flag.ROU { background-image: url("img/flags/ro.png"); }
+.flag.JAM { background-image: url("img/flags/jm.png"); }

@@ -1,5 +1,5 @@
-db = db.getSiblingDB('worldcup2022');
-db.getCollection('stadiums')
+db = db.getSiblingDB("worldcup2022");
+db.getCollection("stadiums")
     .insertMany([
         { id: "1", name: "Al Bayt Stadium", city: "Al Khor City", UTC: 3 },
         { id: "2", name: "Lusail Stadium", city: "Lusail City", UTC: 3 },

@@ -76,6 +76,11 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Migrate client to webpack
   - <https://webpack.js.org/guides/getting-started/>
 - Support error cases on response.json() parsing (rate limiter can return 429 http codes)
+- Internationalize date/time for match schedule
+  - Store date in ISO format, or host local format with city timezone
+  - Display date in client timezone
+- Update flag spritemap
+  - <https://github.com/twolfson/grunt-spritesmith>
 
 ## References
 
