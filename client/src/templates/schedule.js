@@ -17,7 +17,8 @@ schedule.onParse = function (data) {
 	for (const phase in list) {
 		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
-		for (const day in phaseList) {
+		const days = Object.keys(phaseList).sort((a, b)=> new Date(a).getTime() - new Date(b).getTime());
+		for (const day of days) {
 			const matches = frw.data.sort(phaseList[day], [{ key: 'hour', dir: 1 }, { key: 'id', dir: 1 }]);
 			this.set('day', day);
 			matches.forEach((match, i) => {

@@ -71,14 +71,14 @@
 #match-H52 { top: 640px; }
 #match-H55 { top: 560px; right: 0; }
 #match-H56 { top: 640px; right: 0; }
-#match-Q58 { top: 160px; }
-#match-Q57 { top: 160px; right: 0; }
-#match-Q59 { top: 480px; right: 0; }
-#match-Q60 { top: 480px; }
+#match-Q57 { top: 160px; }
+#match-Q58 { top: 160px; right: 0; }
+#match-Q59 { top: 480px; }
+#match-Q60 { top: 480px; right: 0; }
 #match-S61 { top: 240px; left: 50%; transform: translate(-50%); }
 #match-S62 { top: 400px; left: 50%; transform: translate(-50%); }
 #match-T63 { top: 320px; left:   0; }
-#match-F64 { top: 320px; right:  0; }
+#match-F64 { top: 320px; right:  0; border: 2px solid #333333; }
 #link-Q1 { top:  60px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
 #link-Q2 { top:  60px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
 #link-Q3 { top: 540px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }

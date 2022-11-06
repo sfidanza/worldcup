@@ -71,9 +71,7 @@ Note: The wiki pages contain all the info based on the previous development / de
 
 ## To do (?)
 
-- [ONGOING] Unit tests
-  - <https://mochajs.org/#installation>
-- E2e tests
+- E2e tests on client side
   - <https://github.com/microsoft/playwright>
 - Migrate client to webpack
   - <https://webpack.js.org/guides/getting-started/>
