@@ -46,6 +46,23 @@ export default function getRouter() {
 		}
 	});
 
+	router.get('/computeGroupStats', function (request, response) {
+		const user = request.session.user;
+		if (user && user.isAdmin) {
+			const query = request.query;
+			const db = request.database;
+			foot.updateGroupStats(db, query.group, { noPromotion: true })
+				.then(teams => {
+					response.json({ teams });
+				}).catch(err => {
+					console.error(err);
+					response.status(err.statusCode ?? 500).json({ error: err.message });
+				});
+		} else {
+			response.status(401).json({ error: 'Unauthorized' });
+		}
+	});
+
 	/**
 	 * Input validation
 	 */

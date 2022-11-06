@@ -10,8 +10,13 @@ history.onCreate = function (pageRef, frwRef, i18nRepository) {
 };
 
 history.onParse = function() {
-	for (const year of page.data.history) {
-		this.set('edition', year);
+	for (const edition of page.data.history) {
+		this.set('edition', edition);
+		if (edition.year < page.config.minYear) {
+			this.parseBlock('noLink');
+		} else {
+			this.parseBlock('link');
+		}
 		this.parseBlock('edition');
 	}
 };

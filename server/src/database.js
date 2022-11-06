@@ -9,6 +9,7 @@ database.DB_SESSIONS = 'worldcup-sessions';
 database.DB_USERS = 'worldcup-users';
 
 database.VALID_YEARS = {
+    '2002': 'worldcup2002',
     '2006': 'worldcup2006',
     '2010': 'worldcup2010',
     '2014': 'worldcup2014',

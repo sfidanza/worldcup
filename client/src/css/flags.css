@@ -87,3 +87,8 @@
 .flag.TGO { background-image: url("img/flags/tg.png"); }/*Togo*/
 .flag.TTO { background-image: url("img/flags/tt.png"); }/*Trinidad and Tobago*/
 .flag.UKR { background-image: url("img/flags/ua.png"); }/*Ukraine*/
+
+/* Additional flags for 2002 worldcup */
+.flag.IRL { background-image: url("img/flags/ie.png"); }
+.flag.TUR { background-image: url("img/flags/tr.png"); }
+.flag.CHN { background-image: url("img/flags/cn.png"); }

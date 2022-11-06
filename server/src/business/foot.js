@@ -64,7 +64,7 @@ foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK
 			const data = { matches: [match] };
 			if (match.group) {
 				// update group results
-				return updateGroupStats(db, match.group)
+				return this.updateGroupStats(db, match.group)
 					.then(teams => {
 						data.teams = teams;
 						return data;
@@ -109,8 +109,10 @@ foot.setRanks = async function (db, group, ranks) {
  * Update the stats of all teams in a group, to take into account new match results
  * @param {object} db
  * @param {string} group - the group to be updated ('A', 'B', ...)
+ * @param {object} options
+ * @param {boolean} options.noPromotion - do not promote best teams to next round
  */
-async function updateGroupStats(db, group) {
+foot.updateGroupStats = async function (db, group, options) {
 	return Promise.all([
 			db.collection('teams').find({ group: group }, { id: true }).toArray(),
 			db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
@@ -119,12 +121,12 @@ async function updateGroupStats(db, group) {
 			for (const t of newStats) {
 				db.collection('teams').updateOne({ _id: t._id }, { $set: t });
 			}
-			if (matches.length === engine.MATCHES_PER_GROUP) {
+			if (!options?.noPromotion && matches.length === engine.MATCHES_PER_GROUP) {
 				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id); // no wait needed
 			}
 			return newStats;
 		});
-}
+};
 
 /**
  * Once a group has played all group matches, first 2 teams go to final phase

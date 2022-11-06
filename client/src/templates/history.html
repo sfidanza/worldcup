@@ -10,7 +10,8 @@
 <tbody>
 	<!-- BEGIN: edition -->
 	<tr class="{row_class}">
-		<td class="time"><a href="{edition.year}">{edition.year}</a></td>
+		<!-- BEGIN: link --><td class="time"><a href="{edition.year}">{edition.year}</a></td><!-- END: link -->
+		<!-- BEGIN: noLink --><td class="time">{edition.year}</td><!-- END: noLink -->
 		<td class="team"><span class="flag {edition.organizerId}">{edition.organizer}</span></td>
 		<td class="team"><span class="flag {edition.winnerId}">{edition.winner}</span></td>
 	</tr>

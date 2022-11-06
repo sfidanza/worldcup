@@ -66,7 +66,7 @@ page.destroy = function () {
 
 page.getYear = function () {
 	let year = location.pathname.slice(1);
-	if (!page.config.validYears.includes(year)) {
+	if (!/^\d{4}$/.test(year)) {
 		year = page.config.defaultYear;
 	}
 	return year;
