@@ -15,6 +15,7 @@ describe('Leaderboard engine', function () {
 
     it('should compute leaderboard with bets', function () {
         const bets = [
+            { challenge: 'champion', user: 'user1', value: 'ARG' },
             { challenge: 'match', target: 61, user: 'user1', value: 'GER' },
             { challenge: 'match', target: 64, user: 'user1', value: 'ARG' },
             { challenge: 'match', target: 61, user: 'user2', value: 'BRA' },
