@@ -139,12 +139,11 @@ page.getPageTitle = function (stateTitle) {
 };
 
 page.getMenuItem = function (hash) {
-	const items = document.querySelectorAll('#menu a');
-	return Array.from(items).find(item => item.hash === hash);
+	return document.querySelector(`a[href='${hash}']`);
 };
 
 page.highlight = function (link) {
-	document.querySelectorAll('#menu a.selected').forEach(item => {
+	document.querySelectorAll('a.selected').forEach(item => {
 		item.className = '';
 	});
 	link.className = 'selected';
@@ -199,7 +198,7 @@ page.showSchedule = function (phase) {
 	const matches = (phase == 1) ? page.data.matches.filter(m => m.phase == 'G') :
 		((phase == 2) ? page.data.matches.filter(m => m.group == null) : page.data.matches);
 
-		const data = {
+	const data = {
 		teams: page.data.teams,
 		matches: matches,
 		stadiums: page.data.stadiums
