@@ -3,7 +3,7 @@
 	Your bet:
 	<!-- BEGIN: notLogged -->please <a href="#login,bet" onclick="page.select(this, event);">login</a> to place your bet<!-- END: notLogged -->
 	<!-- BEGIN: noCBetYet -->you did not bet yet<!-- END: noCBetYet -->
-	<!-- BEGIN: yourCBet --><span class="flag {team.id}">{team.name}</span><!-- END: yourCBet -->
+	<!-- BEGIN: yourCBet --><span class="flag flag-{team.id}">{team.name}</span><!-- END: yourCBet -->
 </p>
 <table class="winnerCandidates {selectableClass}">
 	<tbody>
@@ -13,7 +13,7 @@
 			<!-- BEGIN: team -->
 			<td title="Bet on {team.name} for champion!" style="position: relative; {betStyle}"
 			    onclick="page.bet.betOnChampion('{team.id}')">
-				<span class="flag {team.id}">{team.name}</span>
+				<span class="flag flag-{team.id}">{team.name}</span>
 				<!-- BEGIN: badge -->
 				<div class="badge" title="{betters}">{betsOnTeam}</div>
 				<!-- END: badge -->
@@ -31,7 +31,7 @@
 		<!-- BEGIN: bet -->
 		<tr class="{row_class}">
 			<td class="{selected}">{bet.userName}</td>
-			<td><span class="flag {bet.value}">{bet.team}</span></td>
+			<td><span class="flag flag-{bet.value}">{bet.team}</span></td>
 		</tr>
 		<!-- END: bet -->
 	</tbody>
@@ -66,7 +66,7 @@
 		<td class="team left {bet1Class}"
 		    <!-- BEGIN: bet1 -->title="Bet on {team1.name}!" onclick="page.bet.betOnMatchWinner('{match.id}', '{match.team1_id}')"<!-- END: bet1 -->
 		    >
-			<span class="flag {match.team1_id}">{team1.name}</span>
+			<span class="flag flag-{match.team1_id}">{team1.name}</span>
 			<!-- BEGIN: badge1 -->
 			<div class="badge" title="{betters}">{betsOnTeam}</div>
 			<!-- END: badge1 -->
@@ -75,7 +75,7 @@
 		<td class="team {bet2Class}"
 		    <!-- BEGIN: bet2 -->title="Bet on {team2.name}!" onclick="page.bet.betOnMatchWinner('{match.id}', '{match.team2_id}')"<!-- END: bet2 -->
 		    >
-			<span class="flag {match.team2_id}">{team2.name}</span>
+			<span class="flag flag-{match.team2_id}">{team2.name}</span>
 			<!-- BEGIN: badge2 -->
 			<div class="badge" title="{betters}">{betsOnTeam}</div>
 			<!-- END: badge2 -->

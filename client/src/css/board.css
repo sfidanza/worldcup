@@ -41,13 +41,11 @@
 	width: 35px;
 }
 .page-board .match span.flag {
-	display: inline-block;
 	width: calc(50% - 41px);
 	text-align: left;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	vertical-align: bottom;
-	white-space: nowrap;
 }
 .page-board .match span.flag.left {
 	text-align: right;

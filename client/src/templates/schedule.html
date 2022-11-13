@@ -22,9 +22,9 @@
 	<tr id="m-{match.id}" class="{row_class}">
 		<td class="time">{match.hour}</td>
 		<td class="group media-ML">{category}</td>
-		<td class="team left"><span class="flag {match.team1_id}">{team1.name}</span></td>
+		<td class="team left"><span class="flag flag-{match.team1_id}">{team1.name}</span></td>
 		<td class="score">{match.team1_score} - {match.team2_score}{PSO}</td>
-		<td class="team"><span class="flag {match.team2_id}">{team2.name}</span></td>
+		<td class="team"><span class="flag flag-{match.team2_id}">{team2.name}</span></td>
 		<td class="media-ML">{stadium.city}</td>
 	</tr>
 	<!-- END: match -->

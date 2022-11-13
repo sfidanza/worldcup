@@ -1,5 +1,7 @@
 module.exports = function (grunt) {
 
+	const countries = grunt.file.readJSON('build/cfg/countries.json');
+
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -44,6 +46,20 @@ module.exports = function (grunt) {
 			},
 			src: ['src/**/*.css']
 		},
+		sprite: {
+			all: {
+				src: 'src/img/flags/*.png',
+				dest: 'src/img/flags-spritesheet.png',
+				destCss: 'src/css/flags.css',
+				cssTemplate: 'src/flags/flags.css.handlebars',
+				cssHandlebarsHelpers: {
+					adjustY: (y) => y + 2,
+					fifa: (name) => countries[name] ?? name,
+				},
+				algorithm: 'top-down',
+				padding: 3
+			}
+		},
 		watch: {
 			all: {
 				files: 'Gruntfile.js',
@@ -77,6 +93,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-spritesmith');
 	grunt.loadTasks('build/tasks');
 
 	// Default tasks

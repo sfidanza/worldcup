@@ -1,0 +1,24 @@
+/***[Team Flags]************/
+/* https://www.iso.org/obp/ui/#search */
+/* https://en.wikipedia.org/wiki/List_of_FIFA_country_codes */
+/*      SKJ: South Korea and Japan hosting 2002 worldcup */
+/* http://www.famfamfam.com/lab/icons/flags/ */
+.flag {
+	background-image: url("img/flags-spritesheet.png");
+	background-position-x: left;
+	background-position-y: 20px; /* to detect missing flags */
+	background-repeat: no-repeat;
+	display: inline-block; /* fix Chrome when using sprite */
+	line-height: 14px; /* fix Chrome when using sprite */
+	padding-left: 20px;
+    white-space: nowrap;
+}
+.left .flag, .flag.left {
+	background-position-x: right;
+	padding-left: 0;
+	padding-right: 20px;
+}
+
+{{#sprites}}
+.flag-{{fifa name}} { background-position-y: {{adjustY offset_y}}px; }
+{{/sprites}}

@@ -1,103 +1,90 @@
 /***[Team Flags]************/
 /* https://www.iso.org/obp/ui/#search */
+/* https://en.wikipedia.org/wiki/List_of_FIFA_country_codes */
+/*      SKJ: South Korea and Japan hosting 2002 worldcup */
 /* http://www.famfamfam.com/lab/icons/flags/ */
 .flag {
-	background-image: url("img/flags-sprite.png");
-	background-position: left 50%;
+	background-image: url("img/flags-spritesheet.png");
+	background-position-x: left;
+	background-position-y: 20px; /* to detect missing flags */
 	background-repeat: no-repeat;
 	display: inline-block; /* fix Chrome when using sprite */
 	line-height: 14px; /* fix Chrome when using sprite */
 	padding-left: 20px;
+    white-space: nowrap;
 }
 .left .flag, .flag.left {
-	background-position: right 50%;
+	background-position-x: right;
 	padding-left: 0;
 	padding-right: 20px;
 }
 
-.flag.ARG { background-position-y: 2px; }
-.flag.AUS { background-position-y: -29px; }
-.flag.BOS { background-position-y: -60px; }/*BIH*/
-.flag.BEL { background-position-y: -91px; }
-.flag.BRA { background-position-y: -122px; }
-.flag.SWI { background-position-y: -153px; }/*CHE*/
-.flag.CIV { background-position-y: -184px; }
-.flag.CHI { background-position-y: -215px; }/*CHL*/
-.flag.CMR { background-position-y: -246px; }
-.flag.COL { background-position-y: -277px; }
-.flag.COS { background-position-y: -308px; }/*CRI*/
-.flag.GER { background-position-y: -339px; }/*DEU*/
-.flag.ALG { background-position-y: -370px; }/*DZA*/
-.flag.ECU { background-position-y: -401px; }
-.flag.ENG { background-position-y: -432px; }
-.flag.ESP { background-position-y: -463px; }
-.flag.FRA { background-position-y: -494px; }
-.flag.GHA { background-position-y: -525px; }
-.flag.GRE { background-position-y: -556px; }/*GRC*/
-.flag.HON { background-position-y: -587px; }/*HND*/
-.flag.CRO { background-position-y: -618px; }/*HRV*/
-.flag.IRA { background-position-y: -649px; }/*IRN*/
-.flag.ITA { background-position-y: -680px; }
-.flag.JPN { background-position-y: -711px; }
-.flag.KOR { background-position-y: -742px; }
-.flag.MEX { background-position-y: -773px; }
-.flag.NGA { background-position-y: -804px; }
-.flag.NED { background-position-y: -835px; }/*NLD*/
-.flag.POR { background-position-y: -866px; }/*PRT*/
-.flag.RUS { background-position-y: -897px; }
-.flag.USA { background-position-y: -929px; }
-.flag.URU { background-position-y: -959px; }/*URY*/
-
-/* Additional flags for history */
-.flag.SWE { background-image: url("img/flags/se.png"); }
-.flag.QAT { background-image: url("img/flags/qa.png"); }
-.flag.RSA { background-image: url("img/flags/za.png"); }/*ZAF*/
-.flag.SKJ { background-image: url("img/flags/skj.png"); }
-
-/* Additional flags for 2018 worldcup */
-.flag.SUI { background-position-y: -153px; }/*CHE*/
-.flag.KSA { background-image: url("img/flags/sa.png"); }/*SAU*/
-.flag.EGY { background-image: url("img/flags/eg.png"); }
-.flag.MAR { background-image: url("img/flags/ma.png"); }
-.flag.IRN { background-position-y: -649px; }
-.flag.PER { background-image: url("img/flags/pe.png"); }
-.flag.DEN { background-image: url("img/flags/dk.png"); }/*DNK*/
-.flag.ISL { background-image: url("img/flags/is.png"); }
-.flag.CRC { background-position-y: -308px; }/*CRI*/
-.flag.SRB { background-image: url("img/flags/rs.png"); }
-.flag.PAN { background-image: url("img/flags/pa.png"); }
-.flag.TUN { background-image: url("img/flags/tn.png"); }
-.flag.POL { background-image: url("img/flags/pl.png"); }
-.flag.SEN { background-image: url("img/flags/sn.png"); }
-
-/* Additional flags for 2022 worldcup */
-.flag.WAL { background-image: url("img/flags/wales.png"); }
-.flag.CAN { background-image: url("img/flags/ca.png"); }
-
-/* Additional flags for 2010 worldcup */
-.flag.NZL { background-image: url("img/flags/nz.png"); }
-.flag.PAR { background-image: url("img/flags/py.png"); }/*PRY*/
-.flag.PRK { background-image: url("img/flags/kp.png"); }
-.flag.SVN { background-image: url("img/flags/si.png"); }
-.flag.SVK { background-image: url("img/flags/sk.png"); }
-
-/* Additional flags for 2006 worldcup */
-.flag.AGO { background-image: url("img/flags/ao.png"); }/*Angola*/
-.flag.CZE { background-image: url("img/flags/cz.png"); }/*Czech Republic*/
-.flag.TGO { background-image: url("img/flags/tg.png"); }/*Togo*/
-.flag.TTO { background-image: url("img/flags/tt.png"); }/*Trinidad and Tobago*/
-.flag.UKR { background-image: url("img/flags/ua.png"); }/*Ukraine*/
-
-/* Additional flags for 2002 worldcup */
-.flag.IRL { background-image: url("img/flags/ie.png"); }
-.flag.TUR { background-image: url("img/flags/tr.png"); }
-.flag.CHN { background-image: url("img/flags/cn.png"); }
-
-/* Additional flags for 1998 worldcup */
-.flag.NOR { background-image: url("img/flags/no.png"); }
-.flag.SCO { background-image: url("img/flags/scotland.png"); }
-.flag.AUT { background-image: url("img/flags/at.png"); }
-.flag.BUL { background-image: url("img/flags/bg.png"); }
-.flag.YUG { background-image: url("img/flags/yugoslavia-98.png"); }
-.flag.ROU { background-image: url("img/flags/ro.png"); }
-.flag.JAM { background-image: url("img/flags/jm.png"); }
+.flag-ANG { background-position-y: 2px; }
+.flag-ARG { background-position-y: -12px; }
+.flag-AUT { background-position-y: -26px; }
+.flag-AUS { background-position-y: -40px; }
+.flag-BIH { background-position-y: -54px; }
+.flag-BEL { background-position-y: -68px; }
+.flag-BUL { background-position-y: -82px; }
+.flag-BRA { background-position-y: -96px; }
+.flag-CAN { background-position-y: -110px; }
+.flag-SUI { background-position-y: -124px; }
+.flag-CIV { background-position-y: -138px; }
+.flag-CHI { background-position-y: -152px; }
+.flag-CMR { background-position-y: -166px; }
+.flag-CHN { background-position-y: -180px; }
+.flag-COL { background-position-y: -194px; }
+.flag-CRC { background-position-y: -208px; }
+.flag-CZE { background-position-y: -222px; }
+.flag-GER { background-position-y: -236px; }
+.flag-DEN { background-position-y: -250px; }
+.flag-ALG { background-position-y: -264px; }
+.flag-ECU { background-position-y: -278px; }
+.flag-EGY { background-position-y: -292px; }
+.flag-ENG { background-position-y: -306px; }
+.flag-ESP { background-position-y: -320px; }
+.flag-FRA { background-position-y: -334px; }
+.flag-GHA { background-position-y: -348px; }
+.flag-GRE { background-position-y: -362px; }
+.flag-HON { background-position-y: -376px; }
+.flag-CRO { background-position-y: -390px; }
+.flag-IRL { background-position-y: -404px; }
+.flag-IRN { background-position-y: -418px; }
+.flag-ISL { background-position-y: -432px; }
+.flag-ITA { background-position-y: -446px; }
+.flag-JAM { background-position-y: -460px; }
+.flag-JPN { background-position-y: -474px; }
+.flag-PRK { background-position-y: -488px; }
+.flag-KOR { background-position-y: -502px; }
+.flag-MAR { background-position-y: -516px; }
+.flag-MEX { background-position-y: -530px; }
+.flag-NGA { background-position-y: -544px; }
+.flag-NED { background-position-y: -558px; }
+.flag-NOR { background-position-y: -572px; }
+.flag-NZL { background-position-y: -586px; }
+.flag-PAN { background-position-y: -600px; }
+.flag-PER { background-position-y: -614px; }
+.flag-POL { background-position-y: -628px; }
+.flag-POR { background-position-y: -642px; }
+.flag-PAR { background-position-y: -656px; }
+.flag-QAT { background-position-y: -670px; }
+.flag-ROU { background-position-y: -684px; }
+.flag-SRB { background-position-y: -698px; }
+.flag-RUS { background-position-y: -712px; }
+.flag-KSA { background-position-y: -726px; }
+.flag-SCO { background-position-y: -740px; }
+.flag-SWE { background-position-y: -754px; }
+.flag-SVN { background-position-y: -768px; }
+.flag-SVK { background-position-y: -782px; }
+.flag-SKJ { background-position-y: -796px; }
+.flag-SEN { background-position-y: -810px; }
+.flag-TOG { background-position-y: -824px; }
+.flag-TUN { background-position-y: -838px; }
+.flag-TUR { background-position-y: -852px; }
+.flag-TRI { background-position-y: -866px; }
+.flag-UKR { background-position-y: -880px; }
+.flag-USA { background-position-y: -894px; }
+.flag-URU { background-position-y: -908px; }
+.flag-WAL { background-position-y: -922px; }
+.flag-YUG { background-position-y: -936px; }
+.flag-RSA { background-position-y: -950px; }

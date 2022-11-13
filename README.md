@@ -79,8 +79,6 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Internationalize date/time for match schedule
   - Store date in ISO format, or host local format with city timezone
   - Display date in client timezone
-- Update flag spritemap
-  - <https://github.com/twolfson/grunt-spritesmith>
 
 ## References
 
