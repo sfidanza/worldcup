@@ -53,6 +53,7 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 		app.use('/api/:year([0-9]{4})/data/', routers.data(dbUsers));
 		app.use('/api/:year([0-9]{4})/edit/', routers.edit());
 		app.use('/api/:year([0-9]{4})/bet/', routers.bet(dbUsers));
+		app.use('/api/:year([0-9]{4})/ics/', routers.ics());
 
 		app.listen(NODE_PORT, function () {
 			console.log(`App listening on port ${NODE_PORT}!`);
