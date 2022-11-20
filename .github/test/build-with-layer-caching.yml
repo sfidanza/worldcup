@@ -29,7 +29,7 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "master" ] && VERSION=latest
           echo VERSION=$VERSION
-          echo ::set-output name=VERSION::$VERSION
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       # This is the a separate action that sets up buildx runner
       - name: Set up Docker Buildx
