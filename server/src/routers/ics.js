@@ -29,11 +29,9 @@ export default function getRouter() {
 
 				const events = data.matches.map(m => {
 					const d = new Date(`${m.day} ${m.hour} ${tz}`); // need explicit date timezone as container is in UTC
-					const team1 = teams[m.team1_id]?.name ?? m.team1_source;
-					const team2 = teams[m.team2_id]?.name ?? m.team2_source;
-					const category = TAGS[m.phase](m.group);
+					const title = getEventTitle(teams, m);
 					const ev = {
-						title: `[${category}] ${team1} - ${team2}`,
+						title: title,
 						start: [d.getFullYear(), 1 + d.getMonth(), d.getDate(), d.getHours(), d.getMinutes()],
 						duration: { hours: 2 },
 						uid: 'wc-' + year + '-' + m.id + '@dagobah-online.com',
@@ -54,4 +52,19 @@ export default function getRouter() {
 	});
 
 	return router;
+}
+
+function getEventTitle(teams, m) {
+	let team1 = teams[m.team1_id]?.name ?? m.team1_source;
+	let team2 = teams[m.team2_id]?.name ?? m.team2_source;
+	if (m.team1_score !== null) {
+		team1 = team1 + ' ' + m.team1_score;
+		team2 = m.team2_score + ' ' + team2;
+		if (m.team1_scorePK !== null) {
+			team1 = team1 + ' (' + m.team1_scorePK + ')';
+			team2 = '(' + m.team2_scorePK + ') ' + team2;
+		}
+	}
+	const category = TAGS[m.phase](m.group);
+	return `[${category}] ${team1} - ${team2}`;
 }
