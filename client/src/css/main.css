@@ -31,6 +31,24 @@ td, th {
 	margin-top: -0.8em;
 	padding: 0 1em;
 }
+.note {
+	margin: 1em auto;
+	padding: 1em 3.5em 1em;
+	background-color: #FFFFCC;
+	background-image: url(img/date_add.png);
+	background-position: 1em 50%;
+	background-repeat: no-repeat;
+	border-radius: 1em;
+}
+.click-to-copy {
+	display: inline-block;
+	cursor: copy;
+	border-radius: 1em;
+	padding: 0.3em 0.8em;
+}
+.click-to-copy:hover {
+	background: #CCCCAA;
+}
 
 /***[Logo]******************/
 #logo {
