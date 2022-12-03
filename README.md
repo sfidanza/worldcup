@@ -71,9 +71,9 @@ Note: The wiki pages contain all the info based on the previous development / de
 
 ## To do (?)
 
-- E2e tests on client side
+- E2e tests on client side using Playwright
   - <https://github.com/microsoft/playwright>
-- Migrate client to webpack
+- Migrate client build to webpack
   - <https://webpack.js.org/guides/getting-started/>
 - Support error cases on response.json() parsing (rate limiter can return 429 http codes)
 - Internationalize date/time for match schedule
@@ -90,3 +90,5 @@ Note: The wiki pages contain all the info based on the previous development / de
   - <https://www.ssllabs.com/ssltest/index.html>
 - Use Github workflows to build and push docker images
   - <https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching>
+- Free open public domain football data for the World Cup
+  - <https://github.com/openfootball/worldcup>
