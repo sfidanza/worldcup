@@ -34,7 +34,18 @@ services:
     ports:
       - "8091:8081"
 
+  e2e:
+    build: ./e2e
+    ports:
+      - "9323:9323"
+    volumes:
+      - ./e2e:/usr/src/app
+      - e2e_node_modules:/usr/src/app/node_modules
+    stdin_open: true
+    tty: true
+
 volumes:
   node_modules:
   client_node_modules:
   client_target:
+  e2e_node_modules:

@@ -69,16 +69,16 @@ Alternatively, containers can be started with `docker-compose`:
 
 Note: The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment.
 
-## To do (?)
+## To do
 
-- E2e tests on client side using Playwright
-  - <https://github.com/microsoft/playwright>
 - Migrate client build to webpack
   - <https://webpack.js.org/guides/getting-started/>
 - Support error cases on response.json() parsing (rate limiter can return 429 http codes)
 - Internationalize date/time for match schedule
   - Store date in ISO format, or host local format with city timezone
   - Display date in client timezone
+- Could server-sent events be used to refresh live games score?
+  - <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
 
 ## References
 

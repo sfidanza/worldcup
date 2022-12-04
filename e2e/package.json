@@ -1,0 +1,24 @@
+{
+  "name": "worldcup",
+  "version": "3.0.0",
+  "author": "Stéphane Fidanza <stephane.fidanza@gmail.com>",
+  "description": "A technical exploration site to follow the calendar and results of the worldcup",
+  "homepage": "https://github.com/sfidanza/worldcup",
+  "bugs": {
+    "url": "https://github.com/sfidanza/worldcup/issues"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.28.1"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "sanity": "playwright test --grep @sanity",
+    "report": "playwright show-report --host=0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sfidanza/worldcup.git",
+    "directory": "client/"
+  },
+  "license": "MIT"
+}
