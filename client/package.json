@@ -8,7 +8,7 @@
     "url": "https://github.com/sfidanza/worldcup/issues"
   },
   "devDependencies": {
-    "chalk": "5.1.2",
+    "chalk": "5.2.0",
     "grunt": "1.5.3",
     "grunt-cli": "1.4.3",
     "grunt-contrib-clean": "2.0.1",
