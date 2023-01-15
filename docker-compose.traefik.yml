@@ -10,6 +10,7 @@ services:
         - traefik.http.routers.worldcup.tls=true
         - traefik.http.routers.worldcup.tls.certresolver=myresolver
         - traefik.http.routers.worldcup.middlewares=security@file
+        - traefik.http.routers.worldcup.middlewares=compress@file
     networks:
       - gateway
       - default
