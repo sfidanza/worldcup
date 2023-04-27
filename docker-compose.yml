@@ -17,7 +17,7 @@ services:
       - AUTH_REDIRECT_URL
 
   mongo:
-    image: mongo:4.4.20-focal  # MongoDB 5.0+ requires a CPU with AVX support. Does not run in production!
+    image: mongo:4.4.21-focal  # MongoDB 5.0+ requires a CPU with AVX support. Does not run in production!
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PWD
