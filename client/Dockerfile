@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:19-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /usr/src/app
 
