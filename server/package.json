@@ -20,7 +20,7 @@
   "devDependencies": {
     "eslint": "8.44.0",
     "mocha": "10.2.0",
-    "nodemon": "2.0.22"
+    "nodemon": "3.0.1"
   },
   "scripts": {
     "start": "node --experimental-json-modules src/index.js",
