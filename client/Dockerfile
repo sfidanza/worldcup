@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2
-FROM nginx:1.25.1-alpine
+FROM nginx:1.25.2-alpine
 
 WORKDIR /var/www/worldcup
 
