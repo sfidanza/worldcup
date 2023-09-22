@@ -1,5 +1,4 @@
 /client/node_modules
 /client/target
 /server/node_modules
-/docs/**/*.local.txt
 .env
