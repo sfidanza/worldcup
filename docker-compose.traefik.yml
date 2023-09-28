@@ -9,8 +9,7 @@ services:
         # Activate https
         - traefik.http.routers.worldcup.tls=true
         - traefik.http.routers.worldcup.tls.certresolver=myresolver
-        - traefik.http.routers.worldcup.middlewares=security@file
-        - traefik.http.routers.worldcup.middlewares=compress@file
+        - traefik.http.routers.worldcup.middlewares=security@file, compress@file
     networks:
       - gateway
       - default
