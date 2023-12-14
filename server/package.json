@@ -14,7 +14,7 @@
     "express-rate-limit": "7.1.5",
     "express-session": "1.17.3",
     "http-errors": "2.0.0",
-    "ics": "3.6.2",
+    "ics": "3.7.1",
     "mongodb": "5.9.2"
   },
   "devDependencies": {
