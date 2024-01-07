@@ -2,7 +2,6 @@
 server {
 	listen 80;
 	server_name worldcup.dagobah-online.com;
-	server_name worldcup.localhost;
 	
 	# static content
 	location / {
@@ -25,7 +24,7 @@ server {
 		proxy_set_header Host $http_host;
 		proxy_set_header X-NginX-Proxy true;
 		
-		proxy_pass http://app:9090;
+		proxy_pass http://${NODE_HOSTNAME}:${NODE_PORT};
 		proxy_redirect off;
 	}
 }

@@ -2,6 +2,9 @@ version: '3.8'
 services:
   nginx:
     image: ghcr.io/sfidanza/worldcup-frontend
+    environment:
+      - NODE_HOSTNAME=app
+      - NODE_PORT=9090
 
   app:
     image: ghcr.io/sfidanza/worldcup-backend
