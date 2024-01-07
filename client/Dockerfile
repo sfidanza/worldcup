@@ -13,8 +13,8 @@ RUN npm run build
 FROM nginx:1.25.4-alpine
 
 WORKDIR /var/www/worldcup
+COPY --from=build /usr/src/app/target .
 
 RUN rm /etc/nginx/conf.d/default.conf
-COPY sites-available/worldcup.conf /etc/nginx/conf.d
-
-COPY --from=build /usr/src/app/target .
+COPY sites-available/worldcup.conf.template /etc/nginx/templates/
+# /etc/nginx/templates/ is a docker entrypoint that will be resolved through `envsubst`
