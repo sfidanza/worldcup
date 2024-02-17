@@ -26,6 +26,9 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.set('trust proxy', 1); // trust our own nginx proxy
+app.get('/api/ip', (request, response) => response.send(request.ip));
+app.get('/api/x-forwarded-for', (request, response) => response.send(request.headers['x-forwarded-for']));
 
 new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`)
 	.connect()
