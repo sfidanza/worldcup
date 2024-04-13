@@ -12,33 +12,23 @@ test('history @sanity', async ({ page }) => {
   await expect(page).toHaveScreenshot('history.png');
 });
 
-test('2022 pages', async ({ page }) => {
-  await page.goto('/');
-  await checkNavigation(page, '2022');
-});
+for (const rep of ['2022', '2018 @sanity', '2014', '2010']) {
+  const year = rep.slice(0, 4);
+  test(`${rep} pages`, async ({ page }, workerInfo) => {
+    await page.goto(`/${year}`);
+    await checkNavigation(page, year, workerInfo);
+  });
+}
 
-test('2018 pages @sanity', async ({ page }) => {
-  await page.goto('/2018');
-  await checkNavigation(page, '2018');
-});
-
-test('2014 pages', async ({ page }) => {
-  await page.goto('/2014');
-  await checkNavigation(page, '2014');
-});
-
-test('2010 pages', async ({ page }) => {
-  await page.goto('/2010');
-  await checkNavigation(page, '2010');
-});
-
-async function checkNavigation(page, year) {
+async function checkNavigation(page, year, workerInfo) {
   // Schedule - default page
   await expect(page).toHaveTitle(new RegExp(`${year} Worldcup.*`));
   await expect(page).toHaveScreenshot(`${year}-schedule.png`);
 
   // Other pages
-  // await checkPage(page, 'Group Rankings', /.*#ranking/, `${year}-ranking.png`); // not present in small screens
+  if (!/Mobile/.test(workerInfo.project.name)) {
+    await checkPage(page, 'Group Rankings', /.*#ranking/, `${year}-ranking.png`); // not present in small screens
+  }
   await checkPage(page, 'Finals Board', /.*#board/, `${year}-board.png`);
   await checkPage(page, 'A', /.*#group,A/, `${year}-groupA.png`);
   await checkPage(page, 'D', /.*#group,D/, `${year}-groupD.png`);
