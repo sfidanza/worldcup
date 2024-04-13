@@ -1,6 +1,6 @@
 <div id="header">
-	<div id="logo" class="wc-{year}"></div>
-	<h1>{year} Worldcup</h1>
+	<div id="logo" class="{cid}-{year}"></div>
+	<h1>{name}</h1>
 	<dl id="menu">
 		<dt class="media-L">Tournament:</dt>
 		<dd><a onclick="page.select(this, event);" href="#history">History</a></dd>
@@ -12,14 +12,7 @@
 		<dd class="media-ML"><a onclick="page.select(this, event);" href="#ranking">Group Rankings</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#board">Finals Board</a></dd>
 		<dt class="media-L">Groups:</dt>
-		<dd><a onclick="page.select(this, event);" href="#group,A" title="Group A">A</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,B" title="Group B">B</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,C" title="Group C">C</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,D" title="Group D">D</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,E" title="Group E">E</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,F" title="Group F">F</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,G" title="Group G">G</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#group,H" title="Group H">H</a></dd>
+		<!-- BEGIN: group --><dd><a onclick="page.select(this, event);" href="#group,{group}" title="Group {group}">{group}</a></dd><!-- END: group -->
 	</dl>
 </div>
 

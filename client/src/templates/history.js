@@ -12,10 +12,10 @@ history.onCreate = function (pageRef, frwRef, i18nRepository) {
 history.onParse = function() {
 	for (const edition of page.data.history) {
 		this.set('edition', edition);
-		if (edition.year < page.config.minYear) {
-			this.parseBlock('noLink');
-		} else {
+		if (edition.available) {
 			this.parseBlock('link');
+		} else {
+			this.parseBlock('noLink');
 		}
 		this.parseBlock('edition');
 	}

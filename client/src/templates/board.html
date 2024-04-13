@@ -1,24 +1,32 @@
-<div class="board">
-<div id="link-Q1" class="link for-Q57 for-S61"></div><div id="link-Q2" class="link for-Q58 for-S61"></div>
-<div id="link-Q3" class="link for-Q59 for-S62"></div><div id="link-Q4" class="link for-Q60 for-S62"></div>
-<div id="link-S1" class="link for-S61"></div><div id="link-S2" class="link for-S62"></div>
-<div id="link-T1" class="link"></div><div id="link-F1" class="link"></div>
+<div class="board {size}">
+<!-- BEGIN: linksH -->
+<div id="link-Q1" class="link for-Q1 for-S1"></div>
+<div id="link-Q2" class="link for-Q2 for-S1"></div>
+<div id="link-Q3" class="link for-Q3 for-S2"></div>
+<div id="link-Q4" class="link for-Q4 for-S2"></div>
+<!-- END: linksH -->
+<div id="link-S1" class="link for-S1"></div>
+<div id="link-S2" class="link for-S2"></div>
+<!-- BEGIN: linksT -->
+<div id="link-T1" class="link"></div>
+<!-- END: linksT -->
+<div id="link-F1" class="link"></div>
 
 <!-- BEGIN: match -->
-<div class="match {class}" id="match-{match.phase}{match.id}"
+<div class="match {class}" id="match-{match.id}"
      <!-- BEGIN: tooltip -->
-     onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}'), 'centerX');"
+     onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}', '{group1}', '{group2}'), 'centerX');"
      onmousemove="page.tooltip.positionTooltip(event, 'centerX');"
      onmouseout="page.tooltip.hideTooltip();"
      <!-- END: tooltip -->
      <!-- BEGIN: highlight -->
-     onmouseover="page.templates.board.highlight('{match.phase}{match.id}');"
+     onmouseover="page.templates.board.highlight('{match.id}');"
      onmouseout="page.templates.board.highlight();"
      <!-- END: highlight -->
      >
 	<h3>{category}</h3>
 	<div class="content">
-		<span class="date">{match.day}<br/>{match.hour}</span><span class="media-ML"> - {stadium.city}</span>
+		<span class="date">{day}<br/>{match.hour}</span><span class="media-ML"> - {stadium.city}</span>
 		<div class="teams">
 			<span class="flag flag-{match.team1_id} left">{team1.name}</span>
 			<span class="score">{match.team1_score} - {match.team2_score}</span>

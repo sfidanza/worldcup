@@ -1,18 +1,28 @@
 import { Template } from '../frw/frw.Template.js';
 
-let page;
+let frw, page;
 
 export const main = new Template();
 
 main.onCreate = function (pageRef, frwRef, i18nRepository) {
+	frw = frwRef;
 	page = pageRef;
 	this.i18n = i18nRepository;
 };
 
 main.onParse = function (year) {
 	this.set('year', year);
-	const current = page.data.history.find(el => el.year == page.config.year);
-	if (!current.winnerId) {
+	this.set('cid', page.config.cid);
+	this.set('name', page.config.name);
+
+	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
+	for (const g in teamsByGroup) {
+		this.set('group', g);
+		this.parseBlock('group');
+	}
+
+	const current = page.data.history.find(el => el.year === year);
+	if (current && !current.winnerId) {
 		this.parseBlock('bet');
 		this.parseBlock('tip');
 	}

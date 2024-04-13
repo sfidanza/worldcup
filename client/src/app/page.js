@@ -18,6 +18,8 @@ window.page = page; // make page callable from global scope so it can be used fr
 page.initialize = function () {
 	// compute which competition to retrieve
 	page.config.year = page.getYear();
+	page.config.cid = page.config.getCompetitionId(page.config.year);
+	page.config.name = page.config.i18n.names[page.config.cid](page.config.year);
 
 	// retrieve templates and data
 	page.notify('Loading data...', true);
@@ -29,7 +31,7 @@ page.initialize = function () {
 		frw.history.initialize(page.select.bind(page));
 
 		// Set pageTitle function
-		page.config.i18n.pageTitle = page.config.i18n.title.bind(null, page.config.year);
+		page.config.i18n.pageTitle = page.config.i18n.title.bind(null, page.config.name);
 
 		// display
 		page.templates.main.parse(page.config.year);
@@ -254,15 +256,15 @@ page.showBoard = function () {
 	page.templates.board.load(page.config.area.contents);
 };
 
-page.parseGroupRanking = function (group) {
-	const g = group.charAt(1);
+page.parseGroupRanking = function (from, group) {
+	const g = group || from.charAt(1);
 	const teams = page.data.teams.filter(t => t.group == g);
-	page.templates.quickRanking.parse(teams, g, group.charAt(0));
+	page.templates.quickRanking.parse(teams, g, from.charAt(0));
 };
 
-page.getRankingPopup = function (group1, group2) {
-	this.parseGroupRanking(group1);
-	this.parseGroupRanking(group2);
+page.getRankingPopup = function (from1, from2, g1, g2) {
+	this.parseGroupRanking(from1, g1);
+	this.parseGroupRanking(from2, g2);
 	return page.templates.quickRanking.retrieve();
 };
 

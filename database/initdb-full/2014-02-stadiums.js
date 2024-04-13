@@ -12,6 +12,5 @@ db.getCollection("stadiums")
         { id: "9", name: "Estadio Nacional", city: "Brasilia" },
         { id: "10", name: "Estadio Beira-Rio", city: "Porto Alegre" },
         { id: "11", name: "Maracanã - Estádio Jornalista Mário Filho", city: "Rio De Janeiro" },
-        { id: "12", name: "Arena da Baixada", city: "Curitiba"
-        }
+        { id: "12", name: "Arena da Baixada", city: "Curitiba" }
     ]);

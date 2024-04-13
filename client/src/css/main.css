@@ -81,6 +81,12 @@ td, th {
 #logo.wc-2018 { background-position-x: -2100px; }
 #logo.wc-2022 { background-position-x: -2200px; }
 
+#logo.e-2008 { background-image: url("img/logo/euro2008.png"); }
+#logo.e-2012 { background-image: url("img/logo/euro2012.png"); }
+#logo.e-2016 { background-image: url("img/logo/euro2016.png"); }
+#logo.e-2020 { background-image: url("img/logo/euro2020.png"); }
+#logo.e-2024 { background-image: url("img/logo/euro2024.png"); }
+
 /***[Header]****************/
 #header h1 {
 	margin-top: 0;

@@ -12,6 +12,5 @@ db.getCollection("stadiums")
         { id: "9", name: "Samara Arena", city: "Samara", UTC: 4 },
         { id: "10", name: "Mordovia Arena", city: "Saransk", UTC: 3 },
         { id: "11", name: "Fisht Stadium", city: "Sochi", UTC: 3 },
-        { id: "12", name: "Volgograd Arena", city: "Volgograd", UTC: 3
-        }
+        { id: "12", name: "Volgograd Arena", city: "Volgograd", UTC: 3 }
     ]);

@@ -13,7 +13,7 @@ export default function getRouter() {
 		if (user && user.isAdmin) {
 			const query = request.query;
 			const db = request.database;
-			foot.setMatchScore(db, +query.mid, getScore(query.score1), getScore(query.score2),
+			foot.setMatchScore(db, query.mid, getScore(query.score1), getScore(query.score2),
 				getScore(query.score1PK), getScore(query.score2PK))
 				.then(data => {
 					// if (!match.group) { // if the match is in the final phase, trigger a betting leaderboard update

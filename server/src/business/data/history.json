@@ -4,153 +4,175 @@
 		"winner": "Uruguay",
 		"winnerId": "URU",
 		"organizer": "Uruguay",
-		"organizerId": "URU"
+		"organizerId": "URU",
+		"available": false
 	},
 	{
 		"year": "1934",
 		"winner": "Italy",
 		"winnerId": "ITA",
 		"organizer": "Italy",
-		"organizerId": "ITA"
+		"organizerId": "ITA",
+		"available": false
 	},
 	{
 		"year": "1938",
 		"winner": "Italy",
 		"winnerId": "ITA",
 		"organizer": "France",
-		"organizerId": "FRA"
+		"organizerId": "FRA",
+		"available": false
 	},
 	{
 		"year": "1950",
 		"winner": "Uruguay",
 		"winnerId": "URU",
 		"organizer": "Brazil",
-		"organizerId": "BRA"
+		"organizerId": "BRA",
+		"available": false
 	},
 	{
 		"year": "1954",
 		"winner": "West Germany",
 		"winnerId": "GER",
 		"organizer": "Switzerland",
-		"organizerId": "SUI"
+		"organizerId": "SUI",
+		"available": false
 	},
 	{
 		"year": "1958",
 		"winner": "Brazil",
 		"winnerId": "BRA",
 		"organizer": "Sweden",
-		"organizerId": "SWE"
+		"organizerId": "SWE",
+		"available": false
 	},
 	{
 		"year": "1962",
 		"winner": "Brazil",
 		"winnerId": "BRA",
 		"organizer": "Chile",
-		"organizerId": "CHI"
+		"organizerId": "CHI",
+		"available": false
 	},
 	{
 		"year": "1966",
 		"winner": "England",
 		"winnerId": "ENG",
 		"organizer": "England",
-		"organizerId": "ENG"
+		"organizerId": "ENG",
+		"available": false
 	},
 	{
 		"year": "1970",
 		"winner": "Brazil",
 		"winnerId": "BRA",
 		"organizer": "Mexico",
-		"organizerId": "MEX"
+		"organizerId": "MEX",
+		"available": false
 	},
 	{
 		"year": "1974",
 		"winner": "West Germany",
 		"winnerId": "GER",
 		"organizer": "West Germany",
-		"organizerId": "GER"
+		"organizerId": "GER",
+		"available": false
 	},
 	{
 		"year": "1978",
 		"winner": "Argentina",
 		"winnerId": "ARG",
 		"organizer": "Argentina",
-		"organizerId": "ARG"
+		"organizerId": "ARG",
+		"available": false
 	},
 	{
 		"year": "1982",
 		"winner": "Italy",
 		"winnerId": "ITA",
 		"organizer": "Spain",
-		"organizerId": "ESP"
+		"organizerId": "ESP",
+		"available": false
 	},
 	{
 		"year": "1986",
 		"winner": "Argentina",
 		"winnerId": "ARG",
 		"organizer": "Mexico",
-		"organizerId": "MEX"
+		"organizerId": "MEX",
+		"available": false
 	},
 	{
 		"year": "1990",
 		"winner": "West Germany",
 		"winnerId": "GER",
 		"organizer": "Italy",
-		"organizerId": "ITA"
+		"organizerId": "ITA",
+		"available": false
 	},
 	{
 		"year": "1994",
 		"winner": "Brazil",
 		"winnerId": "BRA",
 		"organizer": "United States",
-		"organizerId": "USA"
+		"organizerId": "USA",
+		"available": false
 	},
 	{
 		"year": "1998",
 		"winner": "France",
 		"winnerId": "FRA",
 		"organizer": "France",
-		"organizerId": "FRA"
+		"organizerId": "FRA",
+		"available": true
 	},
 	{
 		"year": "2002",
 		"winner": "Brazil",
 		"winnerId": "BRA",
 		"organizer": "South Korea & Japan",
-		"organizerId": "SKJ"
+		"organizerId": "SKJ",
+		"available": true
 	},
 	{
 		"year": "2006",
 		"winner": "Italy",
 		"winnerId": "ITA",
 		"organizer": "Germany",
-		"organizerId": "GER"
+		"organizerId": "GER",
+		"available": true
 	},
 	{
 		"year": "2010",
 		"winner": "Spain",
 		"winnerId": "ESP",
 		"organizer": "South Africa",
-		"organizerId": "RSA"
+		"organizerId": "RSA",
+		"available": true
 	},
 	{
 		"year": "2014",
 		"winner": "Germany",
 		"winnerId": "GER",
 		"organizer": "Brazil",
-		"organizerId": "BRA"
+		"organizerId": "BRA",
+		"available": true
 	},
 	{
 		"year": "2018",
 		"winner": "France",
 		"winnerId": "FRA",
 		"organizer": "Russia",
-		"organizerId": "RUS"
+		"organizerId": "RUS",
+		"available": true
 	},
 	{
 		"year": "2022",
 		"winner": "Argentina",
 		"winnerId": "ARG",
 		"organizer": "Qatar",
-		"organizerId": "QAT"
+		"organizerId": "QAT",
+		"available": true
 	}
 ]

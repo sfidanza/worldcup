@@ -41,7 +41,7 @@ foot.getData = async function (db) {
 /**
  * Update stats and advance to next round
  * @param {object} db
- * @param {integer} mid - the id of the match to be updated
+ * @param {string} mid - the id of the match to be updated
  * @param {integer} score1 - the score of team 1
  * @param {integer} score2 - the score of team 2
  * @param {integer} score1PK - the penalty kicks score of team 1
@@ -129,15 +129,16 @@ foot.updateGroupStats = async function (db, group, options) {
 };
 
 /**
- * Once a group has played all group matches, first 2 teams go to final phase
+ * Once a group has played all group matches, first 2 teams go to knockout phase
  * @param {object} db
  * @param {string} group - group id ('A', 'B', ...)
- * @param {string} team1 - Id of the best team in the group to advance to finals
- * @param {string} team2 - Id of the second team in the group to advance to finals
+ * @param {string} tid1 - Id of the best team in the group to advance to knockout
+ * @param {string} tid2 - Id of the second team in the group to advance to knockout
  */
 function advanceToFirstRound(db, group, tid1, tid2) {
 	const matches = db.collection('matches');
-	matches.updateOne({ 'team1_source': '1' + group }, { $set: { 'team1_id': tid1 } });
+	matches.updateOne({ 'team1_source': '1' + group }, { $set: { 'team1_id': tid1 } }); // 1X is only hosting in knockout first round (16, 24, 32 teams)
+	matches.updateOne({ 'team1_source': '2' + group }, { $set: { 'team1_id': tid2 } }); // 2X may host in some formats (e.g. 24 teams)
 	matches.updateOne({ 'team2_source': '2' + group }, { $set: { 'team2_id': tid2 } });
 }
 

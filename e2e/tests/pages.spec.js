@@ -22,7 +22,7 @@ for (const rep of ['2022', '2018 @sanity', '2014', '2010']) {
 
 async function checkNavigation(page, year, workerInfo) {
   // Schedule - default page
-  await expect(page).toHaveTitle(new RegExp(`${year} Worldcup.*`));
+  await expect(page).toHaveTitle(new RegExp(`${year} FIFA Worldcup.*`));
   await expect(page).toHaveScreenshot(`${year}-schedule.png`);
 
   // Other pages

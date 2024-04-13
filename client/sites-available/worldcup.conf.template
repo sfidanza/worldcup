@@ -5,6 +5,7 @@ server {
 	
 	# static content
 	location / {
+		# worldcup
 		rewrite ^/1998$ /index.html break;
 		rewrite ^/2002$ /index.html break;
 		rewrite ^/2006$ /index.html break;
@@ -12,6 +13,12 @@ server {
 		rewrite ^/2014$ /index.html break;
 		rewrite ^/2018$ /index.html break;
 		rewrite ^/2022$ /index.html break;
+		# euro
+		rewrite ^/2008$ /index.html break;
+		rewrite ^/2012$ /index.html break;
+		rewrite ^/2016$ /index.html break;
+		rewrite ^/2020$ /index.html break;
+		rewrite ^/2024$ /index.html break;
 
 		root /var/www/worldcup/static;
 		index index.html;

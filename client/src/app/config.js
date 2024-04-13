@@ -17,15 +17,23 @@ export const config = {
 		auth: (provider) => `api/auth/url?provider=${provider}`,
 		authProfile: (code) => `api/auth/profile?code=${code}`
 	},
+	getCompetitionId: (year) => (year % 4 === 2) ? 'wc' : 'e', // Worldcup or Euro?
 	i18n: {
-		title: (year, state) => `${year} Worldcup - ${state}`,
+		names: {
+			e: (year) => `UEFA Euro ${year}`,
+			wc: (year) => `${year} FIFA Worldcup`,
+		},
+		title: (name, state) => `${name} - ${state}`,
 		group: (group) => `Group ${group}`,
 		phaseG: 'Group Matches',
 		phaseH: 'Round of 16',
 		phaseQ: 'Quarter-Finals',
 		phaseS: 'Semi-Finals',
 		phaseT: 'Third place',
-		phaseF: 'Final'
+		phaseF: 'Final',
+		formats: {
+			date: new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' })
+		}
 	},
 	area: {
 		main: 'global-container',
@@ -34,7 +42,6 @@ export const config = {
 		user: 'user-area',
 		loginDlg: 'login-dlg'
 	},
-	minYear: '1998',
 	defaultYear: '2022',
 	defaultPage: 'schedule',
 	lang: 'en-GB'
