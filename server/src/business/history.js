@@ -1,4 +1,4 @@
-import data from './data/history.json' assert { type: 'json' };
+import data from './data/history.json' with { type: 'json' };
 
 const history = {};
 export default history;
