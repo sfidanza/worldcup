@@ -18,7 +18,7 @@
     "grunt-contrib-cssmin": "5.0.0",
     "grunt-contrib-uglify": "5.2.2",
     "grunt-contrib-watch": "1.1.0",
-    "grunt-eslint": "24.3.0",
+    "grunt-eslint": "25.0.0",
     "grunt-spritesmith": "6.10.0"
   },
   "scripts": {
@@ -27,6 +27,7 @@
     "sprite": "grunt sprite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/sfidanza/worldcup.git",

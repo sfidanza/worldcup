@@ -1,6 +1,6 @@
 const path = require('path');
 //const chalk = require('chalk');
-const Template = require('./frw/Template.js');
+const Template = require('./frw/Template.cjs');
 
 module.exports = function (grunt) {
 	grunt.registerMultiTask('mergeTemplates', 'Merge templates.', function () {
