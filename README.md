@@ -24,26 +24,24 @@ Technically:
   - server runs on node.js
   - data is stored in mongodb
 
-Since we will use Docker to run all this, you will need `docker` and `docker-compose` (i.e. Docker Desktop if you are on Windows).
-
 ## Develoment setup
 
-You need a `.env` file in the root folder to specify the secrets. You can simply copy `.env.sample` to get started.
+You need a `.env` file in the root folder to specify the secrets. You can simply copy `.env.sample` to get started. You also need to have Docker installed (Docker Desktop is great if you are on Windows).
 
 ### Run locally in production mode
 
 Here are the commands to start/stop everything (with the images built locally):
 
-    docker-compose build                             # build images from local sources
-    docker-compose -f "docker-compose.yml" up -d     # start containers
-    docker-compose -f "docker-compose.yml" down      # stop containers and remove images
+    docker compose build                             # build images from local sources
+    docker compose -f "docker-compose.yml" up -d     # start containers
+    docker compose -f "docker-compose.yml" down      # stop containers and remove images
 
 ### Run locally in development mode
 
-Running `docker-compose up` without specifying the file will automatically take the `docker-compose.override.yml` into account. The commands are thus even simpler:
+Running `docker compose up` without specifying the file will automatically take the `docker-compose.override.yml` into account. The commands are thus even simpler:
 
-    docker-compose up -d --build
-    docker-compose down
+    docker compose up -d --build
+    docker compose down
 
 Once started, you can access the application at <http://localhost:8090>. This local development mode will plug a few additional niceties:
 
@@ -55,17 +53,17 @@ Once started, you can access the application at <http://localhost:8090>. This lo
 
 ## Production setup
 
-For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker-compose build` for example). To enable routing from the Traefik gateway, the corresponding `compose` file should be used as well:
+For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker compose build` for example). To enable routing from the Traefik gateway, the corresponding `compose` file should be used as well:
 
-    docker-compose -f docker-compose.yml -f docker-compose.traefik.yml config | docker stack deploy -c - worldcup
+    docker compose -f docker-compose.yml -f docker-compose.traefik.yml config | docker stack deploy -c - worldcup
     docker stack rm worldcup
 
-Note: the `docker-compose config` command is acting as a preprocessor to resolve the environment variables inside the compose files from `.env`, which is not supported by `docker stack deploy`.
+Note: the `docker compose config` command is acting as a preprocessor to resolve the environment variables inside the compose files from `.env`, which is not supported by `docker stack deploy`.
 
-Alternatively, containers can be started with `docker-compose`:
+Alternatively, containers can be started with `docker compose`:
 
-    docker-compose -f "docker-compose.yml" up -d
-    docker-compose -f "docker-compose.yml" down
+    docker compose -f "docker-compose.yml" up -d
+    docker compose -f "docker-compose.yml" down
 
 Note: The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment.
 
