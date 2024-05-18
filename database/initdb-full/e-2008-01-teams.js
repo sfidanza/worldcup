@@ -2,7 +2,7 @@ db = db.getSiblingDB("euro2008");
 db.getCollection("teams")
     .insertMany([
         { group: "A", id: "SUI", name: "Switzerland", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 3, goals_against: 3, goal_difference: 0, rank: 3 },
-        { group: "A", id: "CZE", name: "Czech Republic", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 4, goals_against: 6, goal_difference: -2, rank: 4 },
+        { group: "A", id: "CZE", name: "Czechia", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 4, goals_against: 6, goal_difference: -2, rank: 4 },
         { group: "A", id: "POR", name: "Portugal", played: 3, victories: 2, draws: 0, defeats: 1, points: 6, goals_scored: 5, goals_against: 3, goal_difference: 2, rank: 1 },
         { group: "A", id: "TUR", name: "Turkey", played: 3, victories: 2, draws: 0, defeats: 1, points: 6, goals_scored: 5, goals_against: 5, goal_difference: 0, rank: 2 },
         { group: "B", id: "GER", name: "Germany", played: 3, victories: 2, draws: 0, defeats: 1, points: 6, goals_scored: 4, goals_against: 2, goal_difference: 2, rank: 2 },

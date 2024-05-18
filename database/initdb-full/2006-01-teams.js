@@ -19,7 +19,7 @@ db.getCollection("teams")
         { group: "D", id: "IRN", name: "Iran", played: 3, victories: 0, draws: 1, defeats: 2, points: 1, goals_scored: 2, goals_against: 6, goal_difference: -4, rank: 4 },
         { group: "E", id: "ITA", name: "Italy", played: 3, victories: 2, draws: 1, defeats: 0, points: 7, goals_scored: 5, goals_against: 1, goal_difference: 4, rank: 1 },
         { group: "E", id: "GHA", name: "Ghana", played: 3, victories: 2, draws: 0, defeats: 1, points: 6, goals_scored: 4, goals_against: 3, goal_difference: 1, rank: 2 },
-        { group: "E", id: "CZE", name: "Czech Republic", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 3, goals_against: 4, goal_difference: -1, rank: 3 },
+        { group: "E", id: "CZE", name: "Czechia", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 3, goals_against: 4, goal_difference: -1, rank: 3 },
         { group: "E", id: "USA", name: "USA", played: 3, victories: 0, draws: 1, defeats: 2, points: 1, goals_scored: 2, goals_against: 6, goal_difference: -4, rank: 4 },
         { group: "F", id: "BRA", name: "Brazil", played: 3, victories: 3, draws: 0, defeats: 0, points: 9, goals_scored: 7, goals_against: 1, goal_difference: 6, rank: 1 },
         { group: "F", id: "AUS", name: "Australia", played: 3, victories: 1, draws: 1, defeats: 1, points: 4, goals_scored: 5, goals_against: 5, goal_difference: 0, rank: 2 },

@@ -14,7 +14,7 @@ db.getCollection("teams")
         { group: "C", id: "POL", name: "Poland", played: 3, victories: 2, draws: 1, defeats: 0, points: 7, goals_scored: 2, goals_against: 0, goal_difference: 2, rank: 2 },
         { group: "C", id: "NIR", name: "Northern Ireland", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 2, goals_against: 2, goal_difference: 0, rank: 3 },
         { group: "D", id: "ESP", name: "Spain", played: 3, victories: 2, draws: 0, defeats: 1, points: 6, goals_scored: 5, goals_against: 2, goal_difference: 3, rank: 2 },
-        { group: "D", id: "CZE", name: "Czech Republic", played: 3, victories: 0, draws: 1, defeats: 2, points: 1, goals_scored: 2, goals_against: 5, goal_difference: -3, rank: 4 },
+        { group: "D", id: "CZE", name: "Czechia", played: 3, victories: 0, draws: 1, defeats: 2, points: 1, goals_scored: 2, goals_against: 5, goal_difference: -3, rank: 4 },
         { group: "D", id: "TUR", name: "Turkey", played: 3, victories: 1, draws: 0, defeats: 2, points: 3, goals_scored: 2, goals_against: 4, goal_difference: -2, rank: 3 },
         { group: "D", id: "CRO", name: "Croatia", played: 3, victories: 2, draws: 1, defeats: 0, points: 7, goals_scored: 5, goals_against: 3, goal_difference: 2, rank: 1 },
         { group: "E", id: "BEL", name: "Belgium", played: 3, victories: 2, draws: 0, defeats: 1, points: 6, goals_scored: 4, goals_against: 2, goal_difference: 2, rank: 2 },
