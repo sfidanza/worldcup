@@ -11,19 +11,19 @@ export default bets;
 /********************************************************************
  * Retrieve data
  */
-	
-bets.getBets = async function(dbUsers, db) {
+
+bets.getBets = async function (dbUsers, db) {
 	return Promise.all([
-			dbUsers.collection('users').find({}).toArray(),
-			db.collection('bets').find({}, { projection: { _id: false } }).toArray()
-		]).then(values => respondList(...values));
+		dbUsers.collection('users').find({}).toArray(),
+		db.collection('bets').find({}, { projection: { _id: false } }).toArray()
+	]).then(values => respondList(...values));
 };
 
-bets.getLeaderboard = async function(dbUsers, db) {
+bets.getLeaderboard = async function (dbUsers, db) {
 	return Promise.all([
-			dbUsers.collection('users').find({}).toArray(),
-			db.collection('leaderboard').find({}, { projection: { _id: false } }).toArray()
-		]).then(values => respondList(...values));
+		dbUsers.collection('users').find({}).toArray(),
+		db.collection('leaderboard').find({}, { projection: { _id: false } }).toArray()
+	]).then(values => respondList(...values));
 };
 
 const respondList = function (userList, list) {
@@ -38,7 +38,7 @@ const respondList = function (userList, list) {
 /******************************************************************************
  * Edit data
  */
-	
+
 /**
  * Enter a bet for champion
  * @param {object} db - the database connection
@@ -46,7 +46,7 @@ const respondList = function (userList, list) {
  * @param {string} champion - the team id on which to bet
  * @api public
  */
-bets.enterChampionBet = async function(db, user, champion) {
+bets.enterChampionBet = async function (db, user, champion) {
 	return db.collection('bets').updateOne(
 		{ user: user, challenge: 'champion' },
 		{ $set: { 'value': champion } },
@@ -62,7 +62,7 @@ bets.enterChampionBet = async function(db, user, champion) {
  * @param {string} winner - the team id on which to bet
  * @api public
  */
-bets.enterMatchWinnerBet = async function(db, user, mid, winner) {
+bets.enterMatchWinnerBet = async function (db, user, mid, winner) {
 	return db.collection('matches').findOne({ 'id': mid })
 		.then(match => {
 			if (!isBettable(match)) {
@@ -78,7 +78,7 @@ bets.enterMatchWinnerBet = async function(db, user, mid, winner) {
 		});
 };
 
-const isBettable = function(m) {
+const isBettable = function (m) {
 	return (new Date(m.day + ' ' + m.hour) > Date.now()) && // match is not started
 		(m.team1_id && m.team2_id); // both teams are known
 };
@@ -88,7 +88,7 @@ const isBettable = function(m) {
  * @param {object} db - the database connection
  * @api public
  */
-bets.updateLeaderboard = async function(db) {
+bets.updateLeaderboard = async function (db) {
 	const values = await Promise.all([
 		db.collection('bets').find({ challenge: 'match' }).toArray(),
 		db.collection('matches').find({ group: null, team1_score: { $ne: null } }).toArray()

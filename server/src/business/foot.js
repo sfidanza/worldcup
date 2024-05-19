@@ -114,18 +114,18 @@ foot.setRanks = async function (db, group, ranks) {
  */
 foot.updateGroupStats = async function (db, group, options) {
 	return Promise.all([
-			db.collection('teams').find({ group: group }, { id: true }).toArray(),
-			db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
-		]).then(([ teams, matches ]) => {
-			const newStats = engine.computeGroupStandings(teams, matches);
-			for (const t of newStats) {
-				db.collection('teams').updateOne({ _id: t._id }, { $set: t });
-			}
-			if (!options?.noPromotion && matches.length === engine.MATCHES_PER_GROUP) {
-				advanceToFirstRound(db, group, newStats[0].id, newStats[1].id); // no wait needed
-			}
-			return newStats;
-		});
+		db.collection('teams').find({ group: group }, { id: true }).toArray(),
+		db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
+	]).then(([ teams, matches ]) => {
+		const newStats = engine.computeGroupStandings(teams, matches);
+		for (const t of newStats) {
+			db.collection('teams').updateOne({ _id: t._id }, { $set: t });
+		}
+		if (!options?.noPromotion && matches.length === engine.MATCHES_PER_GROUP) {
+			advanceToFirstRound(db, group, newStats[0].id, newStats[1].id); // no wait needed
+		}
+		return newStats;
+	});
 };
 
 /**

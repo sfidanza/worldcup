@@ -13,7 +13,7 @@ export default leaderboard;
  * @api public
  */
 leaderboard.compute = function(bets, matches) {
-    bets = frw.data.groupBy(bets, 'target');
+	bets = frw.data.groupBy(bets, 'target');
 
 	const ld = {};
 	for (const m of matches) {

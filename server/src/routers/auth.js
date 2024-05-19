@@ -19,12 +19,12 @@ export default function getRouter(db) {
 		const token = null; // store token in session at login time to be able to revoke
 		auth.revoke(token)
 			.then((err/*, result*/) => {
-			if (err) {
-				response.status(err.statusCode ?? 500).json({ error: err.message });
-			} else {
-				response.json({});
-			}
-		});
+				if (err) {
+					response.status(err.statusCode ?? 500).json({ error: err.message });
+				} else {
+					response.json({});
+				}
+			});
 	});
 
 	router.get('/profile', function (request, response) {

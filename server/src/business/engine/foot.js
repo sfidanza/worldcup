@@ -33,7 +33,7 @@ foot.defineWinner = function (match) {
  * @param {object[]} matches - the list of played matches
  * @returns {object[]} - the list of updated stats for each team
  */
- foot.computeGroupStandings = function (teams, matches) {
+foot.computeGroupStandings = function (teams, matches) {
 	// start with fresh data
 	const stats = {};
 	for (const team of teams) {
