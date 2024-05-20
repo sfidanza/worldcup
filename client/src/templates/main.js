@@ -21,7 +21,7 @@ main.onParse = function (year) {
 		this.parseBlock('group');
 	}
 
-	const current = page.data.history.find(el => el.year === year);
+	const current = page.data.history[page.config.cid].find(el => el.year === year);
 	if (current && !current.winnerId) {
 		this.parseBlock('bet');
 		this.parseBlock('tip');

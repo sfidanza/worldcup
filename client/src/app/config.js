@@ -17,11 +17,11 @@ export const config = {
 		auth: (provider) => `api/auth/url?provider=${provider}`,
 		authProfile: (code) => `api/auth/profile?code=${code}`
 	},
-	getCompetitionId: (year) => (year % 4 === 2) ? 'wc' : 'e', // Worldcup or Euro?
+	getCompetitionId: (year) => (year % 4 === 2) ? 'worldcup' : 'euro', // Worldcup or Euro?
 	i18n: {
 		names: {
-			e: (year) => `UEFA Euro ${year}`,
-			wc: (year) => `${year} FIFA Worldcup`,
+			euro: (year) => `UEFA Euro ${year}`,
+			worldcup: (year) => `${year} FIFA Worldcup`,
 		},
 		title: (name, state) => `${name} - ${state}`,
 		group: (group) => `Group ${group}`,

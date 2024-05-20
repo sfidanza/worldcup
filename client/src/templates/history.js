@@ -9,8 +9,9 @@ history.onCreate = function (pageRef, frwRef, i18nRepository) {
 	this.i18n = i18nRepository;
 };
 
-history.onParse = function() {
-	for (const edition of page.data.history) {
+history.onParse = function (cid) {
+	cid = cid || 'worldcup';
+	for (const edition of page.data.history[cid]) {
 		this.set('edition', edition);
 		if (edition.available) {
 			this.parseBlock('link');

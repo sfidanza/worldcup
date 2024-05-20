@@ -58,34 +58,34 @@ td, th {
 	background-image: url("img/worldcup.png");
 	background-repeat: no-repeat;
 }
-#logo.wc-1930 { background-position-x: 15px; }
-#logo.wc-1934 { background-position-x: -90px; }
-#logo.wc-1938 { background-position-x: -190px; }
-#logo.wc-1950 { background-position-x: -295px; }
-#logo.wc-1954 { background-position-x: -400px; }
-#logo.wc-1958 { background-position-x: -510px; }
-#logo.wc-1962 { background-position-x: -615px; }
-#logo.wc-1966 { background-position-x: -715px; }
-#logo.wc-1970 { background-position-x: -820px; }
-#logo.wc-1974 { background-position-x: -920px; }
-#logo.wc-1978 { background-position-x: -1030px; }
-#logo.wc-1982 { background-position-x: -1140px; }
-#logo.wc-1986 { background-position-x: -1235px; }
-#logo.wc-1990 { background-position-x: -1340px; }
-#logo.wc-1994 { background-position-x: -1450px; }
-#logo.wc-1998 { background-position-x: -1550px; }
-#logo.wc-2002 { background-position-x: -1660px; }
-#logo.wc-2006 { background-position-x: -1770px; }
-#logo.wc-2010 { background-position-x: -1880px; }
-#logo.wc-2014 { background-position-x: -1990px; }
-#logo.wc-2018 { background-position-x: -2100px; }
-#logo.wc-2022 { background-position-x: -2200px; }
+#logo.worldcup-1930 { background-position-x: 15px; }
+#logo.worldcup-1934 { background-position-x: -90px; }
+#logo.worldcup-1938 { background-position-x: -190px; }
+#logo.worldcup-1950 { background-position-x: -295px; }
+#logo.worldcup-1954 { background-position-x: -400px; }
+#logo.worldcup-1958 { background-position-x: -510px; }
+#logo.worldcup-1962 { background-position-x: -615px; }
+#logo.worldcup-1966 { background-position-x: -715px; }
+#logo.worldcup-1970 { background-position-x: -820px; }
+#logo.worldcup-1974 { background-position-x: -920px; }
+#logo.worldcup-1978 { background-position-x: -1030px; }
+#logo.worldcup-1982 { background-position-x: -1140px; }
+#logo.worldcup-1986 { background-position-x: -1235px; }
+#logo.worldcup-1990 { background-position-x: -1340px; }
+#logo.worldcup-1994 { background-position-x: -1450px; }
+#logo.worldcup-1998 { background-position-x: -1550px; }
+#logo.worldcup-2002 { background-position-x: -1660px; }
+#logo.worldcup-2006 { background-position-x: -1770px; }
+#logo.worldcup-2010 { background-position-x: -1880px; }
+#logo.worldcup-2014 { background-position-x: -1990px; }
+#logo.worldcup-2018 { background-position-x: -2100px; }
+#logo.worldcup-2022 { background-position-x: -2200px; }
 
-#logo.e-2008 { background-image: url("img/logo/euro2008.png"); }
-#logo.e-2012 { background-image: url("img/logo/euro2012.png"); }
-#logo.e-2016 { background-image: url("img/logo/euro2016.png"); }
-#logo.e-2020 { background-image: url("img/logo/euro2020.png"); }
-#logo.e-2024 { background-image: url("img/logo/euro2024.png"); }
+#logo.euro-2008 { background-image: url("img/logo/euro2008.png"); }
+#logo.euro-2012 { background-image: url("img/logo/euro2012.png"); }
+#logo.euro-2016 { background-image: url("img/logo/euro2016.png"); }
+#logo.euro-2020 { background-image: url("img/logo/euro2020.png"); }
+#logo.euro-2024 { background-image: url("img/logo/euro2024.png"); }
 
 /***[Header]****************/
 #header h1 {
