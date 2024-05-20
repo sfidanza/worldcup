@@ -69,7 +69,7 @@ Note: The wiki pages contain all the info based on the previous development / de
 
 ## To do
 
-- Migrate client build to webpack
+- Migrate client build to webpack?
   - <https://webpack.js.org/guides/getting-started/>
 - Support error cases on response.json() parsing (rate limiter can return 429 http codes)
 - Internationalize date/time for match schedule
@@ -77,6 +77,11 @@ Note: The wiki pages contain all the info based on the previous development / de
   - Display date in client timezone
 - Could server-sent events be used to refresh live games score?
   - <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
+- Add Euro editions in history
+- Fix bug: final board without round of 16 is transparently blocking access to the menu bar
+- Add hashes to statics to bust caches on new releases
+  - <https://www.npmjs.com/package/grunt-cache-bust>
+  - <https://github.com/tallbrick/grunt-bust-cache>
 
 ## References
 
