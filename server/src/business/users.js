@@ -46,7 +46,7 @@ users.register = async function (db, login, pwd, type, info) {
 				{ $set: info },
 				{ upsert: true, returnDocument: 'after', projection: { _id: false, pwd: false} }
 			);
-		}).then(result => result.value);
+		});
 };
 
 function getId(type, login) {

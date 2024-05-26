@@ -46,7 +46,7 @@ bet.onParse = function () {
 };
 
 bet.parseChampion = function (bets) {
-	const final = page.data.matches[63];
+	const final = page.data.matches.find(m => m.id === 'F1');
 	const betAllowed = (new Date(final.day + ' ' + final.hour) > Date.now()) && // match is not started
 		(!!page.data.user); // user is logged in
 	this.set('selectableClass', (betAllowed) ? 'selectable' : '');
