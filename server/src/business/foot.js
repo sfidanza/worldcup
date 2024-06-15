@@ -57,8 +57,7 @@ foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK
 	};
 	return db.collection('matches')
 		.findOneAndUpdate({ id: mid }, { $set: edit }, { returnDocument: 'after' })
-		.then(result => {
-			const match = result.value;
+		.then(match => {
 			if (!match) throw new httpError.NotFound(`Match id ${mid} not found`);
 			delete match._id;
 			const data = { matches: [match] };
