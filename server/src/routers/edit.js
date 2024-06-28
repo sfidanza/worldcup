@@ -64,6 +64,26 @@ export default function getRouter() {
 	});
 
 	/**
+	 * setMatchTeams?mid=<mid>&team1=<team1>&team2=<team2>
+	 */
+	router.get('/setMatchTeams', function (request, response) {
+		const user = request.session.user;
+		if (user && user.isAdmin) {
+			const query = request.query;
+			const db = request.database;
+			foot.setMatchTeams(db, query.mid, query.team1, query.team2)
+				.then(data => {
+					response.json({ data });
+				}).catch(err => {
+					console.error(err);
+					response.status(err.statusCode ?? 500).json({ error: err.message });
+				});
+		} else {
+			response.status(401).json({ error: 'Unauthorized' });
+		}
+	});
+
+	/**
 	 * Input validation
 	 */
 	function getScore(s) {

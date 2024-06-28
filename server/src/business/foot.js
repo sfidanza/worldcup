@@ -159,3 +159,26 @@ function advanceToNextRound(db, match) {
 		matches.updateOne({ 'team2_source': 'L' + mid }, { $set: { 'team2_id': match.loser } });
 	}
 }
+
+/**
+ * Update stats and advance to next round
+ * @param {object} db
+ * @param {string} mid - the id of the match to be updated
+ * @param {integer} tid1 - team 1
+ * @param {integer} tid2 - team 2
+ * @api public
+ */
+foot.setMatchTeams = async function (db, mid, tid1, tid2) {
+	const edit = {
+		'team1_id': tid1,
+		'team2_id': tid2
+	};
+	return db.collection('matches')
+		.findOneAndUpdate({ id: mid }, { $set: edit }, { returnDocument: 'after' })
+		.then(match => {
+			if (!match) throw new httpError.NotFound(`Match id ${mid} not found`);
+			delete match._id;
+			const data = { matches: [match] };
+			return data;
+		});
+};
