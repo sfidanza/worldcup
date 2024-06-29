@@ -29,7 +29,7 @@ export default function getRouter(dbUsers) {
 		if (user && user.id) {
 			const query = request.query;
 			const db = request.database;
-			bets.enterMatchWinnerBet(db, user.id, +query.mid, query.winner)
+			bets.enterMatchWinnerBet(db, user.id, query.mid, query.winner)
 				.then(() => bets.getBets(dbUsers, db))
 				.then(betList => response.json({ bets: betList }))
 				.catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));

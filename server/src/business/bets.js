@@ -58,14 +58,16 @@ bets.enterChampionBet = async function (db, user, champion) {
  * Enter a bet for a match
  * @param {object} db - the database connection
  * @param {string} user - the user id that places the bet
- * @param {integer} mid - the match id to bet on
+ * @param {string} mid - the match id to bet on
  * @param {string} winner - the team id on which to bet
  * @api public
  */
 bets.enterMatchWinnerBet = async function (db, user, mid, winner) {
 	return db.collection('matches').findOne({ 'id': mid })
 		.then(match => {
-			if (!isBettable(match)) {
+			if (!match) {
+				throw new httpError.UnprocessableEntity('Match is not valid');
+			} else if (!isBettable(match)) {
 				throw new httpError.UnprocessableEntity('Match is not opened to bet!');
 			} else if (winner !== match.team1_id && winner !== match.team2_id) {
 				throw new httpError.UnprocessableEntity('You can only bet for one of the two teams playing!');
