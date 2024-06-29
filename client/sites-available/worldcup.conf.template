@@ -5,6 +5,14 @@ server {
 	
 	# static content
 	location / {
+		add_header Content-Security-Policy "default-src 'self';
+			script-src 'self' 'unsafe-inline';
+			style-src 'self' 'unsafe-inline';
+			report-uri /csp/block";
+
+		add_header Content-Security-Policy-Report-Only "default-src 'self';
+			report-uri /csp/report-only";
+
 		# worldcup
 		rewrite ^/1998$ /index.html break;
 		rewrite ^/2002$ /index.html break;
@@ -33,5 +41,9 @@ server {
 		
 		proxy_pass http://${NODE_HOSTNAME}:${NODE_PORT};
 		proxy_redirect off;
+	}
+	
+	location /csp/ {
+		return 204;
 	}
 }
