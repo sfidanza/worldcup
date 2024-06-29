@@ -1,3 +1,6 @@
+log_format csp 'src="$remote_addr" time_local="$time_local" '
+	'request="$request" status="$status" req_body="$request_body" ';
+
 # the nginx http server instance
 server {
 	listen 80;
@@ -6,11 +9,13 @@ server {
 	# static content
 	location / {
 		add_header Content-Security-Policy "default-src 'self';
+			form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; object-src 'none';
 			script-src 'self' 'unsafe-inline';
 			style-src 'self' 'unsafe-inline';
 			report-uri /csp/block";
 
 		add_header Content-Security-Policy-Report-Only "default-src 'self';
+			form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; object-src 'none';
 			report-uri /csp/report-only";
 
 		# worldcup
@@ -43,7 +48,15 @@ server {
 		proxy_redirect off;
 	}
 	
+	# receiver for CSP violations from the browser
 	location /csp/ {
+		access_log /var/log/nginx/csp.access.log csp;
+		proxy_pass http://127.0.0.1/empty/; # trick to force nginx to parse the request body
+	}
+	
+	# empty location used by CSP logging
+	location /empty/ {
+		access_log off;
 		return 204;
 	}
 }

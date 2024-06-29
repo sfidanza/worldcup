@@ -94,3 +94,6 @@ Note: The wiki pages contain all the info based on the previous development / de
   - <https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching>
 - Free open public domain football data for the World Cup
   - <https://github.com/openfootball/worldcup>
+- Content Security Policy
+  - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy>
+  - <https://research.google/pubs/csp-is-dead-long-live-csp-on-the-insecurity-of-whitelists-and-the-future-of-content-security-policy/>
