@@ -4,7 +4,7 @@
 
 export const config = {
 	url: {
-		templates: 'app.xml',
+		templates: 'app.json',
 		data: (year) => `api/${year}/data/all`,
 		editMatch: (year, mid, score1, score2, score1PK, score2PK) =>
             `api/${year}/edit/editMatch?mid=${mid}&score1=${score1}&score2=${score2}&score1PK=${score1PK}&score2PK=${score2PK}`,

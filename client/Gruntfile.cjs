@@ -16,10 +16,27 @@ module.exports = function (grunt) {
 			}
 		},
 		concat: {
-			target: grunt.file.readJSON('build/cfg/concat.json')
+			target: {
+				dest: 'target/static/app.css',
+				src: [ // replacing explicit list by shorthand requires removing extra files and validating new order
+					"src/css/main.css",
+					"src/css/flags.css",
+					"src/css/schedule.css",
+					"src/css/ranking.css",
+					"src/css/board.css",
+					"src/css/history.css",
+					"src/css/uic.css",
+					"src/css/scoreEditor.css",
+					"src/templates/login/login.css",
+					"src/templates/bet/bet.css"
+				]
+			}
 		},
 		mergeTemplates: {
-			target: grunt.file.readJSON('build/cfg/mergeTemplates.json')
+			target: {
+				dest: 'target/static/app.json',
+				src: ['src/templates/**/*.html']
+			}
 		},
 		cssmin: {
 			minify: {
@@ -62,11 +79,15 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			all: {
-				files: 'Gruntfile.js',
+				files: 'Gruntfile.cjs',
 				tasks: 'default'
 			},
+			csslint: {
+				files: ['.csslintrc', 'src/**/*.css'],
+				tasks: ['csslint']
+			},
 			css: {
-				files: ['src/**/*.css', 'build/cfg/concat.json'],
+				files: ['src/**/*.css'],
 				tasks: ['concat']
 			},
 			eslint: {
@@ -74,7 +95,7 @@ module.exports = function (grunt) {
 				tasks: ['eslint']
 			},
 			tpl: {
-				files: ['src/templates/**/*.html', 'build/cfg/mergeTemplates.json'],
+				files: ['src/templates/**/*.html'],
 				tasks: ['mergeTemplates']
 			},
 			copy: {
