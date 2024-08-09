@@ -1,0 +1,20 @@
+# Default values for worldcup.
+
+replicaCount: 1
+
+worldcup:
+  image:
+    tag: latest
+    pullPolicy: IfNotPresent
+  authRedirectUrl: "/signin.html"
+
+mongo:
+  image:
+    tag: 4.4.29-focal  # MongoDB 5.0+ requires a CPU with AVX support. Does not run in production!
+    pullPolicy: IfNotPresent
+
+route:
+  host: "worldcup.localhost"
+  path: "/"
+
+nodeSelector: {}

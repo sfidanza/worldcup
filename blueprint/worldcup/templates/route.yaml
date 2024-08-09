@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "worldcup.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "worldcup.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    helm.sh/chart: {{ include "worldcup.chart" . }}
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host("{{ .Values.route.host }}") && PathPrefix("{{ .Values.route.path }}")
+      services:
+        - name: {{ include "worldcup.fullname" . }}
+          port: 80
