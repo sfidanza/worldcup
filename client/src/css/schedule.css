@@ -11,6 +11,9 @@
 	background-color: #9C0000;
 	color: #FFFFFF;
 }
+.schedule thead th.left {
+	text-align: left;
+}
 .schedule tbody th {
 	padding: 3px;
 	background: #333333 url("img/l0.png") top left repeat-x;

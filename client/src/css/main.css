@@ -114,6 +114,9 @@ dl#menu dd {
 	margin: 0;
 	float: left;
 }
+dl#menu dd.right {
+	float: right;
+}
 dl#menu dd a {
 	display: block;
 	padding: 0.4em 1.35em;
@@ -142,6 +145,9 @@ dl#menu li ul li a {
 }
 #footer p {
 	margin: 0;
+}
+#footer > p {
+	float: left;
 }
 #footer a {
 	color: #888888;
