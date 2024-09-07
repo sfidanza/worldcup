@@ -14,9 +14,9 @@ server {
 			style-src 'self' 'unsafe-inline';
 			report-uri /csp/block";
 
-		add_header Content-Security-Policy-Report-Only "default-src 'self';
-			form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; object-src 'none';
-			report-uri /csp/report-only";
+		# add_header Content-Security-Policy-Report-Only "default-src 'self';
+		# 	form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests; object-src 'none';
+		# 	report-uri /csp/report-only";
 
 		# worldcup
 		rewrite ^/1998$ /index.html break;
