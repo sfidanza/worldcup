@@ -3,58 +3,57 @@
  **********************************************************/
 
 const data = {};
-const frw = {
+export default { // export frw directly as we don't need any other library on server side
 	data: data
 };
-export default frw;
 
 /**
- * Group the list by a given property
+ * Group a list of objects by a given property
+ * @param {Object[]} list - the list of objects
+ * @param {(string|Function)} key - the property name or a function to evaluate on each item
  */
-data.groupBy = function(list, key) {
-	const groupedList = {};
+data.groupBy = function (list, key) {
+	const map = {};
 	for (const item of list) {
-		const newKey = (typeof key == 'function') ? key(item) : item[key];
-		if (newKey == null) continue;
-		if (!groupedList[newKey]) {
-			groupedList[newKey] = [];
+		const value = (typeof key === 'function') ? key(item) : item[key];
+		if (!map[value]) {
+			map[value] = [];
 		}
-		groupedList[newKey].push(item);
+		map[value].push(item);
 	}
-	return groupedList;
+	return map;
 };
 
 /**
- * Change a list to an object, indexed by a given property
+ * Index a list of objects by a given property
+ * @param {Object[]} list - the list of objects
+ * @param {(string|Function)} key - the property name or a function to evaluate on each item
  */
-data.reIndex = function(list, key) {
+data.indexBy = function (list, key) {
 	if (!list) return null;
-	const indexedList = {};
+	const map = {};
 	for (const item of list) {
-		const newKey = (typeof key == 'function') ? key(item) : item[key];
-		indexedList[newKey] = item;
+		const value = (typeof key === 'function') ? key(item) : item[key];
+		map[value] = item;
 	}
-	return indexedList;
+	return map;
 };
 
 /**
- * Sort an array of objects on the specified properties
- * @param {Object[]} list  the list of object to sort
- * @param {array} sorters  the sorting criterias as an array of object:
- *           {string} key  the property to sort on
- *           {number} dir  the sort direction: ascending (1, default) or descending (-1)
+ * Sort a list of objects on the specified properties
+ * @param {Object[]} list - the list of objects to sort
+ * @param {Object[]} sorters - the sorting criterias as an array of objects:
+ * @param {string} sorters[].key - the property to sort on
+ * @param {number} sorters[].dir - the sort direction: ascending (+1) or descending (-1)
  */
-data.sort = function(list, sorters) {
-	if (!list.length) return list;
-	
-	// no bind as bind is killing performance (3x more)
-	list.sort((a, b) => _sortMultipleKeys(sorters, a, b));
+data.sortBy = function (list, sorters) {
+	if (!list.length || !sorters || !sorters.length) return list;
+
+	list.sort(_sortMultipleKeys.bind(null, sorters));
 	return list;
 };
 
-const _sortMultipleKeys = function(sorters, a, b) {
-	if (!sorters || !sorters.length) return 0;
-	
+const _sortMultipleKeys = function (sorters, a, b) {
 	for (const sorter of sorters) {
 		const va = a[sorter.key];
 		const vb = b[sorter.key];

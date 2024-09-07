@@ -25,7 +25,7 @@ export default function getRouter() {
 
 		foot.getData(db)
 			.then(data => {
-				const teams = frw.data.reIndex(data.teams, 'id');
+				const teams = frw.data.indexBy(data.teams, 'id');
 
 				const events = data.matches.map(m => {
 					const d = new Date(`${m.day} ${m.hour} ${tz}`); // need explicit date timezone as container is in UTC

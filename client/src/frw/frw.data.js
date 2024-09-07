@@ -5,64 +5,52 @@
 export const data = {};
 
 /**
- * Group the list by a given property
+ * Group a list of objects by a given property
+ * @param {Object[]} list - the list of objects
+ * @param {(string|Function)} key - the property name or a function to evaluate on each item
  */
-data.groupBy = function (list, key, sorted) {
-	let groupedList = {};
-	const keys = [];
+data.groupBy = function (list, key) {
+	const map = {};
 	for (const item of list) {
-		const newKey = (typeof key == 'function') ? key(item) : item[key];
-		if (newKey == null) continue;
-		if (!groupedList[newKey]) {
-			keys.push(newKey);
-			groupedList[newKey] = [];
+		const value = (typeof key === 'function') ? key(item) : item[key];
+		if (!map[value]) {
+			map[value] = [];
 		}
-		groupedList[newKey].push(item);
+		map[value].push(item);
 	}
-
-	if (sorted) {
-		const sortedGroupedList = {};
-		keys.sort();
-		for (const k of keys) {
-			sortedGroupedList[k] = groupedList[k];
-		}
-		groupedList = sortedGroupedList;
-	}
-
-	return groupedList;
+	return map;
 };
 
 /**
- * Change a list to an object, indexed by a given property
+ * Index a list of objects by a given property
+ * @param {Object[]} list - the list of objects
+ * @param {(string|Function)} key - the property name or a function to evaluate on each item
  */
-data.reIndex = function (list, key) {
+data.indexBy = function (list, key) {
 	if (!list) return null;
-	const indexedList = {};
+	const map = {};
 	for (const item of list) {
-		const newKey = (typeof key == 'function') ? key(item) : item[key];
-		indexedList[newKey] = item;
+		const value = (typeof key === 'function') ? key(item) : item[key];
+		map[value] = item;
 	}
-	return indexedList;
+	return map;
 };
 
 /**
- * Sort an array of objects on the specified properties
- * @param {Object[]} list  the list of object to sort
- * @param {Array} sorters  the sorting criterias as an array of Objects:
- *           {string} key  the property to sort on
- *           {number} dir  the sort direction: ascending (+1) or descending (-1)
+ * Sort a list of objects on the specified properties
+ * @param {Object[]} list - the list of objects to sort
+ * @param {Object[]} sorters - the sorting criterias as an array of objects:
+ * @param {string} sorters[].key - the property to sort on
+ * @param {number} sorters[].dir - the sort direction: ascending (+1) or descending (-1)
  */
-data.sort = function (list, sorters) {
-	if (!list.length) return list;
+data.sortBy = function (list, sorters) {
+	if (!list.length || !sorters || !sorters.length) return list;
 
-	// no bind as bind is killing performance (3x more)
-	list.sort((a, b) => _sortMultipleKeys(sorters, a, b));
+	list.sort(_sortMultipleKeys.bind(null, sorters));
 	return list;
 };
 
-const _sortMultipleKeys = function(sorters, a, b) {
-	if (!sorters || !sorters.length) return 0;
-
+const _sortMultipleKeys = function (sorters, a, b) {
 	for (const sorter of sorters) {
 		const va = a[sorter.key];
 		const vb = b[sorter.key];
@@ -74,18 +62,20 @@ const _sortMultipleKeys = function(sorters, a, b) {
 };
 
 /**
- * Update data
+ * Update data in a list of objects, adding new items or updating existing items
+ * @param {Object[]} list - the initial list of objects to modify
+ * @param {Object[]} updates - the list of updates
+ * @param {string} [key=id] - the property to be used as primary key to match items
  */
-data.update = function (table, updates, key) {
-	if (!table || !updates) return;
-	key = key || 'id';
-	const kTable = data.reIndex(table, key);
-	for (const update of updates) {
-		const item = kTable[update[key]];
+data.update = function (list, updates, key = 'id') {
+	if (!list || !updates) return;
+	const indexed = data.indexBy(list, key);
+	for (const newItem of updates) {
+		const item = indexed[newItem[key]];
 		if (item) {
-			Object.assign(item, update);
+			Object.assign(item, newItem);
 		} else {
-			table.push(update);
+			list.push(newItem);
 		}
 	}
 };

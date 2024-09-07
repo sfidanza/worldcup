@@ -15,11 +15,11 @@ main.onParse = function (year) {
 	this.set('cid', page.config.cid);
 	this.set('name', page.config.name);
 
-	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
-	for (const g in teamsByGroup) {
+	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
+	Object.keys(teamsByGroup).sort().forEach(g => {
 		this.set('group', g);
 		this.parseBlock('group');
-	}
+	});
 
 	const current = page.data.history[page.config.cid].find(el => el.year === year);
 	if (current && !current.winnerId) {

@@ -12,16 +12,16 @@ schedule.onCreate = function (pageRef, frwRef, i18nRepository) {
 
 schedule.onParse = function (data) {
 	const list = frw.data.groupBy(data.matches, 'phase');
-	const teams = frw.data.reIndex(data.teams, 'id');
+	const teams = frw.data.indexBy(data.teams, 'id');
 	const dateFormat = page.config.i18n.formats.date;
 
 	for (const phase of ['G', 'H', 'Q', 'S', 'T', 'F']) {
 		if (!list[phase]) continue;
 		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
-		const days = Object.keys(phaseList).sort((a, b)=> new Date(a).getTime() - new Date(b).getTime());
+		const days = Object.keys(phaseList).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 		for (const day of days) {
-			const matches = frw.data.sort(phaseList[day], [{ key: 'hour', dir: 1 }, { key: 'id', dir: 1 }]);
+			const matches = frw.data.sortBy(phaseList[day], [{ key: 'hour', dir: 1 }, { key: 'id', dir: 1 }]);
 			this.set('day', dateFormat.format(new Date(day)));
 			matches.forEach((match, i) => {
 				this.set('row_class', 'l' + (i % 2));

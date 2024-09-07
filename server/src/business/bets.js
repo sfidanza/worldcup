@@ -27,7 +27,7 @@ bets.getLeaderboard = async function (dbUsers, db) {
 };
 
 const respondList = function (userList, list) {
-	const users = frw.data.reIndex(userList, 'id');
+	const users = frw.data.indexBy(userList, 'id');
 	for (const item of list) {
 		const better = users[item.user];
 		item.userName = (better && better.name) || item.user;

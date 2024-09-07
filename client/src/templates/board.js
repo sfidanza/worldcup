@@ -19,7 +19,7 @@ board.onCreate = function (pageRef, frwRef, i18nRepository) {
 };
 
 board.onParse = function (data) {
-	const teams = frw.data.reIndex(data.teams, 'id');
+	const teams = frw.data.indexBy(data.teams, 'id');
 	const dateFormat = page.config.i18n.formats.date;
 
 	const withH = data.matches.some(m => m.phase === 'H');

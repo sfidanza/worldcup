@@ -92,7 +92,7 @@ page.getData = async function () {
 	return fetch(page.config.url.data(page.config.year))
 		.then(response => response.json())
 		.then(data => {
-			data.stadiums = frw.data.reIndex(data.stadiums, 'id');
+			data.stadiums = frw.data.indexBy(data.stadiums, 'id');
 			page.data = data;
 		});
 };
@@ -213,10 +213,10 @@ page.showSchedule = function (phase) {
 
 page.showRanking = function (group) {
 	if (!group) {
-		const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
-		for (const g in teamsByGroup) {
+		const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
+		Object.keys(teamsByGroup).sort().forEach(g => {
 			page.templates.ranking.parse(teamsByGroup[g], g);
-		}
+		});
 	} else {
 		const data = {
 			teams: page.data.teams.filter(item => item.group === group)

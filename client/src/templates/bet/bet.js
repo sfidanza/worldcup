@@ -54,14 +54,14 @@ bet.parseChampion = function (bets) {
 	const betsByTeam = bets && frw.data.groupBy(bets, 'value');
 	const totalBets = bets && bets.length;
 
-	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group', true);
-	for (const g in teamsByGroup) {
+	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
+	Object.keys(teamsByGroup).sort().forEach(g => {
 		this.set('group', g);
 		for (const team of teamsByGroup[g]) {
 			this.parseTeam(team, betsByTeam, totalBets);
 		}
 		this.parseBlock('group');
-	}
+	});
 };
 
 bet.parseTeam = function (team, betsByTeam, totalBets) {
@@ -84,8 +84,8 @@ bet.getBetters = function (listBets) {
 
 bet.parseFriends = function (bets) {
 	const user = page.data.user;
-	const friendsBets = frw.data.sort(bets, [{ key: 'userName', dir: 1 }]);
-	const teamsById = frw.data.reIndex(page.data.teams, 'id');
+	const friendsBets = frw.data.sortBy(bets, [{ key: 'userName', dir: 1 }]);
+	const teamsById = frw.data.indexBy(page.data.teams, 'id');
 	friendsBets.forEach((b, i) => {
 		this.set('row_class', 'l' + (i % 2));
 		this.set('bet', b);
@@ -99,14 +99,14 @@ bet.parseFriends = function (bets) {
 bet.parseMatches = function (bets) {
 	const user = page.data.user;
 	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
-	const teams = frw.data.reIndex(page.data.teams, 'id');
+	const teams = frw.data.indexBy(page.data.teams, 'id');
 
 	for (const phase in list) {
 		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
-		const days = Object.keys(phaseList).sort((a, b)=> new Date(a).getTime() - new Date(b).getTime());
+		const days = Object.keys(phaseList).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 		for (const day of days) {
-			const matches = frw.data.sort(phaseList[day], [{ key: 'hour', dir: 1 }, { key: 'id', dir: 1 }]);
+			const matches = frw.data.sortBy(phaseList[day], [{ key: 'hour', dir: 1 }, { key: 'id', dir: 1 }]);
 			this.set('day', day);
 			matches.forEach((match, i) => {
 				this.set('row_class', 'l' + (i % 2));
@@ -172,7 +172,7 @@ bet.parseTeamBadge = function (badge, betsOnTeam) {
 };
 
 bet.parseLeaderboard = function(user, board) {
-	frw.data.sort(board, [
+	frw.data.sortBy(board, [
 		{ key: 'ratio', dir: -1 },
 		{ key: 'total', dir: -1 },
 		{ key: 'userName', dir: 1 }

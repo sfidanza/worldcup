@@ -77,7 +77,7 @@ foot.computeGroupStandings = function (teams, matches) {
 	}
 
 	// update ranks by sorting the teams in the group
-	frw.data.sort(teams, [
+	frw.data.sortBy(teams, [
 		{ key: 'points', dir: -1 },
 		{ key: 'goal_difference', dir: -1 },
 		{ key: 'goals_scored', dir: -1 },
