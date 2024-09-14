@@ -69,8 +69,13 @@ Note: The wiki pages contain all the info based on the previous development / de
 
 ## To do
 
-- Migrate client build to webpack?
+- Fix e2e tests!!!
+- Migrate client build to webpack? esbuild? vite?
   - <https://webpack.js.org/guides/getting-started/>
+  - <https://esbuild.github.io/>
+  - <https://vitejs.dev/>
+- Migrate to Node.js 22
+  - <https://blog.appsignal.com/2024/05/07/whats-new-in-nodejs-22.html>
 - Support error cases on response.json() parsing (rate limiter can return 429 http codes)
 - Internationalize date/time for match schedule
   - Store date in ISO format, or host local format with city timezone
@@ -81,6 +86,8 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Add hashes to statics to bust caches on new releases
   - <https://www.npmjs.com/package/grunt-cache-bust>
   - <https://github.com/tallbrick/grunt-bust-cache>
+- Extract framework as a dependency to share between apps (needs build rework)
+  - "A lightweight framework with templating support, data manipulation and basic UI components"
 
 ## References
 
