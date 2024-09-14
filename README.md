@@ -104,3 +104,6 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Content Security Policy
   - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy>
   - <https://research.google/pubs/csp-is-dead-long-live-csp-on-the-insecurity-of-whitelists-and-the-future-of-content-security-policy/>
+- Github composite actions
+  - <https://wallis.dev/blog/composite-github-actions>
+  - <https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-using-an-action-inside-a-different-private-repository-than-the-workflow>
