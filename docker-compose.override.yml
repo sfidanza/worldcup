@@ -14,7 +14,7 @@ services:
       - ./client:/usr/src/app
       - client_target:/usr/src/app/target
       - client_node_modules:/usr/src/app/node_modules
-    command: npm run debug
+    command: node --run debug
 
   app:
     build: ./server
@@ -23,7 +23,7 @@ services:
       - node_modules:/usr/src/app/node_modules
     ports:
       - "9229:9229"
-    command: npm run debug
+    command: node --run debug
   
   admin:
     image: mongo-express:1.0.2-20

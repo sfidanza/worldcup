@@ -23,8 +23,8 @@
     "nodemon": "3.1.7"
   },
   "scripts": {
-    "start": "node --experimental-json-modules src/index.js",
-    "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch --experimental-json-modules src/index.js",
+    "start": "node src/index.js",
+    "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch src/index.js",
     "lint": "eslint .",
     "test": "mocha"
   },
