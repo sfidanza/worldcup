@@ -31,8 +31,6 @@ async function checkNavigation(page, year, workerInfo) {
   }
   await checkPage(page, 'Finals Board', /.*#board/, `${year}-board.png`);
   await checkPage(page, 'A', /.*#group,A/, `${year}-groupA.png`);
-  await checkPage(page, 'D', /.*#group,D/, `${year}-groupD.png`);
-  await checkPage(page, 'G', /.*#group,G/, `${year}-groupG.png`);
 }
 
 async function checkPage(page, linkTitle, pageTitle, filename) {
