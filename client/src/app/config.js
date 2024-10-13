@@ -10,7 +10,7 @@ const FEATURE_TOGGLES = {
  * Support query parameter override for feature toggles: ?OV_LIVE=true
  */
 const overrides = Object.fromEntries(
-	new URLSearchParams(window.location.search).entries()
+	Array.from(new URLSearchParams(window.location.search).entries())
 		.filter(([k]) => k.startsWith('OV_'))
 		.map(([k, v]) => [k.slice(3), v])
 );
