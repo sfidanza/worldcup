@@ -5,13 +5,15 @@ import * as frw from '../frw/frw.js';
 import * as uic from '../frw/uic.js';
 import { scoreEditor } from './scoreEditor.js';
 import { bet } from './bet.js';
+import { live } from './live.js';
 import { config } from './config.js';
 
 export const page = {
 	data: {},
 	config: config,
 	scoreEditor: scoreEditor,
-	bet: bet
+	bet: bet,
+	live: live
 };
 window.page = page; // make page callable from global scope so it can be used from html
 
@@ -41,6 +43,7 @@ page.initialize = function () {
 		page.templates.user.load(page.config.area.user);
 		page.scoreEditor.initialize(page, frw);
 		page.bet.initialize(page);
+		page.live.initialize({ url: page.config.url.live });
 
 		this.loginDlg = new uic.Dialog({
 			id: page.config.area.loginDlg,

@@ -53,6 +53,7 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 		const dbUsers = dbClient.db(database.DB_USERS);
 		app.use('/api/user/', routers.user(dbUsers));
 		app.use('/api/auth/', routers.auth(dbUsers));
+		app.use('/api/live/', routers.live());
 		app.use('/api/:year([0-9]{4})/data/', routers.data(dbUsers));
 		app.use('/api/:year([0-9]{4})/edit/', routers.edit());
 		app.use('/api/:year([0-9]{4})/admin/', routers.admin());

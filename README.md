@@ -74,13 +74,11 @@ Note: The wiki pages contain all the info based on the previous development / de
   - <https://webpack.js.org/guides/getting-started/>
   - <https://esbuild.github.io/>
   - <https://vitejs.dev/>
-- Migrate to Node.js 22
-  - <https://blog.appsignal.com/2024/05/07/whats-new-in-nodejs-22.html>
 - Support error cases on response.json() parsing (rate limiter can return 429 http codes)
 - Internationalize date/time for match schedule
   - Store date in ISO format, or host local format with city timezone
   - Display date in client timezone
-- Could server-sent events be used to refresh live games score?
+- Use server-sent events to refresh live games score
   - <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
 - Fix bug: final board without round of 16 is transparently blocking access to the menu bar
 - Add hashes to statics to bust caches on new releases
@@ -88,6 +86,7 @@ Note: The wiki pages contain all the info based on the previous development / de
   - <https://github.com/tallbrick/grunt-bust-cache>
 - Extract framework as a dependency to share between apps (needs build rework)
   - "A lightweight framework with templating support, data manipulation and basic UI components"
+- Deploy on kubernetes
 
 ## References
 

@@ -97,6 +97,18 @@ td, th {
 	color: #FFFFFF;
 	font-size: 20px;
 }
+#header #live {
+	float: right;
+	color: #FFF;
+	background-color: #888888;
+	border-radius: 4px;
+	margin: 7px;
+	padding: 3px 6px;
+	cursor: pointer;
+}
+#header #live.active {
+	background-color: #CC6600;
+}
 dl#menu {
 	margin: 0 100px 0 0;
 	padding: 0;

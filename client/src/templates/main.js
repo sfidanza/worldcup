@@ -26,6 +26,10 @@ main.onParse = function (year) {
 		this.parseBlock('bet');
 		this.parseBlock('tip');
 	}
+
+	if (page.config.ft.LIVE) {
+		this.parseBlock('live');
+	}
 };
 
 main.submitLogin = function (id, pwd) {
@@ -34,4 +38,20 @@ main.submitLogin = function (id, pwd) {
 		pwd: pwd
 	});
 	page.loginDlg.hide();
+};
+
+main.toggleLive = function () {
+	const tag = document.querySelector('#live');
+	if (tag.classList.contains('active')) {
+		page.live.stop();
+		tag.classList.remove('active');
+		tag.innerHTML = 'Live: disabled';
+	} else {
+		tag.classList.add('active');
+		tag.innerHTML = 'Live: enabled';
+		page.live.start()
+			.addEventListener('watcher-count', ({ data }) => {
+				tag.innerHTML = `Live: ${data} watching`;
+			});
+	}
 };
