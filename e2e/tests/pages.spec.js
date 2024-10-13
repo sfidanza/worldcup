@@ -6,9 +6,9 @@ import { test, expect } from '@playwright/test';
 
 test('history @sanity', async ({ page }) => {
   await page.goto('/');
-  const history = page.getByRole('link', { name: 'History' });
+  const history = page.getByRole('link', { name: 'FIFA Worldcup' });
   await history.click();
-  await expect(page).toHaveURL(/.*#history/);
+  await expect(page).toHaveURL(/.*#history,worldcup/);
   await expect(page).toHaveScreenshot('history.png');
 });
 

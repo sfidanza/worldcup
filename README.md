@@ -69,7 +69,6 @@ Note: The wiki pages contain all the info based on the previous development / de
 
 ## To do
 
-- Fix e2e tests!!!
 - Migrate client build to webpack? esbuild? vite?
   - <https://webpack.js.org/guides/getting-started/>
   - <https://esbuild.github.io/>
