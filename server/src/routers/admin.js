@@ -2,9 +2,9 @@
  * Competition data import
  * 
  * With admin rights:
- *   /api/<year>/drop    -> drop the database
- *   /api/<year>/preview -> preview the data from the filesystem
- *   /api/<year>/import  -> import the filesystem data in database
+ *   /api/<year>/admin/preview -> preview the data from the filesystem
+ *   /api/<year>/admin/drop    -> drop the database
+ *   /api/<year>/admin/import  -> import the filesystem data in database
  ******************************************************************************/
 import { Router } from 'express';
 import importer from '../admin/importer.js';
