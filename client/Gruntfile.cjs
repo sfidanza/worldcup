@@ -57,9 +57,9 @@ module.exports = function (grunt) {
 			// options: { fix: true },
 			target: ['src/**/*.js']
 		},
-		csslint: {
+		stylelint: {
 			options: {
-				csslintrc: '.csslintrc'
+				configFile: '.stylelintrc.json'
 			},
 			src: ['src/**/*.css']
 		},
@@ -82,9 +82,9 @@ module.exports = function (grunt) {
 				files: 'Gruntfile.cjs',
 				tasks: 'default'
 			},
-			csslint: {
-				files: ['.csslintrc', 'src/**/*.css'],
-				tasks: ['csslint']
+			stylelint: {
+				files: ['.stylelintrc.json', 'src/**/*.css'],
+				tasks: ['stylelint']
 			},
 			css: {
 				files: ['src/**/*.css'],
@@ -113,12 +113,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-stylelint');
 	grunt.loadNpmTasks('grunt-spritesmith');
 	grunt.loadTasks('build/tasks');
 
 	// Default tasks
-	grunt.registerTask('default', ['eslint', 'csslint', 'clean', 'copy', 'concat', 'mergeTemplates']);
+	grunt.registerTask('default', ['eslint', 'stylelint', 'clean', 'copy', 'concat', 'mergeTemplates']);
 	grunt.registerTask('minify', ['cssmin', 'uglify']);
 	grunt.registerTask('prod', ['default'/*, 'minify'*/]);
 };
