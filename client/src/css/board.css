@@ -1,13 +1,16 @@
 /***[Finals Board]**********/
 .page-board .board {
 	position: relative;
+
+	--offset-top: 0px;
 }
 .page-board .board.sizeH {
 	height: 723px;
 }
 .page-board .board.sizeQ {
-	height: 564px;
-	margin-top: -160px;
+	height: 404px;
+
+	--offset-top: -160px;
 }
 .page-board .match {
 	position: absolute;
@@ -75,19 +78,19 @@
 #match-H4 { top: 645px; }
 #match-H7 { top: 565px; right: 0; }
 #match-H8 { top: 645px; right: 0; }
-#match-Q1 { top: 160px; }
-#match-Q2 { top: 160px; right: 0; }
-#match-Q3 { top: 485px; }
-#match-Q4 { top: 485px; right: 0; }
-#match-S1 { top: 240px; left: 50%; transform: translate(-50%); }
-#match-S2 { top: 405px; left: 50%; transform: translate(-50%); }
-#match-T1 { top: 320px; left:   0; }
-#match-F1 { top: 320px; right:  0; border: 2px solid #333333; }
+#match-Q1 { top: calc(160px + var(--offset-top)); }
+#match-Q2 { top: calc(160px + var(--offset-top)); right: 0; }
+#match-Q3 { top: calc(485px + var(--offset-top)); }
+#match-Q4 { top: calc(485px + var(--offset-top)); right: 0; }
+#match-S1 { top: calc(240px + var(--offset-top)); left: 50%; transform: translate(-50%); }
+#match-S2 { top: calc(405px + var(--offset-top)); left: 50%; transform: translate(-50%); }
+#match-T1 { top: calc(320px + var(--offset-top)); left:   0; }
+#match-F1 { top: calc(320px + var(--offset-top)); right:  0; border: 2px solid #333333; }
 #link-Q1 { top:  60px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
 #link-Q2 { top:  60px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
 #link-Q3 { top: 545px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
 #link-Q4 { top: 545px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
-#link-S1 { top: 220px; left:  22.5%; right: 22.5%; height:  40px; border-top: none; }
-#link-S2 { top: 455px; left:  22.5%; right: 22.5%; height:  40px; border-bottom: none; }
-#link-F1 { top: 285px; left:  72.5%; right: 22.5%; height: 145px; border-left: none; }
-#link-T1 { top: 285px; right: 72.5%; left:  22.5%; height: 145px; border-style: dashed; border-right: none; }
+#link-S1 { top: calc(220px + var(--offset-top)); left:  22.5%; right: 22.5%; height:  40px; border-top: none; }
+#link-S2 { top: calc(455px + var(--offset-top)); left:  22.5%; right: 22.5%; height:  40px; border-bottom: none; }
+#link-F1 { top: calc(285px + var(--offset-top)); left:  72.5%; right: 22.5%; height: 145px; border-left: none; }
+#link-T1 { top: calc(285px + var(--offset-top)); right: 72.5%; left:  22.5%; height: 145px; border-style: dashed; border-right: none; }
