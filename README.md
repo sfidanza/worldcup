@@ -69,17 +69,16 @@ Note: The wiki pages contain all the info based on the previous development / de
 
 ## To do
 
-- Migrate client build to webpack? esbuild? vite?
-  - <https://webpack.js.org/guides/getting-started/>
-  - <https://esbuild.github.io/>
-  - <https://vitejs.dev/>
-- Support error cases on response.json() parsing (rate limiter can return 429 http codes)
-- Internationalize date/time for match schedule
+- fix: Support error cases on response.json() parsing (rate limiter can return 429 http codes)
+- feat: Internationalize date/time for match schedule
   - Store date in ISO format, or host local format with city timezone
   - Display date in client timezone
 - Use server-sent events to refresh live games score
   - <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
-- Fix bug: final board without round of 16 is transparently blocking access to the menu bar
+- Migrate client build to webpack? esbuild? vite?
+  - <https://webpack.js.org/guides/getting-started/>
+  - <https://esbuild.github.io/>
+  - <https://vitejs.dev/>
 - Add hashes to statics to bust caches on new releases
   - <https://www.npmjs.com/package/grunt-cache-bust>
   - <https://github.com/tallbrick/grunt-bust-cache>
