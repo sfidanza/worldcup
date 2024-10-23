@@ -1,5 +1,4 @@
-import sse from 'better-sse';
-const { createChannel } = sse;
+import { createChannel } from 'better-sse';
 
 const live = createChannel();
 export default live;

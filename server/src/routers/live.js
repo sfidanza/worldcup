@@ -2,9 +2,8 @@
  * Live scores through server-sent events
  ******************************************************************************/
 import { Router } from 'express';
-import sse from 'better-sse';
+import { createSession } from 'better-sse';
 import live from '../business/live.js';
-const { createSession } = sse;
 
 export default function getRouter() {
 	const router = Router({ mergeParams: true });
