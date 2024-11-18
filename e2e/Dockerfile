@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.48.2-noble
+FROM mcr.microsoft.com/playwright:v1.49.0-noble
 
 WORKDIR /usr/src/app
 
