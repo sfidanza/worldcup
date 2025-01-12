@@ -20,7 +20,7 @@
     "grunt-spritesmith": "6.10.0",
     "grunt-stylelint": "^0.20.1",
     "stylelint": "^16.10.0",
-    "stylelint-config-standard": "^36.0.1"
+    "stylelint-config-standard": "^37.0.0"
   },
   "scripts": {
     "build": "grunt prod",
