@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "eslint": "9.18.0",
-    "mocha": "11.0.1",
+    "mocha": "11.1.0",
     "nodemon": "3.1.9"
   },
   "scripts": {
