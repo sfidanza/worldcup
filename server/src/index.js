@@ -54,13 +54,16 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 		app.use('/api/user/', routers.user(dbUsers));
 		app.use('/api/auth/', routers.auth(dbUsers));
 		app.use('/api/live/', routers.live());
-		app.use('/api/:year([0-9]{4})/data/', routers.data(dbUsers));
-		app.use('/api/:year([0-9]{4})/edit/', routers.edit());
-		app.use('/api/:year([0-9]{4})/admin/', routers.admin());
-		app.use('/api/:year([0-9]{4})/bet/', routers.bet(dbUsers));
-		app.use('/api/:year([0-9]{4})/ics/', routers.ics());
+		app.use('/api/:year/data/', routers.data(dbUsers));
+		app.use('/api/:year/edit/', routers.edit());
+		app.use('/api/:year/admin/', routers.admin());
+		app.use('/api/:year/bet/', routers.bet(dbUsers));
+		app.use('/api/:year/ics/', routers.ics());
 
-		app.listen(NODE_PORT, function () {
+		app.listen(NODE_PORT, (error) => {
+			if (error) {
+				throw error; // e.g. EADDRINUSE
+			}
 			console.log(`App listening on port ${NODE_PORT}!`);
 		});
 	}).catch(console.error);
