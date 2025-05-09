@@ -1,10 +1,10 @@
 # worldcup
 
-A site to follow the calendar and results of the worldcup competitions. It is deployed live at:
+A site to follow the calendar and results of the FIFA worldcup competitions. It is deployed live at:
 
 - <https://worldcup.dagobah-online.com>
 
-The site is using a node.js backend to retrieve data, and a javascript frontend to display them. It is as much a functional interest, to follow the worldcup, as a technical one, to play with technologies.
+The site is using a node.js backend to retrieve data and a javascript frontend to display them. It is as much a functional interest to follow the worldcup, as a technical one to play with technologies.
 
 Functionally, the site has:
 
@@ -18,9 +18,9 @@ Technically:
   - js frontend served by nginx
     - it uses a client-side template engine to display the views
     - page navigation and history is handled by the js framework layer
-    - data is retrieved in ajax targeting the backend api
+    - data is retrieved targeting the backend api
     - nginx proxies the api calls to node.js
-    - Grunt is used for the build system
+    - esbuild is used for the build system
   - server runs on node.js
   - data is stored in mongodb
 

@@ -8,24 +8,22 @@
     "url": "https://github.com/sfidanza/worldcup/issues"
   },
   "devDependencies": {
+    "chokidar": "4.0.3",
+    "del": "8.0.0",
+    "esbuild": "0.25.4",
+    "esbuild-plugin-copy": "2.1.1",
+    "esbuild-plugin-eslint": "0.3.12",
+    "fast-glob": "3.3.3",
     "grunt": "1.6.1",
     "grunt-cli": "1.5.0",
-    "grunt-contrib-clean": "2.0.1",
-    "grunt-contrib-concat": "2.1.0",
-    "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-cssmin": "5.0.0",
-    "grunt-contrib-uglify": "5.2.2",
-    "grunt-contrib-watch": "1.1.0",
-    "grunt-eslint": "25.0.0",
     "grunt-spritesmith": "6.10.0",
-    "grunt-stylelint": "0.20.1",
     "stylelint": "16.19.1",
     "stylelint-config-standard": "38.0.0"
   },
   "scripts": {
-    "build": "grunt prod",
-    "debug": "grunt watch",
-    "lint": "grunt eslint",
+    "build": "node esbuild.config.js",
+    "debug": "node esbuild.config.js --watch",
+    "lint": "eslint ./src/ & stylelint \"./src/**/*.css\"",
     "sprite": "grunt sprite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
