@@ -51,6 +51,17 @@ Once started, you can access the application at <http://localhost:8090>. This lo
   - Server and client source folders in the containers are mapped to your host filesystem
   - Both have a watcher to update what's necessary on file save (`nodemon` for server, `grunt watch` for client)
 
+### Debugging the node.js code
+
+When the containers are started in dev mode, you can use the Chrome DevTools external debugger (`chrome://inspect` in the Chrome address bar). You should see the server code in the Sources tab and you will be able to set breakpoints. If you don't, make sure you have `localhost:9229` listed in the Connection tab.
+
+## CI/CD pipeline
+
+The github workflow is triggered when pushing commits on github: it automatically builds and publishes images to github container repository.
+
+- [sfidanza/worldcup-backend](https://github.com/sfidanza/worldcup/pkgs/container/worldcup-backend)
+- [sfidanza/worldcup-frontend](https://github.com/sfidanza/worldcup/pkgs/container/worldcup-frontend)
+
 ## Production setup
 
 For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker compose build` for example). To enable routing from the Traefik gateway, the corresponding `compose` file should be used as well:
