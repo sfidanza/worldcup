@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@googleapis/people": "3.0.9",
-    "better-sse": "0.14.1",
+    "better-sse": "0.15.0",
     "connect-mongo": "5.1.0",
     "express": "5.1.0",
     "express-rate-limit": "7.5.0",
