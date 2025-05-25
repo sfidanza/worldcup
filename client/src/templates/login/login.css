@@ -63,6 +63,7 @@
 		float: right;
 	}
 }
+
 @media (max-width: 640px) { /* Target sizes: S, M */
 	.page-register fieldset {
 		width: 296px;

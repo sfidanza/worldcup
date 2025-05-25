@@ -5,7 +5,6 @@
 		"color-hex-length": null,
 		"rule-empty-line-before": null,
 		"media-feature-range-notation": "prefix",
-		"at-rule-empty-line-before": null,
 		"length-zero-no-unit": null,
 		"selector-class-pattern": null,
 		"no-descending-specificity": null,
