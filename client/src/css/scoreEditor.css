@@ -4,7 +4,7 @@
 	visibility: hidden;
 	top: 0;
 	left: 0;
-	background-image: url("img/backEdit.png");
+	background-image: url(img/backEdit.png);
 	border: 1px solid #999900;
 	padding: 2px 7px;
 	border-radius: 6px;
@@ -31,11 +31,11 @@
 	float: right;
 	width: 16px;
 	height: 9px;
-	background: url("img/small-accept.png") 0 0 no-repeat;
+	background: url(img/small-accept.png) 0 0 no-repeat;
 }
 #score-editor-cancel {
 	display: block;
 	width: 16px;
 	height: 9px;
-	background: url("img/small-cross.png") 0 0 no-repeat;
+	background: url(img/small-cross.png) 0 0 no-repeat;
 }

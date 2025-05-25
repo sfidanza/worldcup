@@ -18,7 +18,7 @@
 	border-radius: 10px;
 }
 .uic-dlg h5 {
-	background-image: url("img/dialog-title.png");
+	background-image: url(img/dialog-title.png);
 	margin: 0;
 	padding: 0.3em 0.6em 0.4em;
 	color: #FFFFFF;
@@ -31,13 +31,13 @@
 	float: right;
 	width: 41px;
 	height: 15px;
-	background: url("img/close.png") 0 0 no-repeat;
+	background: url(img/close.png) 0 0 no-repeat;
 }
 .uic-dlg a.uic-dlg-close:hover {
-	background-image: url("img/close-hover.png");
+	background-image: url(img/close-hover.png);
 }
 .uic-dlg a.uic-dlg-close:active {
-	background-image: url("img/close-active.png");
+	background-image: url(img/close-active.png);
 }
 .uic-dlg-body {
 	position: absolute;

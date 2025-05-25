@@ -10,7 +10,7 @@
 		"selector-class-pattern": null,
 		"no-descending-specificity": null,
 		"shorthand-property-no-redundant-values": null,
-		"function-url-quotes": null,
+		"function-url-quotes": "never",
 		"no-duplicate-selectors": null,
 		"comment-empty-line-before": null,
 		"declaration-block-single-line-max-declarations": null,

@@ -4,7 +4,7 @@
 /*      SKJ: South Korea and Japan hosting 2002 worldcup */
 /* http://www.famfamfam.com/lab/icons/flags/ */
 .flag {
-	background-image: url("img/flags-spritesheet.png");
+	background-image: url(img/flags-spritesheet.png);
 	background-position-x: left;
 	background-position-y: 20px; /* to detect missing flags */
 	background-repeat: no-repeat;

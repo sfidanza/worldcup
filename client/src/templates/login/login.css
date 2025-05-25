@@ -41,20 +41,20 @@
 	margin-bottom: 1em;
 }
 #social-signin .signin-google {
-	background: url('img/signin/Red-signin_Long_base_44dp.png') 0 0 no-repeat;
+	background: url(img/signin/Red-signin_Long_base_44dp.png) 0 0 no-repeat;
 	display: block;
 	width: 246px;
 	height: 54px;
 	margin: -1px auto;
 }
 #social-signin .signin-google:hover {
-	background-image: url('img/signin/Red-signin_Long_hover_44dp.png');
+	background-image: url(img/signin/Red-signin_Long_hover_44dp.png);
 }
 #social-signin .signin-google:active {
-	background-image: url('img/signin/Red-signin_Long_press_44dp.png');
+	background-image: url(img/signin/Red-signin_Long_press_44dp.png);
 }
 #social-signin .signin-google.waiting {
-	background: url('img/loader.gif') center center no-repeat;
+	background: url(img/loader.gif) center center no-repeat;
 }
 
 /***[Responsive Design]*****/

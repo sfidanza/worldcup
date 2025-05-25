@@ -18,7 +18,7 @@
 }
 .page-bet table.winnerCandidates th {
 	padding: 3px;
-	background: #333333 url("img/l0.png") top left repeat-x;
+	background: #333333 url(img/l0.png) top left repeat-x;
 	font-weight: bold;
 	color: #FFFFFF;
 	text-align: center;

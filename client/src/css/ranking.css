@@ -1,7 +1,7 @@
 /***[Ranking]***************/
 table.ranking {
 	width: 100%;
-	margin:  0 auto 2em;
+	margin: 0 auto 2em;
 	padding: 0;
 	border: 0;
 	border-collapse: collapse;
@@ -16,7 +16,7 @@ table.ranking thead th {
 }
 table.ranking tbody th {
 	padding: 3px;
-	background: #333333 url("img/l0.png") top left repeat-x;
+	background: #333333 url(img/l0.png) top left repeat-x;
 	font-weight: bold;
 	color: #FFFFFF;
 	text-align: left;
