@@ -58,8 +58,8 @@ login.signinGoogle = function () {
 };
 
 login.signinCallback = function (query) {
-    const params = new URLSearchParams(query);
-    const code = params.get('code');
+	const params = new URLSearchParams(query);
+	const code = params.get('code');
 	if (code) {
 		fetch(page.config.url.authProfile(code))
 			.then(response => response.json())
