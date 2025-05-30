@@ -19,7 +19,7 @@
     "mongodb": "6.16.0"
   },
   "devDependencies": {
-    "eslint": "9.27.0",
+    "eslint": "9.28.0",
     "mocha": "11.5.0",
     "nodemon": "3.1.10"
   },
