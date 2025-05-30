@@ -49,7 +49,7 @@ Once started, you can access the application at <http://localhost:8090>. This lo
 - The debug port is mapped (9229) so you can set breakpoints in your node.js code
 - Whatever file you need to work on, your edits will be taken on the fly (on save)
   - Server and client source folders in the containers are mapped to your host filesystem
-  - Both have a watcher to update what's necessary on file save (`nodemon` for server, `grunt watch` for client)
+  - Both have a watcher to update what's necessary on file save (`nodemon` for server, `esbuild watch` for client)
 
 ### Debugging the node.js code
 
@@ -86,15 +86,9 @@ Note: The wiki pages contain all the info based on the previous development / de
   - Display date in client timezone
 - Use server-sent events to refresh live games score
   - <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
-- Migrate client build to webpack? esbuild? vite?
-  - <https://webpack.js.org/guides/getting-started/>
-  - <https://esbuild.github.io/>
-  - <https://vitejs.dev/>
-- Add hashes to statics to bust caches on new releases
-  - <https://www.npmjs.com/package/grunt-cache-bust>
-  - <https://github.com/tallbrick/grunt-bust-cache>
+- Add hashes to templates to bust cache on new releases
 - Extract framework as a dependency to share between apps (needs build rework)
-  - "A lightweight framework with templating support, data manipulation and basic UI components"
+  - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
 - Deploy on kubernetes
 
 ## References
@@ -115,3 +109,5 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Github composite actions
   - <https://wallis.dev/blog/composite-github-actions>
   - <https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-using-an-action-inside-a-different-private-repository-than-the-workflow>
+- esbuild
+  - <https://esbuild.github.io/>
