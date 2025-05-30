@@ -55,7 +55,7 @@ td, th {
 	float: right;
 	height: 100px;
 	width: 100px;
-	background-image: url(img/worldcup.png);
+	background-image: url(img/worldcup.webp);
 	background-repeat: no-repeat;
 }
 #logo.worldcup-1930 { background-position-x: 15px; }
