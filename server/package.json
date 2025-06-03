@@ -16,7 +16,7 @@
     "express-session": "1.18.1",
     "http-errors": "2.0.0",
     "ics": "3.8.1",
-    "mongodb": "6.16.0"
+    "mongodb": "6.17.0"
   },
   "devDependencies": {
     "eslint": "9.28.0",
