@@ -10,7 +10,7 @@ COPY . .
 RUN node --run build
 
 # Stage 2
-FROM nginx:1.28.0-alpine
+FROM nginx:1.29.0-alpine
 
 WORKDIR /var/www/worldcup
 COPY --from=build /usr/src/app/target .
