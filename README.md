@@ -90,6 +90,7 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Extract framework as a dependency to share between apps (needs build rework)
   - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
 - Deploy on kubernetes
+- Support FIFA Club World Cup
 
 ## References
 

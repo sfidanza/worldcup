@@ -22,7 +22,9 @@ database.VALID_YEARS = {
 	'2012': 'euro2012',
 	'2016': 'euro2016',
 	'2020': 'euro2020',
-	'2024': 'euro2024'
+	'2024': 'euro2024',
+	// club world cup
+	'2025': 'cwc2025'
 };
 database.getDataAccess = function (dbClient) {
 	return (req, res, next) => {

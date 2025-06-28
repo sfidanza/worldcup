@@ -32,6 +32,8 @@ server {
 		rewrite ^/2016$ /index.html break;
 		rewrite ^/2020$ /index.html break;
 		rewrite ^/2024$ /index.html break;
+		# club world cup
+		rewrite ^/2025$ /index.html break;
 
 		root /var/www/worldcup/static;
 		index index.html;

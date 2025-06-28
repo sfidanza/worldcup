@@ -87,6 +87,8 @@ td, th {
 #logo.euro-2020 { background-image: url(img/logo/euro2020.png); }
 #logo.euro-2024 { background-image: url(img/logo/euro2024.png); }
 
+#logo.cwc-2025 { background-image: url(img/logo/cwc/cwc2025.svg); }
+
 /***[Header]****************/
 #header h1 {
 	margin-top: 0;

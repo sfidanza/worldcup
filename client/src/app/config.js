@@ -7,6 +7,11 @@ const FEATURE_TOGGLES = {
 };
 
 /**
+ * List of competitions (key in array is year modulo 4)
+ */
+const COMPETITIONS = ['euro', 'cwc', 'worldcup'];
+
+/**
  * Support query parameter override for feature toggles: ?OV_LIVE=true
  */
 const overrides = Object.fromEntries(
@@ -36,9 +41,10 @@ export const config = {
 		auth: (provider) => `api/auth/url?provider=${provider}`,
 		authProfile: (code) => `api/auth/profile?code=${code}`
 	},
-	getCompetitionId: (year) => (year % 4 === 2) ? 'worldcup' : 'euro', // Worldcup or Euro?
+	getCompetitionId: (year) => COMPETITIONS[year % 4],
 	i18n: {
 		names: {
+			cwc: (year) => `${year} FIFA Club World Cup`,
 			euro: (year) => `UEFA Euro ${year}`,
 			worldcup: (year) => `${year} FIFA Worldcup`,
 		},
