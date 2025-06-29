@@ -1,12 +1,20 @@
 import { createChannel } from 'better-sse';
 
-const live = createChannel();
+const live = {};
 export default live;
 
-const broadcastSessionCount = () => {
-	live.broadcast(live.sessionCount, 'watcher-count');
+live.initialize = function () {
+	this.channel = createChannel();
+	this.channel.on('session-registered', broadcastSessionCount)
+	this.channel.on('session-deregistered', broadcastSessionCount);
 };
 
-live
-	.on('session-registered', broadcastSessionCount)
-	.on('session-deregistered', broadcastSessionCount);
+const broadcastSessionCount = function () {
+	live.channel.broadcast(live.channel.sessionCount, 'watcher-count');
+};
+
+live.broadcastMatchUpdate = function (match) {
+	this.channel.broadcast(match, 'match-update');
+};
+
+live.initialize();

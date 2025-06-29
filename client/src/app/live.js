@@ -23,6 +23,9 @@ live.start = function () {
 		eventSource.addEventListener('watcher-count', (ev) => {
 			console.log(`${ev.type} | ${ev.data}`);
 		});
+		eventSource.addEventListener('match-update', (ev) => {
+			console.log(`${ev.type} | ${ev.data}`);
+		});
 	}
 	return eventSource;
 };

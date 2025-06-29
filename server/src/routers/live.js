@@ -10,7 +10,7 @@ export default function getRouter() {
 
 	router.get('/', async function (request, response) {
 		const session = await createSession(request, response);
-		live.register(session);
+		live.channel.register(session);
 	});
 
 	return router;
