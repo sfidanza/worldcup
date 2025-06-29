@@ -14,6 +14,8 @@ bet.onParse = function () {
 	const bets = page.data.bets;
 	const user = page.data.user;
 
+	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
+
 	if (user) {
 		const championBet = bets?.find(b => b.user === user.id && b.challenge === 'champion');
 		if (championBet) {

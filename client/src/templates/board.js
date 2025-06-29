@@ -21,6 +21,8 @@ board.onCreate = function (pageRef, frwRef, i18nRepository) {
 board.onParse = function (data) {
 	const teams = frw.data.indexBy(data.teams, 'id');
 	const dateFormat = page.config.i18n.formats.date;
+	
+	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 
 	const withH = data.matches.some(m => m.phase === 'H');
 	const withT = data.matches.some(m => m.phase === 'T');
