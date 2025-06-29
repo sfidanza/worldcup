@@ -32,4 +32,5 @@ db.getCollection("teams")
         { group: "H", id: "RMA", name: "Real Madrid C.F.", played: 0, victories: 0, draws: 0, defeats: 0, points: 0, goals_scored: 0, goals_against: 0, goal_difference: 0 },
         { group: "H", id: "HIL", name: "Al Hilal", played: 0, victories: 0, draws: 0, defeats: 0, points: 0, goals_scored: 0, goals_against: 0, goal_difference: 0 },
         { group: "H", id: "PAC", name: "CF Pachuca", played: 0, victories: 0, draws: 0, defeats: 0, points: 0, goals_scored: 0, goals_against: 0, goal_difference: 0 },
-        { group: "H", id: "SAL", name: "FC Salzburg", played: 0, victories: 0, draws: 0, defeats: 0, points: 0, goals_scored: 0, goals_against: 0, goal_difference: 0 }]);
+        { group: "H", id: "SAL", name: "FC Salzburg", played: 0, victories: 0, draws: 0, defeats: 0, points: 0, goals_scored: 0, goals_against: 0, goal_difference: 0 }
+    ]);
