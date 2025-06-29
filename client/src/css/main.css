@@ -81,11 +81,11 @@ td, th {
 #logo.worldcup-2018 { background-position-x: -2100px; }
 #logo.worldcup-2022 { background-position-x: -2200px; }
 
-#logo.euro-2008 { background-image: url(img/logo/euro2008.png); }
-#logo.euro-2012 { background-image: url(img/logo/euro2012.png); }
-#logo.euro-2016 { background-image: url(img/logo/euro2016.png); }
-#logo.euro-2020 { background-image: url(img/logo/euro2020.png); }
-#logo.euro-2024 { background-image: url(img/logo/euro2024.png); }
+#logo.euro-2008 { background-image: url(img/logo/euro/euro2008.png); }
+#logo.euro-2012 { background-image: url(img/logo/euro/euro2012.png); }
+#logo.euro-2016 { background-image: url(img/logo/euro/euro2016.png); }
+#logo.euro-2020 { background-image: url(img/logo/euro/euro2020.png); }
+#logo.euro-2024 { background-image: url(img/logo/euro/euro2024.png); }
 
 #logo.cwc-2025 { background-image: url(img/logo/cwc/cwc2025.svg); }
 
