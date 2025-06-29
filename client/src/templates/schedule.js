@@ -14,6 +14,8 @@ schedule.onParse = function (data) {
 	const list = frw.data.groupBy(data.matches, 'phase');
 	const teams = frw.data.indexBy(data.teams, 'id');
 	const dateFormat = page.config.i18n.formats.date;
+	
+	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 
 	for (const phase of ['G', 'H', 'Q', 'S', 'T', 'F']) {
 		if (!list[phase]) continue;

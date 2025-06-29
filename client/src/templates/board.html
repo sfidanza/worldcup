@@ -28,9 +28,9 @@
 	<div class="content">
 		<span class="date">{day}<br/>{match.hour}</span><span class="media-ML"> - {stadium.city}</span>
 		<div class="teams">
-			<span class="flag flag-{match.team1_id} left">{team1.name}</span>
+			<span class="{flag} {flag}-{match.team1_id} left">{team1.name}</span>
 			<span class="score">{match.team1_score} - {match.team2_score}</span>
-			<span class="flag flag-{match.team2_id}">{team2.name}</span>
+			<span class="{flag} {flag}-{match.team2_id}">{team2.name}</span>
 			<!-- BEGIN: PSO -->
 			<span class="score pso">({match.team1_scorePK} - {match.team2_scorePK})</span>
 			<!-- END: PSO -->

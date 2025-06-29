@@ -1,0 +1,48 @@
+.club {
+	background-image: url(img/clubs-spritesheet.png);
+	background-position-x: left;
+	background-position-y: 20px; /* to detect missing clubs */
+	background-repeat: no-repeat;
+	display: inline-block; /* fix Chrome when using sprite */
+	line-height: 18px; /* fix Chrome when using sprite */
+	padding-left: 20px;
+    white-space: nowrap;
+}
+.left .club, .club.left {
+	background-position-x: right;
+	padding-left: 0;
+	padding-right: 20px;
+}
+
+.club-AHL { background-position-y: 2px; }
+.club-AIN { background-position-y: -17px; }
+.club-AKL { background-position-y: -36px; }
+.club-ATM { background-position-y: -55px; }
+.club-BAY { background-position-y: -74px; }
+.club-BOC { background-position-y: -93px; }
+.club-BOT { background-position-y: -112px; }
+.club-BVB { background-position-y: -131px; }
+.club-CFM { background-position-y: -150px; }
+.club-CHE { background-position-y: -169px; }
+.club-EST { background-position-y: -188px; }
+.club-FLA { background-position-y: -207px; }
+.club-FLU { background-position-y: -226px; }
+.club-HIL { background-position-y: -245px; }
+.club-INT { background-position-y: -264px; }
+.club-JUV { background-position-y: -283px; }
+.club-LAF { background-position-y: -302px; }
+.club-MCI { background-position-y: -321px; }
+.club-MIA { background-position-y: -340px; }
+.club-MSU { background-position-y: -359px; }
+.club-PAC { background-position-y: -378px; }
+.club-POR { background-position-y: -397px; }
+.club-PSG { background-position-y: -416px; }
+.club-RIV { background-position-y: -435px; }
+.club-RMA { background-position-y: -454px; }
+.club-SAL { background-position-y: -473px; }
+.club-SEA { background-position-y: -492px; }
+.club-SEP { background-position-y: -511px; }
+.club-SLB { background-position-y: -530px; }
+.club-UHD { background-position-y: -549px; }
+.club-URD { background-position-y: -568px; }
+.club-WAC { background-position-y: -587px; }
