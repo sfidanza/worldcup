@@ -100,6 +100,11 @@ page.getData = async function () {
 		});
 };
 
+page.updateMatch = function (match) {
+	page.templates.liveMatch.parse(match);
+	page.templates.liveMatch.load(page.config.area.liveMatch);
+};
+
 page.register = function (login, cb) {
 	fetch(page.config.url.register(login))
 		.then(response => response.json())

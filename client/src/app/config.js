@@ -65,7 +65,8 @@ export const config = {
 		pwl: 'app-pwl',
 		contents: 'contents',
 		user: 'user-area',
-		loginDlg: 'login-dlg'
+		loginDlg: 'login-dlg',
+		liveMatch: 'live-match'
 	},
 	defaultYear: '2022',
 	defaultPage: 'schedule',

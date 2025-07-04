@@ -25,6 +25,7 @@ live.start = function () {
 		});
 		eventSource.addEventListener('match-update', (ev) => {
 			console.log(`${ev.type} | ${ev.data}`);
+			page.updateMatch(JSON.parse(ev.data));
 		});
 	}
 	return eventSource;

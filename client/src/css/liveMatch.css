@@ -1,0 +1,19 @@
+/***[liveMatch]**************/
+.live-match {
+    margin: auto;
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+    border-radius: 0.6em;
+    text-align: center;
+    padding: 1em;
+    width: 45%;
+}
+
+.live-match h3 {
+    margin: 0 auto 0.7em;
+    background: #CC6600;
+    width: fit-content;
+    border-radius: 0.5em;
+    padding: 0.4em 3em;
+    color: #FFF;
+}
