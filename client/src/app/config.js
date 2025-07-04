@@ -3,7 +3,7 @@
  **********************************************************/
 
 const FEATURE_TOGGLES = {
-	LIVE: false // enable live updates using server-sent events
+	LIVE: true // enable live updates using server-sent events
 };
 
 /**
