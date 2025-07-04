@@ -58,9 +58,9 @@ db.getCollection("matches")
         { id: "H7", phase: "H", day: "2025-07-01", hour: "21:00", stadium: "7", team1_source: "1H", team2_source: "2G" },
         { id: "H8", phase: "H", day: "2025-07-02", hour: "03:00", stadium: "4", team1_source: "1F", team2_source: "2E" },
         { id: "Q1", phase: "Q", day: "2025-07-04", hour: "21:00", stadium: "8", team1_source: "WH1", team2_source: "WH2" },
-        { id: "Q2", phase: "Q", day: "2025-07-04", hour: "03:00", stadium: "6", team1_source: "WH5", team2_source: "WH6" },
-        { id: "Q3", phase: "Q", day: "2025-07-04", hour: "18:00", stadium: "4", team1_source: "WH3", team2_source: "WH4" },
-        { id: "Q4", phase: "Q", day: "2025-07-04", hour: "22:00", stadium: "2", team1_source: "WH7", team2_source: "WH8" },
+        { id: "Q2", phase: "Q", day: "2025-07-05", hour: "03:00", stadium: "6", team1_source: "WH5", team2_source: "WH6" },
+        { id: "Q3", phase: "Q", day: "2025-07-05", hour: "18:00", stadium: "4", team1_source: "WH3", team2_source: "WH4" },
+        { id: "Q4", phase: "Q", day: "2025-07-05", hour: "22:00", stadium: "2", team1_source: "WH7", team2_source: "WH8" },
         { id: "S1", phase: "S", day: "2025-07-08", hour: "21:00", stadium: "2", team1_source: "WQ1", team2_source: "WQ2" },
         { id: "S2", phase: "S", day: "2025-07-09", hour: "21:00", stadium: "2", team1_source: "WQ3", team2_source: "WQ4" },
         { id: "F1", phase: "F", day: "2025-07-13", hour: "21:00", stadium: "2", team1_source: "WS1", team2_source: "WS2" }
