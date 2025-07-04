@@ -58,12 +58,16 @@ export default function getRouter() {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
 			const query = request.query;
-			const db = request.database;
-			updater.fetch(db, query.mid)
-				.then(match => {
-					live.broadcastMatchUpdate(match);
-					response.json(match);
-				}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
+			if (/^\d+$/.test(query.mid)) {
+				const db = request.database;
+				updater.fetch(db, query.mid)
+					.then(match => {
+						live.broadcastMatchUpdate(match);
+						response.json(match);
+					}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
+			} else {
+				response.status(400).json({ error: 'Invalid query parameter `mid`' });
+			}
 		} else {
 			response.status(401).json({ error: 'Unauthorized' });
 		}

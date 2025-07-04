@@ -8,6 +8,8 @@ const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
 
 /********************************************************************
  * Update data
+ * @param {object} db
+ * @param {string} mid - the FIFA id of the match to be updated
  */
 
 updater.fetch = async function (db, mid) {
