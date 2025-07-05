@@ -2,25 +2,24 @@
  * Update matches data from live api
  ********************************************************************/
 import cron from 'node-cron';
+import live from '../business/live.js';
 
 const INTERVAL = 30; // seconds
 const AUTO_STOP = 120; // minutes
 const MAX_EXECUTIONS = (AUTO_STOP * 60) / INTERVAL;
 const SCORE_CHECK = `*/${INTERVAL} * * * * *`; // Every N seconds
+const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
 
 const updater = {
 	tasks: {}
 };
 export default updater;
 
-const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
-
 /********************************************************************
  * Update data
  * @param {object} db
  * @param {string} mid - the FIFA id of the match to be updated
  */
-
 updater.fetch = async function (db, mid) {
 	return fetch(LIVE_API + mid)
 		.then(res => res.json())
@@ -53,6 +52,7 @@ updater.fetch = async function (db, mid) {
 				)
 				.then(updated => {
 					updated.matchTime = match.matchTime;
+					live.broadcastMatchUpdate(updated);
 					return updated;
 				});
 		});
@@ -63,8 +63,7 @@ updater.start = async function (db, mid) {
 	if (!task) {
 		this.tasks[mid] = cron.schedule(SCORE_CHECK, () => {
 			console.log(`[${new Date().toLocaleString()}][${mid}] running a task on: ${SCORE_CHECK}`);
-			updater.fetch(db, mid)
-				.then(console.log);
+			updater.fetch(db, mid);
 		}, { name: mid, maxExecutions: MAX_EXECUTIONS });
 		this.tasks[mid].on('execution:maxReached', () => {
 			console.log(`task [${mid}] finished and destroyed`);
@@ -73,7 +72,6 @@ updater.start = async function (db, mid) {
 	}
 	return !task;
 };
-
 
 updater.stop = async function (mid) {
 	const task = this.tasks[mid];

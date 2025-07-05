@@ -10,7 +10,6 @@
 import { Router } from 'express';
 import importer from '../admin/importer.js';
 import updater from '../admin/updater.js';
-import live from '../business/live.js';
 
 export default function getRouter() {
 	const router = Router();
@@ -62,7 +61,6 @@ export default function getRouter() {
 				const db = request.database;
 				updater.fetch(db, query.mid)
 					.then(match => {
-						live.broadcastMatchUpdate(match);
 						response.json(match);
 					}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
 			} else {
