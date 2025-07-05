@@ -73,5 +73,48 @@ export default function getRouter() {
 		}
 	});
 
+	router.get('/start', function (request, response) {
+		const user = request.session.user;
+		if (user && user.isAdmin) {
+			const query = request.query;
+			if (/^\d+$/.test(query.mid)) {
+				const db = request.database;
+				updater.start(db, query.mid)
+					.then(job => {
+						if (job) {
+							response.status(200).json({ success: 'job started' });
+						} else {
+							response.status(400).json({ error: 'job already running' });
+						}
+					});
+			} else {
+				response.status(400).json({ error: 'Invalid query parameter `mid`' });
+			}
+		} else {
+			response.status(401).json({ error: 'Unauthorized' });
+		}
+	});
+
+	router.get('/stop', function (request, response) {
+		const user = request.session.user;
+		if (user && user.isAdmin) {
+			const query = request.query;
+			if (/^\d+$/.test(query.mid)) {
+				updater.stop(query.mid)
+					.then(job => {
+						if (job) {
+							response.status(200).json({ success: 'job stopped' });
+						} else {
+							response.status(404).json({ error: 'no job defined' });
+						}
+					});
+			} else {
+				response.status(400).json({ error: 'Invalid query parameter `mid`' });
+			}
+		} else {
+			response.status(401).json({ error: 'Unauthorized' });
+		}
+	});
+
 	return router;
 }

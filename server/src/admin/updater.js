@@ -1,7 +1,16 @@
 /********************************************************************
  * Update matches data from live api
  ********************************************************************/
-const updater = {};
+import cron from 'node-cron';
+
+const INTERVAL = 30; // seconds
+const AUTO_STOP = 120; // minutes
+const MAX_EXECUTIONS = (AUTO_STOP * 60) / INTERVAL;
+const SCORE_CHECK = `*/${INTERVAL} * * * * *`; // Every N seconds
+
+const updater = {
+	tasks: {}
+};
 export default updater;
 
 const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
@@ -47,4 +56,31 @@ updater.fetch = async function (db, mid) {
 					return updated;
 				});
 		});
+};
+
+updater.start = async function (db, mid) {
+	const task = this.tasks[mid];
+	if (!task) {
+		this.tasks[mid] = cron.schedule(SCORE_CHECK, () => {
+			console.log(`[${new Date().toLocaleString()}][${mid}] running a task on: ${SCORE_CHECK}`);
+			updater.fetch(db, mid)
+				.then(console.log);
+		}, { name: mid, maxExecutions: MAX_EXECUTIONS });
+		this.tasks[mid].on('execution:maxReached', () => {
+			console.log(`task [${mid}] finished and destroyed`);
+			delete this.tasks[mid];
+		});
+	}
+	return !task;
+};
+
+
+updater.stop = async function (mid) {
+	const task = this.tasks[mid];
+	if (task) {
+		task.destroy();
+		delete this.tasks[mid];
+		console.log(`task [${mid}] stopped and destroyed`);
+	}
+	return task;
 };
