@@ -47,16 +47,17 @@
 }
 .page-board .match div.teams .score {
 	display: inline-block;
+	vertical-align: middle;
 	width: 35px;
 }
-.page-board .match span.flag {
+.page-board .match span.flag, .page-board .match span.club {
 	width: calc(50% - 41px);
 	text-align: left;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	vertical-align: bottom;
+	vertical-align: middle;
 }
-.page-board .match span.flag.left {
+.page-board .match span.flag.left, .page-board .match span.club.left {
 	text-align: right;
 }
 .page-board .match div.teams .pso {

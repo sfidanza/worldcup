@@ -99,6 +99,9 @@ td, th {
 	background-color: #9C0000;
 	color: #FFFFFF;
 	font-size: 20px;
+	overflow: clip;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 #header #live {
 	float: right;

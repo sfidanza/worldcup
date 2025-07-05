@@ -19,6 +19,6 @@ liveMatch.onParse = function (match) {
 	const team1 = teams[match.team1_id];
 	const team2 = teams[match.team2_id];
 	
-	this.set('team1.name', team1 ? team1.name : match.team1_source); // use team id instead of name for size S?
-	this.set('team2.name', team2 ? team2.name : match.team2_source);
+	this.set('team1.name', team1 ? team1.name : match.team1_id); // use team id instead of name for size S?
+	this.set('team2.name', team2 ? team2.name : match.team2_id);
 };
