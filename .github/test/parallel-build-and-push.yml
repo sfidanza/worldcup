@@ -17,15 +17,9 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - name: Check out shared actions
-        uses: actions/checkout@v4
-        with:
-          repository: sfidanza/ci-config
-          path: ./ci-config
-
       - name: Get version
         id: version
-        uses: ./ci-config/actions/get-version
+        uses: sfidanza/ci-config/actions/get-version@main
 
   frontend:
     runs-on: ubuntu-latest
