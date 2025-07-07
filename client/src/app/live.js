@@ -4,6 +4,7 @@
 
 let config;
 let eventSource;
+let page;
 
 export const live = {};
 
@@ -12,8 +13,9 @@ export const live = {};
  * @param {object} cfg
  * @param {string} cfg.url - the live stream endpoint
  */
-live.initialize = function (cfg) {
+live.initialize = function (cfg, pageRef) {
 	config = cfg;
+	page = pageRef;
 };
 
 live.start = function () {

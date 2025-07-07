@@ -43,7 +43,7 @@ page.initialize = function () {
 		page.templates.user.load(page.config.area.user);
 		page.scoreEditor.initialize(page, frw);
 		page.bet.initialize(page);
-		page.live.initialize({ url: page.config.url.live });
+		page.live.initialize({ url: page.config.url.live }, page);
 
 		this.loginDlg = new uic.Dialog({
 			id: page.config.area.loginDlg,
