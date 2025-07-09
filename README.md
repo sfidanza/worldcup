@@ -90,7 +90,6 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Extract framework as a dependency to share between apps (needs build rework)
   - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
 - Deploy on kubernetes
-- Support FIFA Club World Cup
 
 ## References
 
@@ -110,5 +109,6 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Github composite actions
   - <https://wallis.dev/blog/composite-github-actions>
   - <https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-using-an-action-inside-a-different-private-repository-than-the-workflow>
-- esbuild
-  - <https://esbuild.github.io/>
+- esbuild: <https://esbuild.github.io/>
+- cron: <https://nodecron.com/>
+- sse: <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>

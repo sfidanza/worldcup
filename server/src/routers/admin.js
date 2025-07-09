@@ -5,7 +5,11 @@
  *   /api/<year>/admin/preview -> preview the data from the filesystem
  *   /api/<year>/admin/drop    -> drop the database
  *   /api/<year>/admin/import  -> import the filesystem data in database
+ * ****************************************************************************
  *   /api/<year>/update?mid=xx -> update the match score (mid is the FIFA match id)
+ *   /api/<year>/start?mid=xx  -> start the cron job to get live score on this match
+ *   /api/<year>/start?mid=xx  -> stop the cron job to get live score on this match
+ *   /api/<year>/getCurrentMatches?cid=xx -> read today's matches and set their cron jobs
  ******************************************************************************/
 import { Router } from 'express';
 import importer from '../admin/importer.js';
@@ -108,6 +112,24 @@ export default function getRouter() {
 					});
 			} else {
 				response.status(400).json({ error: 'Invalid query parameter `mid`' });
+			}
+		} else {
+			response.status(401).json({ error: 'Unauthorized' });
+		}
+	});
+
+	router.get('/getCurrentMatches', function (request, response) {
+		const user = request.session.user;
+		if (user && user.isAdmin) {
+			const query = request.query;
+			if (/^\d+$/.test(query.cid)) {
+				const db = request.database;
+				updater.getCurrentMatches(db, query.cid)
+					.then(list => {
+						response.status(200).json(list);
+					});
+			} else {
+				response.status(400).json({ error: 'Invalid query parameter `cid`' });
 			}
 		} else {
 			response.status(401).json({ error: 'Unauthorized' });

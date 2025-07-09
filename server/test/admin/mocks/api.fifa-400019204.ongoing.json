@@ -1,0 +1,1411 @@
+{
+    "IdMatch": "400019204",
+    "IdStage": "289187",
+    "IdGroup": null,
+    "IdSeason": "289175",
+    "CoverageLevel": null,
+    "IdCompetition": "10005",
+    "CompetitionName": [{
+        "Locale": "en-GB",
+        "Description": "FIFA Club World Cup™"
+    }],
+    "SeasonName": [{
+        "Locale": "en-GB",
+        "Description": "FIFA Club World Cup 2025™"
+    }],
+    "SeasonShortName": [],
+    "Stadium": {
+        "IdStadium": "400257536",
+        "Name": [{
+            "Locale": "en-GB",
+            "Description": "MetLife Stadium"
+        }],
+        "Capacity": null,
+        "WebAddress": null,
+        "Built": null,
+        "Roof": false,
+        "Turf": null,
+        "IdCity": "400221955",
+        "CityName": [{
+            "Locale": "en-GB",
+            "Description": "New York"
+        }],
+        "IdCountry": "USA",
+        "PostalCode": null,
+        "Street": null,
+        "Email": null,
+        "Fax": null,
+        "Phone": null,
+        "AffiliationCountry": null,
+        "AffiliationRegion": null,
+        "Latitude": null,
+        "Longitude": null,
+        "Length": null,
+        "Width": null,
+        "Properties": {
+            "IdIFES": "5003000"
+        },
+        "IsUpdateable": null
+    },
+    "ResultType": 0,
+    "MatchDay": null,
+    "MatchNumber": 60,
+    "HomeTeamPenaltyScore": null,
+    "AwayTeamPenaltyScore": null,
+    "AggregateHomeTeamScore": null,
+    "AggregateAwayTeamScore": null,
+    "Weather": {
+        "Humidity": null,
+        "Temperature": null,
+        "WindSpeed": null,
+        "Type": null,
+        "TypeLocalized": []
+    },
+    "Attendance": null,
+    "Date": "2025-07-05T20:00:00Z",
+    "LocalDate": "2025-07-05T16:00:00Z",
+    "MatchTime": "10'",
+    "SecondHalfTime": null,
+    "FirstHalfTime": null,
+    "FirstHalfExtraTime": null,
+    "SecondHalfExtraTime": null,
+    "Winner": null,
+    "Period": 3,
+    "HomeTeam": {
+        "Score": 0,
+        "Side": null,
+        "IdTeam": "30504",
+        "PictureUrl": "https://api.fifa.com/api/v3/picture/teams-{format}-{size}/30504",
+        "IdCountry": "ESP",
+        "TeamType": 0,
+        "AgeType": 7,
+        "Tactics": "4-2-3-1",
+        "TeamName": [{
+            "Locale": "en-GB",
+            "Description": "Real Madrid C.F."
+        }],
+        "Abbreviation": "RMA",
+        "Coaches": [{
+            "IdCoach": "207528",
+            "IdCountry": "ESP",
+            "PictureUrl": "https://digitalhub.fifa.com/transform/2942d4cc-2e4d-4ad2-ac0a-e52fd575d29a/ALONSO-Xabi-207528",
+            "Name": [{
+                "Locale": "en-GB",
+                "Description": "Xabi ALONSO"
+            }],
+            "Alias": [{
+                "Locale": "en-GB",
+                "Description": "Xabi ALONSO"
+            }],
+            "Role": 0,
+            "SpecialStatus": null
+        }, {
+            "IdCoach": "498683",
+            "IdCountry": "ESP",
+            "PictureUrl": null,
+            "Name": [{
+                "Locale": "en-GB",
+                "Description": "Sebastian PARRILLA"
+            }],
+            "Alias": [{
+                "Locale": "en-GB",
+                "Description": "Sebastian PARRILLA"
+            }],
+            "Role": 1,
+            "SpecialStatus": null
+        }, {
+            "IdCoach": "498680",
+            "IdCountry": "ESP",
+            "PictureUrl": null,
+            "Name": [{
+                "Locale": "en-GB",
+                "Description": "Alberto ENCINAS"
+            }],
+            "Alias": [{
+                "Locale": "en-GB",
+                "Description": "Alberto ENCINAS"
+            }],
+            "Role": 1,
+            "SpecialStatus": null
+        }],
+        "Players": [{
+            "IdPlayer": "358106",
+            "IdTeam": "30504",
+            "ShirtNumber": 1,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Thibaut COURTOIS"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "COURTOIS"
+            }],
+            "Position": 0,
+            "PlayerPicture": {
+                "Id": "6F59F943-1A6B-46F5-843796CF9E5E691D",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/6f59f943-1a6b-46f5-8437-96cf9e5e691d/COURTOIS-Thibaut-358106"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "390761",
+            "IdTeam": "30504",
+            "ShirtNumber": 12,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Trent ALEXANDER-ARNOLD"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "Trent ALEXANDER-ARNOLD"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "66A15AC3-99A8-47CD-9E646AC2204D1E0D",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/66a15ac3-99a8-47cd-9e64-6ac2204d1e0d/ALEXANDER-ARNOLD-Trent-390761"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "416577",
+            "IdTeam": "30504",
+            "ShirtNumber": 20,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Fran GARCIA"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "FRAN GARCÍA"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "CD7CBDD6-26A5-4A4D-AA8809E9ED637410",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/cd7cbdd6-26a5-4a4d-aa88-09e9ed637410/GARCIA-Fran-416577"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "379955",
+            "IdTeam": "30504",
+            "ShirtNumber": 22,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Antonio RUEDIGER"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "RÜDIGER"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "2CF363B6-425B-4F4A-A61636A75E797EFD",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/2cf363b6-425b-4f4a-a616-36a75e797efd/RUEDIGER-Antonio-379955"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "484740",
+            "IdTeam": "30504",
+            "ShirtNumber": 24,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Dean HUIJSEN"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "Dean HUIJSEN"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "192679BC-474A-4989-98FABB50D29EC27F",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/192679bc-474a-4989-98fa-bb50d29ec27f/HUIJSEN-Dean-484740"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "448202",
+            "IdTeam": "30504",
+            "ShirtNumber": 5,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Jude BELLINGHAM"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "BELLINGHAM"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "135BD4C0-5F8C-499D-9239DDB187E2EFD9",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/135bd4c0-5f8c-499d-9239-ddb187e2efd9/BELLINGHAM-Jude-448202"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "402884",
+            "IdTeam": "30504",
+            "ShirtNumber": 8,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": true,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Federico VALVERDE"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "VALVERDE"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "6DE9BF8D-9E68-4104-934F6319CDF0DE48",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/6de9bf8d-9e68-4104-934f-6319cdf0de48/VALVERDE-Federico-402884"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "405893",
+            "IdTeam": "30504",
+            "ShirtNumber": 14,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Aurelien TCHOUAMENI"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "TCHOUAMENI"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "F540B177-F8A9-4763-B348398CCDC0760A",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/f540b177-f8a9-4763-b348-398ccdc0760a/TCHOUAMENI-Aurelien-405893"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "484087",
+            "IdTeam": "30504",
+            "ShirtNumber": 15,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Arda GULER"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "ARDA GÜLER"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "11216B84-5C77-4E3B-906254515B73CD76",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/11216b84-5c77-4e3b-9062-54515b73cd76/GULER-Arda-484087"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "405742",
+            "IdTeam": "30504",
+            "ShirtNumber": 7,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "VINICIUS JUNIOR"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "VINI JR."
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "07D28BC5-531E-4A88-A0196C13888D2173",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/07d28bc5-531e-4a88-a019-6c13888d2173/VINICIUS-JUNIOR-405742"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "484634",
+            "IdTeam": "30504",
+            "ShirtNumber": 30,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Gonzalo GARCIA"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "GONZALO"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "9B827B71-EDD3-4082-9C90F3CCC3658C06",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/9b827b71-edd3-4082-9c90-f3ccc3658c06/GARCIA-Gonzalo-484634"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "405277",
+            "IdTeam": "30504",
+            "ShirtNumber": 13,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Andriy LUNIN"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "LUNIN"
+            }],
+            "Position": 0,
+            "PlayerPicture": {
+                "Id": "EA6143A7-9185-47C7-9CD8031451B583A0",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/ea6143a7-9185-47c7-9cd8-031451b583a0/LUNIN-Andriy-405277"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "380048",
+            "IdTeam": "30504",
+            "ShirtNumber": 2,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Dani CARVAJAL"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "CARVAJAL"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "3716E27B-DE4E-428D-848E6A4BB9E71EED",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/3716e27b-de4e-428d-848e-6a4bb9e71eed/CARVAJAL-Dani-380048"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "389617",
+            "IdTeam": "30504",
+            "ShirtNumber": 3,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "EDER MILITAO"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "E. MILITÃO"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "A57D7A58-554C-42AF-A828CD98CC497D20",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/a57d7a58-554c-42af-a828-cd98cc497d20/EDER-MILITAO-389617"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "400713",
+            "IdTeam": "30504",
+            "ShirtNumber": 17,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Lucas VAZQUEZ"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "LUCAS V."
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "C8DA3605-5BC4-45CE-A9BDA057F9533BA2",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/c8da3605-5bc4-45ce-a9bd-a057f9533ba2/VAZQUEZ-Lucas-400713"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "473132",
+            "IdTeam": "30504",
+            "ShirtNumber": 29,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Youssef ENRIQUEZ"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "YOUSSEF"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "6E4F85F1-A78C-4DCC-B9625ABA7743851B",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/6e4f85f1-a78c-4dcc-b962-5aba7743851b/ENRIQUEZ-Youssef-473132"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "492279",
+            "IdTeam": "30504",
+            "ShirtNumber": 31,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Jacobo RAMON"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "JACOBO"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "AA627ED7-142C-4347-95F7000DCC5C0CD7",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/aa627ed7-142c-4347-95f7-000dcc5c0cd7/RAMON-Jacobo-492279"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "492280",
+            "IdTeam": "30504",
+            "ShirtNumber": 35,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Raul ASENCIO"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "ASENCIO"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "106D2B1E-FA01-495E-8227BEA024095F9A",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/106d2b1e-fa01-495e-8227-bea024095f9a/ASENCIO-Raul-492280"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "241559",
+            "IdTeam": "30504",
+            "ShirtNumber": 10,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Luka MODRIC"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "MODRIĆ"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "887AA74C-ED33-44D8-94100ED914385576",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/887aa74c-ed33-44d8-9410-0ed914385576/MODRIC-Luka-241559"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "408044",
+            "IdTeam": "30504",
+            "ShirtNumber": 19,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Dani CEBALLOS"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "D. CEBALLOS"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "9350946C-7CA6-4195-9F450A2FD3EB4353",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/9350946c-7ca6-4195-9f45-0a2fd3eb4353/CEBALLOS-Dani-408044"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "492265",
+            "IdTeam": "30504",
+            "ShirtNumber": 36,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Chema ANDRES"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "CHEMA"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "64ECAE0F-C57B-426B-A35AAA3D77700C61",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/64ecae0f-c57b-426b-a35a-aa3d77700c61/ANDRES-Chema-492265"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "492859",
+            "IdTeam": "30504",
+            "ShirtNumber": 44,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Victor MUNOZ"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "VÍCTOR MUÑOZ"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "ABB8A0F5-D3E9-4343-AB7852905060A45E",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/abb8a0f5-d3e9-4343-ab78-52905060a45e/MUNOZ-Victor-492859"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "461003",
+            "IdTeam": "30504",
+            "ShirtNumber": 50,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Mario MARTIN"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "Mario MARTIN"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "8E9722E0-946F-4A88-AE1C8ECA43270D6F",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/8e9722e0-946f-4a88-ae1c-8eca43270d6f/MARTIN-Mario-461003"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "389867",
+            "IdTeam": "30504",
+            "ShirtNumber": 9,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Kylian MBAPPE"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "MBAPPÉ"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "0076168D-D402-403E-84178F3081072BDC",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/0076168d-d402-403e-8417-8f3081072bdc/MBAPPE-Kylian-389867"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "405739",
+            "IdTeam": "30504",
+            "ShirtNumber": 11,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "RODRYGO"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "RODRYGO"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "97F0DA09-DC72-4895-A87AA5D21AA8EF8C",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/97f0da09-dc72-4895-a87a-a5d21aa8ef8c/RODRYGO-405739"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "430740",
+            "IdTeam": "30504",
+            "ShirtNumber": 21,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Brahim DIAZ"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "BRAHIM"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "AE882920-1521-487F-ADBCC211446DD605",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/ae882920-1521-487f-adbc-c211446dd605/DIAZ-Brahim-430740"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }],
+        "Bookings": [],
+        "Goals": [],
+        "Substitutions": [],
+        "FootballType": 0,
+        "Gender": 1,
+        "IdAssociation": "ESP",
+        "ShortClubName": "Real Madrid C. F."
+    },
+    "AwayTeam": {
+        "Score": 0,
+        "Side": null,
+        "IdTeam": "1914854",
+        "PictureUrl": "https://api.fifa.com/api/v3/picture/teams-{format}-{size}/1914854",
+        "IdCountry": "GER",
+        "TeamType": 0,
+        "AgeType": 7,
+        "Tactics": "3-5-2",
+        "TeamName": [{
+            "Locale": "en-GB",
+            "Description": "Borussia Dortmund"
+        }],
+        "Abbreviation": "BVB",
+        "Coaches": [{
+            "IdCoach": "155696",
+            "IdCountry": "CRO",
+            "PictureUrl": "https://digitalhub.fifa.com/transform/0a936429-8f37-48a5-a1ad-db675e643559/KOVAC-Niko-155696",
+            "Name": [{
+                "Locale": "en-GB",
+                "Description": "Niko Kovač"
+            }],
+            "Alias": [{
+                "Locale": "en-GB",
+                "Description": "Niko KOVAC"
+            }],
+            "Role": 0,
+            "SpecialStatus": null
+        }, {
+            "IdCoach": "189751",
+            "IdCountry": "CRO",
+            "PictureUrl": null,
+            "Name": [{
+                "Locale": "en-GB",
+                "Description": "Filip TAPALOVIC"
+            }],
+            "Alias": [{
+                "Locale": "en-GB",
+                "Description": "Filip TAPALOVIC"
+            }],
+            "Role": 1,
+            "SpecialStatus": null
+        }, {
+            "IdCoach": "179049",
+            "IdCountry": "CRO",
+            "PictureUrl": null,
+            "Name": [{
+                "Locale": "en-GB",
+                "Description": "Robert Kovač"
+            }],
+            "Alias": [{
+                "Locale": "en-GB",
+                "Description": "Robert KOVAC"
+            }],
+            "Role": 1,
+            "SpecialStatus": null
+        }],
+        "Players": [{
+            "IdPlayer": "448107",
+            "IdTeam": "1914854",
+            "ShirtNumber": 1,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Gregor KOBEL"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "KOBEL"
+            }],
+            "Position": 0,
+            "PlayerPicture": {
+                "Id": "C8703D09-5728-423B-B082C70932E71728",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/c8703d09-5728-423b-b082-c70932e71728/KOBEL-Gregor-448107"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "430658",
+            "IdTeam": "1914854",
+            "ShirtNumber": 3,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Waldemar ANTON"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "ANTON"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "549BFB3D-B439-4F7E-8C9C69DEF0406D49",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/549bfb3d-b439-4f7e-8c9c-69def0406d49/ANTON-Waldemar-430658"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "395113",
+            "IdTeam": "1914854",
+            "ShirtNumber": 5,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Ramy BENSEBAINI"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "BENSEBAINI"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "EEEC87CE-39C1-40D4-83F86101B23B2324",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/eeec87ce-39c1-40d4-83f8-6101b23b2324/BENSEBAINI-Ramy-395113"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "491255",
+            "IdTeam": "1914854",
+            "ShirtNumber": 24,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Daniel SVENSSON"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "SVENSSON"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "57E74165-A977-48EE-93C44E704136C026",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/57e74165-a977-48ee-93c4-4e704136c026/SVENSSON-Daniel-491255"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "395488",
+            "IdTeam": "1914854",
+            "ShirtNumber": 25,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Niklas SUELE"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "SÜLE"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "2CD69A13-8C53-41B2-82904356893DEE8A",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/2cd69a13-8c53-41b2-8290-4356893dee8a/SUELE-Niklas-395488"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "483496",
+            "IdTeam": "1914854",
+            "ShirtNumber": 26,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Julian RYERSON"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "RYERSON"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "E6D7250C-C78E-43E0-8FC65CA8C4C0E438",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/e6d7250c-c78e-43e0-8fc6-5ca8c4c0e438/RYERSON-Julian-483496"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "484848",
+            "IdTeam": "1914854",
+            "ShirtNumber": 13,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Pascal GROSS"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "GROß"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "B406860F-5293-4DAF-9CDC7C4A1E0CF962",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/b406860f-5293-4daf-9cdc-7c4a1e0cf962/GROSS-Pascal-484848"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "358241",
+            "IdTeam": "1914854",
+            "ShirtNumber": 20,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Marcel SABITZER"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "SABITZER"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "366DC789-96C8-40EE-846DC553425BDA5F",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/366dc789-96c8-40ee-846d-c553425bda5f/SABITZER-Marcel-358241"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "477943",
+            "IdTeam": "1914854",
+            "ShirtNumber": 9,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Serhou GUIRASSY"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "GUIRASSY"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "126B7ADE-5BE1-4584-83B4EC9B5A3F08A7",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/126b7ade-5be1-4584-83b4-ec9b5a3f08a7/GUIRASSY-Serhou-477943"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "385947",
+            "IdTeam": "1914854",
+            "ShirtNumber": 10,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": true,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Julian BRANDT"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "BRANDT"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "FDC483C9-58E8-42EB-8C38AE3F3FBFE969",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/fdc483c9-58e8-42eb-8c38-ae3f3fbfe969/BRANDT-Julian-385947"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "430674",
+            "IdTeam": "1914854",
+            "ShirtNumber": 27,
+            "Status": 1,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Karim ADEYEMI"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "ADEYEMI"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "58C9FCCB-7D9A-4F34-B6E0B45C7AF549CF",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/58c9fccb-7d9a-4f34-b6e0-b45c7af549cf/ADEYEMI-Karim-430674"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "495616",
+            "IdTeam": "1914854",
+            "ShirtNumber": 31,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Silas OSTRZINSKI"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "OSTRZINSKI"
+            }],
+            "Position": 0,
+            "PlayerPicture": {
+                "Id": "4332DFB1-6615-4352-A644D5BBE3A40B19",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/4332dfb1-6615-4352-a644-d5bbe3a40b19/OSTRZINSKI-Silas-495616"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "495583",
+            "IdTeam": "1914854",
+            "ShirtNumber": 33,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Alexander MEYER"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "MEYER"
+            }],
+            "Position": 0,
+            "PlayerPicture": {
+                "Id": "E3C15309-5758-4D90-8671F74CDD6F5108",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/e3c15309-5758-4d90-8671-f74cdd6f5108/MEYER-Alexander-495583"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "424293",
+            "IdTeam": "1914854",
+            "ShirtNumber": 2,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "YAN COUTO"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "COUTO"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "3DEEF204-BC8F-46E8-BA0E87824171BED5",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/3deef204-bc8f-46e8-ba0e-87824171bed5/YAN-COUTO-424293"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "495618",
+            "IdTeam": "1914854",
+            "ShirtNumber": 39,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Filippo MANE"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "MANÉ"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "810AAB6A-A1C6-446A-9353CBA99E0EDA8E",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/810aab6a-a1c6-446a-9353-cba99e0eda8e/MANE-Filippo-495618"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "495591",
+            "IdTeam": "1914854",
+            "ShirtNumber": 47,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Elias BENKARA"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "BENKARA"
+            }],
+            "Position": 1,
+            "PlayerPicture": {
+                "Id": "3D9F57E5-5C25-42CE-BB54C25D7337C902",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/3d9f57e5-5c25-42ce-bb54-c25d7337c902/BENKARA-Elias-495591"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "492363",
+            "IdTeam": "1914854",
+            "ShirtNumber": 8,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Felix NMECHA"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "NMECHA"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "27BAA816-C456-409E-A00133E9D63372D8",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/27baa816-c456-409e-a001-33e9d63372d8/NMECHA-Felix-492363"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "463800",
+            "IdTeam": "1914854",
+            "ShirtNumber": 17,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Carney CHUKWUEMEKA"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "CHUKWUEMEKA"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "6319C390-8435-4CA7-B59C3FFA0763BD56",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/6319c390-8435-4ca7-b59c-3ffa0763bd56/CHUKWUEMEKA-Carney-463800"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "495605",
+            "IdTeam": "1914854",
+            "ShirtNumber": 46,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Ayman AZHIL"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "AZHIL"
+            }],
+            "Position": 2,
+            "PlayerPicture": {
+                "Id": "F93779EC-6172-4F1C-97054D6BBEFAD317",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/f93779ec-6172-4f1c-9705-4d6bbefad317/AZHIL-Ayman-495605"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "419068",
+            "IdTeam": "1914854",
+            "ShirtNumber": 7,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Giovanni REYNA"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "REYNA"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "63E59C16-66A1-4254-A0CFE1EF09194EA4",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/63e59c16-66a1-4254-a0cf-e1ef09194ea4/REYNA-Giovanni-419068"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "484850",
+            "IdTeam": "1914854",
+            "ShirtNumber": 14,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Maximilian BEIER"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "BEIER"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "57C87D3B-74B1-44F4-B0A99F6E6101A6D8",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/57c87d3b-74b1-44f4-b0a9-9f6e6101a6d8/BEIER-Maximilian-484850"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "448367",
+            "IdTeam": "1914854",
+            "ShirtNumber": 16,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Julien DURANVILLE"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "DURANVILLE"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "AC157F9A-6DB8-4698-9AEDC74B3C4B55CC",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/ac157f9a-6db8-4698-9aed-c74b3c4b55cc/DURANVILLE-Julien-448367"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "495590",
+            "IdTeam": "1914854",
+            "ShirtNumber": 37,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Cole CAMPBELL"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "CAMPBELL"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "E6076321-5EEB-4666-BBD2D1A586467784",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/e6076321-5eeb-4666-bbd2-d1a586467784/CAMPBELL-Cole-495590"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "499699",
+            "IdTeam": "1914854",
+            "ShirtNumber": 40,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Samuele INACIO"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "Samuele INACIO"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "A937A3F4-CF0B-4C85-8E3AA3138E6254D7",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/a937a3f4-cf0b-4c85-8e3a-a3138e6254d7/INACIO-Samuele-499699"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }, {
+            "IdPlayer": "499700",
+            "IdTeam": "1914854",
+            "ShirtNumber": 41,
+            "Status": 2,
+            "SpecialStatus": null,
+            "Captain": false,
+            "PlayerName": [{
+                "Locale": "en-GB",
+                "Description": "Mathis ALBERT"
+            }],
+            "ShortName": [{
+                "Locale": "en-GB",
+                "Description": "Mathis ALBERT"
+            }],
+            "Position": 3,
+            "PlayerPicture": {
+                "Id": "4C735895-5954-4B69-BD70F83120B40533",
+                "PictureUrl": "https://digitalhub.fifa.com/transform/4c735895-5954-4b69-bd70-f83120b40533/ALBERT-Mathis-499700"
+            },
+            "FieldStatus": 0,
+            "LineupX": null,
+            "LineupY": null
+        }],
+        "Bookings": [],
+        "Goals": [],
+        "Substitutions": [],
+        "FootballType": 0,
+        "Gender": 1,
+        "IdAssociation": "GER",
+        "ShortClubName": "Borussia Dortmund"
+    },
+    "BallPossession": null,
+    "TerritorialPossesion": null,
+    "TerritorialThirdPossesion": null,
+    "Officials": [{
+        "IdCountry": "BRA",
+        "OfficialId": "446932",
+        "NameShort": [{
+            "Locale": "en-GB",
+            "Description": "RAMON ABATTI"
+        }],
+        "Name": [{
+            "Locale": "en-GB",
+            "Description": "RAMON ABATTI"
+        }],
+        "OfficialType": 1,
+        "TypeLocalized": [{
+            "Locale": "en-GB",
+            "Description": "Referee"
+        }]
+    }],
+    "MatchStatus": 3,
+    "GroupName": [],
+    "StageName": [{
+        "Locale": "en-GB",
+        "Description": "Quarter-final"
+    }],
+    "OfficialityStatus": 0,
+    "TimeDefined": true,
+    "Properties": {
+        "IdIFES": "146245"
+    },
+    "IsUpdateable": null
+}
