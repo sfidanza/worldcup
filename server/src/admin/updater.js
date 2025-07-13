@@ -123,10 +123,20 @@ updater.getCurrentMatches = async function (db, cid) {
 		});
 };
 
-const getCron = function(m) {
+const getCron = function (m) {
 	if (m.matchStatus == 1 || m.matchStatus == 3) {
 		const d = new Date(m.date);
 		return SCORE_CHECK_TPL(d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
 	}
 	return null;
+};
+
+updater.getJobs = async function () {
+	return Object.values(this.tasks)
+		.map(it => ({
+			mid: it.name,
+			status: it.getStatus(),
+			cron: it.cronExpression,
+			next: it.getNextRun()
+		}));
 };
