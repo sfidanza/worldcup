@@ -1,6 +1,6 @@
 # worldcup
 
-A site to follow the calendar and results of the FIFA worldcup competitions. It is deployed live at:
+A site to follow the calendar and results of the FIFA worldcup and other competitions. It is deployed live at:
 
 - <https://worldcup.dagobah-online.com>
 
@@ -10,7 +10,9 @@ Functionally, the site has:
 
 - the list of matches, locations, date/hours (France time)
 - the groups schedule and results
-- a final board to follow the round of 16 to the final
+- a finals board to follow the round of 16 to the final
+- admin endpoints to update scores with an engine to compute teams progress
+- and more.. (see [notes.html](./client/src/templates/notes.html) for more)
 
 Technically:
 
@@ -84,8 +86,6 @@ Note: The wiki pages contain all the info based on the previous development / de
 - feat: Internationalize date/time for match schedule
   - Store date in ISO format, or host local format with city timezone
   - Display date in client timezone
-- Use server-sent events to refresh live games score
-  - <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
 - Add hashes to templates to bust cache on new releases
 - Extract framework as a dependency to share between apps (needs build rework)
   - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
@@ -108,7 +108,6 @@ Note: The wiki pages contain all the info based on the previous development / de
   - <https://research.google/pubs/csp-is-dead-long-live-csp-on-the-insecurity-of-whitelists-and-the-future-of-content-security-policy/>
 - Github composite actions
   - <https://wallis.dev/blog/composite-github-actions>
-  - <https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-using-an-action-inside-a-different-private-repository-than-the-workflow>
 - esbuild: <https://esbuild.github.io/>
 - cron: <https://nodecron.com/>
 - sse: <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
