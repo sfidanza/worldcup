@@ -12,8 +12,8 @@ const config = {
   },
   fullyParallel: true, // Run all tests in parallel
   forbidOnly: !!process.env.CI, // Fail the CI build if test.only is found in source code
-  retries: 1,
-  workers: 3,
+  retries: 2,
+  workers: 2,
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html', { host: '0.0.0.0' }]],
