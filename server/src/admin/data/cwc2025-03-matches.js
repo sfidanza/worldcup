@@ -55,11 +55,11 @@ export default [
 	{ id: 'H6', phase: 'H', day: '2025-06-28', hour: '22:00', stadium: '3', team1_source: '1C', team2_source: '2D', team1_id: 'SLB', team2_id: 'CHE', team1_score: 1, team1_scorePK: null, team2_score: 4, team2_scorePK: null },
 	{ id: 'H7', phase: 'H', day: '2025-07-01', hour: '21:00', stadium: '7', team1_source: '1H', team2_source: '2G', team2_id: 'JUV', team1_id: 'RMA', team1_score: 1, team1_scorePK: null, team2_score: 0, team2_scorePK: null },
 	{ id: 'H8', phase: 'H', day: '2025-07-02', hour: '03:00', stadium: '4', team1_source: '1F', team2_source: '2E', team1_id: 'BVB', team2_id: 'CFM', team1_score: 2, team1_scorePK: null, team2_score: 1, team2_scorePK: null },
-	{ id: 'Q1', phase: 'Q', day: '2025-07-04', hour: '21:00', stadium: '8', team1_source: 'WH1', team2_source: 'WH2', team1_id: 'FLU', team2_id: 'HIL'},
-	{ id: 'Q2', phase: 'Q', day: '2025-07-05', hour: '03:00', stadium: '6', team1_source: 'WH5', team2_source: 'WH6', team1_id: 'SEP', team2_id: 'CHE'},
-	{ id: 'Q3', phase: 'Q', day: '2025-07-05', hour: '18:00', stadium: '4', team1_source: 'WH3', team2_source: 'WH4', team1_id: 'PSG', team2_id: 'BAY'},
-	{ id: 'Q4', phase: 'Q', day: '2025-07-05', hour: '22:00', stadium: '2', team1_source: 'WH7', team2_source: 'WH8', team1_id: 'RMA', team2_id: 'BVB'},
-	{ id: 'S1', phase: 'S', day: '2025-07-08', hour: '21:00', stadium: '2', team1_source: 'WQ1', team2_source: 'WQ2'},
-	{ id: 'S2', phase: 'S', day: '2025-07-09', hour: '21:00', stadium: '2', team1_source: 'WQ3', team2_source: 'WQ4'},
-	{ id: 'F1', phase: 'F', day: '2025-07-13', hour: '21:00', stadium: '2', team1_source: 'WS1', team2_source: 'WS2'}
+	{ id: 'Q1', phase: 'Q', day: '2025-07-04', hour: '21:00', stadium: '8', team1_source: 'WH1', team2_source: 'WH2', team1_id: 'FLU', team2_id: 'HIL', team1_score: 2, team1_scorePK: null, team2_score: 1, team2_scorePK: null},
+	{ id: 'Q2', phase: 'Q', day: '2025-07-05', hour: '03:00', stadium: '6', team1_source: 'WH5', team2_source: 'WH6', team1_id: 'SEP', team2_id: 'CHE', team1_score: 1, team1_scorePK: null, team2_score: 2, team2_scorePK: null},
+	{ id: 'Q3', phase: 'Q', day: '2025-07-05', hour: '18:00', stadium: '4', team1_source: 'WH3', team2_source: 'WH4', team1_id: 'PSG', team2_id: 'BAY', team1_score: 2, team1_scorePK: null, team2_score: 0, team2_scorePK: null},
+	{ id: 'Q4', phase: 'Q', day: '2025-07-05', hour: '22:00', stadium: '2', team1_source: 'WH7', team2_source: 'WH8', team1_id: 'RMA', team2_id: 'BVB', team1_score: 3, team1_scorePK: null, team2_score: 2, team2_scorePK: null},
+	{ id: 'S1', phase: 'S', day: '2025-07-08', hour: '21:00', stadium: '2', team1_source: 'WQ1', team2_source: 'WQ2', team1_id: 'FLU', team2_id: 'CHE', team1_score: 0, team1_scorePK: null, team2_score: 2, team2_scorePK: null},
+	{ id: 'S2', phase: 'S', day: '2025-07-09', hour: '21:00', stadium: '2', team1_source: 'WQ3', team2_source: 'WQ4', team1_id: 'PSG', team2_id: 'RMA', team1_score: 4, team1_scorePK: null, team2_score: 0, team2_scorePK: null},
+	{ id: 'F1', phase: 'F', day: '2025-07-13', hour: '21:00', stadium: '2', team1_source: 'WS1', team2_source: 'WS2', team2_id: 'PSG', team1_id: 'CHE', team1_score: 3, team1_scorePK: null, team2_score: 0, team2_scorePK: null}
 ];
