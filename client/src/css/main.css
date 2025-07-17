@@ -9,6 +9,9 @@ body {
 td, th {
 	font-size: 10px;
 }
+button {
+	all: unset;
+}
 #global-container {
 	margin: 0 auto;
 	max-width: 640px;
@@ -111,6 +114,8 @@ td, th {
 	margin: 7px;
 	padding: 3px 6px;
 	cursor: pointer;
+	position: relative;
+	z-index: 1;
 }
 #header #live.active {
 	background-color: #CC6600;

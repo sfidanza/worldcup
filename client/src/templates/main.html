@@ -1,12 +1,12 @@
 <div id="header">
 	<div id="logo" class="{cid}-{year}"></div>
-	<!-- BEGIN: live --><div id="live" onclick="page.templates.main.toggleLive()">Live: disabled</div><!-- END: live -->
+	<!-- BEGIN: live --><button id="live" onclick="page.templates.main.toggleLive()">Live: disabled</button><!-- END: live -->
 	<h1>{name}</h1>
 	<dl id="menu">
 		<dt class="media-L">Tournament:</dt>
 		<dd><a onclick="page.select(this, event);" href="#history,worldcup">FIFA Worldcup</a></dd>
 		<dd><a onclick="page.select(this, event);" href="#history,euro">UEFA Euro</a></dd>
-		<dd><a onclick="page.select(this, event);" href="#history,cwc">FIFA Club World Cup</a></dd>
+		<dd><a onclick="page.select(this, event);" href="#history,cwc">FIFA CWC</a></dd>
 		<!-- BEGIN: bet --><dd class="right media-L"><a onclick="page.select(this, event);" href="#bet">Place a bet</a></dd><!-- END: bet -->
 		<dt class="media-L">Schedules:</dt>
 		<dd><a onclick="page.select(this, event);" href="#schedule">Full Schedule</a></dd>
