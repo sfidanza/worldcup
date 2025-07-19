@@ -10,7 +10,7 @@
   "devDependencies": {
     "chokidar": "4.0.3",
     "del": "8.0.0",
-    "esbuild": "0.25.6",
+    "esbuild": "0.25.7",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-eslint": "0.3.12",
     "fast-glob": "3.3.3",
