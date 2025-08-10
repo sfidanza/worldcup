@@ -17,7 +17,7 @@
     "spritesheet-templates": "10.5.2",
     "spritesmith": "3.5.1",
     "stylelint": "16.23.1",
-    "stylelint-config-standard": "38.0.0"
+    "stylelint-config-standard": "39.0.0"
   },
   "scripts": {
     "build": "node esbuild.config.js",
