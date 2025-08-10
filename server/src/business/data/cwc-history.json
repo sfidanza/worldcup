@@ -1,6 +1,8 @@
 [
 	{
 		"year": "2025",
+		"winner": "Chelsea",
+		"winnerId": "CHE",
 		"organizer": "United States",
 		"organizerId": "USA",
 		"available": true
