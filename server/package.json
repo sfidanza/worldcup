@@ -16,7 +16,7 @@
     "express-session": "1.18.2",
     "http-errors": "2.0.0",
     "ics": "3.8.1",
-    "mongodb": "6.19.0",
+    "mongodb": "6.20.0",
     "node-cron": "4.2.1"
   },
   "devDependencies": {
