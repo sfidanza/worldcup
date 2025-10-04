@@ -10,11 +10,17 @@ worldcup:
 
 mongo:
   image:
-    tag: 4.4.29-focal  # MongoDB 5.0+ requires a CPU with AVX support. Does not run in production!
+    tag: 4.4.18-focal  # MongoDB 5.0+ / 4.19+ requires a CPU with AVX support. Does not run in production!
     pullPolicy: IfNotPresent
+  data: "/var/lib/worldcup/mongodb-data"  # Path to data persistence on node
 
 route:
   host: "worldcup.localhost"
-  path: "/"
+  path:
+    frontend: "/"
+    backend: "/api/"
 
 nodeSelector: {}
+
+nameOverride: ""
+fullnameOverride: ""

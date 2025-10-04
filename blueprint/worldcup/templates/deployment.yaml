@@ -1,23 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "worldcup.fullname" . }}
+  name: {{ include "names.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "worldcup.name" . }}
+    app.kubernetes.io/name: {{ include "names.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    helm.sh/chart: {{ include "worldcup.chart" . }}
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    helm.sh/chart: {{ include "names.chart" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "worldcup.name" . }}
+      app.kubernetes.io/name: {{ include "names.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "worldcup.name" . }}
+        app.kubernetes.io/name: {{ include "names.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-        helm.sh/chart: {{ include "worldcup.chart" . }}
+        app.kubernetes.io/version: {{ .Chart.Version }}
+        helm.sh/chart: {{ include "names.chart" . }}
     spec:
       containers:
         - name: worldcup-frontend
@@ -27,11 +30,6 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          env:
-            - name: NODE_HOSTNAME
-              value: localhost
-            - name: NODE_PORT
-              value: "9090"
 
         - name: worldcup-backend
           image: "ghcr.io/sfidanza/worldcup-backend:{{ .Values.worldcup.image.tag }}"
@@ -95,7 +93,7 @@ spec:
       volumes:
         - name: mongodb-data
           hostPath: # should be a local PV
-            path: "/var/lib/worldcup/mongodb-data"
+            path: {{ .Values.mongo.data }}
             type: DirectoryOrCreate
         - name: initdb
           configMap:
