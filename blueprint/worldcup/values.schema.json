@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nameOverride": {
+      "type": "string",
+      "description": "Sets the application name, overriding the chart name.",
+      "default": ""
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "description": "Sets the deployment name, overriding the release name. Must be unique in namespace.",
+      "default": ""
+    },
+    "replicaCount": {
+      "type": "integer"
+    },
+    "worldcup": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "string"
+            },
+            "pullPolicy": {
+              "enum": ["Always", "IfNotPresent", "Never"]
+            }
+          },
+          "required": [
+            "tag",
+            "pullPolicy"
+          ]
+        }
+      },
+      "required": [
+        "image"
+      ]
+    },
+    "mongo": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "string"
+            },
+            "pullPolicy": {
+              "enum": ["Always", "IfNotPresent", "Never"]
+            }
+          },
+          "required": [
+            "tag",
+            "pullPolicy"
+          ]
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "image",
+        "data"
+      ]
+    },
+    "route": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "path": {
+          "type": "object",
+          "properties": {
+            "frontend": {
+              "type": "string"
+            },
+            "backend": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "frontend",
+            "backend"
+          ]
+        }
+      },
+      "required": [
+        "host",
+        "path"
+      ]
+    },
+    "nodeSelector": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "nameOverride",
+    "fullnameOverride",
+    "replicaCount",
+    "worldcup",
+    "mongo",
+    "route",
+    "nodeSelector"
+  ]
+}

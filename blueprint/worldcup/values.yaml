@@ -1,12 +1,13 @@
-# Default values for worldcup.
+# Default values for worldcup
 
+nameOverride: ""
+fullnameOverride: ""
 replicaCount: 1
 
 worldcup:
   image:
     tag: latest
-    pullPolicy: IfNotPresent
-  authRedirectUrl: "/signin.html"
+    pullPolicy: Always
 
 mongo:
   image:
@@ -21,6 +22,3 @@ route:
     backend: "/api/"
 
 nodeSelector: {}
-
-nameOverride: ""
-fullnameOverride: ""

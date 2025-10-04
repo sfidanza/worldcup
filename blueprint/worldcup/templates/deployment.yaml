@@ -61,7 +61,7 @@ spec:
             - name: NODE_PORT
               value: "9090"
             - name: AUTH_REDIRECT_URL
-              value: "{{ .Values.worldcup.authRedirectUrl }}"
+              value: "https://{{ .Values.route.host }}{{ .Values.route.path.frontend }}signin.html"
           envFrom:
             - secretRef:
                 name: backend
