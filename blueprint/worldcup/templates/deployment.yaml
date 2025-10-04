@@ -30,6 +30,11 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          env:
+            - name: NODE_HOSTNAME
+              value: localhost
+            - name: NODE_PORT
+              value: "9090"
 
         - name: worldcup-backend
           image: "ghcr.io/sfidanza/worldcup-backend:{{ .Values.worldcup.image.tag }}"
