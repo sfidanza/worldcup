@@ -26,21 +26,26 @@ Technically:
   - server runs on node.js
   - data is stored in mongodb
 
-## Develoment setup
+## Initial setup
 
-You need a `.env` file in the root folder to specify the secrets. You can simply copy `.env.sample` to get started. You also need to have Docker installed (Docker Desktop is great if you are on Windows).
+You need a `.env` file in the root folder to specify the secrets. You can simply copy `.env.sample` to get started. You also need to have Docker installed.
 
-### Run locally in production mode
+The first time you start the server, the database will only be populated with your admin user (from `.env` variables `ADMIN_ID` and `ADMIN_PWD`). If you access the site, you will get a server error as no data is available yet. To fill the data, use the `/api/reset` admin endpoint:
 
-Here are the commands to start/stop everything (with the images built locally):
+1. Login: `/api/user/login?id=<ADMIN_ID>&pwd=<ADMIN_PWD>`
+2. Reset: `/api/admin/reset`
 
-    docker compose build                             # build images from local sources
-    docker compose -f "docker-compose.yml" up -d     # start containers
-    docker compose -f "docker-compose.yml" down      # stop containers and remove images
+Note that individual editions can be added or maintained through the following admin endpoints:
+
+- `/api/<year>/admin/preview` -> preview the data from the filesystem
+- `/api/<year>/admin/drop`    -> drop the database
+- `/api/<year>/admin/import`  -> import the filesystem data in database
+
+## Development setup
 
 ### Run locally in development mode
 
-Running `docker compose up` without specifying the file will automatically take the `docker-compose.override.yml` into account. The commands are thus even simpler:
+Running `docker compose up` without specifying the file will automatically take the `docker-compose.override.yml` into account (which sets the dev mode):
 
     docker compose up -d --build
     docker compose down
@@ -66,50 +71,32 @@ The github workflow is triggered when pushing commits on github: it automaticall
 
 ## Production setup
 
-For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub or will have to be built locally before (through `docker compose build` for example). To enable routing from the Traefik gateway, the corresponding `compose` file should be used as well:
+### Run with Kubernetes
+
+This is not yet fully ready. The [blueprint](./blueprint/README.md) already explains the basics of deploying the helm chart. It is fully functional but is still missing a bit of security setup through Traefik middlewares.
+
+### Run with `docker stack`
+
+For real production use, containers should be deployed on Docker Swarm. Images will be sourced from container hub. To enable routing from the Traefik [gateway](https://github.com/sfidanza/gateway), the corresponding `compose` file should be used as well:
 
     docker compose -f docker-compose.yml -f docker-compose.traefik.yml config | docker stack deploy -c - worldcup
     docker stack rm worldcup
 
 Note: the `docker compose config` command is acting as a preprocessor to resolve the environment variables inside the compose files from `.env`, which is not supported by `docker stack deploy`.
 
-Alternatively, containers can be started with `docker compose`:
-
-    docker compose -f "docker-compose.yml" up -d
-    docker compose -f "docker-compose.yml" down
-
 Note: The wiki pages contain all the info based on the previous development / deployment model (without docker). This still needs to be updated for docker deployment.
 
-## To do
+### Run with `docker compose`
 
-- fix: Support error cases on response.json() parsing (rate limiter can return 429 http codes)
-- feat: Internationalize date/time for match schedule
-  - Store date in ISO format, or host local format with city timezone
-  - Display date in client timezone
-- Add hashes to templates to bust cache on new releases
-- Extract framework as a dependency to share between apps (needs build rework)
-  - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
-- Deploy on kubernetes
-  - Add compress middleware on Traefik (as today on docker)
-  - Add REST API security middleware on Traefik (<https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#security-headers>)
-  - Add basic security middleware on Traefik for frontend resources (as today on docker)
-- Add versioning on build
-  - Compute next version at start of build, use it to tag published docker images
-  - Use version to tag the git repo
-  - Publish the Helm chart with the version tag, with pinned container references
-- Improve security for frontend resources
-  - nginx CSP vs Traefik other headers? Could everything be handled by Traefik?
-  - remove `unsafe-inline` for `style-src`
-  - remove `unsafe-inline` for `script-src`
-- Database
-  - initDB: should we keep this or not?
-    - Keep? Push [server data](server/src/admin/data/) to ConfigMap and share it with server container as well
-    - Remove? Only setup admin through initDB and add import all to admin endpoint
-    - Pros/Cons?
-      - Data inside server only seems cleaner than isolated in chart and shared between two containers (read-only)
-      - However it is simpler as an admin to start and be ready, rather than have to login and import after first start
-  - nodeSelector needed because of hostpath for DB volume
+To run simply on one node without orchestrator, you can simply start the application with `docker compose`. You may want to map the frontend port to port 80 on the host (like it is down for dev):
 
+    docker compose -f docker-compose.yml up -d     # start containers
+    docker compose -f docker-compose.yml down      # stop containers and remove images
+
+Or you can run it through Traefik and use the `docker-compose.traefik.yml` file:
+
+    docker compose -f docker-compose.yml -f docker-compose.traefik.yml up -d     # start containers
+    docker compose -f docker-compose.yml -f docker-compose.traefik.yml down      # stop containers and remove images
 
 ## References
 

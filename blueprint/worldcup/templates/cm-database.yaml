@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: worldcup-initdb
 data:
-{{ (.Files.Glob "database/initdb-full/*").AsConfig | indent 2 }}
+{{ (.Files.Glob "database/initdb/*").AsConfig | indent 2 }}

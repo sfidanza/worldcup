@@ -1,0 +1,25 @@
+# To do
+
+- fix: Support error cases on response.json() parsing (rate limiter can return 429 http codes)
+- feat: Internationalize date/time for match schedule
+  - Store date in ISO format, or host local format with city timezone
+  - Display date in client timezone
+- Add hashes to templates to bust cache on new releases
+- Extract framework as a dependency to share between apps (needs build rework)
+  - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
+- Deploy on kubernetes
+  - Add compress middleware on Traefik (as today on docker)
+  - Add REST API security middleware on Traefik (<https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#security-headers>)
+  - Add basic security middleware on Traefik for frontend resources (as today on docker)
+- Add versioning on build
+  - Compute next version at start of build, use it to tag published docker images
+  - Use version to tag the git repo
+  - Publish the Helm chart with the version tag, with pinned container references
+- Improve security for frontend resources
+  - nginx CSP vs Traefik other headers? Could everything be handled by Traefik?
+  - remove `unsafe-inline` for `style-src`
+  - remove `unsafe-inline` for `script-src`
+- Database
+  - MongoDB version support: <https://www.mongodb.com/legal/support-policy/lifecycles>
+    - Plan migration to another system, as MongoDB 5+ requires more recent/powerful processors than targeted here
+  - nodeSelector needed because of hostpath for DB volume

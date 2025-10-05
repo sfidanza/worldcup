@@ -29,7 +29,7 @@ services:
       - ADMIN_NAME
     volumes:
       - mongodb:/data/db
-      - ./blueprint/worldcup/database/initdb-full:/docker-entrypoint-initdb.d
+      - ./blueprint/worldcup/database/initdb:/docker-entrypoint-initdb.d
 
 volumes:
   mongodb:
