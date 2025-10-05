@@ -90,6 +90,26 @@ Note: The wiki pages contain all the info based on the previous development / de
 - Extract framework as a dependency to share between apps (needs build rework)
   - "Tahr: A lightweight framework with templating support, data manipulation and basic UI components"
 - Deploy on kubernetes
+  - Add compress middleware on Traefik (as today on docker)
+  - Add REST API security middleware on Traefik (<https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#security-headers>)
+  - Add basic security middleware on Traefik for frontend resources (as today on docker)
+- Add versioning on build
+  - Compute next version at start of build, use it to tag published docker images
+  - Use version to tag the git repo
+  - Publish the Helm chart with the version tag, with pinned container references
+- Improve security for frontend resources
+  - nginx CSP vs Traefik other headers? Could everything be handled by Traefik?
+  - remove `unsafe-inline` for `style-src`
+  - remove `unsafe-inline` for `script-src`
+- Database
+  - initDB: should we keep this or not?
+    - Keep? Push [server data](server/src/admin/data/) to ConfigMap and share it with server container as well
+    - Remove? Only setup admin through initDB and add import all to admin endpoint
+    - Pros/Cons?
+      - Data inside server only seems cleaner than isolated in chart and shared between two containers (read-only)
+      - However it is simpler as an admin to start and be ready, rather than have to login and import after first start
+  - nodeSelector needed because of hostpath for DB volume
+
 
 ## References
 
