@@ -8,7 +8,7 @@
     "url": "https://github.com/sfidanza/worldcup/issues"
   },
   "devDependencies": {
-    "chokidar": "4.0.3",
+    "chokidar": "5.0.0",
     "del": "8.0.1",
     "esbuild": "0.27.0",
     "esbuild-plugin-copy": "2.1.1",
