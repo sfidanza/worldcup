@@ -18,6 +18,11 @@ export default users;
  * }
  */
 users.authenticate = async function (db, login, pwd) {
+	if (typeof login !== "string") {
+		throw new httpError.UnprocessableEntity('User id is not valid');
+	} else if (typeof pwd !== "string") {
+		throw new httpError.UnprocessableEntity('User password is not valid');
+	}
 	return db.collection('users')
 		.findOne(
 			{ 'id': getId('native', login), 'pwd': pwd },
@@ -31,6 +36,11 @@ users.authenticate = async function (db, login, pwd) {
  * If successful, returns a user object (like authenticate).
  */
 users.register = async function (db, login, pwd, type, info) {
+	if (typeof login !== "string") {
+		throw new httpError.UnprocessableEntity('User id is not valid');
+	} else if (typeof pwd !== "string") {
+		throw new httpError.UnprocessableEntity('User password is not valid');
+	}
 	const id = getId(type, login);
 	delete info.login; // can not be changed
 	delete info.type; // can not be changed

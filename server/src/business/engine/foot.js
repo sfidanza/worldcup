@@ -7,6 +7,7 @@ const foot = {};
 export default foot;
 
 foot.MATCHES_PER_GROUP = 6;
+foot.MAX_TEAMS_PER_GROUP = 4;
 
 foot.defineWinner = function (match) {
 	const score1 = match['team1_score'];

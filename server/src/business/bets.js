@@ -63,6 +63,9 @@ bets.enterChampionBet = async function (db, user, champion) {
  * @api public
  */
 bets.enterMatchWinnerBet = async function (db, user, mid, winner) {
+	if (typeof mid !== "string") {
+		throw new httpError.UnprocessableEntity('Match id is not valid');
+	}
 	return db.collection('matches').findOne({ 'id': mid })
 		.then(match => {
 			if (!match) {

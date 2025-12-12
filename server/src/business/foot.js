@@ -49,6 +49,9 @@ foot.getData = async function (db) {
  * @api public
  */
 foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK) {
+	if (typeof mid !== "string") {
+		throw new httpError.UnprocessableEntity('Match id is not valid');
+	}
 	const edit = {
 		'team1_score': score1,
 		'team2_score': score2,
@@ -85,10 +88,14 @@ foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK
  */
 foot.setRanks = async function (db, group, ranks) {
 	const data = { teams: [] };
+	if (typeof group !== "string") {
+		throw new httpError.UnprocessableEntity('Group is not valid');
+	}
 
-	// security: the query checks that each team passed is in the specified group
+	// security: check that each provided team is in the specified group
+	//           and avoid DoS attack through large `ranks.length`
 	const teams = db.collection('teams');
-	for (let i = 0; i < ranks.length; i++) {
+	for (let i = 0; i < ranks.length && i < engine.MAX_TEAMS_PER_GROUP; i++) {
 		teams.updateOne({ id: ranks[i], group: group }, { $set: { rank: i } });
 		data.teams.push({ id: ranks[i], rank: i });
 	}
@@ -112,6 +119,9 @@ foot.setRanks = async function (db, group, ranks) {
  * @param {boolean} options.noPromotion - do not promote best teams to next round
  */
 foot.updateGroupStats = async function (db, group, options) {
+	if (typeof group !== "string") {
+		throw new httpError.UnprocessableEntity('Group is not valid');
+	}
 	return Promise.all([
 		db.collection('teams').find({ group: group }, { id: true }).toArray(),
 		db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
@@ -164,11 +174,18 @@ function advanceToNextRound(db, match) {
  * Update stats and advance to next round
  * @param {object} db
  * @param {string} mid - the id of the match to be updated
- * @param {integer} tid1 - team 1
- * @param {integer} tid2 - team 2
+ * @param {string} tid1 - team 1
+ * @param {string} tid2 - team 2
  * @api public
  */
 foot.setMatchTeams = async function (db, mid, tid1, tid2) {
+	if (typeof mid !== "string") {
+		throw new httpError.UnprocessableEntity('Match id is not valid');
+	} else if (typeof tid1 !== "string") {
+		throw new httpError.UnprocessableEntity('Team 1 is not valid');
+	} else if (typeof tid2 !== "string") {
+		throw new httpError.UnprocessableEntity('Team 2 is not valid');
+	}
 	const edit = {
 		'team1_id': tid1,
 		'team2_id': tid2
