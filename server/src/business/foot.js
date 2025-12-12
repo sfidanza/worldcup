@@ -49,7 +49,7 @@ foot.getData = async function (db) {
  * @api public
  */
 foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK) {
-	if (typeof mid !== "string") {
+	if (typeof mid !== 'string') {
 		throw new httpError.UnprocessableEntity('Match id is not valid');
 	}
 	const edit = {
@@ -88,7 +88,7 @@ foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK
  */
 foot.setRanks = async function (db, group, ranks) {
 	const data = { teams: [] };
-	if (typeof group !== "string") {
+	if (typeof group !== 'string') {
 		throw new httpError.UnprocessableEntity('Group is not valid');
 	}
 
@@ -119,7 +119,7 @@ foot.setRanks = async function (db, group, ranks) {
  * @param {boolean} options.noPromotion - do not promote best teams to next round
  */
 foot.updateGroupStats = async function (db, group, options) {
-	if (typeof group !== "string") {
+	if (typeof group !== 'string') {
 		throw new httpError.UnprocessableEntity('Group is not valid');
 	}
 	return Promise.all([
@@ -179,11 +179,11 @@ function advanceToNextRound(db, match) {
  * @api public
  */
 foot.setMatchTeams = async function (db, mid, tid1, tid2) {
-	if (typeof mid !== "string") {
+	if (typeof mid !== 'string') {
 		throw new httpError.UnprocessableEntity('Match id is not valid');
-	} else if (typeof tid1 !== "string") {
+	} else if (typeof tid1 !== 'string') {
 		throw new httpError.UnprocessableEntity('Team 1 is not valid');
-	} else if (typeof tid2 !== "string") {
+	} else if (typeof tid2 !== 'string') {
 		throw new httpError.UnprocessableEntity('Team 2 is not valid');
 	}
 	const edit = {
