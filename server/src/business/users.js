@@ -48,11 +48,11 @@ users.register = async function (db, login, pwd, type, info) {
 	return db.collection('users')
 		.findOne({ 'id': id })
 		.then(user => {
-			if (user && user.pwd !== pwd) {
+			if (user && pwd !== user.pwd) {
 				throw new httpError.UnprocessableEntity('User already exists: ' + login);
 			}
 			return db.collection('users').findOneAndUpdate(
-				{ 'id': id, 'pwd': pwd },
+				{ 'id': id, 'pwd': { $eq: pwd } },
 				{ $set: info },
 				{ upsert: true, returnDocument: 'after', projection: { _id: false, pwd: false} }
 			);
