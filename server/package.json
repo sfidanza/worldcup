@@ -20,7 +20,7 @@
     "node-cron": "4.2.1"
   },
   "devDependencies": {
-    "eslint": "9.39.1",
+    "eslint": "9.39.2",
     "mocha": "11.7.5",
     "nodemon": "3.1.11"
   },
