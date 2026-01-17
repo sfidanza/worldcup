@@ -23,3 +23,5 @@
   - MongoDB version support: <https://www.mongodb.com/legal/support-policy/lifecycles>
     - Plan migration to another system, as MongoDB 5+ requires more recent/powerful processors than targeted here
   - nodeSelector needed because of hostpath for DB volume
+- Unit tests
+  - Try [node testing framework](https://nodejs.org/api/test.html) to replace `mocha`
