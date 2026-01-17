@@ -17,7 +17,7 @@
     "spritesheet-templates": "10.5.2",
     "spritesmith": "3.5.1",
     "stylelint": "16.26.1",
-    "stylelint-config-standard": "39.0.1"
+    "stylelint-config-standard": "40.0.0"
   },
   "overrides": { "tough-cookie": "~6.0.0" },
   "scripts": {
