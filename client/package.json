@@ -13,7 +13,7 @@
     "esbuild": "0.27.3",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-eslint": "0.3.12",
-    "eslint": "9.39.2",
+    "eslint": "10.0.0",
     "fast-glob": "3.3.3",
     "spritesheet-templates": "10.5.2",
     "spritesmith": "3.5.1",
