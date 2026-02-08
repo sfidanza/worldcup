@@ -29,7 +29,7 @@ export default (configuration) => {
 				const tpl = Object.fromEntries(await Promise.all(files.map(src => {
 					const id = path.basename(src, path.extname(src));
 					return fs.promises.readFile(src, 'utf-8')
-						.then(contents => [ id, contents ]);
+						.then(contents => [id, contents]);
 				})));
 
 				// Write the destination file

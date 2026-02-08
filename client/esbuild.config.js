@@ -2,9 +2,9 @@
 
 import * as esbuild from 'esbuild';
 import { copy } from 'esbuild-plugin-copy';
-import eslint from 'esbuild-plugin-eslint';
 import clean from './build/plugins/esbuild-plugin-clean.js';
 import hash from './build/plugins/esbuild-plugin-hash.js';
+import eslint from './build/plugins/esbuild-plugin-eslint.js';
 import stylelint from './build/plugins/esbuild-plugin-stylelint.js';
 import tpl from './build/plugins/esbuild-plugin-tpl.js';
 import chokidar from 'chokidar';
