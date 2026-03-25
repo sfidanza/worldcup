@@ -15,7 +15,7 @@
     "express-rate-limit": "8.3.1",
     "express-session": "1.19.0",
     "http-errors": "2.0.1",
-    "ics": "3.10.0",
+    "ics": "3.11.0",
     "mongodb": "7.1.1",
     "node-cron": "4.2.1"
   },
