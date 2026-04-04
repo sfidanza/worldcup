@@ -103,7 +103,7 @@ bet.parseMatches = function (bets) {
 	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
 	const teams = frw.data.indexBy(page.data.teams, 'id');
 
-	for (const phase of ['G', 'H', 'Q', 'S', 'T', 'F']) {
+	for (const phase of page.config.phases) {
 		if (!list[phase]) continue;
 		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');

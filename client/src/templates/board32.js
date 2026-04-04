@@ -2,40 +2,29 @@ import { Template } from '../frw/frw.Template.js';
 
 let page, frw;
 
-export const board = new Template();
+export const board32 = new Template();
 
-board.phaseClasses = {
-	'H': 'round16',
-	'Q': 'quarter',
-	'S': 'semi',
-	'T': 'third',
-	'F': 'final'
+board32.phaseClasses = {
+	'J': 'round32',
+	'H': 'round16'
 };
 
-board.onCreate = function (pageRef, frwRef, i18nRepository) {
+board32.onCreate = function (pageRef, frwRef, i18nRepository) {
 	page = pageRef;
 	frw = frwRef;
 	this.i18n = i18nRepository;
 };
 
-board.onParse = function (data) {
+board32.onParse = function (data) {
 	const teams = frw.data.indexBy(data.teams, 'id');
 	const dateFormat = page.config.i18n.formats.date;
 	
 	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 
-	const withH = data.matches.some(m => m.phase === 'H');
-	const withT = data.matches.some(m => m.phase === 'T');
-	this.set('size', withH ? 'sizeH' : 'sizeQ');
-	if (withH) {
-		this.parseBlock('linksH');
-	}
-	if (withT) {
-		this.parseBlock('linksT');
-	}
+	this.set('size', 'sizeH');
 
 	for (const match of data.matches) {
-		if (match.phase === 'J') continue; // skip round of 32
+		if (!this.phaseClasses[match.phase]) continue;
 		this.set('match', match);
 		this.set('class', this.phaseClasses[match.phase]);
 		this.set('category', page.config.i18n['phase' + match.phase]);
@@ -53,22 +42,7 @@ board.onParse = function (data) {
 			this.set('group1', team1?.group || ''); // Disambiguate '3DEF' when team is set
 			this.set('group2', team2?.group || '');
 			this.parseBlock('tooltip');
-		} else if (match.phase === 'Q' || match.phase === 'S') {
-			this.parseBlock('highlight');
 		}
 		this.parseBlock('match');
-	}
-};
-
-board.highlight = function (match) {
-	const root = document.getElementById('contents');
-	if (match) {
-		root.querySelectorAll('.for-' + match).forEach(item => {
-			item.classList.add('highlighted');
-		});
-	} else {
-		root.querySelectorAll('div.highlighted').forEach(item => {
-			item.classList.remove('highlighted');
-		});
 	}
 };

@@ -17,6 +17,7 @@ database.VALID_YEARS = {
 	'2014': 'worldcup2014',
 	'2018': 'worldcup2018',
 	'2022': 'worldcup2022',
+	'2026': 'worldcup2026',
 	// euro
 	'2008': 'euro2008',
 	'2012': 'euro2012',

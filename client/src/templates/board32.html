@@ -1,0 +1,38 @@
+<div class="board {size}">
+<div id="link-H1" class="link"></div>
+<div id="link-H2" class="link"></div>
+<div id="link-H3" class="link"></div>
+<div id="link-H4" class="link"></div>
+<div id="link-H5" class="link"></div>
+<div id="link-H6" class="link"></div>
+<div id="link-H7" class="link"></div>
+<div id="link-H8" class="link"></div>
+
+<div id="link-Q1" class="link"></div>
+<div id="link-Q2" class="link"></div>
+<div id="link-Q3" class="link"></div>
+<div id="link-Q4" class="link"></div>
+
+<!-- BEGIN: match -->
+<div class="match {class}" id="match-{match.id}"
+     <!-- BEGIN: tooltip -->
+     onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}', '{group1}', '{group2}'), 'centerX');"
+     onmousemove="page.tooltip.positionTooltip(event, 'centerX');"
+     onmouseout="page.tooltip.hideTooltip();"
+     <!-- END: tooltip -->
+     >
+	<h3>{category}</h3>
+	<div class="content">
+		<span class="date">{day}<br/>{match.hour}</span><span class="media-ML"> - {stadium.city}</span>
+		<div class="teams">
+			<span class="{flag} {flag}-{match.team1_id} left">{team1.name}</span>
+			<span class="score">{match.team1_score} - {match.team2_score}</span>
+			<span class="{flag} {flag}-{match.team2_id}">{team2.name}</span>
+			<!-- BEGIN: PSO -->
+			<span class="score pso">({match.team1_scorePK} - {match.team2_scorePK})</span>
+			<!-- END: PSO -->
+		</div>
+	</div>
+</div>
+<!-- END: match -->
+</div>

@@ -17,7 +17,7 @@ schedule.onParse = function (data) {
 	
 	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 
-	for (const phase of ['G', 'H', 'Q', 'S', 'T', 'F']) {
+	for (const phase of page.config.phases) {
 		if (!list[phase]) continue;
 		this.set('phase', page.config.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');

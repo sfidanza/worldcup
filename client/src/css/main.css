@@ -84,6 +84,7 @@ button {
 #logo.worldcup-2014 { background-image: url(img/logo/wc/wc2014.webp); }
 #logo.worldcup-2018 { background-image: url(img/logo/wc/wc2018.webp); }
 #logo.worldcup-2022 { background-image: url(img/logo/wc/wc2022.webp); }
+#logo.worldcup-2026 { background-image: url(img/logo/wc/wc2026.webp); }
 
 #logo.euro-2008 { background-image: url(img/logo/euro/euro2008.png); }
 #logo.euro-2012 { background-image: url(img/logo/euro/euro2012.png); }
@@ -142,7 +143,7 @@ dl#menu dd.right {
 }
 dl#menu dd a {
 	display: block;
-	padding: 0.4em 1.35em;
+	padding: 0.4em 1.2em;
 	text-decoration: none;
 	color: black;
 }

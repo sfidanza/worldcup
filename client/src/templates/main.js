@@ -15,6 +15,10 @@ main.onParse = function (year) {
 	this.set('cid', page.config.cid);
 	this.set('name', page.config.name);
 
+	if (page.data.matches.some(m => m.phase === 'J')) {
+		this.parseBlock('round32');
+	}
+
 	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
 	Object.keys(teamsByGroup).sort().forEach(g => {
 		this.set('group', g);

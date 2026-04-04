@@ -174,5 +174,11 @@
 		"organizer": "Qatar",
 		"organizerId": "QAT",
 		"available": true
+	},
+	{
+		"year": "2026",
+		"organizer": "United States, Canada & Mexico",
+		"organizerId": "USA",
+		"available": true
 	}
 ]

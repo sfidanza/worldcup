@@ -7,6 +7,7 @@ export { user } from '../templates/user.js';
 export { schedule } from '../templates/schedule.js';
 export { ranking } from '../templates/ranking.js';
 export { board } from '../templates/board.js';
+export { board32 } from '../templates/board32.js';
 export { quickRanking } from '../templates/quickRanking.js';
 export { history } from '../templates/history.js';
 export { notes } from '../templates/notes.js';

@@ -195,6 +195,7 @@ page.show = function (viewName, ...option) {
 		case 'ranking': page.showRanking(...option); break;
 		case 'group': page.showGroup(...option); break;
 		case 'board': page.showBoard(); break;
+		case 'board32': page.showBoard32(); break;
 		case 'history': page.showPage('history', ...option); break;
 		case 'notes': page.showPage('notes'); break;
 		case 'login': page.showPage('login', ...option); break;
@@ -262,6 +263,17 @@ page.showBoard = function () {
 
 	page.templates.board.parse(data);
 	page.templates.board.load(page.config.area.contents);
+};
+
+page.showBoard32 = function () {
+	const data = {
+		teams: page.data.teams,
+		matches: page.data.matches.filter(m => m.group == null),
+		stadiums: page.data.stadiums
+	};
+
+	page.templates.board32.parse(data);
+	page.templates.board32.load(page.config.area.contents);
 };
 
 page.parseGroupRanking = function (from, group) {

@@ -26,6 +26,7 @@ server {
 		rewrite ^/2014$ /index.html break;
 		rewrite ^/2018$ /index.html break;
 		rewrite ^/2022$ /index.html break;
+		rewrite ^/2026$ /index.html break;
 		# euro
 		rewrite ^/2008$ /index.html break;
 		rewrite ^/2012$ /index.html break;

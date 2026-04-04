@@ -12,14 +12,14 @@
 
 	--offset-top: -160px;
 }
-.page-board .match {
+.board .match {
 	position: absolute;
 	width: 45%;
 	border: 1px solid #CCCCCC;
 	background-color: #F4F4F4;
 	border-radius: 0 0 0.6em 0.6em;
 }
-.page-board .match h3 {
+.board .match h3 {
 	margin: 0;
 	padding: 1px 0;
 	border-bottom: 1px solid #CCCCCC;
@@ -28,39 +28,40 @@
 	font-size: 100%;
 	color: #444444;
 }
-.page-board .match.round16 h3 { background-image: url(img/final-lime.png); }
-.page-board .match.quarter h3 { background-image: url(img/final-bronze.png); }
-.page-board .match.semi    h3 { background-image: url(img/final-silver.png); }
-.page-board .match.final   h3 { background-image: url(img/final-gold.png); }
-.page-board .match.third   h3 { background-image: url(img/final-gold.png); }
-.page-board .match span.date {
+.board .match.round32 h3 { background: linear-gradient(#FFC66B, #c2830d); }
+.board .match.round16 h3 { background: linear-gradient(#C6FF6B, #83c20d); }
+.board .match.quarter h3 { background: linear-gradient(#FEEEB0, #99843e); }
+.board .match.semi    h3 { background: linear-gradient(#E6E6FA, #a7a7aa); }
+.board .match.final   h3 { background: linear-gradient(#FFFF48, #a3a309); }
+.board .match.third   h3 { background: linear-gradient(#FFFF48, #a3a309); }
+.board .match span.date {
 	font-size: 85%;
 }
-.page-board .match .content {
+.board .match .content {
 	padding: 0.3em;
 	text-align: center;
 }
-.page-board .match div.teams {
+.board .match div.teams {
 	margin-top: 0.4em;
 	text-align: center;
 	font-weight: bold;
 }
-.page-board .match div.teams .score {
+.board .match div.teams .score {
 	display: inline-block;
 	vertical-align: middle;
 	width: 35px;
 }
-.page-board .match span.flag, .page-board .match span.club {
+.board .match span.flag, .board .match span.club {
 	width: calc(50% - 41px);
 	text-align: left;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	vertical-align: middle;
 }
-.page-board .match span.flag.left, .page-board .match span.club.left {
+.board .match span.flag.left, .board .match span.club.left {
 	text-align: right;
 }
-.page-board .match div.teams .pso {
+.board .match div.teams .pso {
 	font-size: 85%;
 }
 .link {
@@ -71,27 +72,73 @@
 	border-width: 3px;
 	border-color: #666666;
 }
-/* #match-H1 {  } */
-#match-H2 { top:  80px; }
-#match-H5 { top:     0; right: 0; }
-#match-H6 { top:  80px; right: 0; }
-#match-H3 { top: 565px; }
-#match-H4 { top: 645px; }
-#match-H7 { top: 565px; right: 0; }
-#match-H8 { top: 645px; right: 0; }
-#match-Q1 { top: calc(160px + var(--offset-top)); }
-#match-Q2 { top: calc(160px + var(--offset-top)); right: 0; }
-#match-Q3 { top: calc(485px + var(--offset-top)); }
-#match-Q4 { top: calc(485px + var(--offset-top)); right: 0; }
-#match-S1 { top: calc(240px + var(--offset-top)); left: 50%; transform: translate(-50%); }
-#match-S2 { top: calc(405px + var(--offset-top)); left: 50%; transform: translate(-50%); }
-#match-T1 { top: calc(320px + var(--offset-top)); left:   0; }
-#match-F1 { top: calc(320px + var(--offset-top)); right:  0; border: 2px solid #333333; }
-#link-Q1 { top:  60px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
-#link-Q2 { top:  60px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
-#link-Q3 { top: 545px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
-#link-Q4 { top: 545px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
-#link-S1 { top: calc(220px + var(--offset-top)); left:  22.5%; right: 22.5%; height:  40px; border-top: none; }
-#link-S2 { top: calc(455px + var(--offset-top)); left:  22.5%; right: 22.5%; height:  40px; border-bottom: none; }
-#link-F1 { top: calc(285px + var(--offset-top)); left:  72.5%; right: 22.5%; height: 145px; border-left: none; }
-#link-T1 { top: calc(285px + var(--offset-top)); right: 72.5%; left:  22.5%; height: 145px; border-style: dashed; border-right: none; }
+/* .page-board #match-H1 {  } */
+.page-board #match-H2 { top:  80px; }
+.page-board #match-H5 { top:     0; right: 0; }
+.page-board #match-H6 { top:  80px; right: 0; }
+.page-board #match-H3 { top: 565px; }
+.page-board #match-H4 { top: 645px; }
+.page-board #match-H7 { top: 565px; right: 0; }
+.page-board #match-H8 { top: 645px; right: 0; }
+.page-board #match-Q1 { top: calc(160px + var(--offset-top)); }
+.page-board #match-Q2 { top: calc(160px + var(--offset-top)); right: 0; }
+.page-board #match-Q3 { top: calc(485px + var(--offset-top)); }
+.page-board #match-Q4 { top: calc(485px + var(--offset-top)); right: 0; }
+.page-board #match-S1 { top: calc(240px + var(--offset-top)); left: 50%; transform: translate(-50%); }
+.page-board #match-S2 { top: calc(405px + var(--offset-top)); left: 50%; transform: translate(-50%); }
+.page-board #match-T1 { top: calc(320px + var(--offset-top)); left:   0; }
+.page-board #match-F1 { top: calc(320px + var(--offset-top)); right:  0; border: 2px solid #333333; }
+.page-board #link-Q1 { top:  60px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
+.page-board #link-Q2 { top:  60px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
+.page-board #link-Q3 { top: 545px; left:  22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
+.page-board #link-Q4 { top: 545px; right: 22.5%; width:     0; height: 100px; border-top: none; border-left: none; }
+.page-board #link-S1 { top: calc(220px + var(--offset-top)); left:  22.5%; right: 22.5%; height:  40px; border-top: none; }
+.page-board #link-S2 { top: calc(455px + var(--offset-top)); left:  22.5%; right: 22.5%; height:  40px; border-bottom: none; }
+.page-board #link-F1 { top: calc(285px + var(--offset-top)); left:  72.5%; right: 22.5%; height: 145px; border-left: none; }
+.page-board #link-T1 { top: calc(285px + var(--offset-top)); right: 72.5%; left:  22.5%; height: 145px; border-style: dashed; border-right: none; }
+
+/** Round of 32 Board **/
+.page-board32 .board {
+	position: relative;
+	height: 1280px;
+}
+
+.page-board32 #match-J2  { top:    0px; }
+.page-board32 #match-J5  { top:   80px; }
+.page-board32 #match-J1  { top:  160px; }
+.page-board32 #match-J3  { top:  240px; }
+.page-board32 #match-J11 { top:  320px; }
+.page-board32 #match-J12 { top:  400px; }
+.page-board32 #match-J9  { top:  480px; }
+.page-board32 #match-J10 { top:  560px; }
+.page-board32 #match-J4  { top:  640px; }
+.page-board32 #match-J6  { top:  720px; }
+.page-board32 #match-J7  { top:  800px; }
+.page-board32 #match-J8  { top:  880px; }
+.page-board32 #match-J14 { top:  960px; }
+.page-board32 #match-J16 { top: 1040px; }
+.page-board32 #match-J13 { top: 1120px; }
+.page-board32 #match-J15 { top: 1200px; }
+
+.page-board32 #match-H1 { top:   40px; right: 0; }
+.page-board32 #match-H2 { top:  200px; right: 0; }
+.page-board32 #match-H5 { top:  360px; right: 0; }
+.page-board32 #match-H6 { top:  520px; right: 0; }
+.page-board32 #match-H3 { top:  680px; right: 0; }
+.page-board32 #match-H4 { top:  840px; right: 0; }
+.page-board32 #match-H7 { top: 1000px; right: 0; }
+.page-board32 #match-H8 { top: 1160px; right: 0; }
+
+.page-board32 #link-H1 { top:   20px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H2 { top:  180px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H5 { top:  340px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H6 { top:  500px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H3 { top:  660px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H4 { top:  820px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H7 { top:  980px; left: 45%; width: 80px; height: 100px; border-left: none; }
+.page-board32 #link-H8 { top: 1140px; left: 45%; width: 80px; height: 100px; border-left: none; }
+
+.page-board32 #link-Q1 { top:  100px; right: 22.5%; width: 0; height: 100px; border-top: none; border-left: none; }
+.page-board32 #link-Q2 { top:  420px; right: 22.5%; width: 0; height: 100px; border-top: none; border-left: none; }
+.page-board32 #link-Q3 { top:  740px; right: 22.5%; width: 0; height: 100px; border-top: none; border-left: none; }
+.page-board32 #link-Q4 { top: 1060px; right: 22.5%; width: 0; height: 100px; border-top: none; border-left: none; }
