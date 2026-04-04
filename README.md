@@ -4,27 +4,7 @@ A site to follow the calendar and results of the FIFA worldcup and other competi
 
 - <https://worldcup.dagobah-online.com>
 
-The site is using a node.js backend to retrieve data and a javascript frontend to display them. It is as much a functional interest to follow the worldcup, as a technical one to play with technologies.
-
-Functionally, the site has:
-
-- the list of matches, locations, date/hours (France time)
-- the groups schedule and results
-- a finals board to follow the round of 16 to the final
-- admin endpoints to update scores with an engine to compute teams progress
-- and more.. (see [notes.html](./client/src/templates/notes.html) for more)
-
-Technically:
-
-- each service runs in its docker container
-  - js frontend served by nginx
-    - it uses a client-side template engine to display the views
-    - page navigation and history is handled by the js framework layer
-    - data is retrieved targeting the backend api
-    - nginx proxies the api calls to node.js
-    - esbuild is used for the build system
-  - server runs on node.js
-  - data is stored in mongodb
+The site is using a node.js backend to retrieve data and a javascript frontend to display them. It is as much a functional interest to follow the worldcup, as a technical one to play with technologies. See [notes.html](./client/src/templates/notes.html) to learn more about its features.
 
 ## Initial setup
 
