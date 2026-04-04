@@ -1,5 +1,13 @@
 import { test, expect } from '@playwright/test';
 
+const PAGE_TITLE = (year) => {
+  switch (year % 4) {
+    case 0: return new RegExp(`UEFA Euro ${year}.*`);
+    case 1: return new RegExp(`${year} FIFA Club World Cup.*`);
+    case 2: return new RegExp(`${year} FIFA Worldcup.*`);
+    default: return '';
+  }
+};
 // test.beforeEach(async ({ page }) => {
 //   await page.goto('/');
 // });
@@ -12,7 +20,7 @@ test('history @sanity', async ({ page }) => {
   await expect(page).toHaveScreenshot('history.png');
 });
 
-for (const rep of ['2022', '2018 @sanity', '2014', '2010']) {
+for (const rep of ['2026', '2025', '2018 @sanity', '2016', '2010']) {
   const year = rep.slice(0, 4);
   test(`${rep} pages`, async ({ page }, workerInfo) => {
     await page.goto(`/${year}`);
@@ -22,7 +30,7 @@ for (const rep of ['2022', '2018 @sanity', '2014', '2010']) {
 
 async function checkNavigation(page, year, workerInfo) {
   // Schedule - default page
-  await expect(page).toHaveTitle(new RegExp(`${year} FIFA Worldcup.*`));
+  await expect(page).toHaveTitle(PAGE_TITLE(year));
   await expect(page).toHaveScreenshot(`${year}-schedule.png`);
 
   // Other pages
