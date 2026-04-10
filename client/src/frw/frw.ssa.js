@@ -9,7 +9,7 @@ export const ssa = {};
  * @param {object} repository  templates repository to register templates in
  */
 ssa.loadTemplates = async function (url, repository, ...params) {
-	return fetch(url)
+	return fetch(url, { cache: 'no-cache' })
 		.then(response => response.json())
 		.then(response => {
 			if (response) {
