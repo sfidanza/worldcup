@@ -1,0 +1,37 @@
+<div class="box">
+	<h2>Global action</h2>
+	<p>reset (drop and re-import data for all editions at once - keep users, bets...)</p>
+</div>
+
+<!-- BEGIN: active -->
+<div class="box active">
+	<h2>Active competition: {name}</h2>
+	<p><a onclick="page.preview('{year}', event);" href="#">Preview</a>, Import</p>
+	<p>See active jobs, trigger new, delete</p>
+</div>
+<!-- END: active -->
+
+<div class="box">
+	<h2>Available competitions</h2>
+	<table class="list">
+	<thead>
+		<tr>
+			<th>Year</th>
+			<th>Competition</th>
+			<th>Preview</th>
+			<th>Import</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<!-- BEGIN: competition -->
+		<tr class="{row_class}">
+			<td>{year}</td>
+			<td>{name}</td>
+			<td><a onclick="page.preview('{year}', event);" href="#">Preview</a></td>
+			<td>link</td>
+		</tr>
+		<!-- END: competition -->
+	</tbody>
+	</table>
+</div>

@@ -1,0 +1,34 @@
+/***[List]******************/
+.list {
+	width: 100%;
+	margin: auto;
+	padding: 0;
+	border: 0;
+	border-collapse: collapse;
+}
+.list thead th {
+	padding: 0.5em 0;
+	background-color: #9C0000;
+	color: #FFFFFF;
+}
+.list td {
+	padding: 0.3em 0.2em;
+	border-bottom: 1px solid #ccc;
+}
+.list td a {
+	color: #000000;
+	text-decoration: none;
+}
+.list td a:hover {
+	text-decoration: underline;
+}
+.list td img {
+	vertical-align: bottom;
+}
+
+.box {
+  margin: 1em auto;
+  padding: 1em;
+  background-color: #FFFFFF;
+  border-radius: 1em;
+}

@@ -11,7 +11,7 @@ import chokidar from 'chokidar';
 
 const config = {
 	logLevel: 'info',
-	entryPoints: [ 'src/app/app.js', 'src/app.css' ],
+	entryPoints: [ 'src/app/app.js', 'src/app.css', 'src/admin/admin.js', 'src/admin.css' ],
 	entryNames: '[name]-[hash]',
 	bundle: true,
 	sourcemap: true,
@@ -26,11 +26,15 @@ const config = {
 		}),
 		hash({
 			srcdir: 'src/',
-			index: 'index.html'
+			index: [ 'index.html', 'admin.html' ]
 		}),
 		tpl({
 			files: [ 'src/templates/**/*.html' ],
 			dest: 'app.json'
+		}),
+		tpl({
+			files: [ 'src/admin/templates/**/*.html' ],
+			dest: 'admin.json'
 		}),
 		copy({
 			assets: [{
