@@ -6,18 +6,19 @@
  *   /api/<year>/admin/drop     -> drop the database
  *   /api/<year>/admin/import   -> import the filesystem data in database
  * ****************************************************************************
- *   /api/<year>/admin/update?mid=x   -> update the match score (mid is the FIFA match id)
- *   /api/<year>/admin/start?mid=x    -> start the cron job to get live score on this match
- *   /api/<year>/admin/stop?mid=x     -> stop the cron job to get live score on this match
- *   /api/<year>/admin/schedule?cid=x -> read today's matches and set their cron jobs
  *   /api/<year>/admin/jobs           -> list scheduled jobs
+ *   /api/<year>/admin/schedule       -> start the competition scheduler to take care of all matches
+ *   /api/<year>/admin/unschedule     -> stop the competition scheduler
+ *   /api/<year>/admin/start?mid=x    -> start the score follow-up job on this match
+ *   /api/<year>/admin/stop?mid=x     -> stop the score follow-up job on this match
+ *   /api/<year>/admin/update?mid=x   -> update the match score (mid is the FIFA match id)
  ******************************************************************************/
 import { Router } from 'express';
 import importer from '../admin/importer.js';
 import updater from '../admin/updater.js';
 
 export default function getRouter() {
-	const router = Router();
+	const router = Router({ mergeParams: true });
 
 	router.get('/drop', function (request, response) {
 		const user = request.session.user;
@@ -82,7 +83,7 @@ export default function getRouter() {
 			const query = request.query;
 			if (/^\d+$/.test(query.mid)) {
 				const db = request.database;
-				updater.start(db, query.mid)
+				updater.startMatch(db, query.mid)
 					.then(job => {
 						if (job) {
 							response.status(200).json({ success: 'job started' });
@@ -103,7 +104,7 @@ export default function getRouter() {
 		if (user && user.isAdmin) {
 			const query = request.query;
 			if (/^\d+$/.test(query.mid)) {
-				updater.stop(query.mid)
+				updater.stopMatch(query.mid)
 					.then(job => {
 						if (job) {
 							response.status(200).json({ success: 'job stopped' });
@@ -122,16 +123,25 @@ export default function getRouter() {
 	router.get('/schedule', function (request, response) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
-			const query = request.query;
-			if (/^\d+$/.test(query.cid)) {
-				const db = request.database;
-				updater.getCurrentMatches(db, query.cid)
-					.then(list => {
-						response.status(200).json(list);
-					});
-			} else {
-				response.status(400).json({ error: 'Invalid query parameter `cid`' });
-			}
+			const db = request.database;
+			const year = request.params.year;
+			updater.startCompetition(db, year)
+				.then(job => {
+					response.status(200).json(job);
+				});
+		} else {
+			response.status(401).json({ error: 'Unauthorized' });
+		}
+	});
+
+	router.get('/unschedule', function (request, response) {
+		const user = request.session.user;
+		if (user && user.isAdmin) {
+			const year = request.params.year;
+			updater.stopCompetition(year)
+				.then(job => {
+					response.status(200).json(job);
+				});
 		} else {
 			response.status(401).json({ error: 'Unauthorized' });
 		}

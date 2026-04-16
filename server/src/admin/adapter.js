@@ -4,6 +4,11 @@
 
 const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
 
+const COMPETITION_IDS = {
+	'worldcup': 17,
+	'cwc': 10005
+};
+
 const adapter = {};
 export default adapter;
 /**
@@ -11,7 +16,7 @@ export default adapter;
  * @typedef {object} Match
  * @property {Enum} MatchStatus
  *      0  Full Time
- *      1  Not started yet
+ *      1  Not yet started
  *      3  Ongoing
  *      4  Abandoned
  *      7  Postponed
@@ -46,10 +51,11 @@ adapter.getMatch = async function (mid) {
 
 /**
  * Retrieves upcoming/ongoing matches for the specified competition
- * @param {string} cid - the FIFA competition id (ex: Club World Cup => cid=10005)
+ * @param {string} competitionId - 'worldcup' or 'cwc' ('euro' is not supported yet)
  * @returns {Match[]}
  */
-adapter.getCurrentMatches = async function (cid) {
+adapter.getCurrentMatches = async function (competitionId) {
+	const cid = COMPETITION_IDS[competitionId];
 	return fetch(LIVE_API + `?idCompetition=${cid}`)
 		.then(res => res.json());
 };
