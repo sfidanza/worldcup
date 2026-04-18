@@ -181,7 +181,6 @@ page.schedule = function (year) {
 	fetch(page.config.url.schedule(year))
 		.then(response => response.json())
 		.then(data => {
-			console.log('schedule', data);
 			page.getJobs(year);
 		});
 };
@@ -190,7 +189,6 @@ page.unschedule = function (year) {
 	fetch(page.config.url.unschedule(year))
 		.then(response => response.json())
 		.then(data => {
-			console.log('unschedule', data);
 			page.getJobs(year);
 		});
 };

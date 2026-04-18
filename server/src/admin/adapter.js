@@ -53,7 +53,26 @@ export default adapter;
  */
 adapter.getMatch = async function (mid) {
 	return fetch(LIVE_API + mid)
-		.then(res => res.json());
+		.then(res => res.json())
+		.then(data => {
+			return {
+				cid: data.IdCompetition,
+				date: data.Date,
+				day: data.Date.slice(0, 10), // raw but should work for now
+				matchTime: data.MatchTime,
+				matchStatus: data.MatchStatus,
+				period: data.Period,
+				winner: data.Winner,
+				team1_id: data.HomeTeam.Abbreviation,
+				team1_name: data.HomeTeam.TeamName[0].Description,
+				team1_score: data.HomeTeam.Score,
+				team2_id: data.AwayTeam.Abbreviation,
+				team2_name: data.AwayTeam.TeamName[0].Description,
+				team2_score: data.AwayTeam.Score,
+				team1_scorePK: data.HomeTeamPenaltyScore,
+				team2_scorePK: data.AwayTeamPenaltyScore
+			};
+		});
 };
 
 /**
@@ -64,5 +83,16 @@ adapter.getMatch = async function (mid) {
 adapter.getCurrentMatches = async function (competitionId) {
 	const cid = COMPETITION_IDS[competitionId];
 	return fetch(LIVE_API + `?idCompetition=${cid}`)
-		.then(res => res.json());
+		.then(res => res.json())
+		.then(res => {
+			return res.Results.map(data => {
+				return {
+					mid: data.IdMatch,
+					date: data.Date,
+					matchStatus: data.MatchStatus,
+					matchTime: data.MatchTime,
+					period: data.Period
+				};
+			});
+		});
 };

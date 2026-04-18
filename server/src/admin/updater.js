@@ -90,8 +90,8 @@ function followScore (db, mid) {
 		updater.fetchMatch(db, mid)
 			.then(res => {
 				console.log(`${res.team1_id} - ${res.team2_id}: ${res.team1_score} - ${res.team2_score}`
-					+ ` / PK: ${res.team1_scorePK} - ${res.team2_scorePK}`
-					+ ` / status: ${res.matchStatus} / period: ${res.period} / winner: ${res.winner}`);
+					+ ` / PK: ${res.team1_scorePK} - ${res.team2_scorePK} / winner: ${res.winner}`
+					+ ` / status: ${res.matchStatus} / period: ${res.period} / matchTime: ${res.matchTime}`);
 			});
 	});
 };
@@ -105,10 +105,15 @@ function followScore (db, mid) {
 function triggerMatch (db, m) {
 	if (m.matchStatus == 1 || m.matchStatus == 3) {
 		const d = new Date(m.date);
-		const cronExpression = MT_CRON_EXP_TPL(d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
-		return schedule(`MT-${m.mid}`, cronExpression, 1, () => {
-			followScore(db, m.mid);
-		});
+		if (d < new Date()) {
+			console.log(`Match ${m.mid} already started: starting follow-up immediately`);
+			return followScore(db, m.mid);
+		} else {
+			const cronExpression = MT_CRON_EXP_TPL(d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
+			return schedule(`MT-${m.mid}`, cronExpression, 1, () => {
+				followScore(db, m.mid);
+			});
+		}
 	}
 	return false;
 };
@@ -122,17 +127,6 @@ function triggerMatch (db, m) {
 async function getCurrentMatches (db, year) {
 	const competitionId = COMPETITIONS[year % 4];
 	return adapter.getCurrentMatches(competitionId)
-		.then(res => {
-			return res.Results.map(data => {
-				return {
-					mid: data.IdMatch,
-					date: data.Date,
-					matchStatus: data.MatchStatus,
-					matchTime: data.MatchTime,
-					period: data.Period
-				};
-			});
-		})
 		.then(list => {
 			return list.map(m => {
 				const job = triggerMatch(db, m);
@@ -148,40 +142,29 @@ async function getCurrentMatches (db, year) {
  */
 updater.fetchMatch = async function (db, mid) {
 	return adapter.getMatch(mid)
-		.then(data => {
-			return {
-				date: data.Date,
-				day: data.Date.slice(0, 10), // raw but should work for now
-				matchTime: data.MatchTime,
-				matchStatus: data.MatchStatus,
-				period: data.Period,
-				winner: data.Winner,
-				team1: data.HomeTeam.Abbreviation,
-				score1: data.HomeTeam.Score,
-				team2: data.AwayTeam.Abbreviation,
-				score2: data.AwayTeam.Score,
-				score1PK: data.HomeTeamPenaltyScore,
-				score2PK: data.AwayTeamPenaltyScore
-			};
-		})
 		.then(match => {
 			const edit = {
-				'team1_score': match.score1,
-				'team2_score': match.score2,
-				'team1_scorePK': match.score1PK,
-				'team2_scorePK': match.score2PK
+				'team1_score': match.team1_score,
+				'team2_score': match.team2_score,
+				'team1_scorePK': match.team1_scorePK,
+				'team2_scorePK': match.team2_scorePK
 			};
 			return db.collection('matches')
 				.findOneAndUpdate(
-					{ team1_id: match.team1, team2_id: match.team2 },
+					{ team1_id: match.team1_id, team2_id: match.team2_id },
 					{ $set: edit },
 					{ returnDocument: 'after' }
 				)
 				.then(updated => {
-					updated.matchTime = match.matchTime;
-					updated.matchStatus = match.matchStatus;
-					updated.period = match.period;
-					updated.winner = match.winner;
+					if (!updated) {
+						console.warn(`Match ${match.team1_id} - ${match.team2_id} not found in database`);
+						updated = match;
+					} else {
+						updated.matchTime = match.matchTime;
+						updated.matchStatus = match.matchStatus;
+						updated.period = match.period;
+						updated.winner = match.winner;
+					}
 					live.broadcastMatchUpdate(updated);
 					return updated;
 				});
