@@ -132,12 +132,29 @@ page.showPage = function (tplId, options) {
 	tpl.load(page.config.area.contents);
 };
 
+page.reset = function () {
+	fetch(page.config.url.reset)
+		.then(response => response.json())
+		.then(data => {
+			console.log('reset', data);
+		});
+};
+
 page.preview = function (year, event) {
 	if (event) event.preventDefault();
 	fetch(page.config.url.preview(year))
 		.then(response => response.json())
 		.then(data => {
 			console.log('preview', data);
+		});
+};
+
+page.import = function (year, event) {
+	if (event) event.preventDefault();
+	fetch(page.config.url.import(year))
+		.then(response => response.json())
+		.then(data => {
+			console.log('import', data);
 		});
 };
 

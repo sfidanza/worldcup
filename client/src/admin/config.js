@@ -11,8 +11,9 @@ export const config = {
 	url: {
 		templates: 'admin.json',
 		history: 'api/2024/data/history',
+		import: (year) => `api/${year}/admin/import`,
 		preview: (year) => `api/${year}/admin/preview`,
-		setRanks: (year, gid, ranks) => `api/${year}/edit/setRanks?gid=${gid}&ranks=${ranks}`,
+		reset: 'api/admin/reset',
 		logout: 'api/user/logout',
 		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`
 	},

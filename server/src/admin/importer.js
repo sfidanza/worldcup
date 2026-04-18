@@ -35,9 +35,11 @@ const importData = async function (db, collection, source) {
 
 importer.import = async function (db) {
 	const edition = db.databaseName;
-	return Promise.all([
+	await db.dropDatabase();
+	const [teams, stadiums, matches] = await Promise.all([
 		importData(db, 'teams', `./data/${edition}-01-teams.js`),
 		importData(db, 'stadiums', `./data/${edition}-02-stadiums.js`),
 		importData(db, 'matches', `./data/${edition}-03-matches.js`)
-	]).then(([teams, stadiums, matches]) => { return { edition, teams, stadiums, matches }; });
+	]);
+	return { edition, teams, stadiums, matches };
 };

@@ -17,13 +17,12 @@ list.onParse = function () {
 		this.parseBlock('active');
 	}
 
-	page.data.history.filter(el => el.winnerId)
-		.forEach((c, i) => {
-			this.set('row_class', 'l' + (i % 2));
-			this.set('year', c.year);
-			this.set('name', page.config.i18n.names[c.cid](c.year));
-			this.set('active', (c.winnerId) ? '-' : page.config.i18n.active);
+	page.data.history.forEach((c, i) => {
+		this.set('row_class', 'l' + (i % 2));
+		this.set('year', c.year);
+		this.set('name', page.config.i18n.names[c.cid](c.year));
+		this.set('active', (c.winnerId) ? '-' : page.config.i18n.active);
 
-			this.parseBlock('competition');
-		});
+		this.parseBlock('competition');
+	});
 };

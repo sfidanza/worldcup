@@ -15,6 +15,9 @@
 	padding: 0.3em 0.2em;
 	border-bottom: 1px solid #ccc;
 }
+.list td:has(a) {
+	text-align: center;
+}
 .list td a {
 	color: #000000;
 	text-decoration: none;
@@ -27,8 +30,25 @@
 }
 
 .box {
-  margin: 1em auto;
-  padding: 1em;
-  background-color: #FFFFFF;
-  border-radius: 1em;
+	margin: 1em auto;
+	padding: 1em;
+	background-color: #FFFFFF;
+	border-radius: 1em;
+}
+
+.actions {
+	display: flex;
+	justify-content: end;
+	margin-top: 1em;
+}
+.actions button {
+	font-size: 120%;
+	padding: 0.5em 1em;
+	margin: 0 0.5em;
+	background: #cccccc;
+	border-radius: 0.4em;
+	cursor: pointer;
+}
+.actions button:hover {
+  background: #bbbbbb;
 }

@@ -3,8 +3,8 @@
  * 
  * With admin rights:
  *   /api/<year>/admin/preview  -> preview the data from the filesystem
- *   /api/<year>/admin/drop     -> drop the database
  *   /api/<year>/admin/import   -> import the filesystem data in database
+ *   /api/<year>/admin/drop     -> drop the database
  * ****************************************************************************
  *   /api/<year>/admin/jobs           -> list scheduled jobs
  *   /api/<year>/admin/schedule       -> start the competition scheduler to take care of all matches

@@ -1,6 +1,10 @@
 <div class="box">
-	<h2>Global action</h2>
-	<p>reset (drop and re-import data for all editions at once - keep users, bets...)</p>
+	<h2>Global</h2>
+	<p>You can reset all competitions data at once.
+		This will drop and re-import competition data, while keeping users and bets.</p>
+	<div class="actions">
+		<button onclick="page.reset();">Reset all competitions</button>
+	</div>
 </div>
 
 <!-- BEGIN: active -->
@@ -29,7 +33,7 @@
 			<td>{year}</td>
 			<td>{name}</td>
 			<td><a onclick="page.preview('{year}', event);" href="#">Preview</a></td>
-			<td>link</td>
+			<td><a onclick="page.import('{year}', event);" href="#">Import</a></td>
 		</tr>
 		<!-- END: competition -->
 	</tbody>
