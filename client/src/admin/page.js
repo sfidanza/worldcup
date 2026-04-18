@@ -27,7 +27,7 @@ page.initialize = function () {
 		// page.templates.user.parse(page.data);
 		// page.templates.user.load(page.config.area.user);
 
-		page.showPage('list');
+		page.show('list');
 
 		page.notify(null);
 	});
@@ -118,9 +118,7 @@ page.view = function (viewName) {
 
 page.show = function (viewName, ...option) {
 	switch (viewName) {
-		case 'list': page.showPage('list'); break;
-		case 'history': page.showPage('history', ...option); break;
-		case 'notes': page.showPage('notes'); break;
+		case 'list': page.showList(); break;
 		case 'login': page.showPage('login', ...option); break;
 	}
 	document.getElementById(page.config.area.contents).className = 'page-' + viewName;
@@ -130,6 +128,16 @@ page.showPage = function (tplId, options) {
 	const tpl = page.templates[tplId];
 	tpl.parse(options);
 	tpl.load(page.config.area.contents);
+};
+
+page.showList = function () {
+	page.templates.list.parse();
+	page.templates.list.load(page.config.area.contents);
+
+	const active = page.data.history.find(el => !el.winnerId);
+	if (active) {
+		page.getJobs(active.year);
+	}
 };
 
 page.reset = function () {
@@ -155,6 +163,35 @@ page.import = function (year, event) {
 		.then(response => response.json())
 		.then(data => {
 			console.log('import', data);
+		});
+};
+
+page.getJobs = function (year) {
+	fetch(page.config.url.jobs(year))
+		.then(response => response.json())
+		.then(jobs => {
+			page.data.jobs = jobs;
+			page.data.jobsLastCheck = new Date();
+			page.templates.jobs.parse();
+			page.templates.jobs.load(page.config.area.jobs);
+		});
+};
+
+page.schedule = function (year) {
+	fetch(page.config.url.schedule(year))
+		.then(response => response.json())
+		.then(data => {
+			console.log('schedule', data);
+			page.getJobs(year);
+		});
+};
+
+page.unschedule = function (year) {
+	fetch(page.config.url.unschedule(year))
+		.then(response => response.json())
+		.then(data => {
+			console.log('unschedule', data);
+			page.getJobs(year);
 		});
 };
 

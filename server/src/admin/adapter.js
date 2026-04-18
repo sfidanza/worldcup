@@ -1,12 +1,19 @@
 /********************************************************************
  * Connect to FIFA api to retrieve match data
+ * Sample requests:
+ *   2026 Worldcup planned matches:
+ *     https://api.fifa.com/api/v3/calendar/matches?language=en&count=500&idSeason=285023
+ *   Current live matches:
+ *     https://api.fifa.com/api/v3/live/football/
+ *   Current live matches for Ligue 1:
+ *     https://api.fifa.com/api/v3/live/football/?idCompetition=2000000018
  ********************************************************************/
 
 const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
 
 const COMPETITION_IDS = {
-	'worldcup': 17,
-	'cwc': 10005
+	'worldcup': '17',
+	'cwc': '10005'
 };
 
 const adapter = {};

@@ -8,10 +8,15 @@
 </div>
 
 <!-- BEGIN: active -->
-<div class="box active">
+<div class="box">
 	<h2>Active competition: {name}</h2>
-	<p><a onclick="page.preview('{year}', event);" href="#">Preview</a>, Import</p>
-	<p>See active jobs, trigger new, delete</p>
+	<div id="jobs"></div>
+
+	<div class="actions">
+		<button onclick="page.getJobs('{year}');">Check running jobs</button>
+		<button onclick="page.schedule('{year}');">Start scheduler</button>
+		<button onclick="page.unschedule('{year}');">Stop scheduler</button>
+	</div>
 </div>
 <!-- END: active -->
 

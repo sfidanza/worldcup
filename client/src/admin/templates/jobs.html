@@ -1,0 +1,23 @@
+<p>Last check: {jobsLastCheck}</p>
+
+<table class="list">
+<thead>
+	<tr>
+		<th>Job id</th>
+		<th>Status</th>
+		<th>Cron expression</th>
+		<th>Next execution</th>
+	</tr>
+</thead>
+
+<tbody>
+	<!-- BEGIN: job -->
+	<tr class="{row_class}">
+		<td>{job.tid}</td>
+		<td>{job.status}</td>
+		<td>{job.cron}</td>
+		<td>{job.next}</td>
+	</tr>
+	<!-- END: job -->
+</tbody>
+</table>
