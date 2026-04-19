@@ -3,6 +3,8 @@
  * Sample requests:
  *   2026 Worldcup planned matches:
  *     https://api.fifa.com/api/v3/calendar/matches?language=en&count=500&idSeason=285023
+ *   Worldcup matches since 1930:
+ *     https://api.fifa.com/api/v3/calendar/matches?language=en&count=500&idCompetition=17
  *   Current live matches:
  *     https://api.fifa.com/api/v3/live/football/
  *   Current live matches for Ligue 1:
@@ -10,10 +12,20 @@
  ********************************************************************/
 
 const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
+const CALENDAR_API = 'https://api.fifa.com/api/v3/calendar/';
 
 const COMPETITION_IDS = {
 	'worldcup': '17',
 	'cwc': '10005'
+};
+const STAGES = {
+	'First Stage': 'G',
+	'Round of 32': '5',
+	'Round of 16': 'H',
+	'Quarter-final': 'Q',
+	'Semi-final': 'S',
+	'Play-off for third place': 'T',
+	'Final': 'F'
 };
 
 const adapter = {};
@@ -96,3 +108,63 @@ adapter.getCurrentMatches = async function (competitionId) {
 			});
 		});
 };
+
+/**
+ * Retrieves calendar matches for the specified competition
+ * @param {string} sid - the FIFA season id (ex: 2026 Worldcup => sid=285023)
+ * @returns {Match[]}
+ */
+adapter.getPlannedMatches = async function (sid) {
+	return fetch(CALENDAR_API + `matches?count=500&idSeason=${sid}`)
+		.then(res => res.json())
+		.then(res => {
+			const dayFormat = Intl.DateTimeFormat('en-CA', { dateStyle: 'short', timeZone: 'Europe/Paris' });
+			const hourFormat = Intl.DateTimeFormat('fr-FR', { timeStyle: 'short', timeZone: 'Europe/Paris' });
+			const season = res.Results[0]?.SeasonName[0]?.Description || 'unknown';
+			const matches = res.Results.map(data => {
+				const date = new Date(data.Date);
+				return {
+					id: data.MatchNumber,
+					phase: STAGES[data.StageName[0]?.Description],
+					date: data.Date, // UTC
+					day: dayFormat.format(date),
+					hour: hourFormat.format(date),
+					stadium: data.Stadium.IdStadium,
+					stadium_name: data.Stadium.Name[0]?.Description,
+					stadium_city: data.Stadium.CityName[0]?.Description,
+					group: data.GroupName[0]?.Description.slice(-1),
+					team1_id: data.Home?.Abbreviation,
+					team2_id: data.Away?.Abbreviation,
+					team1_source: data.PlaceHolderA,
+					team2_source: data.PlaceHolderB
+				};
+			});
+			return { season, matches };
+		});
+};
+/**
+ * Season ids:
+ * - 2026 Worldcup: 285023
+ * - 2022 Worldcup: 255711
+ * - 2018 Worldcup: 254645
+ * - 2014 Worldcup: 
+ * - 2010 Worldcup: 
+ * - 2006 Worldcup: 
+ * - 2002 Worldcup: 
+ * - 1998 Worldcup: 
+ * - 1994 Worldcup: 84
+ * - 1990 Worldcup: 76
+ * - 1986 Worldcup: 68
+ * - 1982 Worldcup: 59
+ * - 1978 Worldcup: 50
+ * - 1974 Worldcup: 39
+ * - 1970 Worldcup: 32
+ * - 1966 Worldcup: 26
+ * - 1962 Worldcup: 21
+ * - 1958 Worldcup: 15
+ * - 1954 Worldcup: 9
+ * - 1950 Worldcup: 7
+ * - 1938 Worldcup: 5
+ * - 1934 Worldcup: 3
+ * - 1930 Worldcup: 1
+ */

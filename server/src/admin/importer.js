@@ -1,6 +1,8 @@
 /********************************************************************
  * Import data from source files to DB (teams, matches, stadiums)
  ********************************************************************/
+import adapter from './adapter.js';
+
 const importer = {};
 export default importer;
 
@@ -42,4 +44,12 @@ importer.import = async function (db) {
 		importData(db, 'matches', `./data/${edition}-03-matches.js`)
 	]);
 	return { edition, teams, stadiums, matches };
+};
+
+/********************************************************************
+ * Extract data from FIFA API
+ */
+
+importer.extract = async function (sid) {
+	return adapter.getPlannedMatches(sid);
 };
