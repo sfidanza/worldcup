@@ -17,9 +17,6 @@ page.initialize = function () {
 		frw.ssa.loadTemplates(page.config.url.templates, page.templates, page, frw),
 		page.getData()
 	]).then(() => {
-		// Set pageTitle function
-		page.config.i18n.pageTitle = page.config.i18n.title.bind(null, page.config.name);
-
 		// display
 		page.templates.main.parse(page.config.year);
 		page.templates.main.load(page.config.area.main);
@@ -180,7 +177,7 @@ page.getJobs = function (year) {
 page.schedule = function (year) {
 	fetch(page.config.url.schedule(year))
 		.then(response => response.json())
-		.then(data => {
+		.then(() => {
 			page.getJobs(year);
 		});
 };
@@ -188,7 +185,7 @@ page.schedule = function (year) {
 page.unschedule = function (year) {
 	fetch(page.config.url.unschedule(year))
 		.then(response => response.json())
-		.then(data => {
+		.then(() => {
 			page.getJobs(year);
 		});
 };

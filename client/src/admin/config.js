@@ -41,6 +41,5 @@ export const config = {
 		jobs: 'jobs',
 		user: 'user-area'
 	},
-	defaultPage: 'list',
 	lang: 'en-GB'
 };
