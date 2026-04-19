@@ -26,7 +26,10 @@
     "mocha": "11.7.5",
     "nodemon": "3.1.14"
   },
-  "overrides": { "diff": "~8.0.3" },
+  "overrides": {
+    "diff": "~9.0.0",
+    "serialize-javascript": "^7.0.5"
+  },
   "scripts": {
     "start": "node src/index.js",
     "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch src/index.js",
