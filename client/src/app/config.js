@@ -70,7 +70,7 @@ export const config = {
 		loginDlg: 'login-dlg',
 		liveMatch: 'live-match'
 	},
-	defaultYear: '2022',
+	defaultYear: '2026',
 	defaultPage: 'schedule',
 	lang: 'en-GB',
 	ft: { // Feature Toggles
