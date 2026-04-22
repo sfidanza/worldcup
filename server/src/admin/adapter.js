@@ -13,6 +13,7 @@
 
 const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
 const CALENDAR_API = 'https://api.fifa.com/api/v3/calendar/';
+const STAGES_API = 'https://api.fifa.com/api/v3/stages/';
 
 const COMPETITION_IDS = {
 	'worldcup': '17',
@@ -20,11 +21,17 @@ const COMPETITION_IDS = {
 };
 const STAGES = {
 	'First Stage': 'G',
+	'Group Matches': 'G',
+	'1st Round': 'H',
+	'Preliminary Round': 'H',
+	'Second Round': 'B',
+	'Final Round': 'B',
 	'Round of 32': '5',
 	'Round of 16': 'H',
 	'Quarter-final': 'Q',
 	'Semi-final': 'S',
 	'Play-off for third place': 'T',
+	'Match for third place': 'T',
 	'Final': 'F'
 };
 
@@ -135,6 +142,12 @@ adapter.getPlannedMatches = async function (sid) {
 					group: data.GroupName[0]?.Description.slice(-1),
 					team1_id: data.Home?.Abbreviation,
 					team2_id: data.Away?.Abbreviation,
+					team1_name: data.Home?.TeamName?.[0]?.Description,
+					team2_name: data.Away?.TeamName?.[0]?.Description,
+					team1_score: data.HomeTeamScore,
+					team2_score: data.AwayTeamScore,
+					team1_scorePK: data.HomeTeamPenaltyScore,
+					team2_scorePK: data.AwayTeamPenaltyScore,
 					team1_source: data.PlaceHolderA,
 					team2_source: data.PlaceHolderB
 				};
@@ -168,3 +181,49 @@ adapter.getPlannedMatches = async function (sid) {
  * - 1934 Worldcup: 3
  * - 1930 Worldcup: 1
  */
+
+adapter.getStages = async function (sid) {
+	return fetch(STAGES_API + `?idSeason=${sid}`)
+		.then(res => res.json())
+		.then(res => {
+			return res.Results.map(data => {
+				return {
+					id: data.IdStage,
+					name: data.Name[0]?.Description,
+					order: data.SequenceOrder,
+					type: data.Type
+				};
+			});
+		});
+};
+
+/**
+ * Get teams statistics for a competition / season / stage
+ * @param {string} sid
+ * @param {string} stageId
+ * @returns
+ */
+adapter.getTeams = async function (sid, stageId) {
+	const cid= COMPETITION_IDS.worldcup;
+	console.log('Calling: ', CALENDAR_API + `${cid}/${sid}/${stageId}/standing`);
+	return fetch(CALENDAR_API + `${cid}/${sid}/${stageId}/standing`)
+		.then(res => res.json())
+		.then(res => {
+			return res.Results.map(data => {
+				return {
+					id: data.Team.Abbreviation,
+					name: data.Team.Name[0]?.Description,
+					group: data.Group[0]?.Description.slice(-1),
+					played: data.Played,
+					victories: data.Won,
+					draws: data.Draw,
+					defeats: data.Lost,
+					points: data.Points,
+					goals_scored: data.For,
+					goals_against: data.Against,
+					goal_difference: data.GoalsDiference,
+					rank: data.Position
+				};
+			});
+		});
+};

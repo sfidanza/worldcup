@@ -5,20 +5,30 @@ import { Router } from 'express';
 import foot from '../business/foot.js';
 import bets from '../business/bets.js';
 import history from '../business/history.js';
+import light from '../business/light.js';
 
 export default function getRouter(dbUsers) {
 	const router = Router({ mergeParams: true });
 
 	router.get('/all', function (request, response) {
-		const db = request.database;
-		Promise.all([foot.getData(db), bets.getLeaderboard(dbUsers, db), bets.getBets(dbUsers, db)])
-			.then(([data, leaderboard, betList]) => {
-				data.history = history.getHistory();
-				data.user = request.session.user;
-				data.leaderboard = leaderboard;
-				data.bets = betList;
-				response.json(data);
-			}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
+		if (request.database) {
+			const db = request.database;
+			Promise.all([foot.getData(db), bets.getLeaderboard(dbUsers, db), bets.getBets(dbUsers, db)])
+				.then(([data, leaderboard, betList]) => {
+					data.history = history.getHistory();
+					data.user = request.session.user;
+					data.leaderboard = leaderboard;
+					data.bets = betList;
+					response.json(data);
+				}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
+		} else if (request.light) {
+			light.getData(request.light)
+				.then(data => {
+					data.history = history.getHistory();
+					data.user = request.session.user;
+					response.status(200).json(data);
+				}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
+		}
 	});
 
 	router.get('/teams', function (request, response) {

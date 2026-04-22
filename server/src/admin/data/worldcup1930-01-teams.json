@@ -1,0 +1,193 @@
+{
+  "stages": [
+    {
+      "id": "405",
+      "name": "Final",
+      "order": 3,
+      "type": 0
+    },
+    {
+      "id": "202",
+      "name": "Semi-final",
+      "order": 2,
+      "type": 0
+    },
+    {
+      "id": "201",
+      "name": "Group Matches",
+      "order": 1,
+      "type": 1
+    }
+  ],
+  "teams": [
+    {
+      "id": "ARG",
+      "name": "Argentina",
+      "group": "1",
+      "played": 3,
+      "victories": 3,
+      "defeats": 0,
+      "points": 9,
+      "goals_scored": 10,
+      "goals_against": 4,
+      "goal_difference": 6,
+      "rank": 1
+    },
+    {
+      "id": "URU",
+      "name": "Uruguay",
+      "group": "3",
+      "played": 2,
+      "victories": 2,
+      "defeats": 0,
+      "points": 6,
+      "goals_scored": 5,
+      "goals_against": 0,
+      "goal_difference": 5,
+      "rank": 1
+    },
+    {
+      "id": "USA",
+      "name": "USA",
+      "group": "4",
+      "played": 2,
+      "victories": 2,
+      "defeats": 0,
+      "points": 6,
+      "goals_scored": 6,
+      "goals_against": 0,
+      "goal_difference": 6,
+      "rank": 1
+    },
+    {
+      "id": "YUG",
+      "name": "Yugoslavia",
+      "group": "2",
+      "played": 2,
+      "victories": 2,
+      "defeats": 0,
+      "points": 6,
+      "goals_scored": 6,
+      "goals_against": 1,
+      "goal_difference": 5,
+      "rank": 1
+    },
+    {
+      "id": "BRA",
+      "name": "Brazil",
+      "group": "2",
+      "played": 2,
+      "victories": 1,
+      "defeats": 1,
+      "points": 3,
+      "goals_scored": 5,
+      "goals_against": 2,
+      "goal_difference": 3,
+      "rank": 2
+    },
+    {
+      "id": "CHI",
+      "name": "Chile",
+      "group": "1",
+      "played": 3,
+      "victories": 2,
+      "defeats": 1,
+      "points": 6,
+      "goals_scored": 5,
+      "goals_against": 3,
+      "goal_difference": 2,
+      "rank": 2
+    },
+    {
+      "id": "PAR",
+      "name": "Paraguay",
+      "group": "4",
+      "played": 2,
+      "victories": 1,
+      "defeats": 1,
+      "points": 3,
+      "goals_scored": 1,
+      "goals_against": 3,
+      "goal_difference": -2,
+      "rank": 2
+    },
+    {
+      "id": "ROU",
+      "name": "Romania",
+      "group": "3",
+      "played": 2,
+      "victories": 1,
+      "defeats": 1,
+      "points": 3,
+      "goals_scored": 3,
+      "goals_against": 5,
+      "goal_difference": -2,
+      "rank": 2
+    },
+    {
+      "id": "BEL",
+      "name": "Belgium",
+      "group": "4",
+      "played": 2,
+      "victories": 0,
+      "defeats": 2,
+      "points": 0,
+      "goals_scored": 0,
+      "goals_against": 4,
+      "goal_difference": -4,
+      "rank": 3
+    },
+    {
+      "id": "BOL",
+      "name": "Bolivia",
+      "group": "2",
+      "played": 2,
+      "victories": 0,
+      "defeats": 2,
+      "points": 0,
+      "goals_scored": 0,
+      "goals_against": 8,
+      "goal_difference": -8,
+      "rank": 3
+    },
+    {
+      "id": "FRA",
+      "name": "France",
+      "group": "1",
+      "played": 3,
+      "victories": 1,
+      "defeats": 2,
+      "points": 3,
+      "goals_scored": 4,
+      "goals_against": 3,
+      "goal_difference": 1,
+      "rank": 3
+    },
+    {
+      "id": "PER",
+      "name": "Peru",
+      "group": "3",
+      "played": 2,
+      "victories": 0,
+      "defeats": 2,
+      "points": 0,
+      "goals_scored": 1,
+      "goals_against": 4,
+      "goal_difference": -3,
+      "rank": 3
+    },
+    {
+      "id": "MEX",
+      "name": "Mexico",
+      "group": "1",
+      "played": 3,
+      "victories": 0,
+      "defeats": 3,
+      "points": 0,
+      "goals_scored": 4,
+      "goals_against": 13,
+      "goal_difference": -9,
+      "rank": 4
+    }
+  ]
+}

@@ -19,11 +19,18 @@ main.onParse = function (year) {
 		this.parseBlock('round32');
 	}
 
-	const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
-	Object.keys(teamsByGroup).sort().forEach(g => {
-		this.set('group', g);
-		this.parseBlock('group');
-	});
+	const edition = page.data.history[page.config.cid].find(el => el.year === year);
+	if (edition && !edition.light) {
+		this.parseBlock('finals');
+	}
+
+	if (page.data.teams.some(t => t.group)) {
+		const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
+		Object.keys(teamsByGroup).sort().forEach(g => {
+			this.set('group', g);
+			this.parseBlock('group');
+		});
+	}
 
 	const current = page.data.history[page.config.cid].find(el => el.year === year);
 	if (current && !current.winnerId) {

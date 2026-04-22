@@ -1,5 +1,5 @@
 /********************************************************************
- * Foot data manipulation layer (teams, matches, stadiums)
+ * Foot: database manipulation layer (teams, matches, stadiums)
  ********************************************************************/
 import engine from './engine/foot.js';
 import httpError from 'http-errors';

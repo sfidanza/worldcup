@@ -1,0 +1,35 @@
+{
+  "stages": [
+    {
+      "id": "3487",
+      "name": "Final",
+      "order": 5,
+      "type": 0
+    },
+    {
+      "id": "3488",
+      "name": "Match for third place",
+      "order": 4,
+      "type": 0
+    },
+    {
+      "id": "3489",
+      "name": "Semi-final",
+      "order": 3,
+      "type": 0
+    },
+    {
+      "id": "429",
+      "name": "Quarter-final",
+      "order": 2,
+      "type": 0
+    },
+    {
+      "id": "206",
+      "name": "1st Round",
+      "order": 1,
+      "type": 0
+    }
+  ],
+  "teams": []
+}

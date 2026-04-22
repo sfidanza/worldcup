@@ -96,6 +96,27 @@ page.getData = async function () {
 		.then(response => response.json())
 		.then(data => {
 			data.stadiums = frw.data.indexBy(data.stadiums, 'id');
+			if (!data.teams || data.teams.length === 0) {
+				const teamsById = {};
+				const matches = data.matches.some(m => m.group) ? data.matches.filter(m => m.group) : data.matches;
+				matches.forEach(m => {
+					if (!teamsById[m.team1_id]) {
+						teamsById[m.team1_id] = { id: m.team1_id, name: m.team1_name, group: m.group };
+					}
+					if (!teamsById[m.team2_id]) {
+						teamsById[m.team2_id] = { id: m.team2_id, name: m.team2_name, group: m.group };
+					}
+				});
+				data.teams = Object.values(teamsById);
+			}
+			if (!data.stadiums) {
+				data.stadiums = {};
+				data.matches.forEach(m => {
+					if (m.stadium && !data.stadiums[m.stadium]) {
+						data.stadiums[m.stadium] = { id: m.stadium, name: m.stadium_name, city: m.stadium_city };
+					}
+				});
+			}
 			page.data = data;
 		});
 };

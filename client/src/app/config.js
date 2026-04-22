@@ -42,7 +42,7 @@ export const config = {
 		authProfile: (code) => `api/auth/profile?code=${code}`
 	},
 	getCompetitionId: (year) => COMPETITIONS[year % 4],
-	phases: ['G', 'J', 'H', 'Q', 'S', 'T', 'F'],
+	phases: ['G', 'B', 'J', 'H', 'Q', 'S', 'T', 'F'],
 	i18n: {
 		names: {
 			cwc: (year) => `${year} FIFA Club World Cup`,
@@ -52,6 +52,7 @@ export const config = {
 		title: (name, state) => `${name} - ${state}`,
 		group: (group) => `Group ${group}`,
 		phaseG: 'Group Matches',
+		phaseB: 'Second Round',
 		phaseJ: 'Round of 32',
 		phaseH: 'Round of 16',
 		phaseQ: 'Quarter-Finals',

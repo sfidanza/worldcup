@@ -1,0 +1,244 @@
+{
+  "stages": [
+    {
+      "id": "3478",
+      "name": "Final",
+      "order": 5,
+      "type": 0
+    },
+    {
+      "id": "3479",
+      "name": "Match for third place",
+      "order": 4,
+      "type": 0
+    },
+    {
+      "id": "536",
+      "name": "Semi-final",
+      "order": 3,
+      "type": 0
+    },
+    {
+      "id": "239",
+      "name": "Quarter-final",
+      "order": 2,
+      "type": 0
+    },
+    {
+      "id": "238",
+      "name": "Group Matches",
+      "order": 1,
+      "type": 1
+    }
+  ],
+  "teams": [
+    {
+      "id": "ENG",
+      "name": "England",
+      "group": "1",
+      "played": 3,
+      "victories": 2,
+      "defeats": 0,
+      "points": 7,
+      "goals_scored": 4,
+      "goals_against": 0,
+      "goal_difference": 4,
+      "rank": 1
+    },
+    {
+      "id": "FRG",
+      "name": "Germany FR",
+      "group": "2",
+      "played": 3,
+      "victories": 2,
+      "defeats": 0,
+      "points": 7,
+      "goals_scored": 7,
+      "goals_against": 1,
+      "goal_difference": 6,
+      "rank": 1
+    },
+    {
+      "id": "POR",
+      "name": "Portugal",
+      "group": "3",
+      "played": 3,
+      "victories": 3,
+      "defeats": 0,
+      "points": 9,
+      "goals_scored": 9,
+      "goals_against": 2,
+      "goal_difference": 7,
+      "rank": 1
+    },
+    {
+      "id": "URS",
+      "name": "Soviet Union",
+      "group": "4",
+      "played": 3,
+      "victories": 3,
+      "defeats": 0,
+      "points": 9,
+      "goals_scored": 6,
+      "goals_against": 1,
+      "goal_difference": 5,
+      "rank": 1
+    },
+    {
+      "id": "ARG",
+      "name": "Argentina",
+      "group": "2",
+      "played": 3,
+      "victories": 2,
+      "defeats": 0,
+      "points": 7,
+      "goals_scored": 4,
+      "goals_against": 1,
+      "goal_difference": 3,
+      "rank": 2
+    },
+    {
+      "id": "HUN",
+      "name": "Hungary",
+      "group": "3",
+      "played": 3,
+      "victories": 2,
+      "defeats": 1,
+      "points": 6,
+      "goals_scored": 7,
+      "goals_against": 5,
+      "goal_difference": 2,
+      "rank": 2
+    },
+    {
+      "id": "PRK",
+      "name": "Korea DPR",
+      "group": "4",
+      "played": 3,
+      "victories": 1,
+      "defeats": 1,
+      "points": 4,
+      "goals_scored": 2,
+      "goals_against": 4,
+      "goal_difference": -2,
+      "rank": 2
+    },
+    {
+      "id": "URU",
+      "name": "Uruguay",
+      "group": "1",
+      "played": 3,
+      "victories": 1,
+      "defeats": 0,
+      "points": 5,
+      "goals_scored": 2,
+      "goals_against": 1,
+      "goal_difference": 1,
+      "rank": 2
+    },
+    {
+      "id": "BRA",
+      "name": "Brazil",
+      "group": "3",
+      "played": 3,
+      "victories": 1,
+      "defeats": 2,
+      "points": 3,
+      "goals_scored": 4,
+      "goals_against": 6,
+      "goal_difference": -2,
+      "rank": 3
+    },
+    {
+      "id": "ITA",
+      "name": "Italy",
+      "group": "4",
+      "played": 3,
+      "victories": 1,
+      "defeats": 2,
+      "points": 3,
+      "goals_scored": 2,
+      "goals_against": 2,
+      "goal_difference": 0,
+      "rank": 3
+    },
+    {
+      "id": "MEX",
+      "name": "Mexico",
+      "group": "1",
+      "played": 3,
+      "victories": 0,
+      "defeats": 1,
+      "points": 2,
+      "goals_scored": 1,
+      "goals_against": 3,
+      "goal_difference": -2,
+      "rank": 3
+    },
+    {
+      "id": "ESP",
+      "name": "Spain",
+      "group": "2",
+      "played": 3,
+      "victories": 1,
+      "defeats": 2,
+      "points": 3,
+      "goals_scored": 4,
+      "goals_against": 5,
+      "goal_difference": -1,
+      "rank": 3
+    },
+    {
+      "id": "BUL",
+      "name": "Bulgaria",
+      "group": "3",
+      "played": 3,
+      "victories": 0,
+      "defeats": 3,
+      "points": 0,
+      "goals_scored": 1,
+      "goals_against": 8,
+      "goal_difference": -7,
+      "rank": 4
+    },
+    {
+      "id": "CHI",
+      "name": "Chile",
+      "group": "4",
+      "played": 3,
+      "victories": 0,
+      "defeats": 2,
+      "points": 1,
+      "goals_scored": 2,
+      "goals_against": 5,
+      "goal_difference": -3,
+      "rank": 4
+    },
+    {
+      "id": "FRA",
+      "name": "France",
+      "group": "1",
+      "played": 3,
+      "victories": 0,
+      "defeats": 2,
+      "points": 1,
+      "goals_scored": 2,
+      "goals_against": 5,
+      "goal_difference": -3,
+      "rank": 4
+    },
+    {
+      "id": "SUI",
+      "name": "Switzerland",
+      "group": "2",
+      "played": 3,
+      "victories": 0,
+      "defeats": 3,
+      "points": 0,
+      "goals_scored": 1,
+      "goals_against": 9,
+      "goal_difference": -8,
+      "rank": 4
+    }
+  ]
+}
