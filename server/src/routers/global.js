@@ -33,7 +33,7 @@ export default function getRouter(dbClient, collections) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
 			const query = request.query;
-			if (/^\d+$/.test(query.sid)) {
+			if (/^\w+$/.test(query.sid)) {
 				importer.extract(query.sid)
 					.then(list => {
 						response.status(200).json(list);

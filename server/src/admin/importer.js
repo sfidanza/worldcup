@@ -2,12 +2,13 @@
  * Import data from source files to DB (teams, matches, stadiums)
  ********************************************************************/
 import adapter from './adapter.js';
+import fs from 'fs';
 
 const importer = {};
 export default importer;
 
 /********************************************************************
- * Preview data
+ * Preview data from file
  */
 
 const getData = async function (source) {
@@ -24,7 +25,7 @@ importer.preview = async function (db) {
 };
 
 /********************************************************************
- * Import data
+ * Import data from file to DB
  */
 
 const importData = async function (db, collection, source) {
@@ -50,6 +51,37 @@ importer.import = async function (db) {
  * Extract data from FIFA API
  */
 
-importer.extract = async function (sid) {
+const writeData = async function (data, filename) {
+	console.log(`Writing ${filename}.json`);
+	fs.writeFile(`${filename}.json`, JSON.stringify(data, null, 2), err => {
+		if (err) console.error(`Error writing data to ${filename}.json`, err);
+	});
+};
+
+const getTeamsOnline = async function (sid) {
+	const data = {};
+	return adapter.getStages(sid)
+		.then(stages => {
+			data.stages = stages;
+			const firstStage = stages.find(s => s.order === 1);
+			return adapter.getTeams(sid, firstStage.id);
+		}).then(teams => {
+			data.teams = teams;
+			return data;
+		});
+};
+
+const getMatchesOnline = async function (sid) {
 	return adapter.getPlannedMatches(sid);
+};
+
+importer.extract = async function (sid, store = false) {
+	return Promise.all([ getTeamsOnline(sid), getMatchesOnline(sid) ])
+		.then(([ dataTeams, dataMatches ]) => {
+			if (store) {
+				writeData(dataTeams, 'extract-01-teams');
+				writeData(dataMatches, 'extract-03-matches');
+			}
+			return Object.assign({}, dataTeams, dataMatches);
+		});
 };
