@@ -1,7 +1,7 @@
 /***[Bet]*******************/
 .page-bet h2 {
 	padding: 0.2em;
-	background-color: #9C0000;
+	background-color: var(--primary-color);
 	color: #FFFFFF;
 }
 .page-bet h2:first-child {
@@ -37,7 +37,7 @@
 }
 
 .badge {
-	background: radial-gradient(circle at 5px -8px, white 8%, #9C0000 19px);
+	background: radial-gradient(circle at 5px -8px, white 8%, var(--primary-color) 19px);
 	border: 2px solid #FFFFFF;
 	border-radius: 12px;
 	box-shadow: 1px 1px 1px #000;

@@ -11,7 +11,7 @@ table.ranking tbody tr:nth-child(3) {
 }
 table.ranking thead th {
 	padding: 0.5em 0;
-	background-color: #9C0000;
+	background-color: var(--primary-color);
 	color: #FFFFFF;
 }
 table.ranking tbody th {

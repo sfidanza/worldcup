@@ -34,7 +34,7 @@
 	padding: 1px 5px;
 }
 .page-login input.error, .page-register input.error {
-	outline: 2px solid #9C0000;
+	outline: 2px solid var(--primary-color);
 }
 
 #social-signin {

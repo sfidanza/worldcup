@@ -8,7 +8,7 @@
 }
 .schedule thead th {
 	padding: 0.5em 0;
-	background-color: #9C0000;
+	background-color: var(--primary-color);
 	color: #FFFFFF;
 }
 .schedule thead th.left {
@@ -37,7 +37,7 @@
 }
 .schedule tr.subtitle {
 	background-color: #F4F4F4;
-	color: #9C0000;
+	color: var(--primary-color);
 }
 
 .schedule td.time {
