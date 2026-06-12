@@ -164,6 +164,7 @@ updater.fetchMatch = async function (db, mid) {
 						updated.matchStatus = match.matchStatus;
 						updated.period = match.period;
 						updated.winner = match.winner;
+						updated.cid = match.cid;
 					}
 					live.broadcastMatchUpdate(updated);
 					return updated;

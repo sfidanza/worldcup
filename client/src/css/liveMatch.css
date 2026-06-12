@@ -17,3 +17,18 @@
     padding: 0.4em 3em;
     color: #FFF;
 }
+
+.live-match > div {
+    display: flex;
+    line-height: 14px; /* 14px is the line height of the flag icons, so this centers them vertically */
+}
+.live-match .flag {
+    flex: 3;
+    text-align: left;
+}
+.live-match .left {
+    text-align: right;
+}
+.live-match .score {
+    flex: 1;
+}
