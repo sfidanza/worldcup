@@ -91,7 +91,8 @@ adapter.getMatch = async function (mid) {
 				team1_scorePK: data.HomeTeamPenaltyScore,
 				team2_scorePK: data.AwayTeamPenaltyScore
 			};
-		});
+		})
+		.catch(err => { console.log(`Error fetching match ${mid}: `, err); });
 };
 
 /**

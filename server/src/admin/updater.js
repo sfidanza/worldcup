@@ -89,6 +89,7 @@ function followScore (db, mid) {
 	return schedule(tid, SF_CRON_EXP, SF_MAX_EXECUTIONS, () => {
 		updater.fetchMatch(db, mid)
 			.then(res => {
+				if (!res) return;
 				console.log(`${res.team1_id} - ${res.team2_id}: ${res.team1_score} - ${res.team2_score}`
 					+ ` / PK: ${res.team1_scorePK} - ${res.team2_scorePK} / winner: ${res.winner}`
 					+ ` / status: ${res.matchStatus} / period: ${res.period} / matchTime: ${res.matchTime}`);
@@ -143,6 +144,7 @@ async function getCurrentMatches (db, year) {
 updater.fetchMatch = async function (db, mid) {
 	return adapter.getMatch(mid)
 		.then(match => {
+			if (!match) return;
 			const edit = {
 				'team1_score': match.team1_score,
 				'team2_score': match.team2_score,
