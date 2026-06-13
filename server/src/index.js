@@ -1,3 +1,4 @@
+import consoleStamp from 'console-stamp';
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import * as routers from './routers.js';
@@ -6,6 +7,9 @@ import database from './database.js';
 import rateLimit from 'express-rate-limit';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+
+// Setup console for logging with timestamp and log level
+consoleStamp(console);
 
 const {
 	MONGO_HOSTNAME,
@@ -33,7 +37,7 @@ app.get('/api/x-forwarded-for', (request, response) => response.send(request.hea
 new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_PORT}`)
 	.connect()
 	.then(dbClient => {
-		console.log('Connected to mongodb!');
+		console.info('Connected to mongodb!');
 
 		app.use(session({
 			secret: COOKIE_SEED,
@@ -65,6 +69,6 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 			if (error) {
 				throw error; // e.g. EADDRINUSE
 			}
-			console.log(`App listening on port ${NODE_PORT}!`);
+			console.info(`App listening on port ${NODE_PORT}!`);
 		});
 	}).catch(console.error);

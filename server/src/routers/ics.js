@@ -42,7 +42,7 @@ export default function getRouter() {
 
 				const { error, value } = ics.createEvents(events);
 				if (error) {
-					console.log(error);
+					console.error(error);
 					response.status(500).json({ error });
 					return;
 				}

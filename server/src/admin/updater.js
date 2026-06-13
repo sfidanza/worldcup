@@ -37,20 +37,20 @@ export default updater;
 function schedule (tid, cronExpression, maxExecutions, payload) {
 	const task = tasks[tid];
 	if (!task) {
-		console.log(`[${new Date().toLocaleString()}][${tid}] scheduling task on: ${cronExpression}`);
+		console.info(`[${tid}] scheduling task on: ${cronExpression}`);
 		tasks[tid] = cron.schedule(cronExpression, () => {
-			console.log(`[${new Date().toLocaleString()}][${tid}] running a task on: ${cronExpression}`);
+			console.info(`[${tid}] running task on: ${cronExpression}`);
 			payload();
 		}, {
 			name: tid,
 			maxExecutions: maxExecutions
 		});
 		tasks[tid].on('task:destroyed', (ctx) => {
-			console.log(`task [${ctx.task?.name}] finished and destroyed`);
+			console.info(`task [${ctx.task?.name}] finished and destroyed`);
 			delete tasks[tid];
 		});
 	} else {
-		console.log(`[${new Date().toLocaleString()}][${tid}] already scheduled with: ${cronExpression}`);
+		console.info(`[${tid}] already scheduled with: ${cronExpression}`);
 	}
 	return viewTask(tasks[tid]);
 };
@@ -89,10 +89,12 @@ function followScore (db, mid) {
 	return schedule(tid, SF_CRON_EXP, SF_MAX_EXECUTIONS, () => {
 		updater.fetchMatch(db, mid)
 			.then(res => {
-				if (!res) return;
-				console.log(`${res.team1_id} - ${res.team2_id}: ${res.team1_score} - ${res.team2_score}`
+				console.debug(`[${tid}] ${res.team1_id} - ${res.team2_id}: ${res.team1_score} - ${res.team2_score}`
 					+ ` / PK: ${res.team1_scorePK} - ${res.team2_scorePK} / winner: ${res.winner}`
 					+ ` / status: ${res.matchStatus} / period: ${res.period} / matchTime: ${res.matchTime}`);
+			})
+			.catch(err => {
+				console.error(`[${tid}] Error fetching match ${mid}: `, err);
 			});
 	});
 };
@@ -107,7 +109,7 @@ function triggerMatch (db, m) {
 	if (m.matchStatus == 1 || m.matchStatus == 3) {
 		const d = new Date(m.date);
 		if (d < new Date()) {
-			console.log(`Match ${m.mid} already started: starting follow-up immediately`);
+			console.info(`Match ${m.mid} already started: starting follow-up immediately`);
 			return followScore(db, m.mid);
 		} else {
 			const cronExpression = MT_CRON_EXP_TPL(d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
