@@ -17,7 +17,7 @@ const C_CRON_EXP = `0 */${C_INTERVAL} * * *`; // Every N hours
 const MT_CRON_EXP_TPL = (HOUR, DAY, MONTH) => `0 ${HOUR} ${DAY} ${MONTH} *`; // At start of match
 
 const SF_INTERVAL = 30; // seconds
-const SF_AUTO_STOP = 120; // minutes
+const SF_AUTO_STOP = 240; // minutes: safety stop after N minutes to avoid infinite follow-up in case of API failure
 const SF_MAX_EXECUTIONS = (SF_AUTO_STOP * 60) / SF_INTERVAL;
 const SF_CRON_EXP = `*/${SF_INTERVAL} * * * * *`; // Every N seconds
 
@@ -92,6 +92,10 @@ function followScore (db, mid) {
 				console.debug(`[${tid}] ${res.team1_id} - ${res.team2_id}: ${res.team1_score} - ${res.team2_score}`
 					+ ` / PK: ${res.team1_scorePK} - ${res.team2_scorePK} / winner: ${res.winner}`
 					+ ` / status: ${res.matchStatus} / period: ${res.period} / matchTime: ${res.matchTime}`);
+				if (res.matchStatus == 0 || res.matchStatus == 4) { // Finished or Abandoned
+					console.info(`[${tid}] match finished, stopping follow-up`);
+					unschedule(tid);
+				}
 			})
 			.catch(err => {
 				console.error(`[${tid}] Error fetching match ${mid}: `, err);
