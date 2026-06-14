@@ -28,4 +28,21 @@ liveMatch.onParse = function (match) {
 	this.set('match', match);
 	this.set('team1.name', match.team1_name || team1?.name || match.team1_id); // always use team id instead of name for size S?
 	this.set('team2.name', match.team2_name || team2?.name || match.team2_id);
+
+	if (match.team1_goals) {
+		this.parseGoals(match.team1_goals, 'home_goal');
+	}
+	if (match.team2_goals) {
+		this.parseGoals(match.team2_goals, 'away_goal');
+	}
 };
+
+liveMatch.parseGoals = function (goals, blockName) {
+	for (const goal of goals) {
+		this.set('g', goal);
+		// Type = 1: penalty, 2: normal, 3: own goal
+		this.set('g.label', goal.type == 1 ? '(P)' : (goal.type == 3 ? '(OG)' : ''));
+		this.parseBlock(blockName);
+	}
+};
+

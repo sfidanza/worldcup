@@ -45,8 +45,8 @@ function schedule (tid, cronExpression, maxExecutions, payload) {
 			name: tid,
 			maxExecutions: maxExecutions
 		});
-		tasks[tid].on('task:destroyed', (ctx) => {
-			console.info(`task [${ctx.task?.name}] finished and destroyed`);
+		tasks[tid].on('task:destroyed', () => {
+			console.info(`[${tid}] task finished and destroyed`);
 			delete tasks[tid];
 		});
 	} else {
@@ -168,11 +168,7 @@ updater.fetchMatch = async function (db, mid) {
 						console.warn(`Match ${match.team1_id} - ${match.team2_id} not found in database`);
 						updated = match;
 					} else {
-						updated.matchTime = match.matchTime;
-						updated.matchStatus = match.matchStatus;
-						updated.period = match.period;
-						updated.winner = match.winner;
-						updated.cid = match.cid;
+						updated = Object.assign(match, updated);
 					}
 					live.broadcastMatchUpdate(updated);
 					return updated;

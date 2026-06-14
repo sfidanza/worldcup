@@ -122,8 +122,15 @@ page.getData = async function () {
 };
 
 page.updateMatch = function (match) {
+	// Dynamically create a container for a new live. Should it be removed when the match is over?
+	let container = document.querySelector(`[data-live-match="${match.mid}"]`);
+	if (!container) {
+		container = document.createElement('div');
+		container.setAttribute('data-live-match', match.mid);
+		document.getElementById(page.config.area.liveMatch).appendChild(container);
+	}
 	page.templates.liveMatch.parse(match);
-	page.templates.liveMatch.load(page.config.area.liveMatch);
+	page.templates.liveMatch.load(container);
 };
 
 page.register = function (login, cb) {

@@ -76,6 +76,7 @@ adapter.getMatch = async function (mid) {
 		.then(data => {
 			return {
 				cid: data.IdCompetition,
+				mid: data.IdMatch,
 				date: data.Date,
 				day: data.Date.slice(0, 10), // raw but should work for now
 				matchTime: data.MatchTime,
@@ -89,10 +90,26 @@ adapter.getMatch = async function (mid) {
 				team2_name: data.AwayTeam.TeamName[0].Description,
 				team2_score: data.AwayTeam.Score,
 				team1_scorePK: data.HomeTeamPenaltyScore,
-				team2_scorePK: data.AwayTeamPenaltyScore
+				team2_scorePK: data.AwayTeamPenaltyScore,
+				seasonName: data.SeasonName[0].Description,
+				team1_goals: getGoals(data.HomeTeam.Goals, data.HomeTeam.Players, data.AwayTeam.Players),
+				team2_goals: getGoals(data.AwayTeam.Goals, data.AwayTeam.Players, data.HomeTeam.Players)
 			};
 		});
 };
+
+function getGoals(goals, players, opponents) {
+	return goals.map(g => {
+		const scorer = (g.type === 3) ?
+			players.find(p => p.IdPlayer === g.IdPlayer) :
+			opponents.find(p => p.IdPlayer === g.IdPlayer);
+		return {
+			time: g.Minute,
+			type: g.Type, // 1: penalty, 2: normal, 3: own goal
+			scorer: scorer?.PlayerName[0]?.Description ?? 'unknown'
+		};
+	});
+}
 
 /**
  * Retrieves upcoming/ongoing matches for the specified competition

@@ -1,12 +1,11 @@
 /***[liveMatch]**************/
 .live-match {
-    margin: auto;
     border: 1px solid #CCCCCC;
     background-color: #FFFFFF;
     border-radius: 0.6em;
-    text-align: center;
+    margin-bottom: 1em;
     padding: 1em;
-    width: 45%;
+    text-align: center;
 }
 
 .live-match h3 {
@@ -20,15 +19,26 @@
 
 .live-match > div {
     display: flex;
-    line-height: 14px; /* 14px is the line height of the flag icons, so this centers them vertically */
 }
-.live-match .flag {
+.live-match .team {
     flex: 3;
     text-align: left;
 }
-.live-match .left {
+.live-match .home {
     text-align: right;
 }
 .live-match .score {
     flex: 1;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+.live-match .goal {
+    color: #444;
+    font-style: italic;
+    background-image: url(img/goal-10.png);
+    background-position: right 1px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding-right: 20px;
+    white-space: nowrap;
 }
