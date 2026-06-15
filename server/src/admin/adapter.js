@@ -100,7 +100,7 @@ adapter.getMatch = async function (mid) {
 
 function getGoals(goals, players, opponents) {
 	return goals.map(g => {
-		const scorer = (g.type === 3) ?
+		const scorer = (g.Type === 3) ?
 			opponents.find(p => p.IdPlayer === g.IdPlayer) :
 			players.find(p => p.IdPlayer === g.IdPlayer);
 		return {
