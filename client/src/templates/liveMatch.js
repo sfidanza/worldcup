@@ -20,6 +20,8 @@ liveMatch.onParse = function (match) {
 		match.matchTime = 'Half-Time';
 	} else if (match.period === 10) {
 		match.matchTime = 'Full Time';
+	} else if (match.period === 11) {
+		match.matchTime = 'Penalty Shoot Out';
 	}
 
 	// cid 17 is Worldcup (flag) - to be reviewed to support more competitions
@@ -28,6 +30,8 @@ liveMatch.onParse = function (match) {
 	this.set('match', match);
 	this.set('team1.name', match.team1_name || team1?.name || match.team1_id); // always use team id instead of name for size S?
 	this.set('team2.name', match.team2_name || team2?.name || match.team2_id);
+	this.set('PSO', (match.team1_scorePK != null) ?
+		'<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')' : '');
 
 	if (match.team1_goals) {
 		this.parseGoals(match.team1_goals, 'home_goal');

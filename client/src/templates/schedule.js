@@ -37,11 +37,8 @@ schedule.onParse = function (data) {
 				this.set('team1.name', team1 ? team1.name : match.team1_source);
 				this.set('team2.name', team2 ? team2.name : match.team2_source);
 				this.set('stadium', data.stadiums[match.stadium]);
-				let pso = ''; // Penalty Shoot Out
-				if (match.team1_scorePK != null) {
-					pso = '<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')';
-				}
-				this.set('PSO', pso);
+				this.set('PSO', (match.team1_scorePK != null) ?
+					'<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')' : '');
 				this.parseBlock('match');
 			});
 			this.parseBlock('day');

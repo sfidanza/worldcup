@@ -9,6 +9,8 @@
  *     https://api.fifa.com/api/v3/live/football/
  *   Current live matches for Ligue 1:
  *     https://api.fifa.com/api/v3/live/football/?idCompetition=2000000018
+ *   2022 Worldcup final (with penalty shoot out):
+ *     https://api.fifa.com/api/v3/live/football/400128145
  ********************************************************************/
 
 const LIVE_API = 'https://api.fifa.com/api/v3/live/football/';
@@ -50,11 +52,15 @@ export default adapter;
  *      12 Lineups
  * @property {Enum} Period
  *      0  Not yet started
+ *      1  ??
+ *      2  ??
  *      3  First half playing
  *      4  Half time break
  *      5  Second Half playing
- *      6  Extra time
- *      8  Extra half time
+ *      6  Break before extra time
+ *      7  Extra time first half playing
+ *      8  Extra time half time break
+ *      9  Extra time second half playing
  *      10 Full time
  *      11 Penalty shootouts
  */
@@ -99,16 +105,18 @@ adapter.getMatch = async function (mid) {
 };
 
 function getGoals(goals, players, opponents) {
-	return goals.map(g => {
-		const scorer = (g.Type === 3) ?
-			opponents.find(p => p.IdPlayer === g.IdPlayer) :
-			players.find(p => p.IdPlayer === g.IdPlayer);
-		return {
-			time: g.Minute,
-			type: g.Type, // 1: penalty, 2: normal, 3: own goal
-			scorer: scorer?.PlayerName[0]?.Description ?? 'unknown'
-		};
-	});
+	return goals
+		.filter(g => g.Period !== 11) // remove penalty shoot out goals
+		.map(g => {
+			const scorer = (g.Type === 3) ?
+				opponents.find(p => p.IdPlayer === g.IdPlayer) :
+				players.find(p => p.IdPlayer === g.IdPlayer);
+			return {
+				time: g.Minute,
+				type: g.Type, // 1: penalty, 2: normal, 3: own goal
+				scorer: scorer?.PlayerName[0]?.Description ?? 'unknown'
+			};
+		});
 }
 
 /**
