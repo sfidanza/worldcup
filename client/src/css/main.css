@@ -124,10 +124,13 @@ button {
 	background-color: #CC6600;
 }
 dl#menu {
-	margin: 0 100px 0 0;
+	margin-right: 100px;
+}
+dl.menu {
+	margin: 0;
 	padding: 0;
 }
-dl#menu dt {
+dl.menu dt {
 	line-height: 21px;
 	font-size: 140%;
 	font-weight: bold;
@@ -135,32 +138,32 @@ dl#menu dt {
 	float: left;
 	width: 110px;
 }
-dl#menu dd {
+dl.menu dd {
 	font-size: 110%;
 	margin: 0;
 	float: left;
 }
-dl#menu dd.right {
+dl.menu dd.right {
 	float: right;
 }
-dl#menu dd a {
+dl.menu dd a {
 	display: block;
 	padding: 0.4em 1.2em;
 	text-decoration: none;
 	color: black;
 }
-dl#menu dd a:hover {
+dl.menu dd a:hover {
 	background: #999999;
 	color: #FFFFFF;
 }
-dl#menu dd a.selected {
+dl.menu dd a.selected {
 	background: #333333 url(img/l0.png) top left repeat-x;
 	color: #FFFFFF;
 }
-dl#menu li ul li {
+dl.menu li ul li {
 	display: inline;
 }
-dl#menu li ul li a {
+dl.menu li ul li a {
 	display: inline;
 	padding: 0.2em 1em;
 }
@@ -243,6 +246,6 @@ dl#menu li ul li a {
 		display: none;
 	}
 	dl#menu dd a {
-		padding: 0.4em 1em;
+		padding: 0.4em 0.4em;
 	}
 }

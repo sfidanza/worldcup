@@ -220,7 +220,6 @@ page.view = function (viewName) {
 page.show = function (viewName, ...option) {
 	switch (viewName) {
 		case 'schedule': page.showSchedule(...option); break;
-		case 'ranking': page.showRanking(...option); break;
 		case 'group': page.showGroup(...option); break;
 		case 'board': page.showBoard(); break;
 		case 'board32': page.showBoard32(); break;
@@ -248,22 +247,12 @@ page.showSchedule = function (phase) {
 	page.scoreEditor.plug();
 };
 
-page.showRanking = function (group) {
-	if (!group) {
-		const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
-		Object.keys(teamsByGroup).sort().forEach(g => {
-			page.templates.ranking.parse(teamsByGroup[g], g);
-		});
-	} else {
-		const data = {
-			teams: page.data.teams.filter(item => item.group === group)
-		};
-		page.templates.ranking.parse(data.teams, group);
-	}
-	page.templates.ranking.load(page.config.area.contents);
-};
-
 page.showGroup = function (group) {
+	if (group) {
+		this.activeGroup = group;
+	} else {
+		group = this.activeGroup || 'A';
+	}
 	const data = {
 		teams: page.data.teams.filter(item => item.group === group),
 		matches: page.data.matches.filter(item => item.group === group),

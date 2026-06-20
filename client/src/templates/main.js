@@ -24,14 +24,6 @@ main.onParse = function (year) {
 		this.parseBlock('finals');
 	}
 
-	if (page.data.teams.some(t => t.group)) {
-		const teamsByGroup = frw.data.groupBy(page.data.teams, 'group');
-		Object.keys(teamsByGroup).sort().forEach(g => {
-			this.set('group', g);
-			this.parseBlock('group');
-		});
-	}
-
 	const current = page.data.history[page.config.cid].find(el => el.year === year);
 	if (current && !current.winnerId) {
 		this.parseBlock('bet');
