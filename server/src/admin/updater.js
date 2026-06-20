@@ -8,6 +8,7 @@
 import cron from 'node-cron';
 import adapter from './adapter.js';
 import live from '../business/live.js';
+import foot from '../business/foot.js';
 
 const COMPETITIONS = ['euro', 'cwc', 'worldcup'];
 
@@ -97,6 +98,7 @@ function followScore (db, mid) {
 				if (res.matchStatus == 0 || res.matchStatus == 4) { // Finished or Abandoned
 					console.info(`[${tid}] match finished, stopping follow-up`);
 					unschedule(tid);
+					foot.endMatch(db, mid);
 				}
 			})
 			.catch(err => {

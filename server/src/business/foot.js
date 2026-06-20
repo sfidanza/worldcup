@@ -30,8 +30,8 @@ foot.getStadiums = async function (db) {
 };
 
 foot.getData = async function (db) {
-	return Promise.all([ foot.getTeams(db), foot.getMatches(db), foot.getStadiums(db) ])
-		.then(([ teams, matches, stadiums ]) => { return { teams, matches, stadiums }; });
+	return Promise.all([foot.getTeams(db), foot.getMatches(db), foot.getStadiums(db)])
+		.then(([teams, matches, stadiums]) => { return { teams, matches, stadiums }; });
 };
 
 /******************************************************************************
@@ -39,7 +39,7 @@ foot.getData = async function (db) {
  */
 
 /**
- * Update stats and advance to next round
+ * Update match score, stats and advance to next round
  * @param {object} db
  * @param {string} mid - the id of the match to be updated
  * @param {integer} score1 - the score of team 1
@@ -58,24 +58,35 @@ foot.setMatchScore = async function (db, mid, score1, score2, score1PK, score2PK
 		'team1_scorePK': score1PK,
 		'team2_scorePK': score2PK
 	};
+	const data = {};
 	return db.collection('matches')
 		.findOneAndUpdate({ id: mid }, { $set: edit }, { returnDocument: 'after' })
 		.then(match => {
 			if (!match) throw new httpError.NotFound(`Match id ${mid} not found`);
 			delete match._id;
-			const data = { matches: [match] };
-			if (match.group) {
-				// update group results
-				return this.updateGroupStats(db, match.group)
-					.then(teams => {
-						data.teams = teams;
-						return data;
-					});
-			} else if (match.phase !== 'F' && match.phase !== 'T') {
-				// update score from final rounds: winner moves forward
-				advanceToNextRound(db, match); // no wait needed
+			data.matches = [match];
+			return this.updateMatchStats(db, match);
+		})
+		.then(res => {
+			if (Array.isArray(res)) {
+				data.teams = res;
 			}
 			return data;
+		});
+};
+
+/**
+ * Compute stats at the end of a match
+ * @param {object} db
+ * @param {string} fid - the FIFA id of the match to be updated
+ * @api public
+ */
+foot.endMatch = async function (db, fid) {
+	return db.collection('matches')
+		.findOne({ fid: fid })
+		.then(match => {
+			if (!match) console.warn(`Match ${fid} not found`);
+			return this.updateMatchStats(db, match);
 		});
 };
 
@@ -112,6 +123,24 @@ foot.setRanks = async function (db, group, ranks) {
 };
 
 /**
+ * Update stats and advance to next round
+ * @param {object} db
+ * @param {string} match - the match triggering the update
+ * @returns {boolean|Team[]} true if match is not in a group, or list of teams if group stats have been updated
+ * @api public
+ */
+foot.updateMatchStats = async function (db, match) {
+	if (match.group) {
+		// update group results
+		return this.updateGroupStats(db, match.group);
+	} else if (match.phase !== 'F' && match.phase !== 'T') {
+		// update score from final rounds: winner moves forward
+		advanceToNextRound(db, match); // no wait needed
+	}
+	return true;
+};
+
+/**
  * Update the stats of all teams in a group, to take into account new match results
  * @param {object} db
  * @param {string} group - the group to be updated ('A', 'B', ...)
@@ -125,7 +154,7 @@ foot.updateGroupStats = async function (db, group, options) {
 	return Promise.all([
 		db.collection('teams').find({ group: group }, { id: true }).toArray(),
 		db.collection('matches').find({ group: group, team1_score: { $ne: null } }).toArray()
-	]).then(([ teams, matches ]) => {
+	]).then(([teams, matches]) => {
 		const newStats = engine.computeGroupStandings(teams, matches);
 		for (const t of newStats) {
 			db.collection('teams').updateOne({ _id: t._id }, { $set: t });
