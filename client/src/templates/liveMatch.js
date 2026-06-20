@@ -24,8 +24,8 @@ liveMatch.onParse = function (match) {
 		match.matchTime = 'Penalty Shoot Out';
 	}
 
-	// cid 17 is Worldcup (flag) - to be reviewed to support more competitions
-	this.set('flag', match.cid === '17' ? 'flag' : 'club');
+	// only cwc (10005) has club icons - so far anyway...
+	this.set('flag', match.cid === '10005' ? 'club' : 'flag');
 
 	this.set('match', match);
 	this.set('team1.name', match.team1_name || team1?.name || match.team1_id); // always use team id instead of name for size S?

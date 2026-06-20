@@ -3,7 +3,6 @@
  ******************************************************************************/
 import { Router } from 'express';
 import foot from '../business/foot.js';
-import live from '../business/live.js';
 // import bets from '../business/bets.js';
 
 export default function getRouter() {
@@ -20,7 +19,6 @@ export default function getRouter() {
 					// if (!match.group) { // if the match is in the final phase, trigger a betting leaderboard update
 					// 	bets.updateLeaderboard(db); // no need to wait for result
 					// }
-					live.broadcastMatchUpdate(data.matches[0]);
 					response.json(data);
 				}).catch(err => {
 					console.error(err);
