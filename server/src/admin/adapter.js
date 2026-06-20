@@ -156,6 +156,7 @@ adapter.getPlannedMatches = async function (sid) {
 			const matches = res.Results.map(data => {
 				const date = new Date(data.Date);
 				return {
+					fid: data.IdMatch,
 					id: data.MatchNumber,
 					phase: STAGES[data.StageName[0]?.Description],
 					date: data.Date, // UTC

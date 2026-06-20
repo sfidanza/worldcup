@@ -53,7 +53,7 @@ importer.import = async function (db) {
 
 const writeData = async function (data, filename) {
 	console.log(`Writing ${filename}.json`);
-	fs.writeFile(`${filename}.json`, JSON.stringify(data, null, 2), err => {
+	fs.writeFile(`${filename}.json`, JSON.stringify(data, null, '	'), err => {
 		if (err) console.error(`Error writing data to ${filename}.json`, err);
 	});
 };
@@ -75,9 +75,18 @@ const getMatchesOnline = async function (sid) {
 	return adapter.getPlannedMatches(sid);
 };
 
-importer.extract = async function (sid, store = false) {
+importer.extract = async function (sid, store = false, clean = false) {
 	return Promise.all([ getTeamsOnline(sid), getMatchesOnline(sid) ])
 		.then(([ dataTeams, dataMatches ]) => {
+			if (clean) {
+				dataMatches.matches.forEach(m => {
+					delete m.date;
+					delete m.stadium;
+					delete m.stadium_name;
+					delete m.team1_name;
+					delete m.team2_name;
+				});
+			}
 			if (store) {
 				writeData(dataTeams, 'extract-01-teams');
 				writeData(dataMatches, 'extract-03-matches');
