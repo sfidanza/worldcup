@@ -14,7 +14,7 @@ const COMPETITIONS = ['euro', 'cwc', 'worldcup'];
 const C_INTERVAL = 24; // hours
 const C_CRON_EXP = `0 */${C_INTERVAL} * * *`; // Every N hours
 
-const MT_CRON_EXP_TPL = (HOUR, DAY, MONTH) => `0 ${HOUR} ${DAY} ${MONTH} *`; // At start of match
+const MT_CRON_EXP_TPL = (MINUTES, HOUR, DAY, MONTH) => `${MINUTES} ${HOUR} ${DAY} ${MONTH} *`; // At start of match
 
 const SF_INTERVAL = 30; // seconds
 const SF_AUTO_STOP = 240; // minutes: safety stop after N minutes to avoid infinite follow-up in case of API failure
@@ -116,7 +116,7 @@ function triggerMatch (db, m) {
 			console.info(`Match ${m.mid} already started: starting follow-up immediately`);
 			return followScore(db, m.mid);
 		} else {
-			const cronExpression = MT_CRON_EXP_TPL(d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
+			const cronExpression = MT_CRON_EXP_TPL(d.getUTCMinutes(), d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
 			return schedule(`MT-${m.mid}`, cronExpression, 1, () => {
 				followScore(db, m.mid);
 			});
