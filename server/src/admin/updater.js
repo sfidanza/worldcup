@@ -74,7 +74,9 @@ function viewTask (task) {
 		tid: task.name,
 		status: task.getStatus(),
 		cron: task.cronExpression,
-		next: task.getNextRun()
+		next: task.getNextRun(),
+		maxExecutions: task.runner?.maxExecutions,
+		runcount: task.runner?.runCount
 	};
 };
 

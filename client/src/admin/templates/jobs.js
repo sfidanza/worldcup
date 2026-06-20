@@ -15,6 +15,7 @@ jobs.onParse = function () {
 		this.set('row_class', 'l' + (i % 2));
 		this.set('job', job);
 		this.set('job.next', page.config.i18n.formats.datetime.format(new Date(job.next)));
+		this.set('job.maxExecutions', job.maxExecutions ?? '∞');
 		this.parseBlock('job');
 	});
 };
