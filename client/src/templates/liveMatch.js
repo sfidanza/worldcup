@@ -24,8 +24,8 @@ liveMatch.onParse = function (match) {
 		match.matchTime = 'Penalty Shoot Out';
 	}
 
-	// Display close link if match is finished
 	if (match.matchStatus === 0) {
+		// Display close link if match is finished
 		this.parseBlock('close');
 	} else if (match.matchStatus === 11) {
 		match.matchTime += ' (Suspended)';
