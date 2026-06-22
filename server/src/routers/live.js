@@ -11,6 +11,7 @@ export default function getRouter() {
 	router.get('/', async function (request, response) {
 		const session = await createSession(request, response);
 		live.channel.register(session);
+		live.broadcastLatestMatches();
 	});
 
 	return router;
