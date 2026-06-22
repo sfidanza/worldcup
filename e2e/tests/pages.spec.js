@@ -8,12 +8,9 @@ const PAGE_TITLE = (year) => {
     default: return '';
   }
 };
-// test.beforeEach(async ({ page }) => {
-//   await page.goto('/');
-// });
 
-test('history @sanity', async ({ page }) => {
-  await page.goto('/');
+test('2022 history @sanity', async ({ page }) => {
+  await page.goto('/2022');
   const history = await page.getByRole('link', { name: 'FIFA Worldcup' });
   await history.click();
   await expect(page).toHaveURL(/.*#history,worldcup/);
@@ -22,23 +19,21 @@ test('history @sanity', async ({ page }) => {
 
 for (const rep of ['2026', '2025', '2018 @sanity', '2016', '2010']) {
   const year = rep.slice(0, 4);
-  test(`${rep} pages`, async ({ page }, workerInfo) => {
+  test(`${rep} pages`, async ({ page }) => {
     await page.goto(`/${year}`);
-    await checkNavigation(page, year, workerInfo);
+    await checkNavigation(page, year);
   });
 }
 
-async function checkNavigation(page, year, workerInfo) {
+async function checkNavigation(page, year) {
   // Schedule - default page
   await expect(page).toHaveTitle(PAGE_TITLE(year));
   await expect(page).toHaveScreenshot(`${year}-schedule.png`);
 
   // Other pages
-  if (!/Mobile/.test(workerInfo.project.name)) {
-    await checkPage(page, 'Group Rankings', /.*#ranking/, `${year}-ranking.png`); // not present in small screens
-  }
+  await checkPage(page, 'Group Rankings', /.*#group/, `${year}-groupA.png`);
+  await checkPage(page, 'B', /.*#group,B/, `${year}-groupB.png`);
   await checkPage(page, 'Finals Board', /.*#board/, `${year}-board.png`);
-  await checkPage(page, 'A', /.*#group,A/, `${year}-groupA.png`);
 }
 
 async function checkPage(page, linkTitle, pageTitle, filename) {
