@@ -49,7 +49,7 @@ export default adapter;
  *      4  Abandoned
  *      7  Postponed
  *      8  Cancelled
- *      12 Lineups
+ *      11 Suspended
  * @property {Enum} Period
  *      0  Not yet started
  *      1  ??

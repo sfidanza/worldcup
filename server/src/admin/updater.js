@@ -114,7 +114,7 @@ function followScore (db, mid) {
  * @returns {boolean} true if a new job was scheduled, false if a job already exists for this match
  */
 function triggerMatch (db, m) {
-	if (m.matchStatus == 1 || m.matchStatus == 3) {
+	if (m.matchStatus == 1 || m.matchStatus == 3 || m.matchStatus == 11) { // Not yet started, Ongoing or Suspended
 		const d = new Date(m.date);
 		if (d < new Date()) {
 			console.info(`Match ${m.mid} already started: starting follow-up immediately`);

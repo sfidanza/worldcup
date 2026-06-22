@@ -15,11 +15,6 @@ liveMatch.onParse = function (match) {
 	const team1 = teams[match.team1_id];
 	const team2 = teams[match.team2_id];
 
-	// Display close link if match is finished
-	if (match.matchStatus === 0) {
-		this.parseBlock('close');
-	}
-
 	// Adapt match time display during breaks
 	if (match.period === 4) {
 		match.matchTime = 'Half-Time';
@@ -27,6 +22,13 @@ liveMatch.onParse = function (match) {
 		match.matchTime = 'Full Time';
 	} else if (match.period === 11) {
 		match.matchTime = 'Penalty Shoot Out';
+	}
+
+	// Display close link if match is finished
+	if (match.matchStatus === 0) {
+		this.parseBlock('close');
+	} else if (match.matchStatus === 11) {
+		match.matchTime += ' (Suspended)';
 	}
 
 	// only cwc (10005) has club icons - so far anyway...
