@@ -15,6 +15,11 @@ liveMatch.onParse = function (match) {
 	const team1 = teams[match.team1_id];
 	const team2 = teams[match.team2_id];
 
+	// Display close link if match is finished
+	if (match.matchStatus === 0) {
+		this.parseBlock('close');
+	}
+
 	// Adapt match time display during breaks
 	if (match.period === 4) {
 		match.matchTime = 'Half-Time';

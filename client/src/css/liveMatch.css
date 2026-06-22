@@ -47,3 +47,13 @@
     padding-left: 20px;
     padding-right: 0;
 }
+
+.live-match .close {
+    float: right;
+    cursor: pointer;
+    color: #666;
+}
+.live-match .close:hover {
+    text-decoration: underline;
+    color: inherit;
+}
