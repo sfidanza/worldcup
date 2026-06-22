@@ -8,6 +8,7 @@ import ics from 'ics';
 
 const TAGS = {
 	G: (group) => `Group ${group}`,
+	J: () => 'Round of 32',
 	H: () => 'Round of 16',
 	Q: () => 'Quarter-Finals',
 	S: () => 'Semi-Finals',
