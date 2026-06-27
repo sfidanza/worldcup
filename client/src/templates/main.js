@@ -15,6 +15,10 @@ main.onParse = function (year) {
 	this.set('cid', page.config.cid);
 	this.set('name', page.config.name);
 
+	if (year === "2026") { // Rule for best 3rds is specific to 2026. To be followed for future editions.
+		this.parseBlock('bestThirds');
+	}
+
 	if (page.data.matches.some(m => m.phase === 'J')) {
 		this.parseBlock('round32');
 	}

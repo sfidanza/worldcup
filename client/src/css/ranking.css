@@ -45,3 +45,16 @@ table.quickRanking {
 table.quickRanking td.team {
 	width: auto;
 }
+
+/***[Best Thirds]***************/
+table.ranking.bestThirds tbody tr:nth-child(3) {
+	border-bottom: none;
+}
+table.ranking.bestThirds tbody tr:nth-child(8) {
+	border-bottom: 2px solid #119911;
+}
+table.ranking.bestThirds .l0:hover,
+table.ranking.bestThirds .l1:hover { background-color: #EEEEAA; }
+table.ranking.bestThirds tr { border-left: 3px solid transparent; }
+table.ranking.bestThirds tr.qualified { border-left-color: #119911; }
+table.ranking.bestThirds tr.eliminated { border-left-color: #FF0000; }

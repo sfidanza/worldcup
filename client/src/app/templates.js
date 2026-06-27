@@ -15,3 +15,4 @@ export { login } from '../templates/login/login.js';
 export { register } from '../templates/login/register.js';
 export { bet } from '../templates/bet/bet.js';
 export { liveMatch } from '../templates/liveMatch.js';
+export { bestThirds } from '../templates/bestThirds.js';

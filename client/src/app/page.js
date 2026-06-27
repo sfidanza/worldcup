@@ -233,6 +233,7 @@ page.show = function (viewName, ...option) {
 		case 'group': page.showGroup(...option); break;
 		case 'board': page.showBoard(); break;
 		case 'board32': page.showBoard32(); break;
+		case 'bestThirds': page.showBestThirds(); break;
 		case 'history': page.showPage('history', ...option); break;
 		case 'notes': page.showPage('notes'); break;
 		case 'login': page.showPage('login', ...option); break;
@@ -301,6 +302,11 @@ page.showBoard32 = function () {
 
 	page.templates.board32.parse(data);
 	page.templates.board32.load(page.config.area.contents);
+};
+
+page.showBestThirds = function () {
+	page.templates.bestThirds.parse(page.data.teams);
+	page.templates.bestThirds.load(page.config.area.contents);
 };
 
 page.parseGroupRanking = function (from, group) {
