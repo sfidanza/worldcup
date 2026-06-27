@@ -73,16 +73,16 @@ export default adapter;
 
 /**
  * Retrieves match data for the specified match id
- * @param {string} mid - the FIFA match id
+ * @param {string} fid - the FIFA match id
  * @returns {MatchList}
  */
-adapter.getMatch = async function (mid) {
-	return fetch(LIVE_API + mid)
+adapter.getMatch = async function (fid) {
+	return fetch(LIVE_API + fid)
 		.then(res => res.json())
 		.then(data => {
 			return {
 				cid: data.IdCompetition,
-				mid: data.IdMatch,
+				fid: data.IdMatch,
 				date: data.Date,
 				day: data.Date.slice(0, 10), // raw but should work for now
 				matchTime: data.MatchTime,
@@ -131,7 +131,7 @@ adapter.getCurrentMatches = async function (competitionId) {
 		.then(res => {
 			return res.Results.map(data => {
 				return {
-					mid: data.IdMatch,
+					fid: data.IdMatch,
 					date: data.Date,
 					matchStatus: data.MatchStatus,
 					matchTime: data.MatchTime,

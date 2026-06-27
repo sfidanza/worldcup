@@ -2,8 +2,8 @@
  * Update match data from live api
  * 3 levels of cron jobs, each triggering the one below:
  *   1. [C-{year}] competition: executes once per day to schedule match triggers of the day
- *   2. [MT-{mid}] match trigger: set at game start time to trigger the score follow-up
- *   3. [SF-{mid}] score follow-up: executes every N seconds to update the score until the game is finished
+ *   2. [MT-{fid}] match trigger: set at game start time to trigger the score follow-up
+ *   3. [SF-{fid}] score follow-up: executes every N seconds to update the score until the game is finished
  ********************************************************************/
 import cron from 'node-cron';
 import adapter from './adapter.js';
@@ -84,13 +84,13 @@ function viewTask (task) {
 /**
  * Schedule a cron job to follow match score and update it in DB
  * @param {object} db
- * @param {string} mid
+ * @param {string} fid
  * @returns {boolean} true if a new job was scheduled, false if a job already exists for this match
  */
-function followScore (db, mid) {
-	const tid = `SF-${mid}`;
+function followScore (db, fid) {
+	const tid = `SF-${fid}`;
 	return schedule(tid, SF_CRON_EXP, SF_MAX_EXECUTIONS, () => {
-		updater.fetchMatch(db, mid)
+		updater.fetchMatch(db, fid)
 			.then(res => {
 				console.debug(`[${tid}] ${res.team1_id} - ${res.team2_id}: ${res.team1_score} - ${res.team2_score}`
 					+ ` / PK: ${res.team1_scorePK} - ${res.team2_scorePK} / winner: ${res.winner}`
@@ -98,11 +98,11 @@ function followScore (db, mid) {
 				if (res.matchStatus == 0 || res.matchStatus == 4) { // Finished or Abandoned
 					console.info(`[${tid}] match finished, stopping follow-up`);
 					unschedule(tid);
-					foot.endMatch(db, mid);
+					foot.endMatch(db, fid);
 				}
 			})
 			.catch(err => {
-				console.error(`[${tid}] Error fetching match ${mid}: `, err);
+				console.error(`[${tid}] Error fetching match ${fid}: `, err);
 			});
 	});
 };
@@ -117,12 +117,12 @@ function triggerMatch (db, m) {
 	if (m.matchStatus == 1 || m.matchStatus == 3 || m.matchStatus == 11) { // Not yet started, Ongoing or Suspended
 		const d = new Date(m.date);
 		if (d < new Date()) {
-			console.info(`Match ${m.mid} already started: starting follow-up immediately`);
-			return followScore(db, m.mid);
+			console.info(`Match ${m.fid} already started: starting follow-up immediately`);
+			return followScore(db, m.fid);
 		} else {
 			const cronExpression = MT_CRON_EXP_TPL(d.getUTCMinutes(), d.getUTCHours(), d.getUTCDate(), d.getUTCMonth() + 1);
-			return schedule(`MT-${m.mid}`, cronExpression, 1, () => {
-				followScore(db, m.mid);
+			return schedule(`MT-${m.fid}`, cronExpression, 1, () => {
+				followScore(db, m.fid);
 			});
 		}
 	}
@@ -149,10 +149,10 @@ async function getCurrentMatches (db, year) {
 /********************************************************************
  * Update match data in DB from live API
  * @param {object} db
- * @param {string} mid - the FIFA id of the match to be updated
+ * @param {string} fid - the FIFA id of the match to be updated
  */
-updater.fetchMatch = async function (db, mid) {
-	return adapter.getMatch(mid)
+updater.fetchMatch = async function (db, fid) {
+	return adapter.getMatch(fid)
 		.then(match => {
 			if (!match) return;
 			const edit = {
@@ -206,20 +206,20 @@ updater.stopCompetition = async function (year) {
 /**
  * Manually start a score follow-up cron job
  * @param {object} db
- * @param {string} mid
+ * @param {string} fid
  * @returns
  */
-updater.startMatch = async function (db, mid) {
-	return followScore(db, mid);
+updater.startMatch = async function (db, fid) {
+	return followScore(db, fid);
 };
 
 /**
  * Manually stop a score follow-up cron job
- * @param {string} mid
+ * @param {string} fid
  * @returns
  */
-updater.stopMatch = async function (mid) {
-	return unschedule(`SF-${mid}`);
+updater.stopMatch = async function (fid) {
+	return unschedule(`SF-${fid}`);
 };
 
 /**

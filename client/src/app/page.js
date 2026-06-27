@@ -123,10 +123,10 @@ page.getData = async function () {
 
 page.updateMatch = function (match) {
 	// Dynamically create a container for a new live
-	let container = document.querySelector(`[data-live-match="${match.mid}"]`);
+	let container = document.querySelector(`[data-live-match="${match.fid}"]`);
 	if (!container) {
 		container = document.createElement('div');
-		container.setAttribute('data-live-match', match.mid);
+		container.setAttribute('data-live-match', match.fid);
 		document.getElementById(page.config.area.liveMatch).appendChild(container);
 	}
 	page.templates.liveMatch.parse(match);
