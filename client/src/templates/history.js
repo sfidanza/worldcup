@@ -12,7 +12,8 @@ history.onCreate = function (pageRef, frwRef, i18nRepository) {
 history.onParse = function (cid) {
 	cid = cid || 'worldcup';
 	this.set('flag', cid === 'cwc' ? 'club' : 'flag');
-	for (const edition of page.data.history[cid]) {
+	page.data.history[cid].forEach((edition, i) => {
+		this.set('row_class', 'l' + (i % 2));
 		this.set('edition', edition);
 		if (edition.available) {
 			this.parseBlock('link');
@@ -20,5 +21,5 @@ history.onParse = function (cid) {
 			this.parseBlock('noLink');
 		}
 		this.parseBlock('edition');
-	}
+	});
 };

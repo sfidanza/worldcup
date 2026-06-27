@@ -1,4 +1,4 @@
-<table class="schedule history">
+<table class="list history">
 <thead>
 	<tr>
 		<th>Year</th>
@@ -10,8 +10,8 @@
 <tbody>
 	<!-- BEGIN: edition -->
 	<tr class="{row_class}">
-		<!-- BEGIN: link --><td class="time"><a href="{edition.year}">{edition.year}</a></td><!-- END: link -->
-		<!-- BEGIN: noLink --><td class="time">{edition.year}</td><!-- END: noLink -->
+		<!-- BEGIN: link --><td class="year"><a href="{edition.year}">{edition.year}</a></td><!-- END: link -->
+		<!-- BEGIN: noLink --><td class="year">{edition.year}</td><!-- END: noLink -->
 		<td class="team"><span class="flag flag-{edition.organizerId}">{edition.organizer}</span></td>
 		<td class="team"><span class="{flag} {flag}-{edition.winnerId}">{edition.winner}</span></td>
 	</tr>

@@ -1,4 +1,9 @@
-.schedule.history th {
+.history thead th {
 	padding-left: 5px;
 	text-align: left;
 }
+.history td {
+	text-align: left;
+}
+.history td.year { width: 20%; }
+.history td.team { width: 40%; }
