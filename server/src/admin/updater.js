@@ -159,7 +159,8 @@ updater.fetchMatch = async function (db, fid) {
 				'team1_score': match.team1_score,
 				'team2_score': match.team2_score,
 				'team1_scorePK': match.team1_scorePK,
-				'team2_scorePK': match.team2_scorePK
+				'team2_scorePK': match.team2_scorePK,
+				'live': match.live
 			};
 			return db.collection('matches')
 				.findOneAndUpdate(

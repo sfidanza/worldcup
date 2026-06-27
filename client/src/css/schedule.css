@@ -62,3 +62,9 @@
 	text-align: center;
 	width: 45px;
 }
+
+.schedule tr[data-live="true"] .score {
+	background-color: #CC6600;
+	border-radius: 0.5em;
+	color: #fff;
+}

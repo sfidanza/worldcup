@@ -131,6 +131,16 @@ page.updateMatch = function (match) {
 	}
 	page.templates.liveMatch.parse(match);
 	page.templates.liveMatch.load(container);
+
+	const m = page.data.matches.find(m => m.fid === match.fid);
+	if (m) {
+		m.team1_score = match.team1_score;
+		m.team2_score = match.team2_score;
+		m.team1_scorePK = match.team1_scorePK;
+		m.team2_scorePK = match.team2_scorePK;
+		m.live = match.live;
+		page.templates.schedule.updateLiveScore(match);
+	}
 };
 
 page.register = function (login, cb) {
