@@ -102,6 +102,7 @@ bet.parseMatches = function (bets) {
 	const user = page.data.user;
 	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
 	const teams = frw.data.indexBy(page.data.teams, 'id');
+	const dateFormat = page.config.i18n.formats.date;
 
 	for (const phase of page.config.phases) {
 		if (!list[phase]) continue;
@@ -110,7 +111,7 @@ bet.parseMatches = function (bets) {
 		const days = Object.keys(phaseList).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 		for (const day of days) {
 			const matches = frw.data.sortBy(phaseList[day], [{ key: 'hour', dir: 1 }, { key: 'id', dir: 1 }]);
-			this.set('day', day);
+			this.set('day', dateFormat.format(new Date(day)));
 			matches.forEach((match, i) => {
 				this.set('row_class', 'l' + (i % 2));
 				this.set('match', match);
@@ -119,11 +120,9 @@ bet.parseMatches = function (bets) {
 				this.set('team1.name', team1 ? team1.name : match.team1_source);
 				this.set('team2.name', team2 ? team2.name : match.team2_source);
 				this.set('stadium', page.data.stadiums[match.stadium]);
-				let pso = ''; // Penalty Shoot Out
 				if (match.team1_scorePK != null) {
-					pso = '<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')';
+					this.parseBlock('PSO');
 				}
-				this.set('PSO', pso);
 
 				let bet1Class = '', bet2Class = '';
 				const isOpened = this.isBettable(match);

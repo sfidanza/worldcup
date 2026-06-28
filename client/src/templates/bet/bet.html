@@ -60,7 +60,7 @@
 	</tr>
 	
 	<!-- BEGIN: match -->
-	<tr class="{row_class}">
+	<tr id="m-{match.id}" data-match="{match.fid}" data-live="{match.live}" class="{row_class}">
 		<td class="time">{match.hour}</td>
 		<td class="group media-ML">{match.id}</td>
 		<td class="team left {bet1Class}"
@@ -71,7 +71,12 @@
 			<div class="badge" title="{betters}">{betsOnTeam}</div>
 			<!-- END: badge1 -->
 		</td>
-		<td class="score">{match.team1_score} - {match.team2_score}{PSO}</td>
+		<td class="score">
+			{match.team1_score} - {match.team2_score}
+			<!-- BEGIN: PSO -->
+			<br/><span class="pso">({match.team1_scorePK} - {match.team2_scorePK})</span>
+			<!-- END: PSO -->
+		</td>
 		<td class="team {bet2Class}"
 		    <!-- BEGIN: bet2 -->title="Bet on {team2.name}!" onclick="page.bet.betOnMatchWinner('{match.id}', '{match.team2_id}')"<!-- END: bet2 -->
 		    >
