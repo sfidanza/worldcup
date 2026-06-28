@@ -164,13 +164,13 @@ updater.fetchMatch = async function (db, fid) {
 			};
 			return db.collection('matches')
 				.findOneAndUpdate(
-					{ team1_id: match.team1_id, team2_id: match.team2_id, group: match.group },
+					{ fid: match.fid },
 					{ $set: edit },
 					{ returnDocument: 'after' }
 				)
 				.then(updated => {
 					if (!updated) {
-						console.warn(`Match ${match.team1_id} - ${match.team2_id} not found in database`);
+						console.warn(`Match ${match.fid} (${match.team1_id} - ${match.team2_id}) not found in database`);
 						updated = match;
 					} else {
 						updated = Object.assign(match, updated);
