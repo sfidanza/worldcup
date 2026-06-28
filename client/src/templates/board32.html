@@ -14,7 +14,7 @@
 <div id="link-Q4" class="link"></div>
 
 <!-- BEGIN: match -->
-<div class="match {class}" id="match-{match.id}"
+<div class="match {class}" id="match-{match.id}" data-match="{match.fid}" data-live="{match.live}"
      <!-- BEGIN: tooltip -->
      onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}', '{group1}', '{group2}'), 'centerX');"
      onmousemove="page.tooltip.positionTooltip(event, 'centerX');"
@@ -25,12 +25,18 @@
 	<div class="content">
 		<span class="date">{day}<br/>{match.hour}</span><span class="media-ML"> - {stadium.city}</span>
 		<div class="teams">
-			<span class="{flag} {flag}-{match.team1_id} left">{team1.name}</span>
-			<span class="score">{match.team1_score} - {match.team2_score}</span>
-			<span class="{flag} {flag}-{match.team2_id}">{team2.name}</span>
-			<!-- BEGIN: PSO -->
-			<span class="score pso">({match.team1_scorePK} - {match.team2_scorePK})</span>
-			<!-- END: PSO -->
+			<div class="team home">
+				<span class="{flag} {flag}-{match.team1_id} left">{team1.name}</span>
+			</div>
+			<div class="score">
+				{match.team1_score} - {match.team2_score}
+				<!-- BEGIN: PSO -->
+				<br/><span class="pso">({match.team1_scorePK} - {match.team2_scorePK})</span>
+				<!-- END: PSO -->
+			</div>
+			<div class="team away">
+				<span class="{flag} {flag}-{match.team2_id}">{team2.name}</span>
+			</div>
 		</div>
 	</div>
 </div>

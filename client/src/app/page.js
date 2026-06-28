@@ -139,7 +139,16 @@ page.updateMatch = function (match) {
 		m.team1_scorePK = match.team1_scorePK;
 		m.team2_scorePK = match.team2_scorePK;
 		m.live = match.live;
-		page.templates.schedule.updateLiveScore(match);
+
+		const matchElement = document.querySelector(`[data-match="${match.fid}"]`);
+		if (matchElement) {
+			if (match.team1_score != null) {
+				let pso = (match.team1_scorePK != null) ?
+					'<br/><span class="pso">(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')</span>' : '';
+				matchElement.querySelector('.score').innerHTML = match.team1_score + ' - ' + match.team2_score + pso;
+			}
+			matchElement.dataset.live = match.live;
+		}
 	}
 };
 

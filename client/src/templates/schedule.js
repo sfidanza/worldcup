@@ -37,7 +37,9 @@ schedule.onParse = function (data) {
 				this.set('team1.name', team1 ? team1.name : match.team1_source);
 				this.set('team2.name', team2 ? team2.name : match.team2_source);
 				this.set('stadium', data.stadiums[match.stadium]);
-				this.set('PSO', this.getPSO(match));
+				if (match.team1_scorePK != null) {
+					this.parseBlock('PSO');
+				}
 				this.parseBlock('match');
 			});
 			this.parseBlock('day');
@@ -64,20 +66,4 @@ schedule.highlight = function (team) {
 			row.classList.remove('highlighted');
 		});
 	}
-};
-
-schedule.updateLiveScore = function (match) {
-	let m = document.querySelector(`[data-match="${match.fid}"]`);
-	if (m) {
-		if (match.team1_score != null) {
-			let pso = this.getPSO(match);
-			m.querySelector('.score').innerHTML = match.team1_score + ' - ' + match.team2_score + pso;
-		}
-		m.dataset.live = match.live;
-	}
-};
-
-schedule.getPSO = function (match) {
-	return (match.team1_scorePK != null) ?
-		'<br/>(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')' : '';
 };

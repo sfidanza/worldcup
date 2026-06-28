@@ -43,26 +43,40 @@
 }
 .board .match div.teams {
 	margin-top: 0.4em;
-	text-align: center;
 	font-weight: bold;
+	display: flex;
 }
 .board .match div.teams .score {
-	display: inline-block;
-	vertical-align: middle;
-	width: 35px;
+	flex: 1;
+	margin: -1px 4px 0;
+	padding: 2px 2px;
+	white-space: nowrap;
 }
-.board .match span.flag, .board .match span.club {
-	width: calc(50% - 41px);
-	text-align: left;
-	text-overflow: ellipsis;
+.board .match div.teams .team {
+	flex: 3;
 	overflow: hidden;
-	vertical-align: middle;
 }
-.board .match span.flag.left, .board .match span.club.left {
+.board .match div.teams .home {
 	text-align: right;
+}
+.board .match div.teams .away {
+	text-align: left;
 }
 .board .match div.teams .pso {
 	font-size: 85%;
+}
+.board .match span.flag, .board .match span.club {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: calc(100% - 20px);
+}
+.board .match span.club {
+	margin-top: -2px;
+}
+.board .match[data-live="true"] .score {
+	background-color: #CC6600;
+	border-radius: 0.5em;
+	color: #fff;
 }
 .link {
 	position: absolute;

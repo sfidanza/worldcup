@@ -23,7 +23,12 @@
 		<td class="time">{match.hour}</td>
 		<td class="group media-ML">{category}</td>
 		<td class="team left"><span class="{flag} {flag}-{match.team1_id}">{team1.name}</span></td>
-		<td class="score">{match.team1_score} - {match.team2_score}{PSO}</td>
+		<td class="score">
+			{match.team1_score} - {match.team2_score}
+			<!-- BEGIN: PSO -->
+			<br/><span class="pso">({match.team1_scorePK} - {match.team2_scorePK})</span>
+			<!-- END: PSO -->
+		</td>
 		<td class="team"><span class="{flag} {flag}-{match.team2_id}">{team2.name}</span></td>
 		<td class="city media-ML">{stadium.city}</td>
 	</tr>
