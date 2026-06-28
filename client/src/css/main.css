@@ -7,6 +7,7 @@ body {
 	margin: 0;
 
     --primary-color: #9C0000;
+	--contrast-background-color: linear-gradient(#6e6e6e, #4a4a4a);
 }
 td, th {
 	font-size: 10px;
@@ -157,7 +158,7 @@ dl.menu dd a:hover {
 	color: #FFFFFF;
 }
 dl.menu dd a.selected {
-	background: #333333 url(img/l0.png) top left repeat-x;
+	background: var(--contrast-background-color);
 	color: #FFFFFF;
 }
 dl.menu li ul li {
@@ -186,7 +187,7 @@ dl.menu li ul li a {
 }
 .list tbody th {
 	padding: 3px;
-	background: #333333 url(img/l0.png) top left repeat-x;
+	background: var(--contrast-background-color);
 	font-weight: bold;
 	color: #FFFFFF;
 	text-align: left;

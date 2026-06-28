@@ -23,11 +23,11 @@
 	font-size: 100%;
 	color: #444444;
 }
-.page-board .match.round16 h3 { background: url(img/final-lime.png); }
-.page-board .match.quarter h3 { background: url(img/final-bronze.png); }
-.page-board .match.semi    h3 { background: url(img/final-silver.png); }
-.page-board .match.final   h3 { background: url(img/final-gold.png); }
-.page-board .match.third   h3 { background: url(img/final-gold.png); }
+.page-board .match.round16 h3 { background: linear-gradient(#C6FF6B, #83c20d); }
+.page-board .match.quarter h3 { background: linear-gradient(#FEEEB0, #99843e); }
+.page-board .match.semi    h3 { background: linear-gradient(#E6E6FA, #a7a7aa); }
+.page-board .match.final   h3 { background: linear-gradient(#FFFF48, #a3a309); }
+.page-board .match.third   h3 { background: linear-gradient(#FFFF48, #a3a309); }
 .page-board .match .date {
 	font-size: 85%;
 }

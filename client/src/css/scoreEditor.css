@@ -4,7 +4,7 @@
 	visibility: hidden;
 	top: 0;
 	left: 0;
-	background-image: url(img/backEdit.png);
+	background: linear-gradient(#FFFFDD, #DDDD00);
 	border: 1px solid #999900;
 	padding: 2px 7px;
 	border-radius: 6px;
