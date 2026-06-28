@@ -90,6 +90,7 @@ adapter.getMatch = async function (fid) {
 				period: data.Period,
 				live: (data.MatchStatus === 3) || (data.MatchStatus === 11),
 				winner: data.Winner,
+				group: data.GroupName[0]?.Description.slice(-1),
 				team1_id: data.HomeTeam.Abbreviation,
 				team1_name: data.HomeTeam.TeamName[0].Description,
 				team1_score: data.HomeTeam.Score,

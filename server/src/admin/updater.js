@@ -164,7 +164,7 @@ updater.fetchMatch = async function (db, fid) {
 			};
 			return db.collection('matches')
 				.findOneAndUpdate(
-					{ team1_id: match.team1_id, team2_id: match.team2_id, day: match.day },
+					{ team1_id: match.team1_id, team2_id: match.team2_id, group: match.group },
 					{ $set: edit },
 					{ returnDocument: 'after' }
 				)
