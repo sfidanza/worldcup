@@ -28,7 +28,7 @@
 .page-board .match.semi    h3 { background: url(img/final-silver.png); }
 .page-board .match.final   h3 { background: url(img/final-gold.png); }
 .page-board .match.third   h3 { background: url(img/final-gold.png); }
-.page-board .match span.date {
+.page-board .match .date {
 	font-size: 85%;
 }
 .page-board .match .content {

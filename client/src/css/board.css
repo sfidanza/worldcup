@@ -34,7 +34,7 @@
 .board .match.semi    h3 { background: linear-gradient(#E6E6FA, #a7a7aa); }
 .board .match.final   h3 { background: linear-gradient(#FFFF48, #a3a309); }
 .board .match.third   h3 { background: linear-gradient(#FFFF48, #a3a309); }
-.board .match span.date {
+.board .match .date {
 	font-size: 85%;
 }
 .board .match .content {
