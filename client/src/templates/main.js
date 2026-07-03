@@ -1,11 +1,10 @@
 import { Template } from '../frw/frw.Template.js';
 
-let frw, page;
+let page;
 
 export const main = new Template();
 
 main.onCreate = function (pageRef, frwRef, i18nRepository) {
-	frw = frwRef;
 	page = pageRef;
 	this.i18n = i18nRepository;
 };
@@ -15,7 +14,7 @@ main.onParse = function (year) {
 	this.set('cid', page.config.cid);
 	this.set('name', page.config.name);
 
-	if (year === "2026") { // Rule for best 3rds is specific to 2026. To be followed for future editions.
+	if (year === '2026') { // Rule for best 3rds is specific to 2026. To be followed for future editions.
 		this.parseBlock('bestThirds');
 	}
 

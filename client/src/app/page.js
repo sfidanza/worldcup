@@ -132,7 +132,7 @@ page.updateMatch = function (match) {
 	page.templates.liveMatch.parse(match);
 	page.templates.liveMatch.load(container);
 
-	const m = page.data.matches.find(m => m.fid === match.fid);
+	const m = page.data.matches.find(it => it.fid === match.fid);
 	if (m) {
 		m.team1_score = match.team1_score;
 		m.team2_score = match.team2_score;
@@ -143,7 +143,7 @@ page.updateMatch = function (match) {
 		const matchElement = document.querySelector(`[data-match="${match.fid}"]`);
 		if (matchElement) {
 			if (match.team1_score != null) {
-				let pso = (match.team1_scorePK != null) ?
+				const pso = (match.team1_scorePK != null) ?
 					'<br/><span class="pso">(' + match.team1_scorePK + ' - ' + match.team2_scorePK + ')</span>' : '';
 				matchElement.querySelector('.score').innerHTML = match.team1_score + ' - ' + match.team2_score + pso;
 			}

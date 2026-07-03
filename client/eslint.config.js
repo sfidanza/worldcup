@@ -12,7 +12,7 @@ export default defineConfig([
 			},
 		},
 		rules: {
-			'indent': ['error', 'tab', { 'SwitchCase': 1 }],
+			'indent': ['error', 'tab', { 'SwitchCase': 1, 'flatTernaryExpressions': true }],
 			'no-extra-bind': 'error',
 			'no-shadow': 'error',
 			'no-var': 'error',
