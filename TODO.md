@@ -22,6 +22,8 @@
 - Database
   - MongoDB version support: <https://www.mongodb.com/legal/support-policy/lifecycles>
     - Plan migration to another system, as MongoDB 5+ requires more recent/powerful processors than targeted here
+    - Options:
+      - [CouchDB](https://docs.couchdb.org/en/stable/): [Docker image](https://hub.docker.com/_/couchdb) + [nano](https://www.npmjs.com/package/nano)
+        - <https://docs.couchdb.org/en/latest/setup/single-node.html>
+      - [PostgreSQL](https://www.postgresql.org/) as a [document store](https://neon.com/guides/document-store)
   - nodeSelector needed because of hostpath for DB volume
-- Unit tests
-  - Try [node testing framework](https://nodejs.org/api/test.html) to replace `mocha`

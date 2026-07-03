@@ -98,3 +98,4 @@ Or you can run it through Traefik and use the `docker-compose.traefik.yml` file:
 - esbuild: <https://esbuild.github.io/>
 - cron: <https://nodecron.com/>
 - sse: <https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
+- native node test framework: <https://nodejs.org/api/test.html>

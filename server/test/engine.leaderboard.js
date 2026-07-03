@@ -1,4 +1,5 @@
-import assert from 'assert';
+import { describe, it } from 'node:test';
+import assert from 'node:assert/strict';
 import engine from '../src/business/engine/leaderboard.js';
 
 describe('Leaderboard engine', function () {

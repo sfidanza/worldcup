@@ -24,18 +24,13 @@
     "@eslint/js": "10.0.1",
     "eslint": "10.6.0",
     "globals": "17.7.0",
-    "mocha": "11.7.6",
     "nodemon": "3.1.14"
-  },
-  "overrides": {
-    "diff": "~9.0.0",
-    "serialize-javascript": "^7.0.5"
   },
   "scripts": {
     "start": "node src/index.js",
     "debug": "nodemon --inspect=0.0.0.0:9229 --legacy-watch src/index.js",
     "lint": "eslint .",
-    "test": "mocha"
+    "test": "node --test"
   },
   "main": "src/index.js",
   "type": "module",

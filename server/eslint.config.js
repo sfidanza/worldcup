@@ -8,8 +8,7 @@ export default defineConfig([
 		extends: ['js/recommended'],
 		languageOptions: {
 			globals: {
-				...globals.node,
-				...globals.mocha
+				...globals.node
 			},
 		},
 		rules: {
