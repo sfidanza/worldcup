@@ -57,12 +57,13 @@ export default adapter;
  *      3  First half playing
  *      4  Half time break
  *      5  Second Half playing
- *      6  Break before extra time
+ *      17 Break before extra time
  *      7  Extra time first half playing
  *      8  Extra time half time break
  *      9  Extra time second half playing
- *      10 Full time
+ *      16 Break before penalty shootouts
  *      11 Penalty shootouts
+ *      10 Full time
  */
 
 /**

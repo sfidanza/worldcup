@@ -18,10 +18,12 @@ liveMatch.onParse = function (match) {
 	// Adapt match time display during breaks
 	if (match.period === 4) {
 		match.matchTime = 'Half-Time';
+	} else if (match.period === 17 || match.period === 8) {
+		match.matchTime = 'Extra Time';
+	} else if (match.period === 16 || match.period === 11) {
+		match.matchTime = 'Penalty Shoot Out';
 	} else if (match.period === 10) {
 		match.matchTime = 'Full Time';
-	} else if (match.period === 11) {
-		match.matchTime = 'Penalty Shoot Out';
 	}
 
 	if (match.matchStatus === 0) {
