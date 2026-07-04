@@ -1,10 +1,11 @@
 import globals from 'globals';
 import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
 	{
-		plugins: { js },
+		plugins: { js, stylistic },
 		extends: ['js/recommended'],
 		languageOptions: {
 			globals: {
@@ -12,13 +13,13 @@ export default defineConfig([
 			},
 		},
 		rules: {
-			'indent': ['error', 'tab', { 'SwitchCase': 1, 'flatTernaryExpressions': true }],
 			'no-extra-bind': 'error',
 			'no-shadow': 'error',
 			'no-var': 'error',
 			'prefer-const': 'error',
-			'quotes': ['error', 'single'],
-			'semi': ['error', 'always']
+			'stylistic/indent': ['error', 'tab', { 'SwitchCase': 1, 'flatTernaryExpressions': true }],
+			'stylistic/quotes': ['error', 'single'],
+			'stylistic/semi': ['error', 'always']
 		}
 	}
 ]);
