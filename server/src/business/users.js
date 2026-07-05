@@ -38,7 +38,7 @@ users.authenticate = async function (db, login, pwd) {
 users.register = async function (db, login, pwd, type, info) {
 	if (typeof login !== 'string') {
 		throw new httpError.UnprocessableEntity('User id is not valid');
-	} else if (typeof pwd !== 'string') {
+	} else if (type !== 'google' && typeof pwd !== 'string') {
 		throw new httpError.UnprocessableEntity('User password is not valid');
 	}
 	const id = getId(type, login);
