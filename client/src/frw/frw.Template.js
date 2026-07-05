@@ -1,8 +1,14 @@
 /**********************************************************
  * Template Engine
  * @class
+ * 
+ * Event binding: `data-onclick="myMethod"`
+ * Activate in `onCreate` with: `this.autoBindEvents = ['onclick'];`
+ * Benefits:
+ *  - compatible with CSP `script-src` directive to avoid `inline-script`
+ *  - simplifies calling template method from html
  */
-export const Template = function () {};
+export const Template = function () { };
 
 /*
  * regexp hints:
@@ -29,15 +35,15 @@ Template.prototype.create = function (tplText, ...params) {
 	if (this.i18n) {
 		tplText = tplText.replace(/{i18n\.([.\w]+)}/g, (match, key) => this.i18n[key] ?? match);
 	}
-	
+
 	// Extract variables
 	this.extractObjectVariables(tplText);
-	
+
 	// Main parsing
 	this.make(tplText.trim());
 };
 
-Template.prototype.store = function(s, parent, child) {
+Template.prototype.store = function (s, parent, child) {
 	if (parent) {
 		this.blocks[parent] += s;
 		s = '';
@@ -83,7 +89,7 @@ Template.prototype.make = function (text) {
  * Extract variables containing '.', to optimize 'this.set' with object values.
  * No recursivity: only supports 'key.property', 'key1.key2.key3...property'
  */
-Template.prototype.extractObjectVariables = function(text) {
+Template.prototype.extractObjectVariables = function (text) {
 	this.variables = {};
 	const varList = text.match(/{[.\w]+}/g);
 	if (varList) {
@@ -105,7 +111,7 @@ Template.prototype.extractObjectVariables = function(text) {
  * Set a template variable to a value.
  * If value is an object, all the template variables of the form 'key.property' are set to value[property].
  */
-Template.prototype.set = function(key, value) {
+Template.prototype.set = function (key, value) {
 	if (value && typeof value === 'object') { // filter out null (typeof null is "object")
 		for (const p in this.variables[key]) {
 			this.setValue(key + '.' + p, value[p]); // avoid recursivity (for now at least)
@@ -186,14 +192,27 @@ Template.prototype.load = function (container, display, blk) {
 		container.style.display = 'none';
 		container.innerHTML = this.retrieve(blk); // assume no scripts to execute
 		this.onLoad();
+		this.bindEvents(container);
 		container.style.display = display;
+	}
+};
+
+/**
+ * Event binding
+ */
+Template.prototype.bindEvents = function (container) {
+	// onclick
+	if (this.autoBindEvents?.includes('onclick')) {
+		container.querySelectorAll('[data-onclick]').forEach(el => {
+			el.onclick = this[el.dataset.onclick].bind(this);
+		});
 	}
 };
 
 /**
  * Standard callbacks to be overriden.
  */
-Template.prototype.onCreate = function(i18nRepository) {
+Template.prototype.onCreate = function (i18nRepository) {
 	// to be overridden
 	this.i18n = i18nRepository;
 };

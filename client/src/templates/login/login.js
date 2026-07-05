@@ -7,6 +7,7 @@ export const login = new Template();
 login.onCreate = function (pageRef, frwRef, i18nRepository) {
 	page = pageRef;
 	this.i18n = i18nRepository;
+	this.autoBindEvents = ['onclick'];
 };
 
 login.onParse = function (backTo) {
