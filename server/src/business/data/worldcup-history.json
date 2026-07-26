@@ -192,6 +192,8 @@
 	},
 	{
 		"year": "2026",
+		"winner": "Spain",
+		"winnerId": "ESP",
 		"organizer": "United States, Canada & Mexico",
 		"organizerId": "USA",
 		"available": true
