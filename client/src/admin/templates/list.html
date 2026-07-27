@@ -27,8 +27,10 @@
 		<tr>
 			<th>Year</th>
 			<th>Competition</th>
-			<th>Preview</th>
-			<th>Import</th>
+			<th><span class="info" title="Normal: from database&#013;Light: from filesystem">Type</span></th>
+			<th><span class="info" title="Retrieves data from filesystem and logs it in the console">Preview</span></th>
+			<th><span class="info" title="Imports data from filesystem into database">Import</span></th>
+			<th><span class="info" title="Exports data from database and logs it in the console">Export</span></th>
 		</tr>
 	</thead>
 
@@ -37,8 +39,10 @@
 		<tr class="{row_class}">
 			<td>{year}</td>
 			<td>{name}</td>
+			<td>{type}</td>
 			<td><a onclick="page.preview('{year}', event);" href="#">Preview</a></td>
 			<td><a onclick="page.import('{year}', event);" href="#">Import</a></td>
+			<td><a onclick="page.export('{year}', event);" href="#">Export</a></td>
 		</tr>
 		<!-- END: competition -->
 	</tbody>

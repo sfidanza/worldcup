@@ -65,7 +65,7 @@ page.getData = async function () {
 		.then(response => response.json())
 		.then(data => {
 			for (const cid in data) {
-				data[cid].forEach(el => el.cid	= cid);
+				data[cid].forEach(el => el.cid = cid);
 			}
 			page.data.history = [].concat(...Object.values(data))
 				.filter(el => el.available)
@@ -161,6 +161,42 @@ page.import = function (year, event) {
 		.then(data => {
 			console.log('import', data);
 		});
+};
+
+const TEAM_FORMAT = (t) => `{ group: '${t.group}', rank: ${t.rank}, id: '${t.id}', name: '${t.name}', played: ${t.played}, victories: ${t.victories}, draws: ${t.draws}, defeats: ${t.defeats}, points: ${t.points}, goals_scored: ${t.goals_scored}, goals_against: ${t.goals_against}, goal_difference: ${t.goal_difference} }`;
+page.exportTeams = async function (year) {
+	return fetch(page.config.url.teams(year))
+		.then(response => response.json())
+		.then(data => {
+			return data.teams
+				.sort((a, b) => a.group > b.group)
+				.map(t => TEAM_FORMAT(t))
+				.join(',\n');
+		})
+};
+
+const MATCH_FORMAT_GROUP = (m) => `{ fid: '${m.fid}', id: '${m.id}', phase: '${m.phase}', day: '${m.day}', hour: '${m.hour}', stadium: '${m.stadium}', group: '${m.group}', team1_id: '${m.team1_id}', team2_id: '${m.team2_id}', team1_score: ${m.team1_score}, team2_score: ${m.team2_score}, team1_source: '${m.team1_source}', team2_source: '${m.team2_source}' }`;
+const MATCH_FORMAT_KNOCKOUT = (m) => `{ fid: '${m.fid}', id: '${m.id}', phase: '${m.phase}', day: '${m.day}', hour: '${m.hour}', stadium: '${m.stadium}', team1_source: '${m.team1_source}', team2_source: '${m.team2_source}', team1_id: '${m.team1_id}', team2_id: '${m.team2_id}', team1_score: ${m.team1_score}, team2_score: ${m.team2_score}, team1_scorePK: ${m.team1_scorePK}, team2_scorePK: ${m.team2_scorePK} }`;
+page.exportMatches = async function (year) {
+	return fetch(page.config.url.matches(year))
+		.then(response => response.json())
+		.then(data => {
+			return data.matches
+				.sort((a, b) => a.id > b.id)
+				.map(t => t.group ? MATCH_FORMAT_GROUP(t) : MATCH_FORMAT_KNOCKOUT(t))
+				.join(',\n');
+		})
+};
+
+page.export = function (year, event) {
+	if (event) event.preventDefault();
+	Promise.all([
+		page.exportTeams(year),
+		page.exportMatches(year)
+	]).then(([teams, matches]) => {
+		console.log('teams', teams);
+		console.log('matches', matches);
+	});
 };
 
 page.getJobs = function (year) {

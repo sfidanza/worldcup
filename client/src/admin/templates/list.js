@@ -21,7 +21,7 @@ list.onParse = function () {
 		this.set('row_class', 'l' + (i % 2));
 		this.set('year', c.year);
 		this.set('name', page.config.i18n.names[c.cid](c.year));
-		this.set('active', (c.winnerId) ? '-' : page.config.i18n.active);
+		this.set('type', c.light ? page.config.i18n.light : page.config.i18n.normal);
 
 		this.parseBlock('competition');
 	});

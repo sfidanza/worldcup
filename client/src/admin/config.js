@@ -11,6 +11,8 @@ export const config = {
 	url: {
 		templates: 'admin.json',
 		history: 'api/2024/data/history',
+		teams: (year) => `api/${year}/data/teams`,
+		matches: (year) => `api/${year}/data/matches`,
 		import: (year) => `api/${year}/admin/import`,
 		preview: (year) => `api/${year}/admin/preview`,
 		jobs: (year) => `api/${year}/admin/jobs`,
@@ -22,7 +24,8 @@ export const config = {
 	},
 	getCompetitionId: (year) => COMPETITIONS[year % 4],
 	i18n: {
-		active: 'active',
+		light: 'Light',
+		normal: 'Normal',
 		names: {
 			cwc: (year) => `${year} FIFA Club World Cup`,
 			euro: (year) => `UEFA Euro ${year}`,
