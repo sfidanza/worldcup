@@ -17,7 +17,7 @@
     "eslint": "10.8.0",
     "fast-glob": "3.3.3",
     "globals": "17.9.0",
-    "spritesheet-templates": "10.5.2",
+    "spritesheet-templates": "10.6.0",
     "spritesmith": "3.5.1",
     "stylelint": "17.14.1",
     "stylelint-config-standard": "40.0.0"
