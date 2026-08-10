@@ -172,7 +172,7 @@ page.exportTeams = async function (year) {
 				.sort((a, b) => a.group > b.group)
 				.map(t => TEAM_FORMAT(t))
 				.join(',\n');
-		})
+		});
 };
 
 const MATCH_FORMAT_GROUP = (m) => `{ fid: '${m.fid}', id: '${m.id}', phase: '${m.phase}', day: '${m.day}', hour: '${m.hour}', stadium: '${m.stadium}', group: '${m.group}', team1_id: '${m.team1_id}', team2_id: '${m.team2_id}', team1_score: ${m.team1_score}, team2_score: ${m.team2_score}, team1_source: '${m.team1_source}', team2_source: '${m.team2_source}' }`;
@@ -185,7 +185,7 @@ page.exportMatches = async function (year) {
 				.sort((a, b) => a.id > b.id)
 				.map(t => t.group ? MATCH_FORMAT_GROUP(t) : MATCH_FORMAT_KNOCKOUT(t))
 				.join(',\n');
-		})
+		});
 };
 
 page.export = function (year, event) {
