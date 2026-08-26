@@ -62,10 +62,10 @@ export default function getRouter() {
 	router.get('/update', function (request, response) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
-			const query = request.query;
-			if (/^\d+$/.test(query.mid)) {
+			const mid = request.query.mid;
+			if (typeof mid === 'string' && /^\d+$/.test(mid)) {
 				const db = request.database;
-				updater.fetch(db, query.mid)
+				updater.fetch(db, mid)
 					.then(match => {
 						response.json(match);
 					}).catch(err => response.status(err.statusCode ?? 500).json({ error: err.message }));
@@ -80,10 +80,10 @@ export default function getRouter() {
 	router.get('/start', function (request, response) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
-			const query = request.query;
-			if (/^\d+$/.test(query.mid)) {
+			const mid = request.query.mid;
+			if (typeof mid === 'string' && /^\d+$/.test(mid)) {
 				const db = request.database;
-				updater.startMatch(db, query.mid)
+				updater.startMatch(db, mid)
 					.then(job => {
 						if (job) {
 							response.status(200).json({ success: 'job started' });
@@ -102,9 +102,9 @@ export default function getRouter() {
 	router.get('/stop', function (request, response) {
 		const user = request.session.user;
 		if (user && user.isAdmin) {
-			const query = request.query;
-			if (/^\d+$/.test(query.mid)) {
-				updater.stopMatch(query.mid)
+			const mid = request.query.mid;
+			if (typeof mid === 'string' && /^\d+$/.test(mid)) {
+				updater.stopMatch(mid)
 					.then(job => {
 						if (job) {
 							response.status(200).json({ success: 'job stopped' });
