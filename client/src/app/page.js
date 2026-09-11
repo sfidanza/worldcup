@@ -153,7 +153,11 @@ page.updateMatch = function (match) {
 };
 
 page.register = function (login, cb) {
-	fetch(page.config.url.register(login))
+	fetch(page.config.url.register, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(login)
+	})
 		.then(response => response.json())
 		.then(data => {
 			page.refreshUser(data, cb);
@@ -161,7 +165,11 @@ page.register = function (login, cb) {
 };
 
 page.login = function (login, cb) {
-	fetch(page.config.url.login(login))
+	fetch(page.config.url.login, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(login)
+	})
 		.then(response => response.json())
 		.then(data => {
 			page.refreshUser(data, cb);
@@ -169,7 +177,10 @@ page.login = function (login, cb) {
 };
 
 page.logout = function () {
-	fetch(page.config.url.logout)
+	fetch(page.config.url.logout, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' }
+	})
 		.then(response => response.json())
 		.then(data => {
 			page.refreshUser(data);

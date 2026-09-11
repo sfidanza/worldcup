@@ -36,8 +36,8 @@ export const config = {
 		betOnMatchWinner: (year, mid, teamId) => `api/${year}/bet/match?mid=${mid}&winner=${teamId}`,
 		live: 'api/live',
 		logout: 'api/user/logout',
-		login: (login) => `api/user/login?id=${login.id}&pwd=${login.pwd}`,
-		register: (login) => `api/user/register?id=${login.id}&pwd=${login.pwd}&name=${login.name}`,
+		login: 'api/user/login',
+		register: 'api/user/register',
 		auth: (provider) => `api/auth/url?provider=${provider}`,
 		authProfile: (code) => `api/auth/profile?code=${code}`
 	},
