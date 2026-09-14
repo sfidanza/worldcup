@@ -7,6 +7,9 @@
   "bugs": {
     "url": "https://github.com/sfidanza/worldcup/issues"
   },
+  "dependencies": {
+    "@sfidanza/tahr": "0.0.2"
+  },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@stylistic/eslint-plugin": "5.10.0",

@@ -1,14 +1,13 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
-let page, frw;
+let page;
 const QUALIFIED_COUNT = 8;
 
-export const bestThirds = new Template();
+export const bestThirds = new frw.Template();
 
-bestThirds.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
-	frw = frwRef;
+bestThirds.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
+	page = pageRef;
 };
 
 bestThirds.onParse = function (teams) {

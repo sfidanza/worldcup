@@ -1,10 +1,3 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
-export const notes = new Template();
-
-notes.onCreate = function (pageRef, frwRef, i18nRepository) {
-	this.i18n = i18nRepository;
-};
-
-notes.onParse = function () {
-};
+export const notes = new frw.Template();

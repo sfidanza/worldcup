@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@googleapis/people": "12.0.0",
+    "@sfidanza/tahr": "0.0.2",
     "better-sse": "0.16.1",
     "connect-mongo": "6.0.0",
     "console-stamp": "3.1.2",

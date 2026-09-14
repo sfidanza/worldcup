@@ -1,13 +1,13 @@
-import { Template } from '../../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
 let page;
 
-export const login = new Template();
+export const login = new frw.Template();
 
-login.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
+login.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
 	this.autoBindEvents = ['onclick'];
+	page = pageRef;
 };
 
 login.onParse = function (backTo) {
@@ -43,9 +43,8 @@ login.cleanErrors = function () {
 	}
 };
 
-login.signinGoogle = function () {
+login.signinGoogle = function (button) {
 	window.open(' about:blank', 'signin', 'height=600,width=450'); // create the 'signin' popup on user action, or it will get blocked in the async process
-	const button = document.getElementById('social-signin').querySelector('.signin-google');
 	button.classList.add('waiting');
 	fetch(page.config.url.auth('google'))
 		.then(response => response.json())

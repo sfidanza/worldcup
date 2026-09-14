@@ -2,8 +2,8 @@
  * Index page
  ******************************************************************************/
 import { Router } from 'express';
+import { frw } from '@sfidanza/tahr';
 import foot from '../business/foot.js';
-import frw from '../frw/frw.data.js';
 import ics from 'ics';
 
 const TAGS = {

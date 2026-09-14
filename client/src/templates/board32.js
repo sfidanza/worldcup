@@ -1,18 +1,17 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
-let page, frw;
+let page;
 
-export const board32 = new Template();
+export const board32 = new frw.Template();
 
 board32.phaseClasses = {
 	'J': 'round32',
 	'H': 'round16'
 };
 
-board32.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
-	frw = frwRef;
+board32.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
+	page = pageRef;
 };
 
 board32.onParse = function (data) {

@@ -1,12 +1,12 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
 let page;
 
-export const quickRanking = new Template();
+export const quickRanking = new frw.Template();
 
-quickRanking.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
+quickRanking.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
+	page = pageRef;
 };
 
 quickRanking.onParse = function (teams, group, highlighted) {

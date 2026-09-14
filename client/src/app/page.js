@@ -1,8 +1,7 @@
 /**********************************************************
  * Page
  **********************************************************/
-import * as frw from '../frw/frw.js';
-import * as uic from '../frw/uic.js';
+import { frw, uic } from '@sfidanza/tahr';
 import { scoreEditor } from './scoreEditor.js';
 import { bet } from './bet.js';
 import { live } from './live.js';
@@ -26,7 +25,7 @@ page.initialize = function () {
 	// retrieve templates and data
 	page.notify('Loading data...', true);
 	Promise.all([
-		frw.ssa.loadTemplates(page.config.url.templates, page.templates, page, frw),
+		frw.ssa.loadTemplates(page.config.url.templates, page.templates, page.config.i18n, page),
 		page.getData()
 	]).then(() => {
 		// Initialize history

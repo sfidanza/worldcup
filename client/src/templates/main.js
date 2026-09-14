@@ -1,13 +1,13 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
 let page;
 
-export const main = new Template();
+export const main = new frw.Template();
 
-main.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
+main.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
 	this.autoBindEvents = ['onclick'];
+	page = pageRef;
 };
 
 main.onParse = function (year) {
@@ -47,8 +47,7 @@ main.submitLogin = function (id, pwd) {
 	page.loginDlg.hide();
 };
 
-main.toggleLive = function () {
-	const tag = document.querySelector('#live');
+main.toggleLive = function (tag) {
 	if (tag.classList.contains('active')) {
 		page.live.stop();
 		tag.classList.remove('active');

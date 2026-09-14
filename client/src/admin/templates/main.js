@@ -1,12 +1,12 @@
-import { Template } from '../../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
 let page;
 
-export const main = new Template();
+export const main = new frw.Template();
 
-main.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
+main.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
+	page = pageRef;
 };
 
 main.onParse = function () {

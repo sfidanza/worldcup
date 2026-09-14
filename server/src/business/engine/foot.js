@@ -1,7 +1,7 @@
 /********************************************************************
  * Foot tournament engine
  ********************************************************************/
-import frw from '../../frw/frw.data.js';
+import { frw } from '@sfidanza/tahr';
 
 const foot = {};
 export default foot;

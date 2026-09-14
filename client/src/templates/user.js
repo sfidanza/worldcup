@@ -1,10 +1,6 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
-export const user = new Template();
-
-user.onCreate = function (pageRef, frwRef, i18nRepository) {
-	this.i18n = i18nRepository;
-};
+export const user = new frw.Template();
 
 user.onParse = function(data) {
 	if (data.user) {

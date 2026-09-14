@@ -1,8 +1,8 @@
 /********************************************************************
  * Bets data manipulation layer
  ********************************************************************/
+import { frw } from '@sfidanza/tahr';
 import httpError from 'http-errors';
-import frw from '../frw/frw.data.js';
 import leaderboard from './engine/leaderboard.js';
 
 const bets = {};

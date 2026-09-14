@@ -1,7 +1,7 @@
 /********************************************************************
  * Leaderbord computation engine
  ********************************************************************/
-import frw from '../../frw/frw.data.js';
+import { frw } from '@sfidanza/tahr';
 
 const leaderboard = {};
 export default leaderboard;

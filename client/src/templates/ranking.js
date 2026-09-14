@@ -1,13 +1,12 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
-let page, frw;
+let page;
 
-export const ranking = new Template();
+export const ranking = new frw.Template();
 
-ranking.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
-	frw = frwRef;
+ranking.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
+	page = pageRef;
 };
 
 ranking.onParse = function (teams, group) {

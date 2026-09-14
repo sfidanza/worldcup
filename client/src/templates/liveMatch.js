@@ -1,13 +1,12 @@
-import { Template } from '../frw/frw.Template.js';
+import { frw } from '@sfidanza/tahr';
 
-let page, frw;
+let page;
 
-export const liveMatch = new Template();
+export const liveMatch = new frw.Template();
 
-liveMatch.onCreate = function (pageRef, frwRef, i18nRepository) {
-	page = pageRef;
-	frw = frwRef;
+liveMatch.onCreate = function (i18nRepository, pageRef) {
 	this.i18n = i18nRepository;
+	page = pageRef;
 };
 
 liveMatch.onParse = function (match) {
