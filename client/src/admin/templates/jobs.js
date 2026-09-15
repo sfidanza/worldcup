@@ -10,11 +10,11 @@ jobs.onCreate = function (i18nRepository, pageRef) {
 };
 
 jobs.onParse = function () {
-	this.set('jobsLastCheck', page.config.i18n.formats.datetime.format(page.data.jobsLastCheck));
+	this.set('jobsLastCheck', this.i18n.formats.datetime.format(page.data.jobsLastCheck));
 	page.data.jobs.forEach((job, i) => {
 		this.set('row_class', 'l' + (i % 2));
 		this.set('job', job);
-		this.set('job.next', page.config.i18n.formats.datetime.format(new Date(job.next)));
+		this.set('job.next', this.i18n.formats.datetime.format(new Date(job.next)));
 		this.set('job.maxExecutions', job.maxExecutions ?? '∞');
 		this.parseBlock('job');
 	});

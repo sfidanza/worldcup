@@ -19,7 +19,7 @@ board.onCreate = function (i18nRepository, pageRef) {
 
 board.onParse = function (data) {
 	const teams = frw.data.indexBy(data.teams, 'id');
-	const dateFormat = page.config.i18n.formats.date;
+	const dateFormat = this.i18n.formats.date;
 	
 	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 
@@ -37,7 +37,7 @@ board.onParse = function (data) {
 		if (match.phase === 'J') continue; // skip round of 32
 		this.set('match', match);
 		this.set('class', this.phaseClasses[match.phase]);
-		this.set('category', page.config.i18n['phase' + match.phase]);
+		this.set('category', this.i18n['phase' + match.phase]);
 		this.set('day', dateFormat.format(new Date(match.day)));
 		const team1 = teams[match.team1_id];
 		const team2 = teams[match.team2_id];

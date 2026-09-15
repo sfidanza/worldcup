@@ -101,11 +101,11 @@ bet.parseMatches = function (bets) {
 	const user = page.data.user;
 	const list = frw.data.groupBy(page.data.matches.filter(m => m.group == null), 'phase');
 	const teams = frw.data.indexBy(page.data.teams, 'id');
-	const dateFormat = page.config.i18n.formats.date;
+	const dateFormat = this.i18n.formats.date;
 
 	for (const phase of page.config.phases) {
 		if (!list[phase]) continue;
-		this.set('phase', page.config.i18n['phase' + phase]);
+		this.set('phase', this.i18n['phase' + phase]);
 		const phaseList = frw.data.groupBy(list[phase], 'day');
 		const days = Object.keys(phaseList).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 		for (const day of days) {
