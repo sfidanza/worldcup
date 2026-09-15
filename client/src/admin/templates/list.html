@@ -39,10 +39,18 @@
 		<tr class="{row_class}">
 			<td>{year}</td>
 			<td>{name}</td>
-			<td>{type}</td>
+			<!-- BEGIN: normal -->
+			<td>{i18n.normal}</td>
 			<td><a onclick="page.preview('{year}', event);" href="#">Preview</a></td>
 			<td><a onclick="page.import('{year}', event);" href="#">Import</a></td>
 			<td><a onclick="page.export('{year}', event);" href="#">Export</a></td>
+			<!-- END: normal -->
+			<!-- BEGIN: light -->
+			<td>{i18n.light}</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<!-- END: light -->
 		</tr>
 		<!-- END: competition -->
 	</tbody>
