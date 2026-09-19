@@ -42,6 +42,7 @@ new MongoClient(`mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOSTNAME}:${MONGO_
 		app.use(session({
 			secret: COOKIE_SEED,
 			cookie: {
+				sameSite: 'strict',
 				secure: 'auto'
 			},
 			store: MongoStore.create({
