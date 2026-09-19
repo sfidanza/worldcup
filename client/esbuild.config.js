@@ -2,12 +2,7 @@
 
 import * as esbuild from 'esbuild';
 import { copy } from 'esbuild-plugin-copy';
-import clean from './build/plugins/esbuild-plugin-clean.js';
-import hash from './build/plugins/esbuild-plugin-hash.js';
-import eslint from './build/plugins/esbuild-plugin-eslint.js';
-import stylelint from './build/plugins/esbuild-plugin-stylelint.js';
-import tpl from './build/plugins/esbuild-plugin-tpl.js';
-import chokidar from 'chokidar';
+import { clean, hash, eslint, stylelint, tpl, worldWatcher } from '@sfidanza/netherforge';
 
 const config = {
 	logLevel: 'info',
@@ -48,32 +43,4 @@ const config = {
 	]
 };
 
-const LCINFO = '\x1b[34m%s\x1b[0m'; //blue
-const LCWARN = '\x1b[33m%s\x1b[0m'; //yellow
-const isWatch = process.argv.includes('--watch');
-
-try {
-	await esbuild.build(config);
-} catch (err) {
-	console.error(err);
-	if (!isWatch) {
-		process.exit(1);
-	}
-}
-
-if (isWatch) {
-	const ctx = await esbuild.context(config);
-	// Replace esbuild's watch by chokidar's to trigger rebuild on html and images as well
-	// await ctx.watch();
-
-	console.log(LCINFO, '[watch] build finished, watching for changes...');
-	chokidar.watch('./src', { ignoreInitial: true, usePolling: true }).on('all', async (event, path) => {
-		console.log(LCWARN, event, path);
-		try {
-			await ctx.rebuild();
-		} catch (err) {
-			console.error(err);
-		}
-		console.log(LCINFO, '[watch] build finished, watching for changes...');
-	});
-}
+worldWatcher.oversee(esbuild, config);
