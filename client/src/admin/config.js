@@ -39,7 +39,6 @@ export const config = {
 	},
 	area: {
 		main: 'global-container',
-		pwl: 'app-pwl',
 		contents: 'contents',
 		jobs: 'jobs',
 		user: 'user-area'

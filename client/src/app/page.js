@@ -22,8 +22,10 @@ page.initialize = function () {
 	page.config.cid = page.config.getCompetitionId(page.config.year);
 	page.config.name = page.config.i18n.names[page.config.cid](page.config.year);
 
+	this.pwl = new uic.PWL();
+	this.pwl.show('Loading data...');
+
 	// retrieve templates and data
-	page.notify('Loading data...', true);
 	Promise.all([
 		frw.ssa.loadTemplates(page.config.url.templates, page.templates, page.config.i18n, page),
 		page.getData()
@@ -51,14 +53,14 @@ page.initialize = function () {
 		this.tooltip = new uic.Tooltip(0, 'centerX');
 
 		page.select(frw.history.getCurrentState() || page.config.defaultPage);
-		page.notify(null);
+		this.pwl.hide();
 	});
 };
 
 page.destroy = function () {
 	this.loginDlg.destroy();
 	this.tooltip.destroy();
-	this.pwl = null;
+	this.pwl.destroy();
 	for (const id in page.templates) {
 		const tpl = page.templates[id];
 		if (tpl.destroy) tpl.destroy();
@@ -74,20 +76,6 @@ page.getYear = function () {
 		year = page.config.defaultYear;
 	}
 	return year;
-};
-
-page.notify = function (message, init) {
-	if (!this.pwl) this.pwl = document.getElementById(page.config.area.pwl);
-	if (message) {
-		this.pwl.innerHTML = message;
-	} else {
-		this.pwl.innerHTML = '';
-		this.pwl.style.display = 'none';
-	}
-	if (init) {
-		this.pwl.style.display = 'block';
-		frw.dom.center(this.pwl);
-	}
 };
 
 page.getData = async function () {

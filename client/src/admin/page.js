@@ -1,7 +1,7 @@
 /**********************************************************
  * Page
  **********************************************************/
-import { frw } from '@sfidanza/tahr';
+import { frw, uic } from '@sfidanza/tahr';
 import { config } from './config.js';
 
 export const page = {
@@ -11,8 +11,10 @@ export const page = {
 window.page = page; // make page callable from global scope so it can be used from html
 
 page.initialize = function () {
+	this.pwl = new uic.PWL();
+	this.pwl.show('Loading data...');
+
 	// retrieve templates and data
-	page.notify('Loading data...', true);
 	Promise.all([
 		frw.ssa.loadTemplates(page.config.url.templates, page.templates, page.config.i18n, page),
 		page.getData()
@@ -26,12 +28,12 @@ page.initialize = function () {
 
 		page.show('list');
 
-		page.notify(null);
+		this.pwl.hide();
 	});
 };
 
 page.destroy = function () {
-	this.pwl = null;
+	this.pwl.destroy();
 	for (const id in page.templates) {
 		const tpl = page.templates[id];
 		if (tpl.destroy) tpl.destroy();
@@ -44,20 +46,6 @@ page.getYear = function () {
 		year = page.config.defaultYear;
 	}
 	return year;
-};
-
-page.notify = function (message, init) {
-	if (!this.pwl) this.pwl = document.getElementById(page.config.area.pwl);
-	if (message) {
-		this.pwl.innerHTML = message;
-	} else {
-		this.pwl.innerHTML = '';
-		this.pwl.style.display = 'none';
-	}
-	if (init) {
-		this.pwl.style.display = 'block';
-		frw.dom.center(this.pwl);
-	}
 };
 
 page.getData = async function () {

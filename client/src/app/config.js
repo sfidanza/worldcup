@@ -65,7 +65,6 @@ export const config = {
 	},
 	area: {
 		main: 'global-container',
-		pwl: 'app-pwl',
 		contents: 'contents',
 		user: 'user-area',
 		loginDlg: 'login-dlg',
