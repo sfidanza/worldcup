@@ -16,9 +16,9 @@
 <!-- BEGIN: match -->
 <div class="match {class}" id="match-{match.id}" data-match="{match.fid}" data-live="{match.live}"
      <!-- BEGIN: tooltip -->
-     onmouseover="page.tooltip.showTooltip(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}', '{group1}', '{group2}'), 'centerX');"
-     onmousemove="page.tooltip.positionTooltip(event, 'centerX');"
-     onmouseout="page.tooltip.hideTooltip();"
+     onmouseover="page.tooltip.show(event, page.getRankingPopup('{match.team1_source}', '{match.team2_source}', '{group1}', '{group2}'));"
+     onmousemove="page.tooltip.position(event);"
+     onmouseout="page.tooltip.hide();"
      <!-- END: tooltip -->
      >
 	<h3>{category}</h3>

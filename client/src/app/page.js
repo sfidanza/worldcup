@@ -48,7 +48,7 @@ page.initialize = function () {
 			id: page.config.area.loginDlg,
 			centered: true
 		});
-		this.tooltip = new uic.Tooltip(0);
+		this.tooltip = new uic.Tooltip(0, 'centerX');
 
 		page.select(frw.history.getCurrentState() || page.config.defaultPage);
 		page.notify(null);
@@ -295,7 +295,7 @@ page.showGroup = function (group) {
 		page.templates.ranking.retrieve(),
 		page.templates.schedule.retrieve()
 	].join('\n');
-	frw.dom.updateContainer(content, document.getElementById(page.config.area.contents));
+	document.getElementById(page.config.area.contents).innerHTML = content;
 	page.templates.ranking.onLoad();
 	page.templates.schedule.onLoad();
 	page.scoreEditor.plug();
