@@ -9,8 +9,12 @@ quickRanking.onCreate = function (i18nRepository, pageRef) {
 	page = pageRef;
 };
 
-quickRanking.onParse = function (teams, group, highlighted) {
-	this.set('group', group);
+quickRanking.onParse = function (from, group) {
+	const g = group || from.charAt(1);
+	const teams = page.data.teams.filter(t => t.group == g);
+	const highlighted = from.charAt(0);
+
+	this.set('group', g);
 	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 	teams.forEach((team, i) => {
 		this.set('row_class', 'l' + (i % 2));

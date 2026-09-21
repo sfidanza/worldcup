@@ -10,8 +10,8 @@ bestThirds.onCreate = function (i18nRepository, pageRef) {
 	page = pageRef;
 };
 
-bestThirds.onParse = function (teams) {
-	const best3rds = teams.filter(t => t.rank === 3);
+bestThirds.onParse = function () {
+	const best3rds = page.data.teams.filter(t => t.rank === 3);
 	frw.data.sortBy(best3rds, [
 		{ key: 'points', dir: -1 },
 		{ key: 'goal_difference', dir: -1 },

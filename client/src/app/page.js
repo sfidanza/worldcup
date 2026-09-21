@@ -238,9 +238,9 @@ page.show = function (viewName, ...option) {
 	switch (viewName) {
 		case 'schedule': page.showSchedule(...option); break;
 		case 'group': page.showGroup(...option); break;
-		case 'board': page.showBoard(); break;
-		case 'board32': page.showBoard32(); break;
-		case 'bestThirds': page.showBestThirds(); break;
+		case 'board': page.showPage('board'); break;
+		case 'board32': page.showPage('board32'); break;
+		case 'bestThirds': page.showPage('bestThirds'); break;
 		case 'history': page.showPage('history', ...option); break;
 		case 'notes': page.showPage('notes'); break;
 		case 'login': page.showPage('login', ...option); break;
@@ -266,65 +266,15 @@ page.showSchedule = function (phase) {
 };
 
 page.showGroup = function (group) {
-	if (group) {
-		this.activeGroup = group;
-	} else {
-		group = this.activeGroup || 'A';
-	}
-	const data = {
-		teams: page.data.teams.filter(item => item.group === group),
-		matches: page.data.matches.filter(item => item.group === group),
-		stadiums: page.data.stadiums
-	};
-
-	page.templates.ranking.parse(data.teams, group);
-	page.templates.schedule.parse(data);
-	const content = [
-		page.templates.ranking.retrieve(),
-		page.templates.schedule.retrieve()
-	].join('\n');
-	document.getElementById(page.config.area.contents).innerHTML = content;
-	page.templates.ranking.onLoad();
-	page.templates.schedule.onLoad();
+	if (group) this.activeGroup = group;
+	page.templates.group.parse(this.activeGroup || 'A');
+	page.templates.group.load(page.config.area.contents);
 	page.scoreEditor.plug();
 };
 
-page.showBoard = function () {
-	const data = {
-		teams: page.data.teams,
-		matches: page.data.matches.filter(m => m.group == null),
-		stadiums: page.data.stadiums
-	};
-
-	page.templates.board.parse(data);
-	page.templates.board.load(page.config.area.contents);
-};
-
-page.showBoard32 = function () {
-	const data = {
-		teams: page.data.teams,
-		matches: page.data.matches.filter(m => m.group == null),
-		stadiums: page.data.stadiums
-	};
-
-	page.templates.board32.parse(data);
-	page.templates.board32.load(page.config.area.contents);
-};
-
-page.showBestThirds = function () {
-	page.templates.bestThirds.parse(page.data.teams);
-	page.templates.bestThirds.load(page.config.area.contents);
-};
-
-page.parseGroupRanking = function (from, group) {
-	const g = group || from.charAt(1);
-	const teams = page.data.teams.filter(t => t.group == g);
-	page.templates.quickRanking.parse(teams, g, from.charAt(0));
-};
-
 page.getRankingPopup = function (from1, from2, g1, g2) {
-	this.parseGroupRanking(from1, g1);
-	this.parseGroupRanking(from2, g2);
+	page.templates.quickRanking.parse(from1, g1);
+	page.templates.quickRanking.parse(from2, g2);
 	return page.templates.quickRanking.retrieve();
 };
 

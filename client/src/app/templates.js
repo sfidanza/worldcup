@@ -9,6 +9,7 @@ export { ranking } from '../templates/ranking.js';
 export { board } from '../templates/board.js';
 export { board32 } from '../templates/board32.js';
 export { quickRanking } from '../templates/quickRanking.js';
+export { group } from '../templates/group.js';
 export { history } from '../templates/history.js';
 export { notes } from '../templates/notes.js';
 export { login } from '../templates/login/login.js';

@@ -17,14 +17,16 @@ board.onCreate = function (i18nRepository, pageRef) {
 	page = pageRef;
 };
 
-board.onParse = function (data) {
-	const teams = frw.data.indexBy(data.teams, 'id');
+board.onParse = function () {
+	const matches = page.data.matches.filter(m => m.group == null);
+	const teams = frw.data.indexBy(page.data.teams, 'id');
+	const stadiums = page.data.stadiums;
 	const dateFormat = this.i18n.formats.date;
 	
 	this.set('flag', page.config.cid === 'cwc' ? 'club' : 'flag');
 
-	const withH = data.matches.some(m => m.phase === 'H');
-	const withT = data.matches.some(m => m.phase === 'T');
+	const withH = matches.some(m => m.phase === 'H');
+	const withT = matches.some(m => m.phase === 'T');
 	this.set('size', withH ? 'sizeH' : 'sizeQ');
 	if (withH) {
 		this.parseBlock('linksH');
@@ -33,7 +35,7 @@ board.onParse = function (data) {
 		this.parseBlock('linksT');
 	}
 
-	for (const match of data.matches) {
+	for (const match of matches) {
 		if (match.phase === 'J') continue; // skip round of 32
 		this.set('match', match);
 		this.set('class', this.phaseClasses[match.phase]);
@@ -43,7 +45,7 @@ board.onParse = function (data) {
 		const team2 = teams[match.team2_id];
 		this.set('team1.name', team1 ? team1.name : match.team1_source); // use team id instead of name for size S?
 		this.set('team2.name', team2 ? team2.name : match.team2_source);
-		this.set('stadium', data.stadiums[match.stadium]);
+		this.set('stadium', stadiums[match.stadium]);
 		if (match.team1_scorePK != null) {
 			this.parseBlock('PSO');
 		}
