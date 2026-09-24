@@ -8,7 +8,7 @@
     "url": "https://github.com/sfidanza/worldcup/issues"
   },
   "dependencies": {
-    "@googleapis/people": "12.0.0",
+    "@googleapis/people": "12.0.1",
     "@sfidanza/tahr": "0.1.0",
     "better-sse": "0.16.1",
     "connect-mongo": "6.0.0",
