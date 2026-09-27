@@ -9,14 +9,14 @@ group.onCreate = function (i18nRepository, pageRef) {
 	page = pageRef;
 };
 
-group.onParse = function (group) {
+group.onParse = function (g) {
 	const data = {
-		teams: page.data.teams.filter(item => item.group === group),
-		matches: page.data.matches.filter(item => item.group === group),
+		teams: page.data.teams.filter(item => item.group === g),
+		matches: page.data.matches.filter(item => item.group === g),
 		stadiums: page.data.stadiums
 	};
 
-	page.templates.ranking.parse(data.teams, group);
+	page.templates.ranking.parse(data.teams, g);
 	page.templates.schedule.parse(data);
 
 	this.set('ranking', page.templates.ranking.retrieve());
