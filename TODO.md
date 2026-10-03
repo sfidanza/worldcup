@@ -27,3 +27,12 @@
         - <https://docs.couchdb.org/en/latest/setup/single-node.html>
       - [PostgreSQL](https://www.postgresql.org/) as a [document store](https://neon.com/guides/document-store)
   - nodeSelector needed because of hostpath for DB volume
+- Docker images in ghcr
+  - cleanup images: <https://github.com/marketplace/actions/ghcr-io-cleanup-action>
+  - add attestation
+    - <https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images#publishing-images-to-github-packages>
+    - <https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations>
+  - review versioning
+    - <https://github.com/docker/metadata-action#about>
+    - or anything semver to tag images with something else than just branch name
+    - in particular, maybe tag `latest` only on `push tag`
