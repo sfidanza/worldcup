@@ -49,7 +49,7 @@
 .board .match div.teams .score {
 	flex: 1;
 	margin: -1px 4px 0;
-	padding: 2px 2px;
+	padding: 2px;
 	white-space: nowrap;
 }
 .board .match div.teams .team {

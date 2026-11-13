@@ -39,7 +39,7 @@ button {
 }
 .note {
 	margin: 1em auto;
-	padding: 1em 3.5em 1em;
+	padding: 1em 3.5em;
 	background-color: #FFFFCC;
 	background-image: url(img/date_add.png);
 	background-position: 1em 50%;
@@ -272,6 +272,6 @@ dl.menu li ul li a {
 		display: none;
 	}
 	dl#menu dd a {
-		padding: 0.4em 0.4em;
+		padding: 0.4em;
 	}
 }
